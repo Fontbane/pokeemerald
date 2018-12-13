@@ -2533,6 +2533,14 @@ static const u8 sMULTI_ATTACKDescription[] = _(
 	"An attack that changes\n"
 	"with Memories.");
 
+static const u8 sMIND_BLOWNDescription[]  = _(
+    "Halves the user's HP to\n"
+    "deal massive damage.");
+
+static const u8 sPLASMA_FISTSDescription[]  = _(
+    "Normal moves are Electric\n"
+    "for the rest of the turn.");
+
 static const u8 sNotDoneYetDescription[] = _(
 	"Not done yet.");
 
@@ -3211,4 +3219,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_ZING_ZAP - 1] = sZING_ZAPDescription,
     [MOVE_NATURES_MADNESS - 1] = sNATURES_MADNESSDescription,
     [MOVE_MULTI_ATTACK - 1] = sMULTI_ATTACKDescription,
+    [MOVE_MIND_BLOWN - 1] = sMIND_BLOWNDescription,
+    [MOVE_PLASMA_FISTS - 1] = sPLASMA_FISTSDescription,
+    [MOVE_PHOTON_GEYSER - 1] = sPHOTON_GEYSERDescription,
+    [MOVE_DOUBLE_IRON_BASH - 1] = sDOUBLE_IRON_BASHDescription,
 };

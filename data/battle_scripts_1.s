@@ -340,6 +340,8 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectAcupressure
 	.4byte BattleScript_EffectAromaticMist
 	.4byte BattleScript_EffectPowder
+	.4byte BattleScript_EffectIonHit
+	.4byte BattleScript_EffectDoubleIronBash
 	
 BattleScript_EffectPowder:
 	attackcanceler
@@ -1186,6 +1188,18 @@ BattleScript_EffectIonDeluge:
 	printstring STRINGID_IONDELUGEON
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectIonHit:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	orword gFieldStatuses, STATUS_FIELD_ION_DELUGE
+	attackanimation
+	waitanimation
+	printstring STRINGID_IONDELUGEON
+	waitmessage 0x40
+	goto BattleScript_EffectHit
 	
 BattleScript_EffectQuash:
 	attackcanceler
@@ -2602,6 +2616,16 @@ BattleScript_EffectTwineedle::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	setbyte sMULTIHIT_EFFECT, MOVE_EFFECT_POISON
+	attackstring
+	ppreduce
+	setmultihitcounter 0x2
+	initmultihitstring
+	goto BattleScript_MultiHitLoop
+
+BattleScript_EffectDoubleIronBash::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	setbyte sMULTIHIT_EFFECT, MOVE_EFFECT_FLINCH
 	attackstring
 	ppreduce
 	setmultihitcounter 0x2
