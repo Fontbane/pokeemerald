@@ -75,9 +75,6 @@ struct UnknownStruct4
     u8 unk9;
 };
 
-#define HOENN_DEX_COUNT 202
-#define NATIONAL_DEX_COUNT 386
-
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
 struct PokedexListItem
@@ -4348,7 +4345,7 @@ u16 GetHoennPokedexCount(u8 caseID)
     u16 count = 0;
     u16 i;
 
-    for (i = 0; i < 202; i++)
+    for (i = 0; i < HOENN_DEX_COUNT; i++)
     {
         switch (caseID)
         {

@@ -2297,7 +2297,7 @@ static void sub_8177388(void)
     u16 dexNum;
     u16 j;
 
-    for (dexNum = 1, j = 0; dexNum < 386; dexNum++)
+    for (dexNum = 1, j = 0; dexNum < NATIONAL_DEX_COUNT; dexNum++)
     {
         if (GetSetPokedexFlag(dexNum, 1))
         {
@@ -2306,7 +2306,7 @@ static void sub_8177388(void)
         }
     }
 
-    for (dexNum = j; dexNum < 386; dexNum++)
+    for (dexNum = j; dexNum < NATIONAL_DEX_COUNT; dexNum++)
         gUnknown_0203BCE8->unk96[dexNum] = 0;
 
     gUnknown_0203BCE8->unk39A = j;

@@ -12,6 +12,9 @@ enum
     FLAG_SET_CAUGHT
 };
 
+#define HOENN_DEX_COUNT 202
+#define NATIONAL_DEX_COUNT 386
+
 struct PokedexEntry
 {
     /*0x00*/ u8 categoryName[12];
