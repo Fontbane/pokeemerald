@@ -1,5 +1,5 @@
 VerdanturfTown_BattleTentCorridor_MapScripts:: @ 820208A
-	map_script 2, VerdanturfTown_BattleTentCorridor_MapScript2_202090
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, VerdanturfTown_BattleTentCorridor_MapScript2_202090
 	.byte 0
 
 VerdanturfTown_BattleTentCorridor_MapScript2_202090: @ 8202090
@@ -10,12 +10,12 @@ VerdanturfTown_BattleTentCorridor_EventScript_20209A:: @ 820209A
 	lockall
 	setvar VAR_TEMP_0, 1
 	applymovement 1, VerdanturfTown_BattleTentCorridor_Movement_2020DE
-	applymovement 255, VerdanturfTown_BattleTentCorridor_Movement_2020DE
+	applymovement EVENT_OBJ_ID_PLAYER, VerdanturfTown_BattleTentCorridor_Movement_2020DE
 	waitmovement 0
 	opendoor 2, 1
 	waitdooranim
 	applymovement 1, VerdanturfTown_BattleTentCorridor_Movement_2020E4
-	applymovement 255, VerdanturfTown_BattleTentCorridor_Movement_2020E3
+	applymovement EVENT_OBJ_ID_PLAYER, VerdanturfTown_BattleTentCorridor_Movement_2020E3
 	waitmovement 0
 	closedoor 2, 1
 	waitdooranim

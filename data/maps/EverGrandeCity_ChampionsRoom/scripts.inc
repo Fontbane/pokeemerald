@@ -1,11 +1,11 @@
 EverGrandeCity_ChampionsRoom_MapScripts:: @ 82289EF
-	map_script 3, EverGrandeCity_ChampionsRoom_MapScript1_2289FF
-	map_script 4, EverGrandeCity_ChampionsRoom_MapScript2_228A05
-	map_script 2, EverGrandeCity_ChampionsRoom_MapScript2_228A14
+	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_ChampionsRoom_MapScript1_2289FF
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, EverGrandeCity_ChampionsRoom_MapScript2_228A05
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_ChampionsRoom_MapScript2_228A14
 	.byte 0
 
 EverGrandeCity_ChampionsRoom_MapScript1_2289FF: @ 82289FF
-	call EverGrandeCity_ChampionsRoom_EventScript_271ED7
+	call Common_EventScript_SetupRivalGender
 	end
 
 EverGrandeCity_ChampionsRoom_MapScript2_228A05: @ 8228A05
@@ -13,7 +13,7 @@ EverGrandeCity_ChampionsRoom_MapScript2_228A05: @ 8228A05
 	.2byte 0
 
 EverGrandeCity_ChampionsRoom_EventScript_228A0F:: @ 8228A0F
-	turnobject 255, 2
+	turnobject EVENT_OBJ_ID_PLAYER, 2
 	end
 
 EverGrandeCity_ChampionsRoom_MapScript2_228A14: @ 8228A14
@@ -22,10 +22,10 @@ EverGrandeCity_ChampionsRoom_MapScript2_228A14: @ 8228A14
 
 EverGrandeCity_ChampionsRoom_EventScript_228A1E:: @ 8228A1E
 	lockall
-	applymovement 255, EverGrandeCity_ChampionsRoom_Movement_2725C1
+	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_2725C1
 	waitmovement 0
 	delay 40
-	applymovement 255, EverGrandeCity_ChampionsRoom_Movement_228A42
+	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_228A42
 	waitmovement 0
 	setvar VAR_TEMP_1, 1
 	goto EverGrandeCity_ChampionsRoom_EventScript_228A45
@@ -53,17 +53,17 @@ EverGrandeCity_ChampionsRoom_EventScript_228A61:: @ 8228A61
 	closemessage
 	playse SE_DOOR
 	checkplayergender
-	compare VAR_RESULT, 0
-	call_if 1, EverGrandeCity_ChampionsRoom_EventScript_228ABC
-	compare VAR_RESULT, 1
-	call_if 1, EverGrandeCity_ChampionsRoom_EventScript_228AC1
+	compare VAR_RESULT, MALE
+	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_228ABC
+	compare VAR_RESULT, FEMALE
+	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_228AC1
 	addobject 2
 	call EverGrandeCity_ChampionsRoom_EventScript_228BFD
 	checkplayergender
-	compare VAR_RESULT, 0
-	goto_eq EverGrandeCity_ChampionsRoom_EventScript_228AC6
-	compare VAR_RESULT, 1
-	goto_eq EverGrandeCity_ChampionsRoom_EventScript_228AFB
+	compare VAR_RESULT, MALE
+	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_228AC6
+	compare VAR_RESULT, FEMALE
+	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_228AFB
 	end
 
 EverGrandeCity_ChampionsRoom_EventScript_228ABC:: @ 8228ABC
@@ -78,9 +78,9 @@ EverGrandeCity_ChampionsRoom_EventScript_228AC6:: @ 8228AC6
 	msgbox EverGrandeCity_ChampionsRoom_Text_2290CA, MSGBOX_DEFAULT
 	delay 40
 	playse SE_PIN
-	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_272598
+	applymovement 2, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_27259A
+	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
 	call EverGrandeCity_ChampionsRoom_EventScript_228C12
 	msgbox EverGrandeCity_ChampionsRoom_Text_22910B, MSGBOX_DEFAULT
@@ -91,9 +91,9 @@ EverGrandeCity_ChampionsRoom_EventScript_228AFB:: @ 8228AFB
 	msgbox EverGrandeCity_ChampionsRoom_Text_229152, MSGBOX_DEFAULT
 	delay 40
 	playse SE_PIN
-	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_272598
+	applymovement 2, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_27259A
+	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
 	call EverGrandeCity_ChampionsRoom_EventScript_228C12
 	msgbox EverGrandeCity_ChampionsRoom_Text_2291A2, MSGBOX_DEFAULT
@@ -105,36 +105,36 @@ EverGrandeCity_ChampionsRoom_EventScript_228B30:: @ 8228B30
 	addobject 3
 	applymovement 3, EverGrandeCity_ChampionsRoom_Movement_228C43
 	waitmovement 0
-	applymovement 255, EverGrandeCity_ChampionsRoom_Movement_2725A8
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox EverGrandeCity_ChampionsRoom_Text_2291E6, MSGBOX_DEFAULT
 	call EverGrandeCity_ChampionsRoom_EventScript_272184
 	msgbox EverGrandeCity_ChampionsRoom_Text_22934D, MSGBOX_DEFAULT
-	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_2725A6
+	applymovement 1, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	delay 20
-	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_2725AA
+	applymovement 1, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox EverGrandeCity_ChampionsRoom_Text_229399, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_228C3B
-	applymovement 255, EverGrandeCity_ChampionsRoom_Movement_228C1D
-	applymovement 3, EverGrandeCity_ChampionsRoom_Movement_2725A6
+	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_228C1D
+	applymovement 3, Common_Movement_WalkInPlaceUp
 	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_228C38
 	waitmovement 0
 	delay 20
-	applymovement 255, EverGrandeCity_ChampionsRoom_Movement_2725AA
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox EverGrandeCity_ChampionsRoom_Text_2293EB, MSGBOX_DEFAULT
 	checkplayergender
-	compare VAR_RESULT, 0
-	call_if 1, EverGrandeCity_ChampionsRoom_EventScript_228BEB
-	compare VAR_RESULT, 1
-	call_if 1, EverGrandeCity_ChampionsRoom_EventScript_228BF4
+	compare VAR_RESULT, MALE
+	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_228BEB
+	compare VAR_RESULT, FEMALE
+	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_228BF4
 	closemessage
 	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_228C3F
-	applymovement 255, EverGrandeCity_ChampionsRoom_Movement_228C20
+	applymovement EVENT_OBJ_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_228C20
 	waitmovement 0
 	setflag FLAG_HIDE_PETALBURG_GYM_GREETER
 	warp MAP_EVER_GRANDE_CITY_HALL_OF_FAME, 255, 7, 16
@@ -153,7 +153,7 @@ EverGrandeCity_ChampionsRoom_EventScript_228BF4:: @ 8228BF4
 EverGrandeCity_ChampionsRoom_EventScript_228BFD:: @ 8228BFD
 	applymovement 2, EverGrandeCity_ChampionsRoom_Movement_228C26
 	waitmovement 0
-	applymovement 255, EverGrandeCity_ChampionsRoom_Movement_2725A4
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	return
 

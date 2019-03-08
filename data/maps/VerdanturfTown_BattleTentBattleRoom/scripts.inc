@@ -1,7 +1,7 @@
 VerdanturfTown_BattleTentBattleRoom_MapScripts:: @ 82022FA
-	map_script 3, VerdanturfTown_BattleTentBattleRoom_MapScript1_20230A
-	map_script 2, VerdanturfTown_BattleTentBattleRoom_MapScript2_20233E
-	map_script 4, VerdanturfTown_BattleTentBattleRoom_MapScript2_202541
+	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_BattleTentBattleRoom_MapScript1_20230A
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, VerdanturfTown_BattleTentBattleRoom_MapScript2_20233E
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, VerdanturfTown_BattleTentBattleRoom_MapScript2_202541
 	.byte 0
 
 VerdanturfTown_BattleTentBattleRoom_MapScript1_20230A: @ 820230A
@@ -10,20 +10,20 @@ VerdanturfTown_BattleTentBattleRoom_MapScript1_20230A: @ 820230A
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_202310:: @ 8202310
 	checkplayergender
-	compare VAR_RESULT, 0
-	goto_eq VerdanturfTown_BattleTentBattleRoom_EventScript_202328
-	compare VAR_RESULT, 1
-	goto_eq VerdanturfTown_BattleTentBattleRoom_EventScript_202333
+	compare VAR_RESULT, MALE
+	goto_if_eq VerdanturfTown_BattleTentBattleRoom_EventScript_202328
+	compare VAR_RESULT, FEMALE
+	goto_if_eq VerdanturfTown_BattleTentBattleRoom_EventScript_202333
 	return
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_202328:: @ 8202328
-	setvar VAR_OBJ_GFX_ID_1, 100
-	setvar VAR_OBJ_GFX_ID_0, 100
+	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL
 	return
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_202333:: @ 8202333
-	setvar VAR_OBJ_GFX_ID_1, 105
-	setvar VAR_OBJ_GFX_ID_0, 105
+	setvar VAR_OBJ_GFX_ID_1, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
+	setvar VAR_OBJ_GFX_ID_0, EVENT_OBJ_GFX_RIVAL_MAY_NORMAL
 	return
 
 VerdanturfTown_BattleTentBattleRoom_MapScript2_20233E: @ 820233E
@@ -38,7 +38,7 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_202348:: @ 8202348
 	setvar VAR_0x8005, 2
 	special CallFrontierUtilFunc
 	compare VAR_RESULT, 0
-	goto_if 5, VerdanturfTown_BattleTentBattleRoom_EventScript_20243C
+	goto_if_ne VerdanturfTown_BattleTentBattleRoom_EventScript_20243C
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_20236F:: @ 820236F
 	setvar VAR_0x8004, 3
@@ -77,8 +77,8 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_2023C8:: @ 82023C8
 	applymovement 2, VerdanturfTown_BattleTentBattleRoom_Movement_202581
 	waitmovement 0
 	removeobject 2
-	applymovement 3, VerdanturfTown_BattleTentBattleRoom_Movement_2725AA
-	applymovement 1, VerdanturfTown_BattleTentBattleRoom_Movement_2725A6
+	applymovement 3, Common_Movement_WalkInPlaceDown
+	applymovement 1, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	msgbox VerdanturfTown_BattleTentBattleRoom_Text_24FF00, MSGBOX_DEFAULT
 	special LoadPlayerParty
@@ -95,9 +95,9 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_20243C:: @ 820243C
 	setvar VAR_0x8005, 2
 	special CallFrontierUtilFunc
 	compare VAR_RESULT, 1
-	call_if 1, VerdanturfTown_BattleTentBattleRoom_EventScript_202565
+	call_if_eq VerdanturfTown_BattleTentBattleRoom_EventScript_202565
 	compare VAR_RESULT, 2
-	call_if 1, VerdanturfTown_BattleTentBattleRoom_EventScript_20256C
+	call_if_eq VerdanturfTown_BattleTentBattleRoom_EventScript_20256C
 	multichoice 20, 6, 104, 1
 	switch VAR_RESULT
 	case 0, VerdanturfTown_BattleTentBattleRoom_EventScript_2024EA
@@ -121,8 +121,8 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_2024B8:: @ 82024B8
 	case 127, VerdanturfTown_BattleTentBattleRoom_EventScript_20243C
 
 VerdanturfTown_BattleTentBattleRoom_EventScript_2024EA:: @ 82024EA
-	applymovement 3, VerdanturfTown_BattleTentBattleRoom_Movement_2725A8
-	applymovement 1, VerdanturfTown_BattleTentBattleRoom_Movement_2725A8
+	applymovement 3, Common_Movement_WalkInPlaceRight
+	applymovement 1, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	closemessage
 	goto VerdanturfTown_BattleTentBattleRoom_EventScript_20236F
@@ -157,7 +157,7 @@ VerdanturfTown_BattleTentBattleRoom_EventScript_20254B:: @ 820254B
 	hideobjectat 1, MAP_VERDANTURF_TOWN_BATTLE_TENT_BATTLE_ROOM
 	call VerdanturfTown_BattleTentBattleRoom_EventScript_202310
 	setvar VAR_TEMP_1, 1
-	applymovement 255, VerdanturfTown_BattleTentBattleRoom_Movement_202573
+	applymovement EVENT_OBJ_ID_PLAYER, VerdanturfTown_BattleTentBattleRoom_Movement_202573
 	removeobject 2
 	end
 

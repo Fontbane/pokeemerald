@@ -1,26 +1,26 @@
 SafariZone_South_MapScripts:: @ 823D279
-	map_script 3, SafariZone_South_MapScript1_23D2B1
-	map_script 2, SafariZone_South_MapScript2_23D284
+	map_script MAP_SCRIPT_ON_TRANSITION, SafariZone_South_MapScript1_23D2B1
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, SafariZone_South_MapScript2_23D284
 	.byte 0
 
 SafariZone_South_MapScript2_23D284: @ 823D284
-	map_script_2 VAR_0x40A4, 2, SafariZone_South_EventScript_23D28E
+	map_script_2 VAR_SAFARI_ZONE_STATE, 2, SafariZone_South_EventScript_23D28E
 	.2byte 0
 
 SafariZone_South_EventScript_23D28E:: @ 823D28E
 	lockall
-	applymovement 255, SafariZone_South_Movement_23D2C5
+	applymovement EVENT_OBJ_ID_PLAYER, SafariZone_South_Movement_23D2C5
 	waitmovement 0
 	applymovement 1, SafariZone_South_Movement_23D2C7
 	waitmovement 0
 	setobjectxyperm 1, 32, 34
-	setvar VAR_0x40A4, 0
+	setvar VAR_SAFARI_ZONE_STATE, 0
 	releaseall
 	end
 
 SafariZone_South_MapScript1_23D2B1: @ 823D2B1
-	compare VAR_0x40A4, 2
-	call_if 1, SafariZone_South_EventScript_23D2BD
+	compare VAR_SAFARI_ZONE_STATE, 2
+	call_if_eq SafariZone_South_EventScript_23D2BD
 	end
 
 SafariZone_South_EventScript_23D2BD:: @ 823D2BD
@@ -51,17 +51,16 @@ SafariZone_South_EventScript_23D2DC:: @ 823D2DC
 SafariZone_South_EventScript_23D2E5:: @ 823D2E5
 	lock
 	faceplayer
-	checkflag FLAG_0x05D
-	goto_if 0, SafariZone_South_EventScript_23D30D
+	goto_if_unset FLAG_GOOD_LUCK_SAFARI_ZONE, SafariZone_South_EventScript_23D30D
 	msgbox SafariZone_South_Text_2A51D4, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_eq SafariZone_South_EventScript_23D31A
+	goto_if_eq SafariZone_South_EventScript_23D31A
 	msgbox SafariZone_South_Text_2A521A, MSGBOX_DEFAULT
 	release
 	end
 
 SafariZone_South_EventScript_23D30D:: @ 823D30D
-	setflag FLAG_0x05D
+	setflag FLAG_GOOD_LUCK_SAFARI_ZONE
 	msgbox SafariZone_South_Text_2A52AB, MSGBOX_DEFAULT
 	release
 	end
@@ -77,7 +76,7 @@ SafariZone_South_EventScript_23D31A:: @ 823D31A
 SafariZone_South_EventScript_23D33F:: @ 823D33F
 	applymovement 1, SafariZone_South_Movement_23D38A
 	waitmovement 0
-	applymovement 255, SafariZone_South_Movement_23D385
+	applymovement EVENT_OBJ_ID_PLAYER, SafariZone_South_Movement_23D385
 	waitmovement 0
 	goto SafariZone_South_EventScript_23D373
 	end
@@ -85,13 +84,13 @@ SafariZone_South_EventScript_23D33F:: @ 823D33F
 SafariZone_South_EventScript_23D359:: @ 823D359
 	applymovement 1, SafariZone_South_Movement_23D38D
 	waitmovement 0
-	applymovement 255, SafariZone_South_Movement_23D387
+	applymovement EVENT_OBJ_ID_PLAYER, SafariZone_South_Movement_23D387
 	waitmovement 0
 	goto SafariZone_South_EventScript_23D373
 	end
 
 SafariZone_South_EventScript_23D373:: @ 823D373
-	setvar VAR_0x40A4, 1
+	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
 	warpdoor MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 255, 2, 5
 	waitstate
@@ -151,4 +150,3 @@ SafariZone_Northeast_EventScript_23D3CF:: @ 823D3CF
 SafariZone_Northeast_EventScript_23D3D8:: @ 823D3D8
 	msgbox SafariZone_Northeast_Text_2A5A44, MSGBOX_NPC
 	end
-

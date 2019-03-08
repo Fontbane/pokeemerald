@@ -1,13 +1,13 @@
 Route130_MapScripts:: @ 81F735F
-	map_script 3, Route130_MapScript1_1F7365
+	map_script MAP_SCRIPT_ON_TRANSITION, Route130_MapScript1_1F7365
 	.byte 0
 
 Route130_MapScript1_1F7365: @ 81F7365
-	compare VAR_0x405E, 4
-	call_if 4, Route130_EventScript_1F73B5
+	compare VAR_RAYQUAZA_STATE, 4
+	call_if_ge Route130_EventScript_1F73B5
 	specialvar VAR_RESULT, IsMirageIslandPresent
 	compare VAR_RESULT, 1
-	goto_eq Route130_EventScript_1F73B1
+	goto_if_eq Route130_EventScript_1F73B1
 	setflag FLAG_TEMP_11
 	setflag FLAG_TEMP_12
 	setflag FLAG_TEMP_13
@@ -23,16 +23,15 @@ Route130_MapScript1_1F7365: @ 81F7365
 	setflag FLAG_TEMP_1D
 	setflag FLAG_TEMP_1E
 	setflag FLAG_TEMP_1F
-	setmaplayoutindex 263
+	setmaplayoutindex LAYOUT_ROUTE130
 	end
 
 Route130_EventScript_1F73B1:: @ 81F73B1
-	setmaplayoutindex 46
+	setmaplayoutindex LAYOUT_ROUTE130_MIRAGE_ISLAND
 	end
 
 Route130_EventScript_1F73B5:: @ 81F73B5
-	checkflag FLAG_SYS_WEATHER_CTRL
-	call_if 1, Route130_EventScript_27207A
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
 	return
 
 Route130_EventScript_1F73BF:: @ 81F73BF

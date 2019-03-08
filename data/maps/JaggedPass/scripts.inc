@@ -1,38 +1,38 @@
 JaggedPass_MapScripts:: @ 8230656
-	map_script 5, JaggedPass_MapScript1_230666
-	map_script 3, JaggedPass_MapScript1_23068B
-	map_script 1, JaggedPass_MapScript1_23069C
+	map_script MAP_SCRIPT_ON_RESUME, JaggedPass_MapScript1_230666
+	map_script MAP_SCRIPT_ON_TRANSITION, JaggedPass_MapScript1_23068B
+	map_script MAP_SCRIPT_ON_LOAD, JaggedPass_MapScript1_23069C
 	.byte 0
 
 JaggedPass_MapScript1_230666: @ 8230666
 	setstepcallback 1
-	compare VAR_0x40C8, 0
-	call_if 1, JaggedPass_EventScript_230674
+	compare VAR_JAGGED_PASS_STATE, 0
+	call_if_eq JaggedPass_EventScript_230674
 	end
 
 JaggedPass_EventScript_230674:: @ 8230674
 	checkitem ITEM_MAGMA_EMBLEM, 1
 	compare VAR_RESULT, 1
-	goto_eq JaggedPass_EventScript_230685
+	goto_if_eq JaggedPass_EventScript_230685
 	return
 
 JaggedPass_EventScript_230685:: @ 8230685
-	setvar VAR_0x40C8, 1
+	setvar VAR_JAGGED_PASS_STATE, 1
 	return
 
 JaggedPass_MapScript1_23068B: @ 823068B
-	compare VAR_0x40BD, 1
-	call_if 1, JaggedPass_EventScript_230697
+	compare VAR_JAGGED_PASS_ASH_WEATHER, 1
+	call_if_eq JaggedPass_EventScript_230697
 	end
 
 JaggedPass_EventScript_230697:: @ 8230697
-	setweather 7
+	setweather WEATHER_ASH
 	doweather
 	return
 
 JaggedPass_MapScript1_23069C: @ 823069C
-	compare VAR_0x40C8, 1
-	goto_if 3, JaggedPass_EventScript_2306A8
+	compare VAR_JAGGED_PASS_STATE, 1
+	goto_if_le JaggedPass_EventScript_2306A8
 	end
 
 JaggedPass_EventScript_2306A8:: @ 82306A8
@@ -61,38 +61,37 @@ JaggedPass_EventScript_2306BB:: @ 82306BB
 	setmetatile 16, 18, 606, 0
 	special DrawWholeMapView
 	delay 30
-	setvar VAR_0x40C8, 2
+	setvar VAR_JAGGED_PASS_STATE, 2
 	waitse
 	releaseall
 	end
 
 JaggedPass_EventScript_230718:: @ 8230718
 	lockall
-	checkflag FLAG_0x139
-	goto_eq JaggedPass_EventScript_230766
+	goto_if_set FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS, JaggedPass_EventScript_230766
 	waitse
 	playse SE_PIN
-	applymovement 5, JaggedPass_Movement_272598
+	applymovement 5, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 5, JaggedPass_Movement_27259A
+	applymovement 5, Common_Movement_Delay48
 	waitmovement 0
-	applymovement 5, JaggedPass_Movement_27259E
+	applymovement 5, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox JaggedPass_Text_230CCB, MSGBOX_DEFAULT
 	closemessage
 	trainerbattle_no_intro TRAINER_GRUNT_30, JaggedPass_Text_230D2D
-	setflag FLAG_0x139
-	applymovement 5, JaggedPass_Movement_2725A2
+	setflag FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS
+	applymovement 5, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	releaseall
 	end
 
 JaggedPass_EventScript_230766:: @ 8230766
-	applymovement 5, JaggedPass_Movement_27259E
+	applymovement 5, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox JaggedPass_Text_230D65, MSGBOX_DEFAULT
 	closemessage
-	applymovement 5, JaggedPass_Movement_2725A2
+	applymovement 5, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	releaseall
 	end
@@ -106,7 +105,7 @@ JaggedPass_EventScript_23079C:: @ 823079C
 	trainerbattle_single TRAINER_DIANA_1, JaggedPass_Text_230974, JaggedPass_Text_2309B5, JaggedPass_EventScript_2307C8
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq JaggedPass_EventScript_2307E4
+	goto_if_eq JaggedPass_EventScript_2307E4
 	msgbox JaggedPass_Text_2309D8, MSGBOX_DEFAULT
 	release
 	end
@@ -127,7 +126,7 @@ JaggedPass_EventScript_2307FB:: @ 82307FB
 	trainerbattle_single TRAINER_ETHAN_1, JaggedPass_Text_230B10, JaggedPass_Text_230B50, JaggedPass_EventScript_230827
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq JaggedPass_EventScript_230843
+	goto_if_eq JaggedPass_EventScript_230843
 	msgbox JaggedPass_Text_230B93, MSGBOX_DEFAULT
 	release
 	end

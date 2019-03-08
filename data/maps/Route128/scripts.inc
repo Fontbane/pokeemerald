@@ -1,15 +1,14 @@
 Route128_MapScripts:: @ 81F6B38
-	map_script 3, Route128_MapScript1_1F6B43
-	map_script 2, Route128_MapScript2_1F6B4D
+	map_script MAP_SCRIPT_ON_TRANSITION, Route128_MapScript1_1F6B43
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route128_MapScript2_1F6B4D
 	.byte 0
 
 Route128_MapScript1_1F6B43: @ 81F6B43
-	checkflag FLAG_SYS_WEATHER_CTRL
-	call_if 1, Route128_EventScript_27207A
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
 	end
 
 Route128_MapScript2_1F6B4D: @ 81F6B4D
-	map_script_2 VAR_0x407B, 1, Route128_EventScript_1F6B57
+	map_script_2 VAR_ROUTE128_STATE, 1, Route128_EventScript_1F6B57
 	.2byte 0
 
 Route128_EventScript_1F6B57:: @ 81F6B57
@@ -25,18 +24,18 @@ Route128_EventScript_1F6B57:: @ 81F6B57
 	closemessage
 	applymovement 5, Route128_Movement_1F6CAD
 	waitmovement 0
-	applymovement 4, Route128_Movement_2725A6
+	applymovement 4, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	msgbox Route128_Text_1F6E5A, MSGBOX_DEFAULT
 	closemessage
 	applymovement 5, Route128_Movement_1F6CBB
 	waitmovement 0
-	applymovement 255, Route128_Movement_2725A6
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	msgbox Route128_Text_1F6F1E, MSGBOX_DEFAULT
 	closemessage
 	applymovement 4, Route128_Movement_1F6C96
-	applymovement 255, Route128_Movement_2725A4
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	applymovement 5, Route128_Movement_1F6CA8
 	waitmovement 0
 	msgbox Route128_Text_1F704F, MSGBOX_DEFAULT
@@ -54,19 +53,19 @@ Route128_EventScript_1F6B57:: @ 81F6B57
 	addobject 3
 	applymovement 3, Route128_Movement_1F6C87
 	waitmovement 0
-	applymovement 255, Route128_Movement_2725A8
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox Route128_Text_1F70C9, MSGBOX_DEFAULT
 	closemessage
 	applymovement 3, Route128_Movement_1F6C85
-	applymovement 255, Route128_Movement_2725A6
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	msgbox Route128_Text_1F70EA, MSGBOX_DEFAULT
-	applymovement 3, Route128_Movement_2725AA
+	applymovement 3, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox Route128_Text_1F721B, MSGBOX_DEFAULT
 	closemessage
-	applymovement 3, Route128_Movement_2725AA
+	applymovement 3, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	delay 50
 	setfieldeffectargument 0, 1
@@ -75,7 +74,7 @@ Route128_EventScript_1F6B57:: @ 81F6B57
 	removeobject 3
 	waitfieldeffect 30
 	clearflag FLAG_SPECIAL_FLAG_0x4000
-	setvar VAR_0x407B, 2
+	setvar VAR_ROUTE128_STATE, 2
 	releaseall
 	end
 
@@ -179,7 +178,7 @@ Route128_EventScript_1F6CBE:: @ 81F6CBE
 	trainerbattle_single TRAINER_ISAIAH_1, Route128_Text_2A287F, Route128_Text_2A28AB, Route128_EventScript_1F6CEA
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route128_EventScript_1F6D09
+	goto_if_eq Route128_EventScript_1F6D09
 	msgbox Route128_Text_2A28D7, MSGBOX_DEFAULT
 	release
 	end
@@ -201,7 +200,7 @@ Route128_EventScript_1F6D20:: @ 81F6D20
 	trainerbattle_single TRAINER_KATELYN_1, Route128_Text_2A2A1F, Route128_Text_2A2A94, Route128_EventScript_1F6D4C
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route128_EventScript_1F6D6B
+	goto_if_eq Route128_EventScript_1F6D6B
 	msgbox Route128_Text_2A2AB7, MSGBOX_DEFAULT
 	release
 	end

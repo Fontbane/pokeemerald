@@ -585,11 +585,11 @@ static void WallClockVblankCallback(void)
 static void LoadWallClockGraphics(void)
 {
     SetVBlankCallback(NULL);
-    SetGpuReg(REG_OFFSET_DISPCNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BG3CNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BG2CNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BG1CNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BG0CNT, 0x0000);
+    SetGpuReg(REG_OFFSET_DISPCNT, 0);
+    SetGpuReg(REG_OFFSET_BG3CNT, 0);
+    SetGpuReg(REG_OFFSET_BG2CNT, 0);
+    SetGpuReg(REG_OFFSET_BG1CNT, 0);
+    SetGpuReg(REG_OFFSET_BG0CNT, 0);
     ChangeBgX(0, 0, 0);
     ChangeBgY(0, 0, 0);
     ChangeBgX(1, 0, 0);
@@ -623,7 +623,7 @@ static void LoadWallClockGraphics(void)
     ResetSpriteData();
     ResetPaletteFade();
     FreeAllSpritePalettes();
-    LoadCompressedObjectPic(&gUnknown_085B2208);
+    LoadCompressedSpriteSheet(&gUnknown_085B2208);
     LoadSpritePalettes(gUnknown_085B2218);
 }
 
@@ -633,9 +633,9 @@ static void WallClockInit(void)
     EnableInterrupts(INTR_FLAG_VBLANK);
     SetVBlankCallback(WallClockVblankCallback);
     SetMainCallback2(WallClockMainCallback);
-    SetGpuReg(REG_OFFSET_BLDCNT, 0x0000);
-    SetGpuReg(REG_OFFSET_BLDALPHA, 0x0000);
-    SetGpuReg(REG_OFFSET_BLDY, 0x0000);
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+    SetGpuReg(REG_OFFSET_BLDY, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
     ShowBg(0);
     ShowBg(2);
@@ -793,7 +793,7 @@ static void Task_SetClock2(u8 taskId)
 
 static void Task_SetClock3(u8 taskId)
 {
-    SetWindowBorderStyle(0, FALSE, 0x250, 0x0d);
+    DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x250, 0x0d);
     AddTextPrinterParameterized(0, 1, gText_IsThisTheCorrectTime, 0, 1, 0, NULL);
     PutWindowTilemap(0);
     schedule_bg_copy_tilemap_to_vram(0);
@@ -812,7 +812,7 @@ static void Task_SetClock4(u8 taskId)
         case 1:    //B button
         case -1:     //NO
             PlaySE(SE_SELECT);
-            sub_8198070(0, FALSE);
+            ClearStdWindowAndFrameToTransparent(0, FALSE);
             ClearWindowTilemap(0);
             gTasks[taskId].func = Task_SetClock2;
             break;

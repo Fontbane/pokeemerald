@@ -1,10 +1,10 @@
 MtPyre_Summit_MapScripts:: @ 8231FF7
-	map_script 3, MtPyre_Summit_MapScript1_231FFD
+	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Summit_MapScript1_231FFD
 	.byte 0
 
 MtPyre_Summit_MapScript1_231FFD: @ 8231FFD
-	compare VAR_0x40B9, 2
-	call_if 1, MtPyre_Summit_EventScript_232009
+	compare VAR_MT_PYRE_STATE, 2
+	call_if_eq MtPyre_Summit_EventScript_232009
 	end
 
 MtPyre_Summit_EventScript_232009:: @ 8232009
@@ -32,17 +32,17 @@ MtPyre_Summit_EventScript_232030:: @ 8232030
 
 MtPyre_Summit_EventScript_23203C:: @ 823203C
 	playbgm MUS_AQA_0, 0
-	applymovement 255, MtPyre_Summit_Movement_2725B2
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
-	applymovement 2, MtPyre_Summit_Movement_2725AA
+	applymovement 2, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	delay 50
 	compare VAR_0x8008, 0
-	call_if 1, MtPyre_Summit_EventScript_2320E0
+	call_if_eq MtPyre_Summit_EventScript_2320E0
 	compare VAR_0x8008, 1
-	call_if 1, MtPyre_Summit_EventScript_2320EB
+	call_if_eq MtPyre_Summit_EventScript_2320EB
 	compare VAR_0x8008, 2
-	call_if 1, MtPyre_Summit_EventScript_2320EC
+	call_if_eq MtPyre_Summit_EventScript_2320EC
 	msgbox MtPyre_Summit_Text_23281A, MSGBOX_DEFAULT
 	closemessage
 	fadescreen 1
@@ -56,16 +56,16 @@ MtPyre_Summit_EventScript_23203C:: @ 823203C
 	fadedefaultbgm
 	fadescreen 0
 	delay 20
-	setvar VAR_0x40B9, 1
+	setvar VAR_MT_PYRE_STATE, 1
 	compare VAR_0x8008, 0
-	call_if 1, MtPyre_Summit_EventScript_2320F7
+	call_if_eq MtPyre_Summit_EventScript_2320F7
 	compare VAR_0x8008, 1
-	call_if 1, MtPyre_Summit_EventScript_23210C
+	call_if_eq MtPyre_Summit_EventScript_23210C
 	compare VAR_0x8008, 2
-	call_if 1, MtPyre_Summit_EventScript_232117
+	call_if_eq MtPyre_Summit_EventScript_232117
 	msgbox MtPyre_Summit_Text_23290E, MSGBOX_DEFAULT
 	giveitem_std ITEM_MAGMA_EMBLEM
-	setflag FLAG_0x0D4
+	setflag FLAG_RECEIVED_RED_OR_BLUE_ORB
 	setflag FLAG_HIDE_JAGGED_PASS_MAGMA_GUARD
 	releaseall
 	end
@@ -86,7 +86,7 @@ MtPyre_Summit_EventScript_2320EC:: @ 82320EC
 MtPyre_Summit_EventScript_2320F7:: @ 82320F7
 	applymovement 3, MtPyre_Summit_Movement_23212C
 	waitmovement 0
-	applymovement 255, MtPyre_Summit_Movement_2725A8
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	return
 
@@ -98,7 +98,7 @@ MtPyre_Summit_EventScript_23210C:: @ 823210C
 MtPyre_Summit_EventScript_232117:: @ 8232117
 	applymovement 3, MtPyre_Summit_Movement_232132
 	waitmovement 0
-	applymovement 255, MtPyre_Summit_Movement_2725A4
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	return
 
@@ -131,22 +131,21 @@ MtPyre_Summit_Movement_232139: @ 8232139
 MtPyre_Summit_EventScript_23213C:: @ 823213C
 	lock
 	faceplayer
-	checkflag FLAG_0x09E
-	goto_eq MtPyre_Summit_EventScript_232167
+	goto_if_set FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, MtPyre_Summit_EventScript_232167
 	msgbox MtPyre_Summit_Text_232E0C, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	call_if 1, MtPyre_Summit_EventScript_232187
+	call_if_eq MtPyre_Summit_EventScript_232187
 	compare VAR_RESULT, 0
-	call_if 1, MtPyre_Summit_EventScript_232190
+	call_if_eq MtPyre_Summit_EventScript_232190
 	release
 	end
 
 MtPyre_Summit_EventScript_232167:: @ 8232167
 	msgbox MtPyre_Summit_Text_2331A6, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	call_if 1, MtPyre_Summit_EventScript_232199
+	call_if_eq MtPyre_Summit_EventScript_232199
 	compare VAR_RESULT, 0
-	call_if 1, MtPyre_Summit_EventScript_232190
+	call_if_eq MtPyre_Summit_EventScript_232190
 	release
 	end
 
@@ -165,19 +164,17 @@ MtPyre_Summit_EventScript_232199:: @ 8232199
 MtPyre_Summit_EventScript_2321A2:: @ 82321A2
 	lock
 	faceplayer
-	checkflag FLAG_0x103
-	goto_eq MtPyre_Summit_EventScript_2321E2
-	compare VAR_0x40B9, 3
-	call_if 4, MtPyre_Summit_EventScript_2321CB
-	checkflag FLAG_0x081
-	goto_eq MtPyre_Summit_EventScript_2321D8
+	goto_if_set FLAG_RETURNED_RED_OR_BLUE_ORB, MtPyre_Summit_EventScript_2321E2
+	compare VAR_MT_PYRE_STATE, 3
+	call_if_ge MtPyre_Summit_EventScript_2321CB
+	goto_if_set FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, MtPyre_Summit_EventScript_2321D8
 	msgbox MtPyre_Summit_Text_232AD8, MSGBOX_DEFAULT
 	release
 	end
 
 MtPyre_Summit_EventScript_2321CB:: @ 82321CB
 	msgbox MtPyre_Summit_Text_232CA6, MSGBOX_DEFAULT
-	setflag FLAG_0x103
+	setflag FLAG_RETURNED_RED_OR_BLUE_ORB
 	release
 	end
 
@@ -210,108 +207,108 @@ MtPyre_Summit_EventScript_232204:: @ 8232204
 	end
 
 MtPyre_Summit_EventScript_232210:: @ 8232210
-	applymovement 255, MtPyre_Summit_Movement_2725A6
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	delay 60
 	compare VAR_0x8008, 0
-	call_if 1, MtPyre_Summit_EventScript_2322C4
+	call_if_eq MtPyre_Summit_EventScript_2322C4
 	compare VAR_0x8008, 1
-	call_if 1, MtPyre_Summit_EventScript_2322DD
+	call_if_eq MtPyre_Summit_EventScript_2322DD
 	compare VAR_0x8008, 2
-	call_if 1, MtPyre_Summit_EventScript_2322F6
+	call_if_eq MtPyre_Summit_EventScript_2322F6
 	playse SE_PIN
-	applymovement 8, MtPyre_Summit_Movement_272598
+	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 8, MtPyre_Summit_Movement_27259A
+	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
 	delay 30
 	compare VAR_0x8008, 0
-	call_if 1, MtPyre_Summit_EventScript_23230F
+	call_if_eq MtPyre_Summit_EventScript_23230F
 	compare VAR_0x8008, 1
-	call_if 1, MtPyre_Summit_EventScript_232328
+	call_if_eq MtPyre_Summit_EventScript_232328
 	compare VAR_0x8008, 2
-	call_if 1, MtPyre_Summit_EventScript_232341
+	call_if_eq MtPyre_Summit_EventScript_232341
 	msgbox MtPyre_Summit_Text_233183, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 0
-	call_if 1, MtPyre_Summit_EventScript_23235A
+	call_if_eq MtPyre_Summit_EventScript_23235A
 	compare VAR_0x8008, 1
-	call_if 1, MtPyre_Summit_EventScript_232376
+	call_if_eq MtPyre_Summit_EventScript_232376
 	compare VAR_0x8008, 2
-	call_if 1, MtPyre_Summit_EventScript_232392
+	call_if_eq MtPyre_Summit_EventScript_232392
 	delay 30
 	applymovement 2, MtPyre_Summit_Movement_2323B6
 	applymovement 8, MtPyre_Summit_Movement_2323BD
 	waitmovement 0
 	removeobject 2
 	removeobject 8
-	setvar VAR_0x40B9, 3
+	setvar VAR_MT_PYRE_STATE, 3
 	releaseall
 	end
 
 MtPyre_Summit_EventScript_2322C4:: @ 82322C4
-	applymovement 255, MtPyre_Summit_Movement_2323C4
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323C4
 	applymovement 2, MtPyre_Summit_Movement_2323B6
 	applymovement 8, MtPyre_Summit_Movement_2323BD
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_2322DD:: @ 82322DD
-	applymovement 255, MtPyre_Summit_Movement_2323CB
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323CB
 	applymovement 2, MtPyre_Summit_Movement_2323B6
 	applymovement 8, MtPyre_Summit_Movement_2323BD
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_2322F6:: @ 82322F6
-	applymovement 255, MtPyre_Summit_Movement_2323D2
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323D2
 	applymovement 2, MtPyre_Summit_Movement_2323B6
 	applymovement 8, MtPyre_Summit_Movement_2323BD
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_23230F:: @ 823230F
-	applymovement 255, MtPyre_Summit_Movement_2323AE
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323AE
 	applymovement 2, MtPyre_Summit_Movement_2323E7
 	applymovement 8, MtPyre_Summit_Movement_2323D8
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_232328:: @ 8232328
-	applymovement 255, MtPyre_Summit_Movement_2323B2
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323B2
 	applymovement 2, MtPyre_Summit_Movement_2323E7
 	applymovement 8, MtPyre_Summit_Movement_2323DD
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_232341:: @ 8232341
-	applymovement 255, MtPyre_Summit_Movement_2323B2
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323B2
 	applymovement 2, MtPyre_Summit_Movement_2323E7
 	applymovement 8, MtPyre_Summit_Movement_2323E2
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_23235A:: @ 823235A
-	applymovement 255, MtPyre_Summit_Movement_2323EA
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323EA
 	applymovement 8, MtPyre_Summit_Movement_2323ED
 	waitmovement 0
-	applymovement 2, MtPyre_Summit_Movement_2725A8
+	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_232376:: @ 8232376
-	applymovement 255, MtPyre_Summit_Movement_2323EA
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323EA
 	applymovement 8, MtPyre_Summit_Movement_2323F3
 	waitmovement 0
-	applymovement 2, MtPyre_Summit_Movement_2725A8
+	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_232392:: @ 8232392
-	applymovement 255, MtPyre_Summit_Movement_2323EA
+	applymovement EVENT_OBJ_ID_PLAYER, MtPyre_Summit_Movement_2323EA
 	applymovement 8, MtPyre_Summit_Movement_2323F8
 	waitmovement 0
-	applymovement 2, MtPyre_Summit_Movement_2725A8
+	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	return
 

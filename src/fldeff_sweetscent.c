@@ -3,10 +3,12 @@
 #include "event_scripts.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
-#include "field_screen.h"
+#include "field_screen_effect.h"
+#include "field_weather.h"
+#include "fldeff.h"
+#include "mirage_tower.h"
 #include "palette.h"
 #include "party_menu.h"
-#include "rom6.h"
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
@@ -20,8 +22,6 @@ static void FieldCallback_SweetScent(void);
 static void StartSweetScentFieldEffect(void);
 static void TrySweetScentEncounter(u8 taskId);
 static void FailSweetScentEncounter(u8 taskId);
-void sub_81BE6B8(void);
-void sub_81BE72C(void);
 
 bool8 SetUpFieldMove_SweetScent(void)
 {
@@ -40,7 +40,7 @@ bool8 FldEff_SweetScent(void)
 {
     u8 taskId;
 
-    sub_80AC3D0();
+    SetWeatherScreenFadeOut();
     taskId = oei_task_add();
     gTasks[taskId].data[8] = (u32)StartSweetScentFieldEffect >> 16;
     gTasks[taskId].data[9] = (u32)StartSweetScentFieldEffect;
@@ -64,7 +64,7 @@ static void TrySweetScentEncounter(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
-        sub_81BE72C();
+        ClearMirageTowerPulseBlendEffect();
         BlendPalettes(0x00000040, 8, RGB_RED);
         if (gTasks[taskId].data[0] == 64)
         {
@@ -77,7 +77,7 @@ static void TrySweetScentEncounter(u8 taskId)
             {
                 gTasks[taskId].func = FailSweetScentEncounter;
                 BeginNormalPaletteFade(~(1 << (gSprites[GetPlayerAvatarObjectId()].oam.paletteNum + 16)), 4, 8, 0, RGB_RED);
-                sub_81BE6B8();
+                TryStartMirageTowerPulseBlendEffect();
             }
         }
         else

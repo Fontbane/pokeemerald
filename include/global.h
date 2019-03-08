@@ -4,6 +4,7 @@
 #include <string.h>
 #include "config.h" // we need to define config before gba headers as print stuff needs the functions nulled before defines.
 #include "gba/gba.h"
+#include "constants/global.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
@@ -66,6 +67,12 @@
 
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) >= (b) ? (a) : (b))
+
+// Extracts the upper 16 bits of a 32-bit number
+#define HIHALF(n) (((n) & 0xFFFF0000) >> 16)
+
+// Extracts the lower 16 bits of a 32-bit number
+#define LOHALF(n) ((n) & 0xFFFF)
 
 // There are many quirks in the source code which have overarching behavioral differences from
 // a number of other files. For example, diploma.c seems to declare rodata before each use while
@@ -178,6 +185,13 @@ enum
     OPTIONS_BATTLE_STYLE_SHIFT,
     OPTIONS_BATTLE_STYLE_SET
 };
+#define S16TOPOSFLOAT(val)   \
+({                           \
+    s16 v = (val);           \
+    float f = (float)v;      \
+    if(v < 0) f += 65536.0f; \
+    f;                       \
+})
 
 struct Coords8
 {
@@ -228,7 +242,7 @@ struct Time
 struct Pokedex
 {
     /*0x00*/ u8 order;
-    /*0x01*/ u8 unknown1;
+    /*0x01*/ u8 mode;
     /*0x02*/ u8 nationalMagic; // must equal 0xDA in order to have National mode
     /*0x03*/ u8 unknown2;
     /*0x04*/ u32 unownPersonality; // set when you first see Unown
@@ -299,7 +313,7 @@ struct Apprentice
     u32 checksum;
 };
 
-struct UnknownPokemonStruct
+struct BattleTowerPokemon
 {
     u16 species;
     u16 heldItem;
@@ -336,7 +350,7 @@ struct EmeraldBattleTowerRecord
     /*0x10*/ u16 greeting[6];
     /*0x1C*/ u16 speechWon[6];
     /*0x28*/ u16 speechLost[6];
-    /*0x34*/ struct UnknownPokemonStruct party[4];
+    /*0x34*/ struct BattleTowerPokemon party[4];
     /*0xE4*/ u8 language;
     /*0xE8*/ u32 checksum;
 };
@@ -351,7 +365,7 @@ struct BattleTowerEReaderTrainer
     /*0x10*/ u16 greeting[6];
     /*0x1C*/ u16 farewellPlayerLost[6];
     /*0x28*/ u16 farewellPlayerWon[6];
-    /*0x34*/ struct UnknownPokemonStruct party[3];
+    /*0x34*/ struct BattleTowerPokemon party[3];
     /*0xB8*/ u32 checksum;
 };
 
@@ -362,7 +376,7 @@ struct FrontierMonData
     u8 nature;
 };
 
-struct Struct_field_E70
+struct RentalMon
 {
     u16 monId;
     u32 personality;
@@ -401,7 +415,7 @@ struct BattleFrontier
     /*0xCAA*/ u16 selectedPartyMons[3];
     /*0xCB0*/ u16 field_CB0;
     /*0xCB2*/ u16 curChallengeBattleNum; // In case of battle pyramid, the floor.
-    /*0xCB4*/ u16 field_CB4[20];
+    /*0xCB4*/ u16 trainerIds[20];
     /*0xCDC*/ u32 field_CDC;
     /*0xCE0*/ u16 towerWinStreaks[4][2];
     /*0xCF0*/ u16 towerRecordWinStreaks[4][2];
@@ -430,7 +444,7 @@ struct BattleFrontier
     /*0xDC6*/ u16 field_DC6;
     /*0xDC8*/ u16 palaceWinStreaks[2][2];
     /*0xDD0*/ u16 palaceRecordWinStreaks[2][2];
-    /*0xDD8*/ u16 field_DD8;
+    /*0xDD8*/ u16 arenaRewardItem;
     /*0xDDA*/ u16 arenaWinStreaks[2];
     /*0xDDE*/ u16 arenaRecordStreaks[2];
     /*0xDE2*/ u16 factoryWinStreaks[2][2];
@@ -441,29 +455,30 @@ struct BattleFrontier
     /*0xE04*/ u16 pikeWinStreaks[2];
     /*0xE08*/ u16 pikeRecordStreaks[2];
     /*0xE0C*/ u16 pikeTotalStreaks[2];
-    /*0xE10*/ u8 field_E10_1:3;
-    /*0xE10*/ u8 field_E10_2:4;
-    /*0xE10*/ u8 field_E10_3:1;
-    /*0xE12*/ u16 field_E12[3];
-    /*0xE18*/ u16 field_E18;
+    /*0xE10*/ u8 pikeHintedRoomIndex:3;
+    /*0xE10*/ u8 pikeHintedRoomType:4;
+    /*0xE10*/ u8 pikeHealingRoomsDisabled:1;
+    /*0xE12*/ u16 pikeHeldItemsBackup[3];
+    /*0xE18*/ u16 pyramidRewardItem;
     /*0xE1A*/ u16 pyramidWinStreaks[2];
     /*0xE1E*/ u16 pyramidRecordStreaks[2];
-    /*0xE22*/ u16 field_E22[4];
-    /*0xE2A*/ u8 field_E2A;
+    /*0xE22*/ u16 pyramidRandoms[4];
+    /*0xE2A*/ u8 pyramidTrainerFlags;
     /*0xE2C*/ struct PyramidBag pyramidBag;
-    /*0xE68*/ u8 field_E68;
+    /*0xE68*/ u8 pyramidLightRadius;
     /*0xE6A*/ u16 field_E6A;
     /*0xE6C*/ u16 field_E6C;
     /*0xE6E*/ u16 field_E6E;
-    /*0xE70*/ struct Struct_field_E70 field_E70[6];
+    /*0xE70*/ struct RentalMon rentalMons[6];
     /*0xEB8*/ u16 battlePoints;
     /*0xEBA*/ u16 field_EBA;
     /*0xEBC*/ u32 battlesCount;
     /*0xEC0*/ u16 field_EC0[16];
     /*0xEE0*/ u8 field_EE0;
-    /*0xEE1*/ u8 field_EE1[2][PLAYER_NAME_LENGTH + 1];
+    /*0xEE1*/ u8 opponentName[2][PLAYER_NAME_LENGTH + 1];
     /*0xEF1*/ u8 field_EF1[2][4];
-    /*0xEF9*/ u8 field_EF9;
+    /*0xEF9*/ u8 field_EF9_0:7;
+    /*0xEF9*/ u8 field_EF9_1:1;
     /*0xEFA*/ u8 field_EFA;
     /*0xEFB*/ u8 field_EFB;
     /*0xEFC*/ struct FrontierMonData field_EFC[3];
@@ -513,7 +528,7 @@ struct SaveBlock2
 {
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     /*0x08*/ u8 playerGender; // MALE, FEMALE
-    /*0x09*/ u8 specialSaveWarp;
+    /*0x09*/ u8 specialSaveWarpFlags;
     /*0x0A*/ u8 playerTrainerId[4];
     /*0x0E*/ u16 playTimeHours;
     /*0x10*/ u8 playTimeMinutes;
@@ -530,7 +545,7 @@ struct SaveBlock2
     /*0x90*/ u8 filler_90[0x8];
     /*0x98*/ struct Time localTimeOffset;
     /*0xA0*/ struct Time lastBerryTreeUpdate;
-    /*0xA8*/ u32 field_A8;
+    /*0xA8*/ u32 field_A8; // Written to, but never read.
     /*0xAC*/ u32 encryptionKey;
     /*0xB0*/ struct PlayersApprentice playerApprentice;
     /*0xDC*/ struct Apprentice apprentices[4]; // From record mixing.
@@ -864,30 +879,45 @@ typedef union // 3b58
 
 struct WaldaPhrase
 {
-    u16 field_0;
-    u16 field_2;
+    u16 colors[2]; // Background, foreground.
     u8 text[16];
     u8 iconId;
     u8 patternId;
     bool8 patternUnlocked;
 };
 
-struct UnkSaveSubstruct_3b98 {
+struct TrainerNameRecord
+{
     u32 trainerId;
     u8 trainerName[PLAYER_NAME_LENGTH + 1];
+};
+
+struct SaveTrainerHill
+{
+    /*0x3D64*/ u32 timer;
+    /*0x3D68*/ u32 bestTime;
+    /*0x3D6C*/ u8 field_3D6C;
+    /*0x3D6D*/ u8 unused;
+    /*0x3D6E*/ u16 field_3D6E_0a:1; // 1
+    /*0x3D6E*/ u16 field_3D6E_0b:1; // 2
+    /*0x3D6E*/ u16 field_3D6E_0c:1; // 4
+    /*0x3D6E*/ u16 hasLost:1; // 8
+    /*0x3D6E*/ u16 maybeECardScanDuringChallenge:1; // x10
+    /*0x3D6E*/ u16 field_3D6E_0f:1; // x20
+    /*0x3D6E*/ u16 tag:2; // x40, x80 = xC0
 };
 
 struct SaveBlock1
 {
     /*0x00*/ struct Coords16 pos;
     /*0x04*/ struct WarpData location;
-    /*0x0C*/ struct WarpData warp1;
-    /*0x14*/ struct WarpData warp2;
-    /*0x1C*/ struct WarpData lastHealLocation;
-    /*0x24*/ struct WarpData warp4;
+    /*0x0C*/ struct WarpData continueGameWarp;
+    /*0x14*/ struct WarpData dynamicWarp;
+    /*0x1C*/ struct WarpData lastHealLocation; // used by white-out and teleport
+    /*0x24*/ struct WarpData escapeWarp; // used by Dig and Escape Rope
     /*0x2C*/ u16 savedMusic;
     /*0x2E*/ u8 weather;
-    /*0x2F*/ u8 filler_2F;
+    /*0x2F*/ u8 weatherCycleStage;
     /*0x30*/ u8 flashLevel;
     /*0x32*/ u16 mapLayoutId;
     /*0x34*/ u16 mapView[0x100];
@@ -939,13 +969,12 @@ struct SaveBlock1
     /*0x2BA1*/ u8 outbreakPokemonProbability;
     /*0x2BA2*/ u16 outbreakDaysLeft;
     /*0x2BA4*/ struct GabbyAndTyData gabbyAndTyData;
-    /*0x2BB0*/ u16 unk2BB0[6];
-    /*0x2BBC*/ u16 unk2BBC[6];
-    /*0x2BC8*/ u16 unk2BC8[6];
-    /*0x2BD4*/ u16 unk2BD4[6];
+    /*0x2BB0*/ u16 easyChatProfile[6];
+    /*0x2BBC*/ u16 easyChatBattleStart[6];
+    /*0x2BC8*/ u16 easyChatBattleWon[6];
+    /*0x2BD4*/ u16 easyChatBattleLost[6];
     /*0x2BE0*/ struct MailStruct mail[MAIL_COUNT];
-    /*0x2E20*/ u8 additionalPhrases[5]; // bitfield for 33 additional phrases in easy chat system
-    /*0x2E25*/ u8 unk2E25[3]; // possibly padding?
+    /*0x2E20*/ u8 additionalPhrases[8]; // bitfield for 33 additional phrases in easy chat system
     /*0x2E28*/ OldMan oldMan;
     /*0x2e64*/ struct EasyChatPair easyChatPairs[5]; //Dewford trend [0] and some other stuff
     /*0x2e90*/ struct ContestWinner contestWinners[13]; // 0 - 5 used in contest hall, 6 - 7 unused?, 8 - 12 museum
@@ -954,13 +983,15 @@ struct SaveBlock1
     /*0x31A8*/ u8 giftRibbons[52];
     /*0x31DC*/ struct Roamer roamer;
     /*0x31F8*/ struct EnigmaBerry enigmaBerry;
-    /*0x322C*/ u8 field_322C[1276];
+    /*0x322C*/ u8 field_322C[1260];
+    /*0x3718*/ u32 trainerHillTimes[4];
     /*0x3728*/ struct RamScript ramScript;
     /*0x3B14*/ struct RecordMixingGift recordMixingGift;
     /*0x3B24*/ u8 seen2[DEX_FLAGS_NO];
     /*0x3B58*/ LilycoveLady lilycoveLady;
-    /*0x3B98*/ struct UnkSaveSubstruct_3b98 unk_3B98[20];
-    /*0x3C88*/ u8 filler_3C88[0xE8];
+    /*0x3B98*/ struct TrainerNameRecord trainerNameRecords[20];
+    /*0x3C88*/ u8 filler_3C88[0xDC];
+    /*0x3D64*/ struct SaveTrainerHill trainerHill;
     /*0x3D70*/ struct WaldaPhrase waldaPhrase;
     // sizeof: 0x3D88
 };
@@ -974,13 +1005,13 @@ struct MapPosition
     s8 height;
 };
 
-struct UnkStruct_8054FF8
+struct TradeRoomPlayer
 {
-    u8 a;
-    u8 b;
+    u8 playerId;
+    u8 isLocalPlayer;
     u8 c;
-    u8 d;
-    struct MapPosition sub;
+    u8 facing;
+    struct MapPosition pos;
     u16 field_C;
 };
 

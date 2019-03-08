@@ -1,6 +1,6 @@
 LilycoveCity_PokemonCenter_1F_MapScripts:: @ 821C5B2
-	map_script 3, LilycoveCity_PokemonCenter_1F_MapScript1_21C5BD
-	map_script 5, LilycoveCity_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_PokemonCenter_1F_MapScript1_21C5BD
+	map_script MAP_SCRIPT_ON_RESUME, LilycoveCity_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
 LilycoveCity_PokemonCenter_1F_MapScript1_21C5BD: @ 821C5BD
@@ -11,9 +11,9 @@ LilycoveCity_PokemonCenter_1F_MapScript1_21C5BD: @ 821C5BD
 LilycoveCity_PokemonCenter_1F_EventScript_21C5C6:: @ 821C5C6
 	special sub_818D9C0
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_PokemonCenter_1F_EventScript_21C5E0
+	goto_if_eq LilycoveCity_PokemonCenter_1F_EventScript_21C5E0
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_PokemonCenter_1F_EventScript_21C5E4
+	goto_if_eq LilycoveCity_PokemonCenter_1F_EventScript_21C5E4
 	end
 
 LilycoveCity_PokemonCenter_1F_EventScript_21C5E0:: @ 821C5E0
@@ -39,8 +39,7 @@ LilycoveCity_PokemonCenter_1F_EventScript_21C5F6:: @ 821C5F6
 LilycoveCity_PokemonCenter_1F_EventScript_21C5FF:: @ 821C5FF
 	lock
 	faceplayer
-	checkflag FLAG_BADGE07_GET
-	goto_eq LilycoveCity_PokemonCenter_1F_EventScript_21C614
+	goto_if_set FLAG_BADGE07_GET, LilycoveCity_PokemonCenter_1F_EventScript_21C614
 	msgbox LilycoveCity_PokemonCenter_1F_Text_21C69D, MSGBOX_DEFAULT
 	release
 	end

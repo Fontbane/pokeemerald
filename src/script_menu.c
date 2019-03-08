@@ -782,10 +782,10 @@ const struct MenuAction MultichoiceList_112[] =
 
 const struct MenuAction MultichoiceList_113[] =
 {
-    {gUnknown_085EB32D, NULL},
-    {gUnknown_085EB33E, NULL},
-    {gUnknown_085EB350, NULL},
-    {gUnknown_085EB361, NULL},
+    {gText_NormalTagMatch, NULL},
+    {gText_VarietyTagMatch, NULL},
+    {gText_UniqueTagMatch, NULL},
+    {gText_ExpertTagMatch, NULL},
     {gText_Exit, NULL},
 };
 
@@ -1170,9 +1170,9 @@ static void Task_HandleMultichoiceInput(u8 taskId)
                 sub_80E2A94(tMultichoiceId);
             }
 
-            if (selection != -2)
+            if (selection != MENU_NOTHING_CHOSEN)
             {
-                if (selection == -1)
+                if (selection == MENU_B_PRESSED)
                 {
                     if (tIgnoreBPress)
                         return;
@@ -1202,7 +1202,7 @@ bool8 ScriptMenu_YesNo(u8 left, u8 top)
     else
     {
         gSpecialVar_Result = 0xFF;
-        DisplayYesNoMenu();
+        DisplayYesNoMenuDefaultYes();
         taskId = CreateTask(Task_HandleYesNoInput, 0x50);
         return TRUE;
     }
@@ -1407,7 +1407,7 @@ static void sub_80E2578(void)
 
     for (i = 0; i < ARRAY_COUNT(gUnknown_03001124); i++)
     {
-        gUnknown_03001124[i] |= 0xFF;
+        gUnknown_03001124[i] = 0xFF;
     }
 
     GetFontAttribute(1, FONTATTR_MAX_LETTER_WIDTH);
@@ -1416,7 +1416,7 @@ static void sub_80E2578(void)
     {
         gUnknown_03001124[temp] = 0;
         temp++;
-        if (FlagGet(FLAG_0x1D0) == TRUE)
+        if (FlagGet(FLAG_MET_SCOTT_ON_SS_TIDAL) == TRUE)
         {
             gUnknown_03001124[temp] = 1;
             temp++;
@@ -1431,15 +1431,15 @@ static void sub_80E2578(void)
             temp++;
         }
 
-        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_0x1AE) == FALSE)
+        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_HAS_EON_TICKET) == FALSE)
         {
             gUnknown_03001124[temp] = 2;
             temp++;
-            FlagSet(FLAG_0x1AE);
+            FlagSet(FLAG_HAS_EON_TICKET);
         }
     }
 
-    if (CheckBagHasItem(ITEM_MYSTIC_TICKET, 1) == TRUE && FlagGet(FLAG_0x8E0) == TRUE)
+    if (CheckBagHasItem(ITEM_MYSTIC_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_NAVEL_ROCK) == TRUE)
     {
         if (gSpecialVar_0x8004 == 0)
         {
@@ -1447,15 +1447,15 @@ static void sub_80E2578(void)
             temp++;
         }
 
-        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_0x1DB) == FALSE)
+        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_HAS_MYSTIC_TICKET) == FALSE)
         {
             gUnknown_03001124[temp] = 3;
             temp++;
-            FlagSet(FLAG_0x1DB);
+            FlagSet(FLAG_HAS_MYSTIC_TICKET);
         }
     }
 
-    if (CheckBagHasItem(ITEM_AURORA_TICKET, 1) == TRUE && FlagGet(FLAG_0x8D5) == TRUE)
+    if (CheckBagHasItem(ITEM_AURORA_TICKET, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_BIRTH_ISLAND) == TRUE)
     {
         if (gSpecialVar_0x8004 == 0)
         {
@@ -1463,15 +1463,15 @@ static void sub_80E2578(void)
             temp++;
         }
 
-        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_0x1AF) == FALSE)
+        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_HAS_AURORA_TICKET) == FALSE)
         {
             gUnknown_03001124[temp] = 4;
             temp++;
-            FlagSet(FLAG_0x1AF);
+            FlagSet(FLAG_HAS_AURORA_TICKET);
         }
     }
 
-    if (CheckBagHasItem(ITEM_OLD_SEA_MAP, 1) == TRUE && FlagGet(FLAG_0x8D6) == TRUE)
+    if (CheckBagHasItem(ITEM_OLD_SEA_MAP, 1) == TRUE && FlagGet(FLAG_ENABLE_SHIP_FARAWAY_ISLAND) == TRUE)
     {
         if (gSpecialVar_0x8004 == 0)
         {
@@ -1479,18 +1479,18 @@ static void sub_80E2578(void)
             temp++;
         }
 
-        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_0x1B0) == FALSE)
+        if (gSpecialVar_0x8004 == 1 && FlagGet(FLAG_HAS_OLD_SEA_MAP) == FALSE)
         {
             gUnknown_03001124[temp] = 5;
             temp++;
-            FlagSet(FLAG_0x1B0);
+            FlagSet(FLAG_HAS_OLD_SEA_MAP);
         }
     }
 
     gUnknown_03001124[temp] = 6;
     temp++;
 
-    if (gSpecialVar_0x8004 == 0 && FlagGet(FLAG_0x1D0) == TRUE)
+    if (gSpecialVar_0x8004 == 0 && FlagGet(FLAG_MET_SCOTT_ON_SS_TIDAL) == TRUE)
     {
         count = temp;
     }
@@ -1630,7 +1630,7 @@ u8 CreateWindowFromRect(u8 x, u8 y, u8 width, u8 height)
 
 void sub_80E2A78(u8 windowId)
 {
-    sub_8198070(windowId, TRUE);
+    ClearStdWindowAndFrameToTransparent(windowId, TRUE);
     RemoveWindow(windowId);
 }
 
@@ -1639,28 +1639,28 @@ static void sub_80E2A94(u8 multichoiceId)
     switch (multichoiceId)
     {
         case 77:
-            FillWindowPixelBuffer(0, 0x11);
-            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBAC[GetMenuCursorPos()], 0, NULL, 2, 1, 3);
+            FillWindowPixelBuffer(0, PIXEL_FILL(1));
+            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBAC[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
             break;
         case 76:
-            FillWindowPixelBuffer(0, 0x11);
-            AddTextPrinterParameterized2(0, 1, gUnknown_0858BB9C[GetMenuCursorPos()], 0, NULL, 2, 1, 3);
+            FillWindowPixelBuffer(0, PIXEL_FILL(1));
+            AddTextPrinterParameterized2(0, 1, gUnknown_0858BB9C[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
             break;
         case 78:
-            FillWindowPixelBuffer(0, 0x11);
-            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBBC[GetMenuCursorPos()], 0, NULL, 2, 1, 3);
+            FillWindowPixelBuffer(0, PIXEL_FILL(1));
+            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBBC[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
             break;
         case 79:
-            FillWindowPixelBuffer(0, 0x11);
-            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBCC[GetMenuCursorPos()], 0, NULL, 2, 1, 3);
+            FillWindowPixelBuffer(0, PIXEL_FILL(1));
+            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBCC[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
             break;
         case 75:
-            FillWindowPixelBuffer(0, 0x11);
-            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBEC[GetMenuCursorPos()], 0, NULL, 2, 1, 3);
+            FillWindowPixelBuffer(0, PIXEL_FILL(1));
+            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBEC[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
             break;
         case 74:
-            FillWindowPixelBuffer(0, 0x11);
-            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBE0[GetMenuCursorPos()], 0, NULL, 2, 1, 3);
+            FillWindowPixelBuffer(0, PIXEL_FILL(1));
+            AddTextPrinterParameterized2(0, 1, gUnknown_0858BBE0[Menu_GetCursorPos()], 0, NULL, 2, 1, 3);
             break;
     }
 }

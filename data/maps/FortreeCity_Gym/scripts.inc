@@ -1,6 +1,6 @@
 FortreeCity_Gym_MapScripts:: @ 82165AB
-	map_script 3, FortreeCity_Gym_MapScript1_2165B6
-	map_script 4, FortreeCity_Gym_MapScript2_2165BA
+	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_Gym_MapScript1_2165B6
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, FortreeCity_Gym_MapScript2_2165BA
 	.byte 0
 
 FortreeCity_Gym_MapScript1_2165B6: @ 82165B6
@@ -19,9 +19,8 @@ FortreeCity_Gym_EventScript_2165C8:: @ 82165C8
 	trainerbattle_single TRAINER_WINONA_1, FortreeCity_Gym_Text_216D75, FortreeCity_Gym_Text_216E60, FortreeCity_Gym_EventScript_2165FD, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq FortreeCity_Gym_EventScript_21668D
-	checkflag FLAG_0x0AA
-	goto_if 0, FortreeCity_Gym_EventScript_216646
+	goto_if_eq FortreeCity_Gym_EventScript_21668D
+	goto_if_unset FLAG_RECEIVED_TM40, FortreeCity_Gym_EventScript_216646
 	msgbox FortreeCity_Gym_Text_217071, MSGBOX_DEFAULT
 	release
 	end
@@ -29,9 +28,9 @@ FortreeCity_Gym_EventScript_2165C8:: @ 82165C8
 FortreeCity_Gym_EventScript_2165FD:: @ 82165FD
 	message FortreeCity_Gym_Text_216EEC
 	waitmessage
-	call FortreeCity_Gym_EventScript_27207E
+	call Common_EventScript_PlayGymBadgeFanfare
 	msgbox FortreeCity_Gym_Text_216F17, MSGBOX_DEFAULT
-	setflag FLAG_0x4F5
+	setflag FLAG_DEFEATED_FORTREE_GYM
 	setflag FLAG_BADGE06_GET
 	setvar VAR_0x8008, 6
 	call FortreeCity_Gym_EventScript_271F43
@@ -43,27 +42,27 @@ FortreeCity_Gym_EventScript_2165FD:: @ 82165FD
 	waitfanfare
 	closemessage
 	delay 30
-	setflag FLAG_0x1D7
-	setvar VAR_0x40F3, 0
-	setflag FLAG_0x08A
+	setflag FLAG_ENABLE_WINONA_MATCH_CALL
+	setvar VAR_WINONA_CALL_STEP_COUNTER, 0
+	setflag FLAG_REGISTER_WINONA_POKENAV
 	release
 	end
 
 FortreeCity_Gym_EventScript_216646:: @ 8216646
 	giveitem_std ITEM_TM40
 	compare VAR_RESULT, 0
-	goto_eq FortreeCity_Gym_EventScript_272054
+	goto_if_eq Common_EventScript_ShowBagIsFull
 	msgbox FortreeCity_Gym_Text_216FEC, MSGBOX_DEFAULT
-	setflag FLAG_0x0AA
+	setflag FLAG_RECEIVED_TM40
 	release
 	end
 
 FortreeCity_Gym_EventScript_21666A:: @ 821666A
 	giveitem_std ITEM_TM40
 	compare VAR_RESULT, 0
-	goto_eq FortreeCity_Gym_EventScript_27205E
+	goto_if_eq Common_EventScript_BagIsFull
 	msgbox FortreeCity_Gym_Text_216FEC, MSGBOX_DEFAULT
-	setflag FLAG_0x0AA
+	setflag FLAG_RECEIVED_TM40
 	return
 
 FortreeCity_Gym_EventScript_21668D:: @ 821668D
@@ -104,8 +103,7 @@ FortreeCity_Gym_EventScript_21671B:: @ 821671B
 FortreeCity_Gym_EventScript_216732:: @ 8216732
 	lock
 	faceplayer
-	checkflag FLAG_0x4F5
-	goto_eq FortreeCity_Gym_EventScript_216747
+	goto_if_set FLAG_DEFEATED_FORTREE_GYM, FortreeCity_Gym_EventScript_216747
 	msgbox FortreeCity_Gym_Text_216785, MSGBOX_DEFAULT
 	release
 	end
@@ -117,15 +115,13 @@ FortreeCity_Gym_EventScript_216747:: @ 8216747
 
 FortreeCity_Gym_EventScript_216751:: @ 8216751
 	lockall
-	checkflag FLAG_BADGE06_GET
-	goto_eq FortreeCity_Gym_EventScript_216771
+	goto_if_set FLAG_BADGE06_GET, FortreeCity_Gym_EventScript_216771
 	goto FortreeCity_Gym_EventScript_21677B
 	end
 
 FortreeCity_Gym_EventScript_216761:: @ 8216761
 	lockall
-	checkflag FLAG_BADGE06_GET
-	goto_eq FortreeCity_Gym_EventScript_216771
+	goto_if_set FLAG_BADGE06_GET, FortreeCity_Gym_EventScript_216771
 	goto FortreeCity_Gym_EventScript_21677B
 	end
 
@@ -322,4 +318,3 @@ FortreeCity_Gym_Text_217292: @ 8217292
 	.string "POKéMON with you?\p"
 	.string "Please return with two POKéMON\n"
 	.string "at the very least.$"
-

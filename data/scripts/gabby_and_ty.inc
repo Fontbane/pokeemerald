@@ -2,7 +2,7 @@ EventScript_28CCAA:: @ 828CCAA
 	setvar VAR_0x8005, 8
 	special InterviewBefore
 	compare VAR_RESULT, 1
-	goto_eq EventScript_28CCC6
+	goto_if_eq EventScript_28CCC6
 	setvar VAR_0x8005, 8
 	special InterviewAfter
 	return
@@ -215,13 +215,12 @@ Route111_EventScript_28CF56:: @ 828CF56
 	special GabbyAndTyBeforeInterview
 	special GabbyAndTySetScriptVarsToEventObjectLocalIds
 	compare VAR_FACING, 2
-	call_if 1, Route111_EventScript_28CF94
+	call_if_eq Route111_EventScript_28CF94
 	compare VAR_FACING, 1
-	call_if 1, Route111_EventScript_28CF9F
+	call_if_eq Route111_EventScript_28CF9F
 	compare VAR_FACING, 4
-	call_if 1, Route111_EventScript_28CFB1
-	checkflag FLAG_TEMP_1
-	goto_eq Route111_EventScript_28D0EE
+	call_if_eq Route111_EventScript_28CFB1
+	goto_if_set FLAG_TEMP_1, Route111_EventScript_28D0EE
 	msgbox Route111_Text_28B042, MSGBOX_YESNO
 	goto Route111_EventScript_28D0A7
 	end
@@ -233,13 +232,13 @@ Route111_EventScript_28CF94:: @ 828CF94
 
 Route111_EventScript_28CF9F:: @ 828CF9F
 	applymovement VAR_0x8004, Route111_Movement_28D04F
-	applymovement VAR_0x8005, Route111_Movement_2725A6
+	applymovement VAR_0x8005, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	return
 
 Route111_EventScript_28CFB1:: @ 828CFB1
 	applymovement VAR_0x8004, Route111_Movement_28D051
-	applymovement VAR_0x8005, Route111_Movement_2725A4
+	applymovement VAR_0x8005, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	return
 
@@ -249,16 +248,15 @@ Route120_EventScript_28CFC3:: @ 828CFC3
 	special GabbyAndTyBeforeInterview
 	special GabbyAndTySetScriptVarsToEventObjectLocalIds
 	compare VAR_FACING, 2
-	call_if 1, Route111_EventScript_28CF94
+	call_if_eq Route111_EventScript_28CF94
 	compare VAR_FACING, 1
-	call_if 1, Route111_EventScript_28CF9F
+	call_if_eq Route111_EventScript_28CF9F
 	compare VAR_FACING, 4
-	call_if 1, Route111_EventScript_28CFB1
-	checkflag FLAG_TEMP_1
-	goto_eq Route111_EventScript_28D0EE
+	call_if_eq Route111_EventScript_28CFB1
+	goto_if_set FLAG_TEMP_1, Route111_EventScript_28D0EE
 	specialvar VAR_RESULT, GabbyAndTyGetLastQuote
 	compare VAR_RESULT, 0
-	goto_eq Route111_EventScript_28D053
+	goto_if_eq Route111_EventScript_28D053
 	msgbox Route111_Text_28B137, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, GabbyAndTyGetLastBattleTrivia
 	switch VAR_RESULT
@@ -313,14 +311,14 @@ Route111_EventScript_28D099:: @ 828D099
 
 Route111_EventScript_28D0A7:: @ 828D0A7
 	compare VAR_RESULT, 0
-	goto_eq Route111_EventScript_28D0E1
+	goto_if_eq Route111_EventScript_28D0E1
 	msgbox Route111_Text_28B433, MSGBOX_DEFAULT
-	setvar VAR_0x8004, 10
-	call Route111_EventScript_271E7C
+	setvar VAR_0x8004, EASY_CHAT_TYPE_GABBY_AND_TY
+	call Common_ShowEasyChatScreen
 	lock
 	faceplayer
 	compare VAR_RESULT, 0
-	goto_eq Route111_EventScript_28D0E1
+	goto_if_eq Route111_EventScript_28D0E1
 	msgbox Route111_Text_28B4AB, MSGBOX_DEFAULT
 	special GabbyAndTyAfterInterview
 	setflag FLAG_TEMP_1

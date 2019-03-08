@@ -8,22 +8,21 @@ LilycoveCity_DepartmentStore_1F_EventScript_21F693:: @ 821F693
 LilycoveCity_DepartmentStore_1F_EventScript_21F69C:: @ 821F69C
 	lock
 	faceplayer
-	dodailyevents
-	compare VAR_POKELOT_PRIZE, 0
-	goto_if 5, LilycoveCity_DepartmentStore_1F_EventScript_21F7F7
-	checkflag FLAG_0x92A
-	goto_eq LilycoveCity_DepartmentStore_1F_EventScript_21F78D
+	dotimebasedevents
+	compare VAR_POKELOT_PRIZE_ITEM, 0
+	goto_if_ne LilycoveCity_DepartmentStore_1F_EventScript_21F7F7
+	goto_if_set FLAG_DAILY_PICKED_LOTO_TICKET, LilycoveCity_DepartmentStore_1F_EventScript_21F78D
 	msgbox LilycoveCity_DepartmentStore_1F_Text_2A6390, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_DepartmentStore_1F_EventScript_21F797
-	setflag FLAG_0x92A
+	goto_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F797
+	setflag FLAG_DAILY_PICKED_LOTO_TICKET
 	message LilycoveCity_DepartmentStore_1F_Text_2A64C8
 	waitmessage
 	special RetrieveLotteryNumber
 	copyvar VAR_0x8008, VAR_RESULT
 	special BufferLottoTicketNumber
 	msgbox LilycoveCity_DepartmentStore_1F_Text_2A650B, MSGBOX_DEFAULT
-	applymovement 2, LilycoveCity_DepartmentStore_1F_Movement_2725A8
+	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	playse SE_PC_ON
 	special DoLotteryCornerComputerEffect
@@ -31,27 +30,27 @@ LilycoveCity_DepartmentStore_1F_EventScript_21F69C:: @ 821F69C
 	delay 220
 	special EndLotteryCornerComputerEffect
 	delay 10
-	applymovement 2, LilycoveCity_DepartmentStore_1F_Movement_27259E
+	applymovement 2, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_0x8004, 0
-	goto_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7A1
+	goto_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7A1
 	incrementgamestat 46
 	compare VAR_0x8006, 0
-	call_if 1, LilycoveCity_DepartmentStore_1F_EventScript_21F77B
+	call_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F77B
 	compare VAR_0x8006, 1
-	call_if 1, LilycoveCity_DepartmentStore_1F_EventScript_21F784
+	call_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F784
 	bufferitemname 0, VAR_0x8005
 	compare VAR_0x8004, 1
-	call_if 1, LilycoveCity_DepartmentStore_1F_EventScript_21F7B9
+	call_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7B9
 	compare VAR_0x8004, 2
-	call_if 1, LilycoveCity_DepartmentStore_1F_EventScript_21F7C2
+	call_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7C2
 	compare VAR_0x8004, 3
-	call_if 1, LilycoveCity_DepartmentStore_1F_EventScript_21F7CB
+	call_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7CB
 	compare VAR_0x8004, 4
-	call_if 1, LilycoveCity_DepartmentStore_1F_EventScript_21F7D4
+	call_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7D4
 	giveitem_std VAR_0x8005
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7DD
+	goto_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7DD
 	special sub_80EE2CC
 	goto LilycoveCity_DepartmentStore_1F_EventScript_21F7AF
 	end
@@ -101,8 +100,8 @@ LilycoveCity_DepartmentStore_1F_EventScript_21F7D4:: @ 821F7D4
 	return
 
 LilycoveCity_DepartmentStore_1F_EventScript_21F7DD:: @ 821F7DD
-	copyvar VAR_0x404D, VAR_0x8004
-	copyvar VAR_POKELOT_PRIZE, VAR_0x8005
+	copyvar VAR_POKELOT_PRIZE_PLACE, VAR_0x8004
+	copyvar VAR_POKELOT_PRIZE_ITEM, VAR_0x8005
 	goto LilycoveCity_DepartmentStore_1F_EventScript_21F7ED
 	end
 
@@ -113,14 +112,14 @@ LilycoveCity_DepartmentStore_1F_EventScript_21F7ED:: @ 821F7ED
 
 LilycoveCity_DepartmentStore_1F_EventScript_21F7F7:: @ 821F7F7
 	msgbox LilycoveCity_DepartmentStore_1F_Text_2A67E1, MSGBOX_DEFAULT
-	giveitem_std VAR_POKELOT_PRIZE
+	giveitem_std VAR_POKELOT_PRIZE_ITEM
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7ED
-	copyvar VAR_0x8004, VAR_0x404D
-	copyvar VAR_0x8005, VAR_POKELOT_PRIZE
+	goto_if_eq LilycoveCity_DepartmentStore_1F_EventScript_21F7ED
+	copyvar VAR_0x8004, VAR_POKELOT_PRIZE_PLACE
+	copyvar VAR_0x8005, VAR_POKELOT_PRIZE_ITEM
 	special sub_80EE2CC
-	setvar VAR_POKELOT_PRIZE, 0
-	setvar VAR_0x404D, 0
+	setvar VAR_POKELOT_PRIZE_ITEM, 0
+	setvar VAR_POKELOT_PRIZE_PLACE, 0
 	release
 	end
 

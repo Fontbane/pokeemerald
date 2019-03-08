@@ -1,18 +1,17 @@
 Route116_MapScripts:: @ 81F2C0C
-	map_script 3, Route116_MapScript1_1F2C1C
-	map_script 1, Route116_MapScript1_1F2C4F
-	map_script 2, Route116_MapScript2_1F2C66
+	map_script MAP_SCRIPT_ON_TRANSITION, Route116_MapScript1_1F2C1C
+	map_script MAP_SCRIPT_ON_LOAD, Route116_MapScript1_1F2C4F
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route116_MapScript2_1F2C66
 	.byte 0
 
 Route116_MapScript1_1F2C1C: @ 81F2C1C
-	checkflag FLAG_0x08F
-	call_if 1, Route116_EventScript_1F2C47
-	compare VAR_0x4039, 1
-	call_if 1, Route116_EventScript_273D13
-	compare VAR_0x4037, 5
-	call_if 1, Route116_EventScript_273D1B
-	compare VAR_0x4037, 6
-	call_if 1, Route116_EventScript_273D1B
+	call_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_1F2C47
+	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
+	call_if_eq Route116_EventScript_273D13
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_116_NORTH
+	call_if_eq UnusualWeather_StartGroudonWeather
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_116_SOUTH
+	call_if_eq UnusualWeather_StartGroudonWeather
 	end
 
 Route116_EventScript_1F2C47:: @ 81F2C47
@@ -20,23 +19,21 @@ Route116_EventScript_1F2C47:: @ 81F2C47
 	return
 
 Route116_MapScript1_1F2C4F: @ 81F2C4F
-	compare VAR_0x4037, 5
-	call_if 1, Route116_EventScript_27395F
-	compare VAR_0x4037, 6
-	call_if 1, Route116_EventScript_273972
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_116_NORTH
+	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute116North
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_116_SOUTH
+	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute116South
 	end
 
 Route116_MapScript2_1F2C66: @ 81F2C66
-	map_script_2 VAR_0x4039, 1, gUnknown_08273D1F
+	map_script_2 VAR_SHOULD_END_UNUSUAL_WEATHER, 1, UnusualWeather_EventScript_EndEventAndCleanup_1
 	.2byte 0
 
 Route116_EventScript_1F2C70:: @ 81F2C70
 	lock
 	faceplayer
-	checkflag FLAG_0x08F
-	goto_eq Route116_EventScript_1F2C8E
-	checkflag FLAG_0x08E
-	goto_eq Route116_EventScript_1F2C98
+	goto_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_1F2C8E
+	goto_if_set FLAG_DEVON_GOODS_STOLEN, Route116_EventScript_1F2C98
 	msgbox Route116_Text_1F3140, MSGBOX_DEFAULT
 	release
 	end
@@ -54,30 +51,29 @@ Route116_EventScript_1F2C98:: @ 81F2C98
 Route116_EventScript_1F2CA2:: @ 81F2CA2
 	lock
 	faceplayer
-	checkflag FLAG_0x11F
-	goto_eq Route116_EventScript_1F2D2B
+	goto_if_set FLAG_MET_DEVON_EMPLOYEE, Route116_EventScript_1F2D2B
 	msgbox Route116_Text_1F3317, MSGBOX_DEFAULT
 	goto Route116_EventScript_1F2CBB
 	end
 
 Route116_EventScript_1F2CBB:: @ 81F2CBB
-	setflag FLAG_0x11F
+	setflag FLAG_MET_DEVON_EMPLOYEE
 	giveitem_std ITEM_REPEAT_BALL
 	compare VAR_RESULT, 0
-	goto_eq Route116_EventScript_1F2D39
+	goto_if_eq Route116_EventScript_1F2D39
 	msgbox Route116_Text_1F3521, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_FACING, 2
-	call_if 1, Route116_EventScript_1F2D15
+	call_if_eq Route116_EventScript_1F2D15
 	compare VAR_FACING, 1
-	call_if 1, Route116_EventScript_1F2D15
+	call_if_eq Route116_EventScript_1F2D15
 	compare VAR_FACING, 3
-	call_if 1, Route116_EventScript_1F2D15
+	call_if_eq Route116_EventScript_1F2D15
 	compare VAR_FACING, 4
-	call_if 1, Route116_EventScript_1F2D20
+	call_if_eq Route116_EventScript_1F2D20
 	removeobject VAR_LAST_TALKED
 	clearflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
-	setflag FLAG_0x100
+	setflag FLAG_RECEIVED_REPEAT_BALL
 	release
 	end
 
@@ -149,17 +145,17 @@ Route116_EventScript_1F2D84:: @ 81F2D84
 	lock
 	faceplayer
 	msgbox Route116_Text_1F309D, MSGBOX_DEFAULT
-	setvar VAR_0x406F, 2
+	setvar VAR_ROUTE116_STATE, 2
 	release
 	end
 
 Route116_EventScript_1F2D95:: @ 81F2D95
 	lockall
-	applymovement 11, Route116_Movement_2725A8
-	applymovement 255, Route116_Movement_2725A4
+	applymovement 11, Common_Movement_WalkInPlaceRight
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	msgbox Route116_Text_1F309D, MSGBOX_DEFAULT
-	setvar VAR_0x406F, 2
+	setvar VAR_ROUTE116_STATE, 2
 	releaseall
 	end
 
@@ -168,10 +164,10 @@ Route116_EventScript_1F2DB6:: @ 81F2DB6
 	faceplayer
 	checkitem ITEM_BLACK_GLASSES, 1
 	compare VAR_RESULT, 1
-	goto_eq Route116_EventScript_1F2DF1
+	goto_if_eq Route116_EventScript_1F2DF1
 	specialvar VAR_RESULT, FoundBlackGlasses
 	compare VAR_RESULT, 1
-	goto_eq Route116_EventScript_1F2DE2
+	goto_if_eq Route116_EventScript_1F2DE2
 	msgbox Route116_Text_1F3657, MSGBOX_DEFAULT
 	release
 	end
@@ -187,7 +183,7 @@ Route116_EventScript_1F2DF1:: @ 81F2DF1
 	msgbox Route116_Text_1F3688, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, FoundBlackGlasses
 	compare VAR_RESULT, 1
-	goto_eq Route116_EventScript_1F2E1B
+	goto_if_eq Route116_EventScript_1F2E1B
 	msgbox Route116_Text_1F375E, MSGBOX_DEFAULT
 	release
 	end
@@ -201,13 +197,13 @@ Route116_EventScript_1F2E1B:: @ 81F2E1B
 Route116_EventScript_1F2E2A:: @ 81F2E2A
 	delay 20
 	compare VAR_FACING, 2
-	call_if 1, Route116_EventScript_1F2E5E
+	call_if_eq Route116_EventScript_1F2E5E
 	compare VAR_FACING, 1
-	call_if 1, Route116_EventScript_1F2E5E
+	call_if_eq Route116_EventScript_1F2E5E
 	compare VAR_FACING, 3
-	call_if 1, Route116_EventScript_1F2E5E
+	call_if_eq Route116_EventScript_1F2E5E
 	compare VAR_FACING, 4
-	call_if 1, Route116_EventScript_1F2E69
+	call_if_eq Route116_EventScript_1F2E69
 	removeobject VAR_LAST_TALKED
 	release
 	end
@@ -261,18 +257,17 @@ Route116_EventScript_1F2EB7:: @ 81F2EB7
 	trainerbattle_single TRAINER_JERRY_1, Route116_Text_29BD0C, Route116_Text_29BD66, Route116_EventScript_1F2EF8
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route116_EventScript_1F2F4E
+	goto_if_eq Route116_EventScript_1F2F4E
 	setvar VAR_0x8004, 273
 	specialvar VAR_RESULT, sub_813B4E0
 	compare VAR_RESULT, 0
-	goto_eq Route116_EventScript_1F2F22
+	goto_if_eq Route116_EventScript_1F2F22
 	msgbox Route116_Text_29BD92, MSGBOX_DEFAULT
 	release
 	end
 
 Route116_EventScript_1F2EF8:: @ 81F2EF8
-	checkflag FLAG_HAS_MATCH_CALL
-	goto_eq Route116_EventScript_1F2F03
+	goto_if_set FLAG_HAS_MATCH_CALL, Route116_EventScript_1F2F03
 	release
 	end
 
@@ -285,8 +280,7 @@ Route116_EventScript_1F2F03:: @ 81F2F03
 	end
 
 Route116_EventScript_1F2F22:: @ 81F2F22
-	checkflag FLAG_HAS_MATCH_CALL
-	goto_eq Route116_EventScript_1F2F35
+	goto_if_set FLAG_HAS_MATCH_CALL, Route116_EventScript_1F2F35
 	msgbox Route116_Text_29BD92, MSGBOX_DEFAULT
 	release
 	end
@@ -316,18 +310,17 @@ Route116_EventScript_1F2F93:: @ 81F2F93
 	trainerbattle_single TRAINER_KAREN_1, Route116_Text_29BFC5, Route116_Text_29BFFA, Route116_EventScript_1F2FD4
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route116_EventScript_1F302A
+	goto_if_eq Route116_EventScript_1F302A
 	setvar VAR_0x8004, 280
 	specialvar VAR_RESULT, sub_813B4E0
 	compare VAR_RESULT, 0
-	goto_eq Route116_EventScript_1F2FFE
+	goto_if_eq Route116_EventScript_1F2FFE
 	msgbox Route116_Text_29C010, MSGBOX_DEFAULT
 	release
 	end
 
 Route116_EventScript_1F2FD4:: @ 81F2FD4
-	checkflag FLAG_HAS_MATCH_CALL
-	goto_eq Route116_EventScript_1F2FDF
+	goto_if_set FLAG_HAS_MATCH_CALL, Route116_EventScript_1F2FDF
 	release
 	end
 
@@ -340,8 +333,7 @@ Route116_EventScript_1F2FDF:: @ 81F2FDF
 	end
 
 Route116_EventScript_1F2FFE:: @ 81F2FFE
-	checkflag FLAG_HAS_MATCH_CALL
-	goto_eq Route116_EventScript_1F3011
+	goto_if_set FLAG_HAS_MATCH_CALL, Route116_EventScript_1F3011
 	msgbox Route116_Text_29C010, MSGBOX_DEFAULT
 	release
 	end

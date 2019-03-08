@@ -13,13 +13,12 @@ Route111_WinstrateFamilysHouse_EventScript_22A4A2:: @ 822A4A2
 	lock
 	faceplayer
 	setvar VAR_0x8008, 3
-	checkflag FLAG_0x115
-	goto_eq Route111_WinstrateFamilysHouse_EventScript_22A4DA
+	goto_if_set FLAG_RECEIVED_MACHO_BRACE, Route111_WinstrateFamilysHouse_EventScript_22A4DA
 	msgbox Route111_WinstrateFamilysHouse_Text_22A5F4, MSGBOX_DEFAULT
 	giveitem_std ITEM_MACHO_BRACE
 	compare VAR_RESULT, 0
-	goto_eq Route111_WinstrateFamilysHouse_EventScript_272054
-	setflag FLAG_0x115
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_MACHO_BRACE
 	goto Route111_WinstrateFamilysHouse_EventScript_22A52C
 	end
 
@@ -40,8 +39,7 @@ Route111_WinstrateFamilysHouse_EventScript_22A4FD:: @ 822A4FD
 	lock
 	faceplayer
 	setvar VAR_0x8008, 4
-	checkflag FLAG_TEMP_4
-	goto_eq Route111_WinstrateFamilysHouse_EventScript_22A51E
+	goto_if_set FLAG_TEMP_4, Route111_WinstrateFamilysHouse_EventScript_22A51E
 	msgbox Route111_WinstrateFamilysHouse_Text_22A780, MSGBOX_DEFAULT
 	setflag FLAG_TEMP_4
 	goto Route111_WinstrateFamilysHouse_EventScript_22A52C
@@ -54,7 +52,7 @@ Route111_WinstrateFamilysHouse_EventScript_22A51E:: @ 822A51E
 
 Route111_WinstrateFamilysHouse_EventScript_22A52C:: @ 822A52C
 	closemessage
-	applymovement VAR_0x8008, Route111_WinstrateFamilysHouse_Movement_2725A2
+	applymovement VAR_0x8008, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end

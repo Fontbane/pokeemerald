@@ -1,7 +1,7 @@
 BattleFrontier_BattlePikeRandomRoom3_MapScripts:: @ 825E41A
-	map_script 5, BattleFrontier_BattlePikeRandomRoom3_MapScript1_25E47A
-	map_script 2, BattleFrontier_BattlePikeRandomRoom3_MapScript2_25E42A
-	map_script 4, BattleFrontier_BattlePikeRandomRoom3_MapScript2_25E466
+	map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_BattlePikeRandomRoom3_MapScript1_25E47A
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattlePikeRandomRoom3_MapScript2_25E42A
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattlePikeRandomRoom3_MapScript2_25E466
 	.byte 0
 
 BattleFrontier_BattlePikeRandomRoom3_MapScript2_25E42A: @ 825E42A
@@ -30,7 +30,7 @@ BattleFrontier_BattlePikeRandomRoom3_MapScript2_25E466: @ 825E466
 
 BattleFrontier_BattlePikeRandomRoom3_EventScript_25E470:: @ 825E470
 	setvar VAR_TEMP_4, 1
-	turnobject 255, 2
+	turnobject EVENT_OBJ_ID_PLAYER, 2
 	end
 
 BattleFrontier_BattlePikeRandomRoom3_MapScript1_25E47A: @ 825E47A
@@ -39,9 +39,9 @@ BattleFrontier_BattlePikeRandomRoom3_MapScript1_25E47A: @ 825E47A
 	setvar VAR_0x8005, 5
 	special CallFrontierUtilFunc
 	compare VAR_RESULT, 2
-	goto_eq BattleFrontier_BattlePikeRandomRoom3_EventScript_25E4A3
+	goto_if_eq BattleFrontier_BattlePikeRandomRoom3_EventScript_25E4A3
 	compare VAR_RESULT, 3
-	goto_eq BattleFrontier_BattlePikeRandomRoom3_EventScript_25E4A3
+	goto_if_eq BattleFrontier_BattlePikeRandomRoom3_EventScript_25E4A3
 	end
 
 BattleFrontier_BattlePikeRandomRoom3_EventScript_25E4A3:: @ 825E4A3

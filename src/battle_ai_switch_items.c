@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "battle_ai_script_commands.h"
 #include "battle_controllers.h"
+#include "battle_setup.h"
 #include "pokemon.h"
 #include "random.h"
 #include "util.h"
@@ -14,6 +15,25 @@
 static bool8 HasSuperEffectiveMoveAgainstOpponents(bool8 noRng);
 static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent);
 static bool8 ShouldUseItem(void);
+
+void GetAIPartyIndexes(u32 battlerId, s32 *firstId, s32 *lastId)
+{
+    if (BATTLE_TWO_VS_ONE_OPPONENT && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT)
+    {
+        *firstId = 0, *lastId = 6;
+    }
+    else if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_x800000))
+    {
+        if ((battlerId & BIT_FLANK) == B_FLANK_LEFT)
+            *firstId = 0, *lastId = 3;
+        else
+            *firstId = 3, *lastId = 6;
+    }
+    else
+    {
+        *firstId = 0, *lastId = 6;
+    }
+}
 
 static bool8 ShouldSwitchIfPerishSong(void)
 {
@@ -49,7 +69,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
         return FALSE;
 
     // Check if Pokemon has a super effective move.
-    for (opposingBattler = GetBattlerAtPosition(opposingPosition), i = 0; i < 4; i++)
+    for (opposingBattler = GetBattlerAtPosition(opposingPosition), i = 0; i < MAX_MON_MOVES; i++)
     {
         move = gBattleMons[gActiveBattler].moves[i];
         if (move != MOVE_NONE)
@@ -60,17 +80,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
     }
 
     // Get party information.
-    if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_x800000))
-    {
-        if ((gActiveBattler & BIT_FLANK) == B_FLANK_LEFT)
-            firstId = 0, lastId = 3;
-        else
-            firstId = 3, lastId = 6;
-    }
-    else
-    {
-        firstId = 0, lastId = 6;
-    }
+    GetAIPartyIndexes(gActiveBattler, &firstId, &lastId);
 
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         party = gPlayerParty;
@@ -89,7 +99,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
         if (i == gBattlerPartyIndexes[gActiveBattler])
             continue;
 
-        for (opposingBattler = GetBattlerAtPosition(opposingPosition), j = 0; j < 4; j++)
+        for (opposingBattler = GetBattlerAtPosition(opposingPosition), j = 0; j < MAX_MON_MOVES; j++)
         {
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
             if (move != MOVE_NONE)
@@ -152,17 +162,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
     if (gBattleMons[gActiveBattler].ability == absorbingTypeAbility)
         return FALSE;
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_x800000))
-    {
-        if ((gActiveBattler & BIT_FLANK) == B_FLANK_LEFT)
-            firstId = 0, lastId = 3;
-        else
-            firstId = 3, lastId = 6;
-    }
-    else
-    {
-        firstId = 0, lastId = 6;
-    }
+    GetAIPartyIndexes(gActiveBattler, &firstId, &lastId);
 
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         party = gPlayerParty;
@@ -256,7 +256,7 @@ static bool8 HasSuperEffectiveMoveAgainstOpponents(bool8 noRng)
 
     if (!(gAbsentBattlerFlags & gBitTable[opposingBattler]))
     {
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < MAX_MON_MOVES; i++)
         {
             move = gBattleMons[gActiveBattler].moves[i];
             if (move == MOVE_NONE)
@@ -278,7 +278,7 @@ static bool8 HasSuperEffectiveMoveAgainstOpponents(bool8 noRng)
 
     if (!(gAbsentBattlerFlags & gBitTable[opposingBattler]))
     {
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < MAX_MON_MOVES; i++)
         {
             move = gBattleMons[gActiveBattler].moves[i];
             if (move == MOVE_NONE)
@@ -343,17 +343,7 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
         battlerIn2 = gActiveBattler;
     }
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_x800000))
-    {
-        if ((gActiveBattler & BIT_FLANK) == 0)
-            firstId = 0, lastId = 3;
-        else
-            firstId = 3, lastId = 6;
-    }
-    else
-    {
-        firstId = 0, lastId = 6;
-    }
+    GetAIPartyIndexes(gActiveBattler, &firstId, &lastId);
 
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         party = gPlayerParty;
@@ -391,7 +381,7 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
         {
             battlerIn1 = gLastHitBy[gActiveBattler];
 
-            for (j = 0; j < 4; j++)
+            for (j = 0; j < MAX_MON_MOVES; j++)
             {
                 move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
                 if (move == 0)
@@ -453,17 +443,7 @@ static bool8 ShouldSwitch(void)
         battlerIn2 = *activeBattlerPtr;
     }
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_x800000))
-    {
-        if ((gActiveBattler & BIT_FLANK) == B_FLANK_LEFT)
-            firstId = 0, lastId = 3;
-        else
-            firstId = 3, lastId = 6;
-    }
-    else
-    {
-        firstId = 0, lastId = 6;
-    }
+    GetAIPartyIndexes(gActiveBattler, &firstId, &lastId);
 
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         party = gPlayerParty;
@@ -544,17 +524,7 @@ void AI_TrySwitchOrUseItem(void)
                         battlerIn2 = GetBattlerAtPosition(battlerIdentity ^ BIT_FLANK);
                     }
 
-                    if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_x800000))
-                    {
-                        if ((gActiveBattler & BIT_FLANK) == B_FLANK_LEFT)
-                            firstId = 0, lastId = 3;
-                        else
-                            firstId = 3, lastId = 6;
-                    }
-                    else
-                    {
-                        firstId = 0, lastId = 6;
-                    }
+                    GetAIPartyIndexes(gActiveBattler, &firstId, &lastId);
 
                     for (monToSwitchId = firstId; monToSwitchId < lastId; monToSwitchId++)
                     {
@@ -626,17 +596,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
         battlerIn2 = gActiveBattler;
     }
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_x800000))
-    {
-        if ((gActiveBattler & BIT_FLANK) == B_FLANK_LEFT)
-            firstId = 0, lastId = 3;
-        else
-            firstId = 3, lastId = 6;
-    }
-    else
-    {
-        firstId = 0, lastId = 6;
-    }
+    GetAIPartyIndexes(gActiveBattler, &firstId, &lastId);
 
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         party = gPlayerParty;
@@ -692,14 +652,14 @@ u8 GetMostSuitableMonToSwitchInto(void)
         // Ok, we know the mon has the right typing but does it have at least one super effective move?
         if (bestMonId != PARTY_SIZE)
         {
-            for (i = 0; i < 4; i++)
+            for (i = 0; i < MAX_MON_MOVES; i++)
             {
                 move = GetMonData(&party[bestMonId], MON_DATA_MOVE1 + i);
                 if (move != MOVE_NONE && AI_GetTypeEffectiveness(move, gActiveBattler, opposingBattler) >= UQ_4_12(2.0))
                     break;
             }
 
-            if (i != 4)
+            if (i != MAX_MON_MOVES)
                 return bestMonId; // Has both the typing and at least one super effective move.
 
             invalidMons |= gBitTable[bestMonId]; // Sorry buddy, we want something better.
@@ -731,7 +691,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
         if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
             continue;
 
-        for (j = 0; j < 4; j++)
+        for (j = 0; j < MAX_MON_MOVES; j++)
         {
             s32 dmg = 0;
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);

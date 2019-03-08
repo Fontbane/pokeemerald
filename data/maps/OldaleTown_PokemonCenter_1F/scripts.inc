@@ -1,6 +1,6 @@
 OldaleTown_PokemonCenter_1F_MapScripts:: @ 81FC006
-	map_script 3, OldaleTown_PokemonCenter_1F_MapScript1_1FC011
-	map_script 5, OldaleTown_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_PokemonCenter_1F_MapScript1_1FC011
+	map_script MAP_SCRIPT_ON_RESUME, OldaleTown_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
 OldaleTown_PokemonCenter_1F_MapScript1_1FC011: @ 81FC011
@@ -27,8 +27,7 @@ OldaleTown_PokemonCenter_1F_EventScript_1FC031:: @ 81FC031
 OldaleTown_PokemonCenter_1F_EventScript_1FC03A:: @ 81FC03A
 	lock
 	faceplayer
-	checkflag FLAG_SYS_POKEDEX_GET
-	goto_eq OldaleTown_PokemonCenter_1F_EventScript_1FC04F
+	goto_if_set FLAG_SYS_POKEDEX_GET, OldaleTown_PokemonCenter_1F_EventScript_1FC04F
 	msgbox OldaleTown_PokemonCenter_1F_Text_1FC148, MSGBOX_DEFAULT
 	release
 	end

@@ -35,7 +35,7 @@ struct BattleDebugModifyArrows
     u8 arrowSpriteId[2];
     u16 minValue;
     u16 maxValue;
-    u16 currValue;
+    int currValue;
     u8 currentDigit;
     u8 maxDigits;
     u8 charDigits[MAX_MODIFY_DIGITS];
@@ -86,6 +86,7 @@ enum
     LIST_ITEM_STATUS3,
     LIST_ITEM_SIDE_STATUS,
     LIST_ITEM_AI,
+    LIST_ITEM_AI_MOVES_PTS,
     LIST_ITEM_VARIOUS,
     LIST_ITEM_COUNT
 };
@@ -109,6 +110,8 @@ enum
     VAR_SHOW_HP,
     VAR_SUBSTITUTE,
     VAR_IN_LOVE,
+    VAR_U16_4_ENTRIES,
+    VAL_S8,
 };
 
 enum
@@ -205,6 +208,7 @@ static const u8 sText_InDoubles[] = _("In Doubles");
 static const u8 sText_HpAware[] = _("HP aware");
 static const u8 sText_Unknown[] = _("Unknown");
 static const u8 sText_InLove[] = _("In Love");
+static const u8 sText_AIMovePts[] = _("AI Move Pts");
 
 static const u8 sText_EmptyString[] = _("");
 
@@ -300,6 +304,7 @@ static const struct ListMenuItem sMainListItems[] =
     {sText_Status3, LIST_ITEM_STATUS3},
     {sText_SideStatus, LIST_ITEM_SIDE_STATUS},
     {sText_AI, LIST_ITEM_AI},
+    {sText_AIMovePts, LIST_ITEM_AI_MOVES_PTS},
     {sText_Various, LIST_ITEM_VARIOUS},
 };
 
@@ -538,6 +543,7 @@ static const u8 sBitsToMaxDigit[] =
 static const bool8 sHasChangeableEntries[LIST_ITEM_COUNT] =
 {
     [LIST_ITEM_MOVES] = TRUE,
+    [LIST_ITEM_AI_MOVES_PTS] = TRUE,
     [LIST_ITEM_PP] = TRUE,
     [LIST_ITEM_ABILITY] = TRUE,
     [LIST_ITEM_TYPES] = TRUE,
@@ -700,7 +706,7 @@ static void Task_DebugMenuProcessInput(u8 taskId)
     // A main list item is active, handle input.
     if (data->activeWindow == ACTIVE_WIN_MAIN)
     {
-        listItemId = ListMenuHandleInputGetItemId(data->mainListTaskId);
+        listItemId = ListMenu_ProcessInput(data->mainListTaskId);
         if (listItemId != LIST_B_PRESSED && listItemId != LIST_NOTHING_CHOSEN && listItemId < LIST_ITEM_COUNT)
         {
             data->currentMainListItemId = listItemId;
@@ -714,11 +720,11 @@ static void Task_DebugMenuProcessInput(u8 taskId)
     // Secondary list is active, handle input.
     else if (data->activeWindow == ACTIVE_WIN_SECONDARY)
     {
-        listItemId = ListMenuHandleInputGetItemId(data->secondaryListTaskId);
+        listItemId = ListMenu_ProcessInput(data->secondaryListTaskId);
         if (listItemId == LIST_B_PRESSED)
         {
             DestroyListMenuTask(data->secondaryListTaskId, NULL, NULL);
-            sub_8198070(data->secondaryListWindowId, TRUE);
+            ClearStdWindowAndFrameToTransparent(data->secondaryListWindowId, TRUE);
             RemoveWindow(data->secondaryListWindowId);
             data->activeWindow = ACTIVE_WIN_MAIN;
             data->secondaryListTaskId = 0xFF;
@@ -739,7 +745,7 @@ static void Task_DebugMenuProcessInput(u8 taskId)
     {
         if (gMain.newKeys & (B_BUTTON | A_BUTTON))
         {
-            sub_8198070(data->modifyWindowId, TRUE);
+            ClearStdWindowAndFrameToTransparent(data->modifyWindowId, TRUE);
             RemoveWindow(data->modifyWindowId);
             DestroyModifyArrows(data);
             data->activeWindow = ACTIVE_WIN_SECONDARY;
@@ -855,6 +861,8 @@ static void CreateSecondaryListMenu(struct BattleDebugMenu *data)
         itemsCount = 3;
         break;
     case LIST_ITEM_MOVES:
+        itemsCount = 5;
+        break;
     case LIST_ITEM_PP:
         itemsCount = 4;
         break;
@@ -893,6 +901,9 @@ static void CreateSecondaryListMenu(struct BattleDebugMenu *data)
     case LIST_ITEM_SIDE_STATUS:
         listTemplate.items = sSideStatusListItems;
         itemsCount = ARRAY_COUNT(sSideStatusListItems);
+        break;
+    case LIST_ITEM_AI_MOVES_PTS:
+        itemsCount = 4;
         break;
     }
 
@@ -952,9 +963,19 @@ static void PrintSecondaryEntries(struct BattleDebugMenu *data)
     {
     case LIST_ITEM_MOVES:
     case LIST_ITEM_PP:
+    case LIST_ITEM_AI_MOVES_PTS:
         for (i = 0; i < 4; i++)
         {
             PadString(gMoveNames[gBattleMons[data->battlerId].moves[i]], text);
+            printer.currentY = printer.y = (i * yMultiplier) + sSecondaryListTemplate.upText_Y;
+            AddTextPrinter(&printer, 0, NULL);
+        }
+        // Allow changing all moves at once. Useful for testing in wild doubles.
+        if (data->currentMainListItemId == LIST_ITEM_MOVES)
+        {
+            u8 textAll[] = _("All");
+
+            PadString(textAll, text);
             printer.currentY = printer.y = (i * yMultiplier) + sSecondaryListTemplate.upText_Y;
             AddTextPrinter(&printer, 0, NULL);
         }
@@ -1049,8 +1070,17 @@ static void UpdateBattlerValue(struct BattleDebugMenu *data)
     case VAL_U8:
         *(u8*)(data->modifyArrows.modifiedValPtr) = data->modifyArrows.currValue;
         break;
+    case VAL_S8:
+        *(s8*)(data->modifyArrows.modifiedValPtr) = data->modifyArrows.currValue;
+        break;
     case VAL_U16:
         *(u16*)(data->modifyArrows.modifiedValPtr) = data->modifyArrows.currValue;
+        break;
+    case VAR_U16_4_ENTRIES:
+        ((u16*)(data->modifyArrows.modifiedValPtr))[0] = data->modifyArrows.currValue;
+        ((u16*)(data->modifyArrows.modifiedValPtr))[1] = data->modifyArrows.currValue;
+        ((u16*)(data->modifyArrows.modifiedValPtr))[2] = data->modifyArrows.currValue;
+        ((u16*)(data->modifyArrows.modifiedValPtr))[3] = data->modifyArrows.currValue;
         break;
     case VAL_U32:
         *(u32*)(data->modifyArrows.modifiedValPtr) = data->modifyArrows.currValue;
@@ -1273,9 +1303,18 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.minValue = 0;
         data->modifyArrows.maxValue = MOVES_COUNT_GEN7 - 1;
         data->modifyArrows.maxDigits = 3;
-        data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].moves[data->currentSecondaryListItemId];
-        data->modifyArrows.typeOfVal = VAL_U16;
-        data->modifyArrows.currValue = gBattleMons[data->battlerId].moves[data->currentSecondaryListItemId];
+        if (data->currentSecondaryListItemId == 4)
+        {
+            data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].moves[0];
+            data->modifyArrows.currValue = gBattleMons[data->battlerId].moves[0];
+            data->modifyArrows.typeOfVal = VAR_U16_4_ENTRIES;
+        }
+        else
+        {
+            data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].moves[data->currentSecondaryListItemId];
+            data->modifyArrows.currValue = gBattleMons[data->battlerId].moves[data->currentSecondaryListItemId];
+            data->modifyArrows.typeOfVal = VAL_U16;
+        }
         break;
     case LIST_ITEM_PP:
         data->modifyArrows.minValue = 0;
@@ -1284,6 +1323,14 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].pp[data->currentSecondaryListItemId];
         data->modifyArrows.typeOfVal = VAL_U8;
         data->modifyArrows.currValue = gBattleMons[data->battlerId].pp[data->currentSecondaryListItemId];
+        break;
+    case LIST_ITEM_AI_MOVES_PTS:
+        data->modifyArrows.minValue = 0;
+        data->modifyArrows.maxValue = 255;
+        data->modifyArrows.maxDigits = 3;
+        data->modifyArrows.modifiedValPtr = &gBattleResources->ai->score;
+        data->modifyArrows.typeOfVal = VAL_S8;
+        data->modifyArrows.currValue = gBattleResources->ai->score[data->currentSecondaryListItemId];
         break;
     case LIST_ITEM_HELD_ITEM:
         data->modifyArrows.minValue = 0;
@@ -1378,8 +1425,8 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.typeOfVal = VAL_BITFIELD_32;
         goto CASE_ITEM_STATUS;
     case LIST_ITEM_AI:
-        data->modifyArrows.modifiedValPtr = &gBattleStruct->debugAIFlags;
-        data->modifyArrows.currValue = GetBitfieldValue(gBattleStruct->debugAIFlags, data->bitfield[data->currentSecondaryListItemId].currBit, data->bitfield[data->currentSecondaryListItemId].bitsCount);
+        data->modifyArrows.modifiedValPtr = &gBattleResources->ai->aiFlags;
+        data->modifyArrows.currValue = GetBitfieldValue(gBattleResources->ai->aiFlags, data->bitfield[data->currentSecondaryListItemId].currBit, data->bitfield[data->currentSecondaryListItemId].bitsCount);
         data->modifyArrows.typeOfVal = VAL_BITFIELD_32;
         goto CASE_ITEM_STATUS;
     CASE_ITEM_STATUS:

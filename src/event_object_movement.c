@@ -1,4 +1,6 @@
 #include "global.h"
+#include "alloc.h"
+#include "battle_pyramid.h"
 #include "berry.h"
 #include "decoration.h"
 #include "event_data.h"
@@ -9,17 +11,16 @@
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
-#include "alloc.h"
 #include "mauville_old_man.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
 #include "palette.h"
 #include "pokenav.h"
 #include "random.h"
-#include "rom_818CFC8.h"
 #include "sprite.h"
 #include "task.h"
 #include "trainer_see.h"
+#include "trainer_hill.h"
 #include "util.h"
 #include "constants/event_object_movement_constants.h"
 #include "constants/event_objects.h"
@@ -1144,7 +1145,7 @@ u8 GetFirstInactiveEventObjectId(void)
 
 u8 GetEventObjectIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroupId)
 {
-    if (localId < 0xFF)
+    if (localId < EVENT_OBJ_ID_PLAYER)
     {
         return GetEventObjectIdByLocalIdAndMapInternal(localId, mapNum, mapGroupId);
     }
@@ -1419,7 +1420,7 @@ u8 Unref_TryInitLocalEventObject(u8 localId)
     {
         if (InBattlePyramid())
         {
-            eventObjectCount = sub_81AAA40();
+            eventObjectCount = GetNumBattlePyramidEventObjects();
         }
         else if (InTrainerHill())
         {
@@ -1745,7 +1746,7 @@ void TrySpawnEventObjects(s16 cameraX, s16 cameraY)
 
         if (InBattlePyramid())
         {
-            objectCount = sub_81AAA40();
+            objectCount = GetNumBattlePyramidEventObjects();
         }
         else if (InTrainerHill())
         {
@@ -6420,7 +6421,7 @@ bool8 MovementAction_FacePlayer_Step0(struct EventObject *eventObject, struct Sp
 {
     u8 playerObjectId;
 
-    if (!TryGetEventObjectIdByLocalIdAndMap(0xFF, 0, 0, &playerObjectId))
+    if (!TryGetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0, &playerObjectId))
     {
         FaceDirection(eventObject, sprite, GetDirectionToFace(eventObject->currentCoords.x, eventObject->currentCoords.y, gEventObjects[playerObjectId].currentCoords.x, gEventObjects[playerObjectId].currentCoords.y));
     }
@@ -6432,7 +6433,7 @@ bool8 MovementAction_FaceAwayPlayer_Step0(struct EventObject *eventObject, struc
 {
     u8 playerObjectId;
 
-    if (!TryGetEventObjectIdByLocalIdAndMap(0xFF, 0, 0, &playerObjectId))
+    if (!TryGetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0, &playerObjectId))
     {
         FaceDirection(eventObject, sprite, GetOppositeDirection(GetDirectionToFace(eventObject->currentCoords.x, eventObject->currentCoords.y, gEventObjects[playerObjectId].currentCoords.x, gEventObjects[playerObjectId].currentCoords.y)));
     }

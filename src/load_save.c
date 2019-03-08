@@ -1,17 +1,18 @@
 #include "global.h"
-#include "gba/flash_internal.h"
-#include "load_save.h"
-#include "main.h"
-#include "pokemon.h"
-#include "random.h"
 #include "alloc.h"
 #include "item.h"
+#include "load_save.h"
+#include "main.h"
 #include "overworld.h"
+#include "pokemon.h"
+#include "pokemon_storage_system.h"
+#include "random.h"
+#include "save_location.h"
+#include "trainer_hill.h"
+#include "gba/flash_internal.h"
 #include "decoration_inventory.h"
 
 static void ApplyNewEncryptionKeyToAllEncryptedData(u32 encryptionKey);
-
-extern void* gUnknown_0203CF5C;
 
 extern bool16 IdentifyFlash(void);
 extern void ApplyNewEncryptionKeyToBerryPowder(u32 key);
@@ -98,7 +99,7 @@ void MoveSaveBlocks_ResetHeap(void)
     hblankCB = gMain.hblankCallback;
     gMain.vblankCallback = NULL;
     gMain.hblankCallback = NULL;
-    gUnknown_0203CF5C = NULL;
+    gTrainerHillVBlankCounter = NULL;
 
     saveBlock2Copy = (struct SaveBlock2 *)(gHeap);
     saveBlock1Copy = (struct SaveBlock1 *)(gHeap + sizeof(struct SaveBlock2));
@@ -135,30 +136,30 @@ void MoveSaveBlocks_ResetHeap(void)
     gSaveBlock2Ptr->encryptionKey = encryptionKey;
 }
 
-u32 GetSecretBase2Field_9(void)
+u32 UseContinueGameWarp(void)
 {
-    return gSaveBlock2Ptr->specialSaveWarp & 1;
+    return gSaveBlock2Ptr->specialSaveWarpFlags & CONTINUE_GAME_WARP;
 }
 
-void ClearSecretBase2Field_9(void)
+void ClearContinueGameWarpStatus(void)
 {
-    gSaveBlock2Ptr->specialSaveWarp &= ~1;
+    gSaveBlock2Ptr->specialSaveWarpFlags &= ~CONTINUE_GAME_WARP;
 }
 
-void SetSecretBase2Field_9(void)
+void SetContinueGameWarpStatus(void)
 {
-    gSaveBlock2Ptr->specialSaveWarp |= 1;
+    gSaveBlock2Ptr->specialSaveWarpFlags |= CONTINUE_GAME_WARP;
 }
 
-void sub_8076D5C(void)
+void SetContinueGameWarpStatusToDynamicWarp(void)
 {
-    sub_8084FAC(0);
-    gSaveBlock2Ptr->specialSaveWarp |= 1;
+    SetContinueGameWarpToDynamicWarp(0);
+    gSaveBlock2Ptr->specialSaveWarpFlags |= CONTINUE_GAME_WARP;
 }
 
-void sav2_gender2_inplace_and_xFE(void)
+void ClearContinueGameWarpStatus2(void)
 {
-    gSaveBlock2Ptr->specialSaveWarp &= ~1;
+    gSaveBlock2Ptr->specialSaveWarpFlags &= ~CONTINUE_GAME_WARP;
 }
 
 void SavePlayerParty(void)

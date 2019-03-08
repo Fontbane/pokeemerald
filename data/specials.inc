@@ -12,8 +12,8 @@ gSpecials:: @ 81DBA64
 	def_special SetCableClubWarp
 	def_special sub_80AF948
 	def_special sub_80AF9F8
-	def_special sub_80B36EC
-	def_special sub_80B371C
+	def_special CleanupLinkRoomState
+	def_special ExitLinkRoom
 	def_special sub_80E8E18
 	def_special sub_80E8BC8
 	def_special sub_80E9068
@@ -34,15 +34,15 @@ gSpecials:: @ 81DBA64
 	def_special sub_8129708
 	def_special sub_80E91F8
 	def_special sub_80EA30C
-	def_special sub_80FA57C
-	def_special sub_80E6BE8
+	def_special DoSecretBasePCTurnOffEffect
+	def_special RecordMixingPlayerSpotTriggered
 	def_special sub_80B2DA4
 	def_special sub_80B2E4C
 	def_special sub_80B2E74
 	def_special sub_80B2EA8
 	def_special CloseLink
-	def_special sub_80B3968
-	def_special sub_80B3924
+	def_special ColosseumPlayerSpotTriggered
+	def_special PlayerEnteredTradeSeat
 	def_special nullsub_37
 	def_special sub_80B3254
 	def_special sub_80B2FD8
@@ -50,7 +50,7 @@ gSpecials:: @ 81DBA64
 	def_special SpawnLinkPartnerEventObject
 	def_special SavePlayerParty
 	def_special LoadPlayerParty
-	def_special sub_80F9438
+	def_special ChooseHalfPartyForBattle
 	def_special sp02A_crash_sound
 	def_special EventObjectInteractionGetBerryTreeData
 	def_special EventObjectInteractionGetBerryName
@@ -71,7 +71,7 @@ gSpecials:: @ 81DBA64
 	def_special ShouldTryRematchBattle
 	def_special IsTrainerReadyForRematch
 	def_special BattleSetup_StartRematchBattle
-	def_special ShowPokemonStorageSystem
+	def_special ShowPokemonStorageSystemPC
 	def_special HasEnoughMonsForDoubleBattle
 	def_special TurnOffTVScreen
 	def_special DoTVShow
@@ -105,8 +105,8 @@ gSpecials:: @ 81DBA64
 	def_special GiveMonArtistRibbon
 	def_special sub_80B3000
 	def_special SaveGame
-	def_special sub_80FAFF8
-	def_special easy_chat_input_maybe
+	def_special DoWateringBerryTreeAnim
+	def_special ShowEasyChatScreen
 	def_special sub_811EECC
 	def_special ScrSpecial_GetCurrentMauvilleMan
 	def_special ScrSpecial_HasBardSongBeenChanged
@@ -148,7 +148,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80F88E8
 	def_special sub_80F88DC
 	def_special sub_80F8864
-	def_special sub_80F8940
+	def_special CountPlayerContestPaintings
 	def_special ShowContestWinner
 	def_special MauvilleGymSpecial2
 	def_special MauvilleGymSpecial1
@@ -163,7 +163,7 @@ gSpecials:: @ 81DBA64
 	def_special GetRivalSonDaughterString
 	def_special SetFlagInVar
 	def_special CableCarWarp
-	def_special sub_814FC9C
+	def_special CableCar
 	def_special Overworld_PlaySpecialMapMusic
 	def_special StartWallClock
 	def_special Special_ViewWallClock
@@ -173,7 +173,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_81B94B0
 	def_special GetFirstFreePokeblockSlot
 	def_special DoBerryBlending
-	def_special sub_8142BC8
+	def_special PlayRoulette
 	def_special ShouldMoveLilycoveFanClubMember
 	def_special GetNumMovedLilycoveFanClubMembers
 	def_special BufferStreakTrainerText
@@ -263,10 +263,10 @@ gSpecials:: @ 81DBA64
 	def_special BedroomPC
 	def_special PlayerPC
 	def_special FieldShowRegionMap
-	def_special sub_807E73C
-	def_special sub_807EA10
-	def_special sub_807F0E4
-	def_special sub_807E9D4
+	def_special GetInGameTradeSpeciesInfo
+	def_special CreateInGameTradePokemon
+	def_special DoInGameTradeScene
+	def_special GetTradeSpecies
 	def_special GetWeekCount
 	def_special RetrieveLotteryNumber
 	def_special PickLotteryCornerTicket
@@ -286,12 +286,12 @@ gSpecials:: @ 81DBA64
 	def_special GameClear
 	def_special ShakeScreenInElevator
 	def_special nullsub_55
-	def_special SpawnScriptEventObject
-	def_special RemoveScriptEventObject
+	def_special SpawnCameraObject
+	def_special RemoveCameraObject
 	def_special GetPokeblockNameByMonNature
 	def_special GetSecretBaseNearbyMapName
 	def_special CheckRelicanthWailord
-	def_special ShouldDoBrailleStrengthEffectOld
+	def_special ShouldDoBrailleRegirockEffectOld
 	def_special sub_80B0534
 	def_special sub_80B058C
 	def_special WaitWeather
@@ -317,7 +317,7 @@ gSpecials:: @ 81DBA64
 	def_special ScriptCheckFreePokemonStorageSpace
 	def_special DoSealedChamberShakingEffect1
 	def_special sub_8139B60
-	def_special sub_80FAC78
+	def_special GetShieldToyTVDecorationInfo
 	def_special IsPokerusInParty
 	def_special SetSootopolisGymCrackedIceMetatiles
 	def_special sub_8139560
@@ -328,8 +328,8 @@ gSpecials:: @ 81DBA64
 	def_special DoSealedChamberShakingEffect2
 	def_special FoundBlackGlasses
 	def_special sub_80AC81C
-	def_special sp13E_warp_to_last_warp
-	def_special sp13F_fall_to_last_warp
+	def_special DoDiveWarp
+	def_special DoFallWarp
 	def_special ShowContestEntryMonPic
 	def_special sub_80F8EB8
 	def_special SetEReaderTrainerGfxId
@@ -345,7 +345,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_80B05B4
 	def_special SetPacifidlogTMReceivedDay
 	def_special GetDaysUntilPacifidlogTMAvailable
-	def_special sub_80C08E4
+	def_special HasAllHoennMons
 	def_special MonOTNameMatchesPlayer
 	def_special BufferLottoTicketNumber
 	def_special sub_81653CC
@@ -419,9 +419,9 @@ gSpecials:: @ 81DBA64
 	def_special ShouldTryGetTrainerScript
 	def_special ShowMapNamePopup
 	def_special ShowMapNamePopup
-	def_special sub_81BE994
-	def_special sub_81BE79C
-	def_special sub_81BE7F4
+	def_special DoMirageTowerCeilingCrumble
+	def_special SetMirageTowerVisibility
+	def_special StartPlayerDescendMirageTower
 	def_special sub_81398C0
 	def_special IsWirelessAdapterConnected
 	def_special BerryBlenderLinkBecomeLeader
@@ -481,29 +481,29 @@ gSpecials:: @ 81DBA64
 	def_special sub_813B7D8
 	def_special sub_81C72A4
 	def_special sp106_CreateStartMenu
-	def_special sub_80C2E40
+	def_special CountPlayerTrainerStars
 	def_special sub_813AC7C
 	def_special sub_813ADB8
 	def_special sub_813ADD4
 	def_special sub_81B892C
 	def_special sub_813AEB4
 	def_special sub_813AF48
-	def_special sub_813AFC8
+	def_special DoDeoxysRockInteraction
 	def_special sub_813B1D0
 	def_special CreateObedientEnemyMon
-	def_special sub_81BEB54
-	def_special sub_81BEB68
-	def_special sub_81BEB7C
+	def_special StartMirageTowerDisintegration
+	def_special StartMirageTowerShake
+	def_special StartMirageTowerFossilFallAndSink
 	def_special ChangeBoxPokemonNickname
 	def_special get_unknown_box_id
 	def_special sub_813B21C
 	def_special SetMatchCallRegisteredFlag
 	def_special sub_8175280
-	def_special sub_813B2E4
-	def_special sub_813B374
+	def_special CreateUnusualWeatherEvent
+	def_special GetUnusualWeatherMapNameAndType
 	def_special sub_813B490
 	def_special sub_80A08CC
-	def_special sub_813B484
+	def_special Unused_SetWeatherSunny
 	def_special sub_81AFDA0
 	def_special sub_813B4E0
 	def_special ShouldDoBrailleRegicePuzzle
@@ -515,7 +515,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_813B514
 	def_special sub_813B568
 	def_special sub_813B534
-	def_special sp194_trainer_tower
+	def_special CallTrainerHillFunction
 	def_special sub_813B7D8
 	def_special sub_813B80C
 	def_special sub_81D4BEC

@@ -29,6 +29,7 @@
 #include "constants/items.h"
 #include "constants/species.h"
 #include "constants/vars.h"
+#include "constants/battle_frontier.h"
 
 extern const u16 gEventObjectPalette8[];
 extern const u16 gEventObjectPalette17[];
@@ -36,13 +37,11 @@ extern const u16 gEventObjectPalette33[];
 extern const u16 gEventObjectPalette34[];
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];
 
-extern u8 gSelectedOrderFromParty[];
-
 static const u8 gUnknown_0858D8EC[] = { 3, 4, 5, 14 };
 
 static void sub_80F8EE8(u8 taskId);
 static void sub_80F9088(u8 taskId);
-static void sub_80F9460(void);
+static void CB2_ReturnFromChooseHalfParty(void);
 static void sub_80F94B8(void);
 
 void SetContestTrainerGfxIds(void)
@@ -130,18 +129,18 @@ void sub_80F88E8(void)
     }
 }
 
-u8 sub_80F8940(void)
+u8 CountPlayerContestPaintings(void)
 {
     int i;
-    u8 var0 = 0;
+    u8 count = 0;
 
     for (i = 0; i < 5; i++)
     {
         if (gSaveBlock1Ptr->contestWinners[8 + i].species)
-            var0++;
+            count++;
     }
 
-    return var0;
+    return count;
 }
 
 void sub_80F8970(void)
@@ -220,7 +219,7 @@ static void ShowContestWinnerCleanup(void)
 
 void ShowContestWinner(void)
 {
-    SetMainCallback2(sub_812FDEC);
+    SetMainCallback2(CB2_ContestPainting);
     gMain.savedCallback = ShowContestWinnerCleanup;
 }
 
@@ -230,7 +229,7 @@ void sub_80F8AFC(void)
 
     if (gIsLinkContest & 1)
     {
-        for (i = 0; i < gUnknown_02039F30; i++)
+        for (i = 0; i < gNumLinkContestPlayers; i++)
         {
             int version = (u8)gLinkPlayers[i].version;
             if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
@@ -259,7 +258,7 @@ void sub_80F8B94(void)
     gReservedSpritePaletteCount = 12;
     if (gIsLinkContest & 1)
     {
-        for (i = 0; i < gUnknown_02039F30; i++)
+        for (i = 0; i < gNumLinkContestPlayers; i++)
         {
             eventObjectId = GetEventObjectIdByLocalIdAndMap(gUnknown_0858D8EC[i], gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
             sprite = &gSprites[gEventObjects[eventObjectId].spriteId];
@@ -287,14 +286,14 @@ u8 GiveMonArtistRibbon(void)
 {
     u8 hasArtistRibbon;
 
-    hasArtistRibbon = GetMonData(&gPlayerParty[gUnknown_02039F24], MON_DATA_ARTIST_RIBBON);
+    hasArtistRibbon = GetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_ARTIST_RIBBON);
     if (!hasArtistRibbon && gContestFinalStandings[gContestPlayerMonIndex] == 0 && gSpecialVar_ContestRank == 3
      && gUnknown_02039F08[gContestPlayerMonIndex] >= 800)
     {
         hasArtistRibbon = 1;
-        SetMonData(&gPlayerParty[gUnknown_02039F24], MON_DATA_ARTIST_RIBBON, &hasArtistRibbon);
-        if (GetRibbonCount(&gPlayerParty[gUnknown_02039F24]) > 4)
-            sub_80EE4DC(&gPlayerParty[gUnknown_02039F24], MON_DATA_ARTIST_RIBBON);
+        SetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_ARTIST_RIBBON, &hasArtistRibbon);
+        if (GetRibbonCount(&gPlayerParty[gContestMonPartyIndex]) > 4)
+            sub_80EE4DC(&gPlayerParty[gContestMonPartyIndex], MON_DATA_ARTIST_RIBBON);
 
         return 1;
     }
@@ -335,7 +334,7 @@ void ShowContestEntryMonPic(void)
             HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites[1], species, personality);
 
         palette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
-        LoadCompressedObjectPalette(palette);
+        LoadCompressedSpritePalette(palette);
         SetMultiuseSpriteTemplateToPokemon(species, 1);
         gMultiuseSpriteTemplate.paletteTag = palette->tag;
         spriteId = CreateSprite(&gMultiuseSpriteTemplate, (left + 1) * 8 + 32, (top * 8) + 40, 0);
@@ -404,7 +403,7 @@ static void sub_80F8EE8(u8 taskId)
 
 void ScriptGetMultiplayerId(void)
 {
-    if ((gIsLinkContest & 1) && gUnknown_02039F30 == 4 && !(gIsLinkContest & 2))
+    if ((gIsLinkContest & 1) && gNumLinkContestPlayers == 4 && !(gIsLinkContest & 2))
         gSpecialVar_Result = GetMultiplayerId();
     else
         gSpecialVar_Result = 4;
@@ -453,7 +452,7 @@ static void sub_80F9088(u8 taskId)
     switch (gTasks[taskId].data[0])
     {
     case 0:
-        if (sub_800A520())
+        if (IsLinkTaskFinished())
         {
             sub_800ADF8();
             gTasks[taskId].data[0]++;
@@ -463,7 +462,7 @@ static void sub_80F9088(u8 taskId)
         gTasks[taskId].data[0]++;
         break;
     default:
-        if (sub_800A520() == 1)
+        if (IsLinkTaskFinished() == 1)
         {
             EnableBothScriptContexts();
             DestroyTask(taskId);
@@ -530,7 +529,7 @@ void HealPlayerParty(void)
         ppBonuses = GetMonData(&gPlayerParty[i], MON_DATA_PP_BONUSES);
 
         // restore PP.
-        for(j = 0; j < 4; j++)
+        for(j = 0; j < MAX_MON_MOVES; j++)
         {
             arg[0] = CalculatePPWithBonus(GetMonData(&gPlayerParty[i], MON_DATA_MOVE1 + j), ppBonuses, j);
             SetMonData(&gPlayerParty[i], MON_DATA_PP1 + j, arg);
@@ -563,8 +562,8 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     {
     case 0:
     case 1:
-        GetSetPokedexFlag(nationalDexNum, 2);
-        GetSetPokedexFlag(nationalDexNum, 3);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
         break;
     }
     return sentToPc;
@@ -642,22 +641,24 @@ void ScriptSetMonMoveSlot(u8 monIndex, u16 move, u8 slot)
     SetMonMoveSlot(&gPlayerParty[monIndex], move, slot);
 }
 
-void sub_80F9438(void)
+// Note: When control returns to the event script, gSpecialVar_Result will be
+// TRUE if the party selection was successful.
+void ChooseHalfPartyForBattle(void)
 {
-    gMain.savedCallback = sub_80F9460;
-    VarSet(VAR_FRONTIER_FACILITY, 9); // this isn't a valid frontier facility id (??)
-    sub_81B8518(0);
+    gMain.savedCallback = CB2_ReturnFromChooseHalfParty;
+    VarSet(VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_DOUBLE_COLOSSEUM);
+    InitChooseHalfPartyForBattle(0);
 }
 
-static void sub_80F9460(void)
+static void CB2_ReturnFromChooseHalfParty(void)
 {
     switch (gSelectedOrderFromParty[0])
     {
     case 0:
-        gSpecialVar_Result = 0;
+        gSpecialVar_Result = FALSE;
         break;
     default:
-        gSpecialVar_Result = 1;
+        gSpecialVar_Result = TRUE;
         break;
     }
 
@@ -667,7 +668,7 @@ static void sub_80F9460(void)
 void sub_80F9490(void)
 {
     gMain.savedCallback = sub_80F94B8;
-    sub_81B8518(gSpecialVar_0x8004 + 1);
+    InitChooseHalfPartyForBattle(gSpecialVar_0x8004 + 1);
 }
 
 static void sub_80F94B8(void)

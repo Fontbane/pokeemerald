@@ -708,7 +708,7 @@
 
 	.macro statbuffchange param0:req, param1:req
 	.byte 0x89
-	.byte \param0
+	.2byte \param0
 	.4byte \param1
 	.endm
 
@@ -1082,7 +1082,7 @@
 	.4byte \param0
 	.endm
 
-	.macro tryimprision param0:req
+	.macro tryimprison param0:req
 	.byte 0xdb
 	.4byte \param0
 	.endm
@@ -1584,6 +1584,24 @@
 	.macro setpowder battler:req
 	various \battler, VARIOUS_SET_POWDER
 	.endm
+	
+	.macro spectralthiefprintstats
+	various BS_ATTACKER, VARIOUS_SPECTRAL_THIEF
+	.endm
+	
+	.macro bringdownairbornebattler battler:req
+	various \battler, VARIOUS_GRAVITY_ON_AIRBORNE_MONS
+	.endm
+	
+	.macro checkgrassyterrainheal battler:req, ptr:req
+	various \battler, VARIOUS_CHECK_IF_GRASSY_TERRAIN_HEALS
+	.4byte \ptr
+	.endm
+	
+	.macro jumpifroarfails ptr:req
+	various BS_ATTACKER, VARIOUS_JUMP_IF_ROAR_FAILS
+	.4byte \ptr
+	.endm
 
 	.macro tryactivatebattlecoat battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_BATTLE_COAT
@@ -1591,12 +1609,12 @@
 
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
-	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7
+	setbyte sSTATCHANGER \stat | \stages << 3 | \down << 7
 	.endm
 	
 	.macro setmoveeffect effect:req
-	setbyte cEFFECT_CHOOSER \effect
-	setbyte sSAVED_MOVE_EFFECT \effect
+	sethword sMOVE_EFFECT \effect
+	sethword sSAVED_MOVE_EFFECT \effect
 	.endm
 	
 	.macro chosenstatus1animation battler:req, status:req
@@ -1608,15 +1626,15 @@
 	.endm
 	
 	.macro sethword dst:req, value:req
-	setbyte \dst, \value & 0xFF
-	setbyte \dst + 1, (\value >> 8) & 0xFF
+	setbyte \dst, (\value) & 0xFF
+	setbyte \dst + 1, ((\value) >> 8) & 0xFF
 	.endm
 	
 	.macro setword dst:req, value:req
-	setbyte \dst, \value & 0xFF
-	setbyte \dst + 1, (\value >> 8) & 0xFF
-	setbyte \dst + 2, (\value >> 16) & 0xFF
-	setbyte \dst + 3, (\value >> 24) & 0xFF
+	setbyte \dst, (\value) & 0xFF
+	setbyte \dst + 1, ((\value) >> 8) & 0xFF
+	setbyte \dst + 2, ((\value) >> 16) & 0xFF
+	setbyte \dst + 3, ((\value) >> 24) & 0xFF
 	.endm
 	
 	.macro copybyte dst:req, src:req

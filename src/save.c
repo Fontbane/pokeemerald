@@ -5,7 +5,9 @@
 #include "decompress.h"
 #include "load_save.h"
 #include "overworld.h"
+#include "pokemon_storage_system.h"
 #include "main.h"
+#include "trainer_hill.h"
 #include "constants/game_stat.h"
 
 static u16 CalculateChecksum(void *data, u16 size);
@@ -15,10 +17,6 @@ static u8 sub_8152E10(u16 a1, const struct SaveSectionLocation *location);
 static u8 ClearSaveData_2(u16 a1, const struct SaveSectionLocation *location);
 static u8 TryWriteSector(u8 sector, u8 *data);
 static u8 HandleWriteSector(u16 a1, const struct SaveSectionLocation *location);
-
-// for the chunk declarations
-
-extern u32 gUnknown_0203CF5C;
 
 // Divide save blocks into individual chunks to be written to flash sectors
 
@@ -76,7 +74,7 @@ extern void DoSaveFailedScreen(u8); // save_failed_screen
 extern bool32 ProgramFlashSectorAndVerify(u8 sector, u8 *data);
 extern void save_serialize_map(void);
 extern void sub_800ADF8(void);
-extern bool8 sub_800A520(void);
+extern bool8 IsLinkTaskFinished(void);
 
 // iwram common
 u16 gLastWrittenSector;
@@ -661,10 +659,10 @@ static void UpdateSaveAddresses(void)
 u8 HandleSavingData(u8 saveType)
 {
     u8 i;
-    u32 backupVar = gUnknown_0203CF5C;
+    u32 *backupVar = gTrainerHillVBlankCounter;
     u8 *tempAddr;
 
-    gUnknown_0203CF5C = 0;
+    gTrainerHillVBlankCounter = NULL;
     UpdateSaveAddresses();
     switch (saveType)
     {
@@ -707,7 +705,7 @@ u8 HandleSavingData(u8 saveType)
         save_write_to_flash(0xFFFF, gRamSaveSectionLocations);
         break;
     }
-    gUnknown_0203CF5C = backupVar;
+    gTrainerHillVBlankCounter = backupVar;
     return 0;
 }
 
@@ -770,7 +768,7 @@ u8 sub_8153408(void) // trade.s save
     return 0;
 }
 
-u8 sub_8153430(void)
+u8 FullSaveGame(void)
 {
     if (gFlashMemoryPresent != TRUE)
         return 1;
@@ -782,7 +780,7 @@ u8 sub_8153430(void)
     return 0;
 }
 
-bool8 sub_8153474(void)
+bool8 CheckSaveFile(void)
 {
     u8 retVal = FALSE;
     u16 val = ++gUnknown_03006208;
@@ -913,7 +911,7 @@ void sub_8153688(u8 taskId)
         taskData[0] = 2;
         break;
     case 2:
-        if (sub_800A520())
+        if (IsLinkTaskFinished())
         {
             if (taskData[2] == 0)
                 save_serialize_map();
@@ -922,7 +920,7 @@ void sub_8153688(u8 taskId)
         break;
     case 3:
         if (taskData[2] == 0)
-            sub_8076D5C();
+            SetContinueGameWarpStatusToDynamicWarp();
         sub_8153380();
         taskData[0] = 4;
         break;
@@ -945,12 +943,12 @@ void sub_8153688(u8 taskId)
         break;
     case 7:
         if (taskData[2] == 0)
-            sav2_gender2_inplace_and_xFE();
+            ClearContinueGameWarpStatus2();
         sub_800ADF8();
         taskData[0] = 8;
         break;
     case 8:
-        if (sub_800A520())
+        if (IsLinkTaskFinished())
         {
             sub_8153408();
             taskData[0] = 9;
@@ -961,7 +959,7 @@ void sub_8153688(u8 taskId)
         taskData[0] = 10;
         break;
     case 10:
-        if (sub_800A520())
+        if (IsLinkTaskFinished())
             taskData[0]++;
         break;
     case 11:

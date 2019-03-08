@@ -13,11 +13,15 @@
 #define CHAR_7              0xA8
 #define CHAR_8              0xA9
 #define CHAR_9              0xAA
+#define CHAR_EXCL_MARK      0xAB
 #define CHAR_QUESTION_MARK  0xAC
 #define CHAR_PERIOD         0xAD
 #define CHAR_HYPHEN         0xAE
 #define CHAR_ELLIPSIS       0xB0
-#define CHAR_APOS           0xB4
+#define CHAR_DBL_QUOT_LEFT  0xB1
+#define CHAR_DBL_QUOT_RIGHT 0xB2
+#define CHAR_SGL_QUOT_LEFT  0xB3
+#define CHAR_SGL_QUOT_RIGHT 0xB4
 #define CHAR_MALE           0xB5
 #define CHAR_FEMALE         0xB6
 #define CHAR_CURRENCY       0xB7
@@ -259,7 +263,7 @@ void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *c
 u16 RenderText(struct TextPrinter *textPrinter);
 u32 GetStringWidthFixedWidthFont(const u8 *str, u8 fontId, u8 letterSpacing);
 u32 (*GetFontWidthFunc(u8 glyphId))(u16, bool32);
-u32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing);
+s32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing);
 u8 RenderTextFont9(u8 *pixels, u8 fontId, u8 *str);
 u8 DrawKeypadIcon(u8 windowId, u8 keypadIconId, u16 x, u16 y);
 u8 GetKeypadIconTileOffset(u8 keypadIconId);

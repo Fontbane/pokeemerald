@@ -1,5 +1,5 @@
 Route116_TunnelersRestHouse_MapScripts:: @ 822B850
-	map_script 3, Route116_TunnelersRestHouse_MapScript1_22B856
+	map_script MAP_SCRIPT_ON_TRANSITION, Route116_TunnelersRestHouse_MapScript1_22B856
 	.byte 0
 
 Route116_TunnelersRestHouse_MapScript1_22B856: @ 822B856
@@ -17,8 +17,7 @@ Route116_TunnelersRestHouse_EventScript_22B863:: @ 822B863
 Route116_TunnelersRestHouse_EventScript_22B86C:: @ 822B86C
 	lock
 	faceplayer
-	checkflag FLAG_RUSTURF_TUNNEL_OPENED
-	goto_eq Route116_TunnelersRestHouse_EventScript_22B881
+	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, Route116_TunnelersRestHouse_EventScript_22B881
 	msgbox Route116_TunnelersRestHouse_Text_22BAAF, MSGBOX_DEFAULT
 	release
 	end

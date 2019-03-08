@@ -80,6 +80,7 @@
 #define BATTLE_TYPE_FRONTIER_NO_PYRAMID     (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_DOME | BATTLE_TYPE_PALACE | BATTLE_TYPE_ARENA | BATTLE_TYPE_FACTORY | BATTLE_TYPE_PIKE)
 
 #define WILD_DOUBLE_BATTLE ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER))))
+#define BATTLE_TWO_VS_ONE_OPPONENT ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gTrainerBattleOpponent_B == 0xFFFF))
 
 // Battle Outcome defines
 #define B_OUTCOME_WON                  0x1
@@ -149,8 +150,7 @@
 #define STATUS3_GASTRO_ACID             0x10000
 #define STATUS3_EMBARGO                 0x20000
 #define STATUS3_UNDERWATER              0x40000
-#define STATUS3_INTIMIDATE_POKES        0x80000
-#define STATUS3_TRACE                   0x100000
+
 #define STATUS3_SMACKED_DOWN            0x200000
 #define STATUS3_ME_FIRST                0x400000
 #define STATUS3_TELEKINESIS             0x800000
@@ -188,7 +188,7 @@
 #define HITMARKER_GRUDGE                0x01000000
 #define HITMARKER_OBEYS                 0x02000000
 #define HITMARKER_x4000000              0x04000000
-#define HITMARKER_x8000000              0x08000000
+#define HITMARKER_CHARGING              0x08000000
 #define HITMARKER_FAINTED(battler)      (gBitTable[battler] << 0x1C)
 #define HITMARKER_UNK(battler)          (0x10000000 << battler)
 
@@ -209,6 +209,9 @@
 #define SIDE_STATUS_STEALTH_ROCK_DAMAGED    (1 << 15)
 #define SIDE_STATUS_TOXIC_SPIKES_DAMAGED    (1 << 16)
 #define SIDE_STATUS_STICKY_WEB_DAMAGED      (1 << 17)
+#define SIDE_STATUS_QUICK_GUARD             (1 << 18)
+#define SIDE_STATUS_WIDE_GUARD              (1 << 19)
+#define SIDE_STATUS_CRAFTY_SHIELD           (1 << 20)
 
 // Field affecting statuses.
 #define STATUS_FIELD_MAGIC_ROOM         0x1
@@ -321,9 +324,10 @@
 #define MOVE_EFFECT_SMACK_DOWN          0x3C
 #define MOVE_EFFECT_FLAME_BURST         0x3D
 #define MOVE_EFFECT_FEINT               0x3E
-#define MOVE_EFFECT_NOTHING_3F          0x3F
-#define MOVE_EFFECT_AFFECTS_USER        0x40
-#define MOVE_EFFECT_CERTAIN             0x80
+#define MOVE_EFFECT_SPECTRAL_THIEF      0x3F
+#define MOVE_EFFECT_V_CREATE            0x40
+#define MOVE_EFFECT_AFFECTS_USER        0x4000
+#define MOVE_EFFECT_CERTAIN             0x8000
 
 // Battle terrain defines for gBattleTerrain.
 #define BATTLE_TERRAIN_GRASS        0

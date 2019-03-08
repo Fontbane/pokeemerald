@@ -90,7 +90,7 @@ static bool8 sub_808B618(void);
 static bool8 PlayerIsAnimActive(void);
 static bool8 PlayerCheckIfAnimFinishedOrInactive(void);
 
-static void PlayerRun(u8); 
+static void PlayerRun(u8);
 static void PlayerNotOnBikeCollide(u8);
 static void PlayerNotOnBikeCollideWithFarawayIslandMew(u8);
 
@@ -343,7 +343,7 @@ static bool8 TryInterruptEventObjectSpecialAnim(struct EventObject *playerEventO
         u8 r5 = direction;
         register u8 r6 asm("r6") = direction;
     #endif
-    //a very bad HACK 
+    //a very bad HACK
 
     if (EventObjectIsMovementOverridden(playerEventObj)
      && !EventObjectClearHeldMovementIfFinished(playerEventObj))
@@ -726,7 +726,7 @@ static bool8 sub_808B1BC(s16 x, s16 y, u8 direction)
 {
     if ((gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
      && MapGridGetZCoordAt(x, y) == 3
-     && GetEventObjectIdByXYZ(x, y, 3) == 16)
+     && GetEventObjectIdByXYZ(x, y, 3) == EVENT_OBJECTS_COUNT)
     {
         sub_808C750(direction);
         return TRUE;
@@ -794,12 +794,9 @@ bool8 IsPlayerCollidingWithFarawayIslandMew(u8 direction)
     playerY = object->currentCoords.y;
 
     MoveCoords(direction, &playerX, &playerY);
-    mewObjectId = GetEventObjectIdByLocalIdAndMap(1, 0x39, 0x1A);
-
-    if (mewObjectId == 16)
-    {
+    mewObjectId = GetEventObjectIdByLocalIdAndMap(1, MAP_NUM(FARAWAY_ISLAND_INTERIOR), MAP_GROUP(FARAWAY_ISLAND_INTERIOR));
+    if (mewObjectId == EVENT_OBJECTS_COUNT)
         return FALSE;
-    }
 
     object = &gEventObjects[mewObjectId];
     mewPrevX = object->previousCoords.x;
@@ -827,24 +824,14 @@ void SetPlayerAvatarTransitionFlags(u16 transitionFlags)
 static void DoPlayerAvatarTransition(void)
 {
     u8 i;
-    u32 flags = gPlayerAvatar.unk1;
+    u8 flags = gPlayerAvatar.unk1;
 
     if (flags != 0)
     {
         for (i = 0; i < 8; i++, flags >>= 1)
         {
-#ifdef NONMATCHING
             if (flags & 1)
-            {
                 gUnknown_084974B8[i](&gEventObjects[gPlayerAvatar.eventObjectId]);
-            }
-#else
-            if (flags & 1)
-            {
-                register void (*const *funcs)(struct EventObject *) asm("r0") = gUnknown_084974B8;
-                funcs[i](&gEventObjects[gPlayerAvatar.eventObjectId]);
-            }
-#endif
         }
         gPlayerAvatar.unk1 = 0;
     }
@@ -1157,7 +1144,7 @@ void PlayerGetDestCoords(s16 *x, s16 *y)
 u8 player_get_pos_including_state_based_drift(s16 *x, s16 *y)
 {
     struct EventObject *object = &gEventObjects[gPlayerAvatar.eventObjectId];
-    
+
     if (object->heldMovementActive && !object->heldMovementFinished && !gSprites[object->spriteId].data[2])
     {
         *x = object->currentCoords.x;
@@ -1313,7 +1300,7 @@ bool8 PartyHasMonWithSurf(void)
         {
             if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE)
                 break;
-            if (pokemon_has_move(&gPlayerParty[i], MOVE_SURF))
+            if (MonKnowsMove(&gPlayerParty[i], MOVE_SURF))
                 return TRUE;
         }
     }
@@ -1392,7 +1379,7 @@ void InitPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender)
     u8 eventObjectId;
     struct EventObject *eventObject;
 
-    playerEventObjTemplate.localId = 0xFF;
+    playerEventObjTemplate.localId = EVENT_OBJ_ID_PLAYER;
     playerEventObjTemplate.graphicsId = GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, gender);
     playerEventObjTemplate.x = x - 7;
     playerEventObjTemplate.y = y - 7;
@@ -1771,7 +1758,7 @@ static bool8 Fishing2(struct Task *task)
 static bool8 Fishing3(struct Task *task)
 {
     AlignFishingAnimationFrames();
-    
+
     // Wait one second
     task->tFrameCounter++;
     if (task->tFrameCounter >= 60)
@@ -1848,7 +1835,7 @@ static bool8 Fishing6(struct Task *task)
     }
     else
     {
-        if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_BIT3))
+        if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         {
             u8 ability = GetMonAbility(&gPlayerParty[0]);
             if (ability == ABILITY_SUCTION_CUPS || ability  == ABILITY_STICKY_HOLD)
@@ -1934,7 +1921,7 @@ static bool8 Fishing9(struct Task *task)
 static bool8 Fishing10(struct Task *task)
 {
     AlignFishingAnimationFrames();
-    FillWindowPixelBuffer(0, 0x11);
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, 1, gText_PokemonOnHook, 1, 0, 2, 1, 3);
     task->tStep++;
     task->tFrameCounter = 0;
@@ -1960,7 +1947,7 @@ static bool8 Fishing11(struct Task *task)
                 sub_8155604(gEventObjects[gPlayerAvatar.eventObjectId].fieldEffectSpriteId, 0, 0);
             gSprites[gPlayerAvatar.spriteId].pos2.x = 0;
             gSprites[gPlayerAvatar.spriteId].pos2.y = 0;
-            sub_8197434(0, TRUE);
+            ClearDialogWindowAndFrame(0, TRUE);
             task->tFrameCounter++;
             return FALSE;
         }
@@ -1982,7 +1969,7 @@ static bool8 Fishing12(struct Task *task)
 {
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
-    FillWindowPixelBuffer(0, 0x11);
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, 1, gText_NotEvenANibble, 1, 0, 2, 1, 3);
     task->tStep = FISHING_SHOW_RESULT;
     return TRUE;
@@ -1993,7 +1980,7 @@ static bool8 Fishing13(struct Task *task)
 {
     AlignFishingAnimationFrames();
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
-    FillWindowPixelBuffer(0, 0x11);
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, 1, gText_ItGotAway, 1, 0, 2, 1, 3);
     task->tStep++;
     return TRUE;
@@ -2033,7 +2020,7 @@ static bool8 Fishing16(struct Task *task)
         gPlayerAvatar.preventStep = FALSE;
         ScriptContext2_Disable();
         UnfreezeEventObjects();
-        sub_8197434(0, TRUE);
+        ClearDialogWindowAndFrame(0, TRUE);
         sub_80ED950(0);
         DestroyTask(FindTaskIdByFunc(Task_Fishing));
     }

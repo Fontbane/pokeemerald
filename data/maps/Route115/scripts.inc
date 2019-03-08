@@ -1,27 +1,27 @@
 Route115_MapScripts:: @ 81F2920
-	map_script 1, Route115_MapScript1_1F2930
-	map_script 3, Route115_MapScript1_1F2947
-	map_script 2, Route115_MapScript2_1F2969
+	map_script MAP_SCRIPT_ON_LOAD, Route115_MapScript1_1F2930
+	map_script MAP_SCRIPT_ON_TRANSITION, Route115_MapScript1_1F2947
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route115_MapScript2_1F2969
 	.byte 0
 
 Route115_MapScript1_1F2930: @ 81F2930
-	compare VAR_0x4037, 3
-	call_if 1, Route115_EventScript_273939
-	compare VAR_0x4037, 4
-	call_if 1, Route115_EventScript_27394C
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_115_WEST
+	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute115West
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_115_EAST
+	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute115East
 	end
 
 Route115_MapScript1_1F2947: @ 81F2947
-	compare VAR_0x4039, 1
-	call_if 1, Route115_EventScript_273D13
-	compare VAR_0x4037, 3
-	call_if 1, Route115_EventScript_273D1B
-	compare VAR_0x4037, 4
-	call_if 1, Route115_EventScript_273D1B
+	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
+	call_if_eq Route115_EventScript_273D13
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_115_WEST
+	call_if_eq UnusualWeather_StartGroudonWeather
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_115_EAST
+	call_if_eq UnusualWeather_StartGroudonWeather
 	end
 
 Route115_MapScript2_1F2969: @ 81F2969
-	map_script_2 VAR_0x4039, 1, gUnknown_08273D1F
+	map_script_2 VAR_SHOULD_END_UNUSUAL_WEATHER, 1, UnusualWeather_EventScript_EndEventAndCleanup_1
 	.2byte 0
 
 Route115_EventScript_1F2973:: @ 81F2973
@@ -40,7 +40,7 @@ Route115_EventScript_1F298E:: @ 81F298E
 	trainerbattle_single TRAINER_TIMOTHY_1, Route115_Text_29B1FA, Route115_Text_29B230, Route115_EventScript_1F29BA
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route115_EventScript_1F29D9
+	goto_if_eq Route115_EventScript_1F29D9
 	msgbox Route115_Text_29B258, MSGBOX_DEFAULT
 	release
 	end
@@ -67,7 +67,7 @@ Route115_EventScript_1F2A07:: @ 81F2A07
 	trainerbattle_single TRAINER_NOB_1, Route115_Text_29B449, Route115_Text_29B480, Route115_EventScript_1F2A33
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route115_EventScript_1F2A52
+	goto_if_eq Route115_EventScript_1F2A52
 	msgbox Route115_Text_29B49D, MSGBOX_DEFAULT
 	release
 	end
@@ -89,7 +89,7 @@ Route115_EventScript_1F2A69:: @ 81F2A69
 	trainerbattle_single TRAINER_CYNDY_1, Route115_Text_29B5EF, Route115_Text_29B62D, Route115_EventScript_1F2A95
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route115_EventScript_1F2AB4
+	goto_if_eq Route115_EventScript_1F2AB4
 	msgbox Route115_Text_29B647, MSGBOX_DEFAULT
 	release
 	end

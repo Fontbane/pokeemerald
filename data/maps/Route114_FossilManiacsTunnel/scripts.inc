@@ -1,21 +1,19 @@
 Route114_FossilManiacsTunnel_MapScripts:: @ 822AF28
-	map_script 3, Route114_FossilManiacsTunnel_MapScript1_22AF33
-	map_script 1, Route114_FossilManiacsTunnel_MapScript1_22AF49
+	map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsTunnel_MapScript1_22AF33
+	map_script MAP_SCRIPT_ON_LOAD, Route114_FossilManiacsTunnel_MapScript1_22AF49
 	.byte 0
 
 Route114_FossilManiacsTunnel_MapScript1_22AF33: @ 822AF33
-	checkflag FLAG_SYS_GAME_CLEAR
-	call_if 1, Route114_FossilManiacsTunnel_EventScript_22AF3D
+	call_if_set FLAG_SYS_GAME_CLEAR, Route114_FossilManiacsTunnel_EventScript_22AF3D
 	end
 
 Route114_FossilManiacsTunnel_EventScript_22AF3D:: @ 822AF3D
 	setobjectxyperm 1, 6, 5
-	setobjectmovementtype 1, 8
+	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 Route114_FossilManiacsTunnel_MapScript1_22AF49: @ 822AF49
-	checkflag FLAG_SYS_GAME_CLEAR
-	call_if 0, Route114_FossilManiacsTunnel_EventScript_22AF53
+	call_if_unset FLAG_SYS_GAME_CLEAR, Route114_FossilManiacsTunnel_EventScript_22AF53
 	end
 
 Route114_FossilManiacsTunnel_EventScript_22AF53:: @ 822AF53
@@ -25,25 +23,24 @@ Route114_FossilManiacsTunnel_EventScript_22AF53:: @ 822AF53
 
 Route114_FossilManiacsTunnel_EventScript_22AF66:: @ 822AF66
 	lockall
-	applymovement 1, Route114_FossilManiacsTunnel_Movement_2725A6
-	applymovement 255, Route114_FossilManiacsTunnel_Movement_2725AA
+	applymovement 1, Common_Movement_WalkInPlaceUp
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox Route114_FossilManiacsTunnel_Text_22B1F7, MSGBOX_DEFAULT
-	setvar VAR_0x40CC, 2
+	setvar VAR_FOSSIL_MANIAC_STATE, 2
 	releaseall
 	end
 
 Route114_FossilManiacsTunnel_EventScript_22AF87:: @ 822AF87
 	lock
 	faceplayer
-	checkflag FLAG_0x10B
-	goto_eq Route114_FossilManiacsTunnel_EventScript_22AFC6
+	goto_if_set FLAG_RECEIVED_REVIVED_FOSSIL_MON, Route114_FossilManiacsTunnel_EventScript_22AFC6
 	checkitem ITEM_ROOT_FOSSIL, 1
 	compare VAR_RESULT, 1
-	goto_eq Route114_FossilManiacsTunnel_EventScript_22AFBC
+	goto_if_eq Route114_FossilManiacsTunnel_EventScript_22AFBC
 	checkitem ITEM_CLAW_FOSSIL, 1
 	compare VAR_RESULT, 1
-	goto_eq Route114_FossilManiacsTunnel_EventScript_22AFBC
+	goto_if_eq Route114_FossilManiacsTunnel_EventScript_22AFBC
 	msgbox Route114_FossilManiacsTunnel_Text_22AFD0, MSGBOX_DEFAULT
 	release
 	end

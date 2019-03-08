@@ -313,7 +313,7 @@
 	.endm
 
 	@ Runs time based events. In FireRed, this command is a nop.
-	.macro dodailyevents
+	.macro dotimebasedevents
 	.byte 0x2d
 	.endm
 
@@ -824,7 +824,7 @@
 	.byte \y
 	.endm
 
-	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined and the one to be used is specified with list. If b is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
+	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (gMultichoiceLists) and the one to be used is specified with list. If b is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
 	.macro multichoice x:req, y:req, list:req, b:req
 	.byte 0x6f
 	.byte \x
@@ -833,7 +833,7 @@
 	.byte \b
 	.endm
 
-	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined and the one to be used is specified with list. The default argument determines the initial position of the cursor when the box is first opened; it is zero-indexed, and if it is too large, it is treated as 0x00. If b is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
+	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (gMultichoiceLists) and the one to be used is specified with list. The default argument determines the initial position of the cursor when the box is first opened; it is zero-indexed, and if it is too large, it is treated as 0x00. If b is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
 	.macro multichoicedefault x:req, y:req, list:req, default:req, b:req
 	.byte 0x70
 	.byte \x
@@ -843,7 +843,7 @@
 	.byte \b
 	.endm
 
-	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined and the one to be used is specified with list. The per_row argument determines how many list items will be shown on a single row of the box.
+	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made. Lists of options are predefined (gMultichoiceLists) and the one to be used is specified with list. The per_row argument determines how many list items will be shown on a single row of the box.
 	.macro multichoicegrid x:req, y:req, list:req, per_row:req, B:req
 	.byte 0x71
 	.byte \x
@@ -1163,12 +1163,12 @@
 	.endm
 
 	@ Changes the metatile at (x, y) on the current map.
-	.macro setmetatile x:req, y:req, metatile_number:req, tile_attrib:req
+	.macro setmetatile x:req, y:req, metatile_number:req, has_collision:req
 	.byte 0xa2
 	.2byte \x
 	.2byte \y
 	.2byte \metatile_number
-	.2byte \tile_attrib
+	.2byte \has_collision
 	.endm
 
 	@ Queues a weather change to the default weather for the map.
@@ -1557,17 +1557,81 @@
 
 @ Supplementary
 
-	.macro goto_eq dest:req
+	.macro goto_if_unset flag:req, dest:req
+	checkflag \flag
+	goto_if 0, \dest
+	.endm
+
+	.macro goto_if_set flag:req, dest:req
+	checkflag \flag
 	goto_if 1, \dest
 	.endm
 
+	.macro goto_if_lt dest:req @ LESS THAN
+	goto_if 0, \dest
+	.endm	
+
+	.macro goto_if_eq dest:req @ EQUAL
+	goto_if 1, \dest
+	.endm
+
+	.macro goto_if_gt dest:req @ GREATER THAN
+	goto_if 2, \dest
+	.endm
+
+	.macro goto_if_le dest:req @ LESS THAN OR EQUAL
+	goto_if 3, \dest
+	.endm
+
+	.macro goto_if_ge dest:req @ GREATER THAN OR EQUAL
+	goto_if 4, \dest
+	.endm
+
+	.macro goto_if_ne dest:req @ NOT EQUAL
+	goto_if 5, \dest
+	.endm
+
+	.macro call_if_unset flag:req, dest:req
+	checkflag \flag
+	call_if 0, \dest
+	.endm
+
+	.macro call_if_set flag:req, dest:req
+	checkflag \flag
+	call_if 1, \dest
+	.endm
+
+	.macro call_if_lt dest:req @ LESS THAN
+	call_if 0, \dest
+	.endm	
+
+	.macro call_if_eq dest:req @ EQUAL
+	call_if 1, \dest
+	.endm
+
+	.macro call_if_gt dest:req @ GREATER THAN
+	call_if 2, \dest
+	.endm
+
+	.macro call_if_le dest:req @ LESS THAN OR EQUAL
+	call_if 3, \dest
+	.endm
+
+	.macro call_if_ge dest:req @ GREATER THAN OR EQUAL
+	call_if 4, \dest
+	.endm
+
+	.macro call_if_ne dest:req @ NOT EQUAL
+	call_if 5, \dest
+	.endm
+
 	.macro switch var:req
-	copyvar 0x8000, \var
+	copyvar VAR_0x8000, \var
 	.endm
 
 	.macro case condition:req, dest:req
-	compare 0x8000, \condition
-	goto_eq \dest
+	compare VAR_0x8000, \condition
+	goto_if_eq \dest
 	.endm
 
 	@ Message box types
@@ -1586,13 +1650,13 @@
 	.endm
 
 	.macro giveitem_std item:req, amount=1, function=0
-	setorcopyvar 0x8000, \item
-	setorcopyvar 0x8001, \amount
+	setorcopyvar VAR_0x8000, \item
+	setorcopyvar VAR_0x8001, \amount
 	callstd \function
 	.endm
 
 	.macro givedecoration_std decoration:req
-	setorcopyvar 0x8000, \decoration
+	setorcopyvar VAR_0x8000, \decoration
 	callstd STD_OBTAIN_DECORATION
 	.endm
 

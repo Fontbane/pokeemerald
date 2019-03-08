@@ -1,6 +1,6 @@
 Route101_MapScripts:: @ 81EBCBA
-	map_script 3, Route101_MapScript1_1EBCC5
-	map_script 2, Route101_MapScript2_1EBCCB
+	map_script MAP_SCRIPT_ON_TRANSITION, Route101_MapScript1_1EBCC5
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route101_MapScript2_1EBCCB
 	.byte 0
 
 Route101_MapScript1_1EBCC5: @ 81EBCC5
@@ -8,12 +8,12 @@ Route101_MapScript1_1EBCC5: @ 81EBCC5
 	end
 
 Route101_MapScript2_1EBCCB: @ 81EBCCB
-	map_script_2 VAR_0x4060, 0, Route101_EventScript_1EBCD5
+	map_script_2 VAR_ROUTE101_STATE, 0, Route101_EventScript_1EBCD5
 	.2byte 0
 
 Route101_EventScript_1EBCD5:: @ 81EBCD5
 	setflag FLAG_SPECIAL_FLAG_0x4000
-	setvar VAR_0x4060, 1
+	setvar VAR_ROUTE101_STATE, 1
 	end
 
 Route101_EventScript_1EBCDE:: @ 81EBCDE
@@ -23,21 +23,21 @@ Route101_EventScript_1EBCDE:: @ 81EBCDE
 	closemessage
 	setobjectxy 2, 0, 15
 	setobjectxy 4, 0, 16
-	applymovement 255, Route101_Movement_1EBDC2
+	applymovement EVENT_OBJ_ID_PLAYER, Route101_Movement_1EBDC2
 	applymovement 2, Route101_Movement_1EBDE7
 	applymovement 4, Route101_Movement_1EBDB5
 	waitmovement 0
 	applymovement 4, Route101_Movement_1EBD96
 	applymovement 2, Route101_Movement_1EBDC8
 	waitmovement 0
-	applymovement 2, Route101_Movement_2725A8
+	applymovement 2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	applymovement 4, Route101_Movement_1EBDBD
 	applymovement 2, Route101_Movement_1EBDEF
 	waitmovement 0
 	msgbox Route101_Text_1EBE9A, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_0x4060, 2
+	setvar VAR_ROUTE101_STATE, 2
 	releaseall
 	end
 
@@ -45,7 +45,7 @@ Route101_EventScript_1EBD4E:: @ 81EBD4E
 	lockall
 	msgbox Route101_Text_1EBEDF, MSGBOX_DEFAULT
 	closemessage
-	applymovement 255, Route101_Movement_1EBD90
+	applymovement EVENT_OBJ_ID_PLAYER, Route101_Movement_1EBD90
 	waitmovement 0
 	releaseall
 	end
@@ -54,7 +54,7 @@ Route101_EventScript_1EBD64:: @ 81EBD64
 	lockall
 	msgbox Route101_Text_1EBEDF, MSGBOX_DEFAULT
 	closemessage
-	applymovement 255, Route101_Movement_1EBD92
+	applymovement EVENT_OBJ_ID_PLAYER, Route101_Movement_1EBD92
 	waitmovement 0
 	releaseall
 	end
@@ -63,7 +63,7 @@ Route101_EventScript_1EBD7A:: @ 81EBD7A
 	lockall
 	msgbox Route101_Text_1EBEDF, MSGBOX_DEFAULT
 	closemessage
-	applymovement 255, Route101_Movement_1EBD94
+	applymovement EVENT_OBJ_ID_PLAYER, Route101_Movement_1EBD94
 	waitmovement 0
 	releaseall
 	end
@@ -219,11 +219,11 @@ Route101_EventScript_1EBE16:: @ 81EBE16
 	lock
 	faceplayer
 	setflag FLAG_SYS_POKEMON_GET
-	setflag FLAG_0x052
+	setflag FLAG_RESCUED_BIRCH
 	fadescreen 1
 	removeobject 4
-	setobjectxy 255, 6, 13
-	applymovement 255, Route101_Movement_2725A4
+	setobjectxy EVENT_OBJ_ID_PLAYER, 6, 13
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	special ChooseStarter
 	waitstate
@@ -234,14 +234,14 @@ Route101_EventScript_1EBE16:: @ 81EBE16
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
-	setvar VAR_0x4084, 2
-	setvar VAR_0x4060, 3
+	setvar VAR_BIRCH_LAB_STATE, 2
+	setvar VAR_ROUTE101_STATE, 3
 	clearflag FLAG_SPECIAL_FLAG_0x4000
 	checkplayergender
-	compare VAR_RESULT, 0
-	call_if 1, Route101_EventScript_1EBE85
-	compare VAR_RESULT, 1
-	call_if 1, Route101_EventScript_1EBE89
+	compare VAR_RESULT, MALE
+	call_if_eq Route101_EventScript_1EBE85
+	compare VAR_RESULT, FEMALE
+	call_if_eq Route101_EventScript_1EBE89
 	warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 255, 6, 5
 	waitstate
 	release

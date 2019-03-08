@@ -1,29 +1,28 @@
 Route127_MapScripts:: @ 81F69D9
-	map_script 3, Route127_MapScript1_1F69E9
-	map_script 1, Route127_MapScript1_1F6A14
-	map_script 2, Route127_MapScript2_1F6A2B
+	map_script MAP_SCRIPT_ON_TRANSITION, Route127_MapScript1_1F69E9
+	map_script MAP_SCRIPT_ON_LOAD, Route127_MapScript1_1F6A14
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route127_MapScript2_1F6A2B
 	.byte 0
 
 Route127_MapScript1_1F69E9: @ 81F69E9
-	checkflag FLAG_SYS_WEATHER_CTRL
-	call_if 1, Route127_EventScript_27207A
-	compare VAR_0x4039, 1
-	call_if 1, Route127_EventScript_273D13
-	compare VAR_0x4037, 13
-	call_if 1, Route127_EventScript_273D17
-	compare VAR_0x4037, 14
-	call_if 1, Route127_EventScript_273D17
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
+	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
+	call_if_eq Route127_EventScript_273D13
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_127_NORTH
+	call_if_eq UnusualWeather_StartKyogreWeather
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_127_SOUTH
+	call_if_eq UnusualWeather_StartKyogreWeather
 	end
 
 Route127_MapScript1_1F6A14: @ 81F6A14
-	compare VAR_0x4037, 13
-	call_if 1, Route127_EventScript_273B5F
-	compare VAR_0x4037, 14
-	call_if 1, Route127_EventScript_273BCC
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_127_NORTH
+	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute127North
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_127_SOUTH
+	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute127South
 	end
 
 Route127_MapScript2_1F6A2B: @ 81F6A2B
-	map_script_2 VAR_0x4039, 1, gUnknown_08273D1F
+	map_script_2 VAR_SHOULD_END_UNUSUAL_WEATHER, 1, UnusualWeather_EventScript_EndEventAndCleanup_1
 	.2byte 0
 
 Route127_EventScript_1F6A35:: @ 81F6A35
@@ -65,7 +64,7 @@ Route127_EventScript_1F6AD6:: @ 81F6AD6
 	trainerbattle_single TRAINER_KOJI_1, Route127_Text_2A264D, Route127_Text_2A2685, Route127_EventScript_1F6B02
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route127_EventScript_1F6B21
+	goto_if_eq Route127_EventScript_1F6B21
 	msgbox Route127_Text_2A26AC, MSGBOX_DEFAULT
 	release
 	end

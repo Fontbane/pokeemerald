@@ -1,23 +1,22 @@
 #include "global.h"
-#include "constants/battle_setup.h"
 #include "battle_setup.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
 #include "pokemon.h"
-#include "pokenav.h"
 #include "script.h"
 #include "script_movement.h"
 #include "sprite.h"
 #include "task.h"
 #include "trainer_see.h"
+#include "trainer_hill.h"
 #include "util.h"
 #include "battle_pyramid.h"
+#include "constants/battle_setup.h"
+#include "constants/event_object_movement_constants.h"
 #include "constants/field_effects.h"
 
-extern bool32 InTrainerHill(void);
-extern bool8 GetTrainerHillTrainerFlag(u8 eventObjectId);
 extern void sub_809BE48(u16 npcId);
 
 // this file's functions
@@ -35,17 +34,17 @@ static u8 GetTrainerApproachDistanceWest(struct EventObject *trainerObj, s16 ran
 static u8 GetTrainerApproachDistanceEast(struct EventObject *trainerObj, s16 range, s16 x, s16 y);
 
 static bool8 sub_80B4178(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B417C(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B41C0(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B4200(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B425C(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B4318(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B435C(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B4390(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B43AC(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B43E0(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B4438(u8 taskId, struct Task *task, struct EventObject *trainerObj);
-static bool8 sub_80B44AC(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 TrainerExclamationMark(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 WaitTrainerExclamationMark(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 TrainerMoveToPlayer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 PlayerFaceApproachingTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 WaitPlayerFaceApproachingTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 RevealDisguisedTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 WaitRevealDisguisedTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 RevealHiddenTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 PopOutOfAshHiddenTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 JumpInPlaceHiddenTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
+static bool8 WaitRevealHiddenTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj);
 
 static void SpriteCB_TrainerIcons(struct Sprite *sprite);
 
@@ -75,25 +74,25 @@ static u8 (*const sDirectionalApproachDistanceFuncs[])(struct EventObject *train
 static bool8 (*const sTrainerSeeFuncList[])(u8 taskId, struct Task *task, struct EventObject *trainerObj) =
 {
     sub_80B4178,
-    sub_80B417C,
-    sub_80B41C0,
-    sub_80B4200,
-    sub_80B425C,
-    sub_80B4318,
-    sub_80B435C,
-    sub_80B4390,
-    sub_80B43AC,
-    sub_80B43E0,
-    sub_80B4438,
-    sub_80B44AC
+    TrainerExclamationMark,
+    WaitTrainerExclamationMark,
+    TrainerMoveToPlayer,
+    PlayerFaceApproachingTrainer,
+    WaitPlayerFaceApproachingTrainer,
+    RevealDisguisedTrainer,
+    WaitRevealDisguisedTrainer,
+    RevealHiddenTrainer,
+    PopOutOfAshHiddenTrainer,
+    JumpInPlaceHiddenTrainer,
+    WaitRevealHiddenTrainer,
 };
 
 static bool8 (*const sTrainerSeeFuncList2[])(u8 taskId, struct Task *task, struct EventObject *trainerObj) =
 {
-    sub_80B43AC,
-    sub_80B43E0,
-    sub_80B4438,
-    sub_80B44AC,
+    RevealHiddenTrainer,
+    PopOutOfAshHiddenTrainer,
+    JumpInPlaceHiddenTrainer,
+    WaitRevealHiddenTrainer,
 };
 
 static const struct OamData sOamData_Icons =
@@ -240,7 +239,7 @@ static u8 CheckTrainer(u8 eventObjectId)
     }
     else if (InTrainerHill() == TRUE)
     {
-        if (GetTrainerHillTrainerFlag(eventObjectId))
+        if (GetHillTrainerFlag(eventObjectId))
             return 0;
     }
     else
@@ -435,7 +434,7 @@ static bool8 sub_80B4178(u8 taskId, struct Task *task, struct EventObject *train
     return FALSE;
 }
 
-static bool8 sub_80B417C(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 TrainerExclamationMark(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     u8 direction;
 
@@ -447,7 +446,7 @@ static bool8 sub_80B417C(u8 taskId, struct Task *task, struct EventObject *train
     return TRUE;
 }
 
-static bool8 sub_80B41C0(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 WaitTrainerExclamationMark(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     if (FieldEffectActiveListContains(FLDEFF_EXCLAMATION_MARK_ICON))
     {
@@ -456,17 +455,17 @@ static bool8 sub_80B41C0(u8 taskId, struct Task *task, struct EventObject *train
     else
     {
         task->tFuncId++;
-        if (trainerObj->movementType == 57 || trainerObj->movementType == 58)
+        if (trainerObj->movementType == MOVEMENT_TYPE_TREE_DISGUISE || trainerObj->movementType == MOVEMENT_TYPE_MOUNTAIN_DISGUISE)
             task->tFuncId = 6;
-        if (trainerObj->movementType == 63)
+        if (trainerObj->movementType == MOVEMENT_TYPE_HIDDEN)
             task->tFuncId = 8;
         return TRUE;
     }
 }
 
-static bool8 sub_80B4200(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 TrainerMoveToPlayer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
-    if (!(EventObjectIsMovementOverridden(trainerObj)) || EventObjectClearHeldMovementIfFinished(trainerObj))
+    if (!EventObjectIsMovementOverridden(trainerObj) || EventObjectClearHeldMovementIfFinished(trainerObj))
     {
         if (task->tTrainerRange)
         {
@@ -475,14 +474,14 @@ static bool8 sub_80B4200(u8 taskId, struct Task *task, struct EventObject *train
         }
         else
         {
-            EventObjectSetHeldMovement(trainerObj, 0x3E);
+            EventObjectSetHeldMovement(trainerObj, MOVEMENT_ACTION_FACE_PLAYER);
             task->tFuncId++;
         }
     }
     return FALSE;
 }
 
-static bool8 sub_80B425C(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 PlayerFaceApproachingTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     struct EventObject *playerObj;
 
@@ -503,7 +502,7 @@ static bool8 sub_80B425C(u8 taskId, struct Task *task, struct EventObject *train
     return FALSE;
 }
 
-static bool8 sub_80B4318(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 WaitPlayerFaceApproachingTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     struct EventObject *playerObj = &gEventObjects[gPlayerAvatar.eventObjectId];
 
@@ -513,18 +512,18 @@ static bool8 sub_80B4318(u8 taskId, struct Task *task, struct EventObject *train
     return FALSE;
 }
 
-static bool8 sub_80B435C(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 RevealDisguisedTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     if (!EventObjectIsMovementOverridden(trainerObj)
      || EventObjectClearHeldMovementIfFinished(trainerObj))
     {
-        EventObjectSetHeldMovement(trainerObj, 0x59);
+        EventObjectSetHeldMovement(trainerObj, MOVEMENT_ACTION_REVEAL_TRAINER);
         task->tFuncId++;
     }
     return FALSE;
 }
 
-static bool8 sub_80B4390(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 WaitRevealDisguisedTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     if (EventObjectClearHeldMovementIfFinished(trainerObj))
         task->tFuncId = 3;
@@ -532,18 +531,18 @@ static bool8 sub_80B4390(u8 taskId, struct Task *task, struct EventObject *train
     return FALSE;
 }
 
-static bool8 sub_80B43AC(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 RevealHiddenTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     if (!EventObjectIsMovementOverridden(trainerObj)
      || EventObjectClearHeldMovementIfFinished(trainerObj))
     {
-        EventObjectSetHeldMovement(trainerObj, 0x3E);
+        EventObjectSetHeldMovement(trainerObj, MOVEMENT_ACTION_FACE_PLAYER);
         task->tFuncId++;
     }
     return FALSE;
 }
 
-static bool8 sub_80B43E0(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 PopOutOfAshHiddenTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     if (EventObjectCheckHeldMovementStatus(trainerObj))
     {
@@ -557,7 +556,7 @@ static bool8 sub_80B43E0(u8 taskId, struct Task *task, struct EventObject *train
     return FALSE;
 }
 
-static bool8 sub_80B4438(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 JumpInPlaceHiddenTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     struct Sprite *sprite;
 
@@ -576,7 +575,7 @@ static bool8 sub_80B4438(u8 taskId, struct Task *task, struct EventObject *train
     return FALSE;
 }
 
-static bool8 sub_80B44AC(u8 taskId, struct Task *task, struct EventObject *trainerObj)
+static bool8 WaitRevealHiddenTrainer(u8 taskId, struct Task *task, struct EventObject *trainerObj)
 {
     if (!FieldEffectActiveListContains(FLDEFF_POP_OUT_OF_ASH))
         task->tFuncId = 3;

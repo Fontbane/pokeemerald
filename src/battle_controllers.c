@@ -4,8 +4,10 @@
 #include "battle_anim.h"
 #include "battle_controllers.h"
 #include "battle_message.h"
+#include "battle_setup.h"
 #include "cable_club.h"
 #include "link.h"
+#include "party_menu.h"
 #include "pokemon.h"
 #include "recorded_battle.h"
 #include "task.h"
@@ -18,8 +20,6 @@ static EWRAM_DATA u8 sLinkReceiveTaskId = 0;
 static EWRAM_DATA u8 sUnknown_02022D0A = 0;
 EWRAM_DATA struct UnusedControllerStruct gUnknown_02022D0C = {};
 static EWRAM_DATA u8 sBattleBuffersTransferData[0x100] = {};
-
-extern void sub_81B8D64(u8 battlerId, u8 arg1); // party_menu
 
 // this file's funcionts
 static void CreateTasksForSendRecvLinkBuffers(void);
@@ -60,7 +60,9 @@ void SetUpBattleVarsAndBirchZigzagoon(void)
     gBattleControllerExecFlags = 0;
     ClearBattleAnimationVars();
     ClearBattleMonForms();
-    BattleAI_HandleItemUseBeforeAISetup(0xF);
+    BattleAI_SetupItems();
+	BattleAI_SetupFlags();
+	BattleAI_SetupAIData(0xF);
 
     if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
     {
@@ -143,7 +145,7 @@ static void InitSinglePlayerBtlControllers(void)
             gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
         }
 
-        gBattlersCount = 4;
+        gBattlersCount = MAX_BATTLERS_COUNT;
 
         sub_81B8D64(0, 0);
         sub_81B8D64(1, 0);
@@ -152,8 +154,16 @@ static void InitSinglePlayerBtlControllers(void)
 
         gBattlerPartyIndexes[0] = 0;
         gBattlerPartyIndexes[1] = 0;
-        gBattlerPartyIndexes[2] = 3;
-        gBattlerPartyIndexes[3] = 3;
+        if (BATTLE_TWO_VS_ONE_OPPONENT)
+        {
+            gBattlerPartyIndexes[2] = 3;
+            gBattlerPartyIndexes[3] = 1;
+        }
+        else
+        {
+            gBattlerPartyIndexes[2] = 3;
+            gBattlerPartyIndexes[3] = 3;
+        }
     }
     else if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
     {
@@ -226,7 +236,7 @@ static void InitSinglePlayerBtlControllers(void)
         gBattlerControllerFuncs[3] = SetControllerToOpponent;
         gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
 
-        gBattlersCount = 4;
+        gBattlersCount = MAX_BATTLERS_COUNT;
 
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
         {
@@ -246,7 +256,7 @@ static void InitSinglePlayerBtlControllers(void)
                 gBattlerControllerFuncs[3] = SetControllerToOpponent;
                 gBattlerPositions[3] = 3;
 
-                gBattlersCount = 4;
+                gBattlersCount = MAX_BATTLERS_COUNT;
 
                 sub_81B8D64(0, 0);
                 sub_81B8D64(1, 0);
@@ -432,7 +442,7 @@ static void InitLinkBtlControllers(void)
             gBattlerControllerFuncs[3] = SetControllerToLinkOpponent;
             gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
 
-            gBattlersCount = 4;
+            gBattlersCount = MAX_BATTLERS_COUNT;
         }
         else
         {
@@ -448,7 +458,7 @@ static void InitLinkBtlControllers(void)
             gBattlerControllerFuncs[2] = SetControllerToLinkOpponent;
             gBattlerPositions[2] = B_POSITION_OPPONENT_RIGHT;
 
-            gBattlersCount = 4;
+            gBattlersCount = MAX_BATTLERS_COUNT;
         }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
@@ -469,7 +479,7 @@ static void InitLinkBtlControllers(void)
             gBattlerControllerFuncs[3] = SetControllerToOpponent;
             gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
 
-            gBattlersCount = 4;
+            gBattlersCount = MAX_BATTLERS_COUNT;
         }
         else
         {
@@ -485,7 +495,7 @@ static void InitLinkBtlControllers(void)
             gBattlerControllerFuncs[3] = SetControllerToLinkOpponent;
             gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
 
-            gBattlersCount = 4;
+            gBattlersCount = MAX_BATTLERS_COUNT;
         }
 
         sub_81B8D64(0, 0);
@@ -575,7 +585,7 @@ static void InitLinkBtlControllers(void)
             }
         }
 
-        gBattlersCount = 4;
+        gBattlersCount = MAX_BATTLERS_COUNT;
     }
 }
 
@@ -664,14 +674,14 @@ static void PrepareBufferDataTransfer(u8 bufferId, u8 *data, u16 size)
         case 0:
             for (i = 0; i < size; i++)
             {
-                gBattleBufferA[gActiveBattler][i] = *data;
+                gBattleResources->bufferA[gActiveBattler][i] = *data;
                 data++;
             }
             break;
         case 1:
             for (i = 0; i < size; i++)
             {
-                gBattleBufferB[gActiveBattler][i] = *data;
+                gBattleResources->bufferB[gActiveBattler][i] = *data;
                 data++;
             }
             break;
@@ -768,7 +778,7 @@ static void Task_HandleSendLinkBuffersData(u8 taskId)
             {
                 if (IsLinkMaster())
                 {
-                    sub_800A620();
+                    CheckShouldAdvanceLinkState();
                     gTasks[taskId].data[11]++;
                 }
                 else
@@ -801,7 +811,7 @@ static void Task_HandleSendLinkBuffersData(u8 taskId)
         }
         break;
     case 4:
-        if (sub_800A520())
+        if (IsLinkTaskFinished())
         {
             blockSize = gLinkBattleSendBuffer[gTasks[taskId].data[15] + LINK_BUFF_SIZE_LO] | (gLinkBattleSendBuffer[gTasks[taskId].data[15] + LINK_BUFF_SIZE_HI] << 8);
             gTasks[taskId].data[13] = 1;
@@ -886,7 +896,7 @@ static void Task_HandleCopyReceivedLinkBuffersData(u8 taskId)
             if (gBattleControllerExecFlags & gBitTable[battlerId])
                 return;
 
-            memcpy(gBattleBufferA[battlerId], &gLinkBattleRecvBuffer[gTasks[taskId].data[15] + LINK_BUFF_DATA], blockSize);
+            memcpy(gBattleResources->bufferA[battlerId], &gLinkBattleRecvBuffer[gTasks[taskId].data[15] + LINK_BUFF_DATA], blockSize);
             sub_803F850(battlerId);
 
             if (!(gBattleTypeFlags & BATTLE_TYPE_IS_MASTER))
@@ -898,7 +908,7 @@ static void Task_HandleCopyReceivedLinkBuffersData(u8 taskId)
             }
             break;
         case 1:
-            memcpy(gBattleBufferB[battlerId], &gLinkBattleRecvBuffer[gTasks[taskId].data[15] + LINK_BUFF_DATA], blockSize);
+            memcpy(gBattleResources->bufferB[battlerId], &gLinkBattleRecvBuffer[gTasks[taskId].data[15] + LINK_BUFF_DATA], blockSize);
             break;
         case 2:
             var = gLinkBattleRecvBuffer[gTasks[taskId].data[15] + LINK_BUFF_DATA];

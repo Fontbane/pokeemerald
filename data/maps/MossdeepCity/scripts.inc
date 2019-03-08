@@ -1,21 +1,19 @@
 MossdeepCity_MapScripts:: @ 81E4A96
-	map_script 3, MossdeepCity_MapScript1_1E4A9C
+	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_MapScript1_1E4A9C
 	.byte 0
 
 MossdeepCity_MapScript1_1E4A9C: @ 81E4A9C
-	clearflag FLAG_0x064
-	clearflag FLAG_0x065
-	clearflag FLAG_0x066
-	clearflag FLAG_0x067
-	checkflag FLAG_SYS_WEATHER_CTRL
-	call_if 1, MossdeepCity_EventScript_27207A
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_2
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
+	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
 	end
 
 MossdeepCity_EventScript_1E4AB2:: @ 81E4AB2
 	lock
 	faceplayer
-	checkflag FLAG_0x07B
-	goto_eq MossdeepCity_EventScript_1E4AC7
+	goto_if_set FLAG_RECEIVED_HM08, MossdeepCity_EventScript_1E4AC7
 	msgbox MossdeepCity_Text_1E4E90, MSGBOX_DEFAULT
 	release
 	end
@@ -28,8 +26,7 @@ MossdeepCity_EventScript_1E4AC7:: @ 81E4AC7
 MossdeepCity_EventScript_1E4AD1:: @ 81E4AD1
 	lock
 	faceplayer
-	checkflag FLAG_0x07B
-	goto_eq MossdeepCity_EventScript_1E4AE6
+	goto_if_set FLAG_RECEIVED_HM08, MossdeepCity_EventScript_1E4AE6
 	msgbox MossdeepCity_Text_1E4F50, MSGBOX_DEFAULT
 	release
 	end
@@ -97,7 +94,7 @@ MossdeepCity_EventScript_1E4B41:: @ 81E4B41
 	removeobject 12
 	removeobject 13
 	delay 30
-	setvar VAR_0x405D, 2
+	setvar VAR_MOSSDEEP_STATE, 2
 	setflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
 	releaseall
 	end
@@ -219,7 +216,7 @@ MossdeepCity_EventScript_1E4C10:: @ 81E4C10
 	lock
 	faceplayer
 	msgbox MossdeepCity_Text_1E5213, MSGBOX_DEFAULT
-	applymovement VAR_LAST_TALKED, MossdeepCity_Movement_2725A2
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
@@ -227,16 +224,15 @@ MossdeepCity_EventScript_1E4C10:: @ 81E4C10
 MossdeepCity_EventScript_1E4C26:: @ 81E4C26
 	lock
 	faceplayer
-	checkflag FLAG_0x114
-	goto_eq MossdeepCity_EventScript_1E4C68
+	goto_if_set FLAG_RECEIVED_KINGS_ROCK, MossdeepCity_EventScript_1E4C68
 	msgbox MossdeepCity_Text_1E4CED, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_eq MossdeepCity_EventScript_1E4C72
+	goto_if_eq MossdeepCity_EventScript_1E4C72
 	msgbox MossdeepCity_Text_1E4D5B, MSGBOX_DEFAULT
 	giveitem_std ITEM_KINGS_ROCK
 	compare VAR_RESULT, 0
-	goto_eq MossdeepCity_EventScript_272054
-	setflag FLAG_0x114
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_KINGS_ROCK
 	release
 	end
 
@@ -260,22 +256,22 @@ MossdeepCity_EventScript_1E4C85:: @ 81E4C85
 	msgbox MossdeepCity_Text_1E5453, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_FACING, 2
-	call_if 1, MossdeepCity_EventScript_1E4CB0
+	call_if_eq MossdeepCity_EventScript_1E4CB0
 	compare VAR_FACING, 4
-	call_if 1, MossdeepCity_EventScript_1E4CC2
-	addvar VAR_0x40D1, 1
+	call_if_eq MossdeepCity_EventScript_1E4CC2
+	addvar VAR_SCOTT_STATE, 1
 	removeobject 16
 	release
 	end
 
 MossdeepCity_EventScript_1E4CB0:: @ 81E4CB0
-	applymovement 255, MossdeepCity_Movement_1E4CD4
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_1E4CD4
 	applymovement 16, MossdeepCity_Movement_1E4CD8
 	waitmovement 0
 	return
 
 MossdeepCity_EventScript_1E4CC2:: @ 81E4CC2
-	applymovement 255, MossdeepCity_Movement_1E4CD4
+	applymovement EVENT_OBJ_ID_PLAYER, MossdeepCity_Movement_1E4CD4
 	applymovement 16, MossdeepCity_Movement_1E4CE2
 	waitmovement 0
 	return

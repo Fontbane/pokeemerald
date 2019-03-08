@@ -1,6 +1,6 @@
 PetalburgCity_PokemonCenter_1F_MapScripts:: @ 82079E8
-	map_script 3, PetalburgCity_PokemonCenter_1F_MapScript1_2079F3
-	map_script 5, PetalburgCity_PokemonCenter_1F_MapScript1_277C30
+	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_PokemonCenter_1F_MapScript1_2079F3
+	map_script MAP_SCRIPT_ON_RESUME, PetalburgCity_PokemonCenter_1F_MapScript1_277C30
 	.byte 0
 
 PetalburgCity_PokemonCenter_1F_MapScript1_2079F3: @ 82079F3
@@ -30,17 +30,17 @@ PetalburgCity_PokemonCenter_1F_EventScript_207A1C:: @ 8207A1C
 	msgbox PetalburgCity_PokemonCenter_1F_Text_207B09, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, IsStarterInParty
 	compare VAR_RESULT, 1
-	goto_eq PetalburgCity_PokemonCenter_1F_EventScript_207A38
+	goto_if_eq PetalburgCity_PokemonCenter_1F_EventScript_207A38
 	release
 	end
 
 PetalburgCity_PokemonCenter_1F_EventScript_207A38:: @ 8207A38
 	compare VAR_STARTER_MON, 0
-	call_if 1, PetalburgCity_PokemonCenter_1F_EventScript_207A5B
+	call_if_eq PetalburgCity_PokemonCenter_1F_EventScript_207A5B
 	compare VAR_STARTER_MON, 1
-	call_if 1, PetalburgCity_PokemonCenter_1F_EventScript_207A64
+	call_if_eq PetalburgCity_PokemonCenter_1F_EventScript_207A64
 	compare VAR_STARTER_MON, 2
-	call_if 1, PetalburgCity_PokemonCenter_1F_EventScript_207A6D
+	call_if_eq PetalburgCity_PokemonCenter_1F_EventScript_207A6D
 	release
 	end
 

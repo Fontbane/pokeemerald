@@ -472,7 +472,7 @@ sub_8017020: @ 8017020
 	bl sub_81973A4
 	movs r0, 0
 	movs r1, 0x1
-	bl NewMenuHelpers_DrawDialogueFrame
+	bl DrawDialogueFrame
 	ldr r0, =gStringVar4
 	adds r1, r4, 0
 	bl StringExpandPlaceholders
@@ -517,7 +517,7 @@ _08017076:
 	bl sub_81973A4
 	movs r0, 0
 	movs r1, 0x1
-	bl NewMenuHelpers_DrawDialogueFrame
+	bl DrawDialogueFrame
 	ldr r0, =gStringVar4
 	adds r1, r5, 0
 	bl StringExpandPlaceholders
@@ -563,7 +563,7 @@ _080170CA:
 	negs r0, r0
 	b _08017110
 _080170D4:
-	bl DisplayYesNoMenu
+	bl DisplayYesNoMenuDefaultYes
 	ldrb r0, [r4]
 	adds r0, 0x1
 	strb r0, [r4]
@@ -609,7 +609,7 @@ sub_8017118: @ 8017118
 	lsrs r4, 24
 	adds r0, r4, 0
 	movs r1, 0
-	bl NewMenuHelpers_DrawStdWindowFrame
+	bl DrawStdWindowFrame
 	adds r0, r4, 0
 	movs r1, 0xFF
 	bl FillWindowPixelBuffer
@@ -705,7 +705,7 @@ _080171DC:
 	strb r0, [r5]
 	ldrb r0, [r5]
 	movs r1, 0
-	bl NewMenuHelpers_DrawStdWindowFrame
+	bl DrawStdWindowFrame
 	ldr r0, =gMultiuseListMenuTemplate
 	adds r2, r0, 0
 	ldr r1, [sp, 0x24]
@@ -731,7 +731,7 @@ _080171DC:
 _08017228:
 	mov r3, r9
 	ldrb r0, [r3]
-	bl ListMenuHandleInputGetItemId
+	bl ListMenu_ProcessInput
 	mov r8, r0
 	ldr r0, =gMain
 	ldrh r1, [r0, 0x2E]
@@ -745,7 +745,7 @@ _08017228:
 	bl DestroyListMenuTask
 	ldrb r0, [r5]
 	movs r1, 0x1
-	bl sub_819746C
+	bl ClearStdWindowAndFrame
 	ldrb r0, [r5]
 	bl RemoveWindow
 	movs r0, 0
@@ -765,7 +765,7 @@ _08017264:
 	bl DestroyListMenuTask
 	ldrb r0, [r5]
 	movs r1, 0x1
-	bl sub_819746C
+	bl ClearStdWindowAndFrame
 	ldrb r0, [r5]
 	bl RemoveWindow
 	strb r4, [r7]
@@ -818,7 +818,7 @@ _080172C8:
 	strb r0, [r6]
 	ldrb r0, [r6]
 	movs r1, 0
-	bl NewMenuHelpers_DrawStdWindowFrame
+	bl DrawStdWindowFrame
 	ldr r0, =gMultiuseListMenuTemplate
 	adds r2, r0, 0
 	ldr r1, [sp, 0x24]
@@ -847,7 +847,7 @@ _08017314:
 _0801731C:
 	mov r3, r10
 	ldrb r0, [r3]
-	bl ListMenuHandleInputGetItemId
+	bl ListMenu_ProcessInput
 	adds r1, r0, 0
 	ldr r0, =gMain
 	ldrh r2, [r0, 0x2E]
@@ -8257,7 +8257,7 @@ _0801AF24:
 	b _0801AF8A
 	.pool
 _0801AF40:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801AFAE
@@ -8315,6 +8315,11 @@ _0801AFC2:
 	.pool
 	thumb_func_end sub_801AC54
 
+@void sub_801AFD8() {
+@	CpuFill32(0, &gSaveBlock1Ptr->field_322C, 219);
+@	sub_801B180();
+@	sub_811F8BC();
+@}
 	thumb_func_start sub_801AFD8
 sub_801AFD8: @ 801AFD8
 	push {lr}
@@ -8367,25 +8372,25 @@ sav1_get_mevent_buffer_2: @ 801B034
 	.pool
 	thumb_func_end sav1_get_mevent_buffer_2
 
-	thumb_func_start sub_801B044
-sub_801B044: @ 801B044
+	thumb_func_start GetSaveBlock1Field356C
+GetSaveBlock1Field356C: @ 801B044
 	ldr r0, =gSaveBlock1Ptr
 	ldr r0, [r0]
 	ldr r1, =0x0000356c
 	adds r0, r1
 	bx lr
 	.pool
-	thumb_func_end sub_801B044
+	thumb_func_end GetSaveBlock1Field356C
 
-	thumb_func_start sub_801B058
-sub_801B058: @ 801B058
+	thumb_func_start GetSaveBlock1Field3564
+GetSaveBlock1Field3564: @ 801B058
 	ldr r0, =gSaveBlock1Ptr
 	ldr r0, [r0]
 	ldr r1, =0x00003564
 	adds r0, r1
 	bx lr
 	.pool
-	thumb_func_end sub_801B058
+	thumb_func_end GetSaveBlock1Field3564
 
 	thumb_func_start sub_801B06C
 sub_801B06C: @ 801B06C
@@ -8531,7 +8536,7 @@ sub_801B180: @ 801B180
 	sub sp, 0x4
 	movs r0, 0
 	str r0, [sp]
-	bl sub_801B044
+	bl GetSaveBlock1Field356C
 	adds r1, r0, 0
 	ldr r2, =0x05000001
 	mov r0, sp
@@ -11006,7 +11011,7 @@ _0801C52C:
 	cmp r0, 0x1
 	bne _0801C5EE
 	ldr r0, =gUnknown_082F1D00
-	bl LoadCompressedObjectPicUsingHeap
+	bl LoadCompressedSpriteSheetUsingHeap
 	ldr r0, [r4]
 	movs r2, 0xB8
 	lsls r2, 1
@@ -13680,7 +13685,7 @@ _0801DA72:
 	beq _0801DB46
 	b _0801DB5E
 _0801DA7C:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801DB5E
@@ -13713,7 +13718,7 @@ _0801DA7C:
 	b _0801DB3E
 	.pool
 _0801DAC8:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801DB5E
@@ -13752,7 +13757,7 @@ _0801DB08:
 	strh r0, [r4, 0x10]
 	b _0801DB5E
 _0801DB1C:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801DB5E
@@ -13795,7 +13800,7 @@ _0801DB60:
 sub_801DB68: @ 801DB68
 	push {r4,r5,lr}
 	adds r4, r0, 0
-	bl sub_801B044
+	bl GetSaveBlock1Field356C
 	adds r5, r0, 0
 	movs r0, 0x3
 	adds r1, r4, 0
@@ -13841,7 +13846,7 @@ _0801DBB8:
 	thumb_func_start sub_801DBC0
 sub_801DBC0: @ 801DBC0
 	push {lr}
-	bl sub_801B044
+	bl GetSaveBlock1Field356C
 	movs r1, 0
 	strb r1, [r0]
 	strb r1, [r0, 0x1]
@@ -13858,7 +13863,7 @@ sub_801DBDC: @ 801DBDC
 	ldr r0, =0x0000402e
 	bl GetVarPointer
 	adds r4, r0, 0
-	bl sub_801B044
+	bl GetSaveBlock1Field356C
 	adds r2, r0, 0
 	ldr r0, [r2]
 	lsls r0, 24
@@ -13889,7 +13894,7 @@ _0801DC10:
 sub_801DC20: @ 801DC20
 	push {r4-r6,lr}
 	ldr r6, =gSpecialVar_Result
-	bl sub_801B044
+	bl GetSaveBlock1Field356C
 	adds r4, r0, 0
 	bl IsMysteryEventEnabled
 	cmp r0, 0
@@ -14364,7 +14369,7 @@ _0801DFCE:
 	adds r0, 0x1
 	strh r0, [r1, 0x6]
 _0801DFE0:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801E028
@@ -14389,7 +14394,7 @@ _0801DFE0:
 	b _0801E028
 	.pool
 _0801E018:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801E028
@@ -14596,7 +14601,7 @@ _0801E1B4:
 	movs r0, 0x5
 	bl PlaySE
 	movs r0, 0x1
-	bl MoveMenuCursor
+	bl Menu_MoveCursor
 	b _0801E23A
 	.pool
 _0801E1D4:
@@ -14838,7 +14843,7 @@ _0801E3AC:
 	b _0801E458
 	.pool
 _0801E3D4:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801E414
@@ -14978,7 +14983,7 @@ _0801E4E8:
 	b _0801E59A
 	.pool
 _0801E50C:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801E5BC
@@ -15013,7 +15018,7 @@ _0801E540:
 	b _0801E59A
 	.pool
 _0801E560:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801E5BC
@@ -15100,7 +15105,7 @@ _0801E604:
 	lsls r0, 24
 	cmp r0, 0
 	bne _0801E662
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801E662
@@ -15212,7 +15217,7 @@ _0801E6F0:
 	lsrs r0, 24
 	cmp r0, 0x1
 	beq _0801E75C
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801E75C
@@ -15304,7 +15309,7 @@ _0801E7AC:
 	adds r0, 0x1
 	strh r0, [r1, 0x6]
 _0801E7C0:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	lsrs r0, 24
 	cmp r0, 0x1
@@ -15348,7 +15353,7 @@ _0801E812:
 	b _0801E830
 	.pool
 _0801E820:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0801E830
@@ -15686,7 +15691,7 @@ _0801EB04:
 	lsls r0, 24
 	cmp r0, 0
 	bne _0801EBC2
-	bl sub_8076D5C
+	bl SetContinueGameWarpStatusToDynamicWarp
 	movs r0, 0
 	bl TrySavingData
 	ldr r0, =gUnknown_02022C84
@@ -15713,7 +15718,7 @@ _0801EB40:
 	bne _0801EBC2
 	movs r0, 0x37
 	bl PlaySE
-	bl sav2_gender2_inplace_and_xFE
+	bl ClearContinueGameWarpStatus2
 	ldr r0, =gUnknown_02022C84
 	ldr r1, [r0]
 	movs r0, 0xA
@@ -18237,7 +18242,7 @@ sub_801FEBC: @ 801FEBC
 	lsls r0, 24
 	lsrs r0, 24
 	movs r1, 0
-	bl sub_8198070
+	bl ClearStdWindowAndFrameToTransparent
 	ldr r0, [r4]
 	ldrb r0, [r0, 0x18]
 	bl ClearWindowTilemap
@@ -18465,7 +18470,7 @@ sub_8020094: @ 8020094
 	lsls r0, 24
 	lsrs r0, 24
 	movs r1, 0
-	bl sub_8198070
+	bl ClearStdWindowAndFrameToTransparent
 	ldr r0, [r4]
 	ldrb r0, [r0, 0x1E]
 	bl ClearWindowTilemap
@@ -18908,7 +18913,7 @@ sub_802040C: @ 802040C
 	push {lr}
 	movs r0, 0x3
 	movs r1, 0
-	bl sub_8198070
+	bl ClearStdWindowAndFrameToTransparent
 	movs r0, 0x3
 	bl ClearWindowTilemap
 	pop {r0}
@@ -19425,7 +19430,7 @@ sub_8020890: @ 8020890
 	ldr r4, =gUnknown_082F3134
 _08020896:
 	adds r0, r4, 0
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	adds r4, 0x8
 	adds r5, 0x1
 	cmp r5, 0x4
@@ -20568,7 +20573,7 @@ _080211EC:
 	beq _080211F8
 	b _08021302
 _080211F8:
-	bl sub_81971D0
+	bl InitStandardTextBoxWindows
 	bl sub_8197200
 	adds r0, r5, 0
 	bl sub_8022588
@@ -20715,7 +20720,7 @@ _08021358:
 	bl sub_8010434
 	b _0802143E
 _0802135E:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08021444
@@ -22373,7 +22378,7 @@ _0802210C:
 	movs r1, 0
 	adds r2, r4, 0
 	movs r3, 0xD
-	bl SetWindowBorderStyle
+	bl DrawStdFrameWithCustomTileAndPalette
 	b _08022218
 	.pool
 _08022130:
@@ -22504,7 +22509,7 @@ sub_802222C: @ 802222C
 	adds r5, r4, r0
 	ldrb r0, [r5]
 	movs r1, 0x1
-	bl sub_8198070
+	bl ClearStdWindowAndFrameToTransparent
 	ldrb r0, [r5]
 	bl RemoveWindow
 	adds r0, r4, 0
@@ -22572,7 +22577,7 @@ _08022296:
 	movs r1, 0
 	adds r2, r4, 0
 	movs r3, 0xD
-	bl SetWindowBorderStyle
+	bl DrawStdFrameWithCustomTileAndPalette
 	b _080224BA
 	.pool
 _080222D0:
@@ -22768,7 +22773,7 @@ _08022480:
 _08022494:
 	ldrb r0, [r6, 0x2]
 	movs r1, 0x1
-	bl sub_8198070
+	bl ClearStdWindowAndFrameToTransparent
 	ldrb r0, [r6, 0x2]
 	bl ClearWindowTilemap
 	ldrb r0, [r6, 0x2]
@@ -23100,7 +23105,7 @@ sub_8022730: @ 8022730
 _08022746:
 	lsls r0, r5, 3
 	adds r0, r4
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	adds r0, r5, 0x1
 	lsls r0, 24
 	lsrs r5, r0, 24
@@ -23804,7 +23809,7 @@ _08022CE4:
 	bl sub_8010434
 	b _08022D06
 _08022CEA:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	bne _08022D06
@@ -23859,7 +23864,7 @@ _08022D38:
 _08022D42:
 	movs r0, 0
 	movs r1, 0
-	bl NewMenuHelpers_DrawDialogueFrame
+	bl DrawDialogueFrame
 	ldrb r1, [r5, 0x1]
 	movs r0, 0x2
 	mov r8, r0
@@ -23941,7 +23946,7 @@ _08022DE8:
 	beq _08022DFA
 	movs r0, 0
 	movs r1, 0x1
-	bl sub_8197434
+	bl ClearDialogWindowAndFrame
 _08022DFA:
 	ldrb r0, [r7, 0xE]
 	movs r1, 0x1
@@ -24016,7 +24021,7 @@ _08022E6C:
 	bl sub_8010434
 	b _08022E9C
 _08022E72:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08022EA2
@@ -24148,7 +24153,7 @@ _08022F74:
 	bl sub_8010434
 	b _08023060
 _08022F7A:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08023066
@@ -24170,7 +24175,7 @@ _08022F7A:
 	bl SendBlock
 	b _08023060
 _08022FAA:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08023066
@@ -24245,7 +24250,7 @@ _0802301E:
 _08023044:
 	movs r0, 0
 	movs r1, 0x1
-	bl sub_8197434
+	bl ClearDialogWindowAndFrame
 	movs r0, 0xA
 	movs r1, 0x1
 	movs r2, 0
@@ -24300,7 +24305,7 @@ _080230A8:
 	bl sub_8010434
 	b _080231A8
 _080230BA:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _080231AE
@@ -24369,7 +24374,7 @@ _08023120:
 	b _080231A8
 	.pool
 _08023150:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _080231AE
@@ -24395,7 +24400,7 @@ _08023172:
 	bl sub_8010434
 	b _080231A8
 _08023184:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _080231AE
@@ -24547,7 +24552,7 @@ _0802329C:
 	bl sub_8010434
 	b _080232DC
 _080232BE:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _080232E2
@@ -24591,7 +24596,7 @@ _08023302:
 	beq _08023338
 	b _0802338C
 _0802330C:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08023392
@@ -24612,7 +24617,7 @@ _08023332:
 	bl sub_8010434
 	b _0802338C
 _08023338:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08023392
@@ -25683,7 +25688,7 @@ _08023B7A:
 	strh r0, [r4, 0x10]
 	b _08023BB2
 _08023B94:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08023BB8
@@ -25785,7 +25790,7 @@ _08023C2A:
 	bl SetGpuReg
 	b _08023C9C
 _08023C5C:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08023CA2
@@ -25884,7 +25889,7 @@ _08023D12:
 	bl SendBlock
 	b _0802402E
 _08023D2A:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	bne _08023D36
@@ -26227,7 +26232,7 @@ _08023FC4:
 	bl SendBlock
 	b _0802402E
 _08023FD0:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08024034
@@ -26451,13 +26456,13 @@ _080241A0:
 	bl sub_8010434
 	b _08024218
 _080241A6:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0802421E
 	movs r0, 0
 	movs r1, 0
-	bl NewMenuHelpers_DrawDialogueFrame
+	bl DrawDialogueFrame
 	ldr r2, =gText_SavingDontTurnOffPower
 	movs r0, 0
 	str r0, [sp]
@@ -26545,7 +26550,7 @@ _08024246:
 	strb r0, [r5, 0xC]
 	b _080242D8
 _0802426A:
-	bl DisplayYesNoMenu
+	bl DisplayYesNoMenuDefaultYes
 	b _080242D0
 _08024270:
 	bl Menu_ProcessInputNoWrapClearOnChoose
@@ -26578,7 +26583,7 @@ _080242A4:
 _080242A6:
 	movs r0, 0
 	movs r1, 0x1
-	bl sub_8197434
+	bl ClearDialogWindowAndFrame
 	movs r4, 0
 	str r4, [sp]
 	adds r0, r6, 0
@@ -26630,7 +26635,7 @@ _08024300:
 	bl sub_8010434
 	b _080243AC
 _08024306:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _080243B2
@@ -26646,7 +26651,7 @@ _08024306:
 	bl SendBlock
 	b _080243AC
 _08024328:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _080243B2
@@ -26756,7 +26761,7 @@ _080243EA:
 _080243F6:
 	movs r0, 0
 	movs r1, 0x1
-	bl sub_8197434
+	bl ClearDialogWindowAndFrame
 	adds r0, r5, 0
 	bl sub_8021488
 	movs r0, 0x1
@@ -26814,7 +26819,7 @@ _0802445A:
 _08024460:
 	movs r0, 0
 	movs r1, 0
-	bl NewMenuHelpers_DrawDialogueFrame
+	bl DrawDialogueFrame
 	ldrh r1, [r5, 0x14]
 	cmp r1, 0x3
 	bne _08024490
@@ -26914,7 +26919,7 @@ _08024522:
 	bl sub_8010434
 	b _08024558
 _08024528:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0802455E
@@ -27181,7 +27186,7 @@ sub_8024700: @ 8024700
 	adds r0, r5, 0
 	bl sub_8024668
 	adds r1, r0, r4
-	ldr r2, =0x0001869f
+	ldr r2, =0x0001869f @ Note to decompiler: See UNKNOWN_OFFSET
 	cmp r1, r2
 	bhi _08024730
 	adds r0, r5, 0
@@ -27342,7 +27347,7 @@ sub_802482C: @ 802482C
 	movs r1, 0
 	adds r2, r4, 0
 	adds r3, r5, 0
-	bl SetWindowBorderStyle
+	bl DrawStdFrameWithCustomTileAndPalette
 	ldr r2, =gText_Powder
 	movs r0, 0x1
 	str r0, [sp]
@@ -27441,7 +27446,7 @@ sub_8024918: @ 8024918
 	bl ClearWindowTilemap
 	ldrb r0, [r4]
 	movs r1, 0x1
-	bl sub_8198070
+	bl ClearStdWindowAndFrameToTransparent
 	ldrb r0, [r4]
 	bl RemoveWindow
 	pop {r4}
@@ -27814,7 +27819,7 @@ _08024C4C:
 	bl sub_8010434
 	b _08024D20
 _08024C5A:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08024D40
@@ -28075,7 +28080,7 @@ _08024E90:
 	b _08024EF0
 	.pool
 _08024EA0:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08024F08
@@ -28116,7 +28121,7 @@ _08024EF0:
 	strb r0, [r1, 0x10]
 	b _08024F08
 _08024EF8:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08024F08
@@ -28475,7 +28480,7 @@ _080251BA:
 	strb r4, [r0, 0x8]
 	b _08025202
 _080251D0:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08025226
@@ -28560,7 +28565,7 @@ _08025252:
 	ldr r1, [r5]
 	b _080252CC
 _08025274:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08025316
@@ -28710,7 +28715,7 @@ _0802539C:
 	b _08025448
 	.pool
 _080253BC:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _08025466
@@ -28900,7 +28905,7 @@ _0802553C:
 	b _080255E8
 	.pool
 _08025564:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0802563C
@@ -29391,7 +29396,7 @@ _0802593E:
 	b _08025976
 	.pool
 _0802596C:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _080259E8
@@ -38547,7 +38552,7 @@ _0802A3A4:
 _0802A3AE:
 	movs r0, 0
 	movs r1, 0
-	bl NewMenuHelpers_DrawDialogueFrame
+	bl DrawDialogueFrame
 	ldr r2, =gText_SavingDontTurnOffPower
 	str r4, [sp]
 	movs r0, 0x2
@@ -39128,7 +39133,7 @@ _0802A7CE:
 	movs r1, 0
 	movs r2, 0
 	bl ChangeBgY
-	bl sub_81971D0
+	bl InitStandardTextBoxWindows
 	bl sub_8197200
 	movs r1, 0x82
 	lsls r1, 5
@@ -39683,7 +39688,7 @@ _0802AD3C:
 	b _0802ADC0
 	.pool
 _0802AD68:
-	bl sub_800A520
+	bl IsLinkTaskFinished
 	lsls r0, 24
 	cmp r0, 0
 	beq _0802AE08
@@ -43324,7 +43329,7 @@ sub_802C974: @ 802C974
 	ldr r5, =gUnknown_082FBE08
 _0802C97C:
 	adds r0, r5, 0
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	adds r5, 0x8
 	adds r4, 0x1
 	cmp r4, 0x4
@@ -43447,7 +43452,7 @@ _0802CA32:
 	ands r1, r5
 	orrs r1, r4
 	str r1, [r0, 0x4]
-	bl LoadCompressedObjectPalette
+	bl LoadCompressedSpritePalette
 	mov r0, r8
 	bl Free
 	mov r0, r10
@@ -47113,7 +47118,7 @@ sub_802E75C: @ 802E75C
 	lsls r0, 3
 	ldr r1, =gUnknown_082FE6C8
 	adds r0, r1
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	movs r2, 0x8
 	ldrsh r0, [r4, r2]
 	lsls r0, 3
@@ -48126,7 +48131,7 @@ sub_802EF50: @ 802EF50
 	orrs r0, r1
 	str r0, [r4, 0x4]
 	mov r0, sp
-	bl LoadCompressedObjectPic
+	bl LoadCompressedSpriteSheet
 	adds r0, r4, 0
 	bl LoadSpritePalette
 	add sp, 0x10

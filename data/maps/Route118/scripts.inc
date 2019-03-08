@@ -1,46 +1,45 @@
 Route118_MapScripts:: @ 81F3DBC
-	map_script 3, Route118_MapScript1_1F3DCC
-	map_script 1, Route118_MapScript1_1F3DF3
-	map_script 2, Route118_MapScript2_1F3E0A
+	map_script MAP_SCRIPT_ON_TRANSITION, Route118_MapScript1_1F3DCC
+	map_script MAP_SCRIPT_ON_LOAD, Route118_MapScript1_1F3DF3
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route118_MapScript2_1F3E0A
 	.byte 0
 
 Route118_MapScript1_1F3DCC: @ 81F3DCC
 	call Route118_EventScript_28CCC7
-	compare VAR_0x4039, 1
-	call_if 1, Route118_EventScript_273D13
-	compare VAR_0x4037, 7
-	call_if 1, Route118_EventScript_273D1B
-	compare VAR_0x4037, 8
-	call_if 1, Route118_EventScript_273D1B
+	compare VAR_SHOULD_END_UNUSUAL_WEATHER, 1
+	call_if_eq Route118_EventScript_273D13
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_118_EAST
+	call_if_eq UnusualWeather_StartGroudonWeather
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_118_WEST
+	call_if_eq UnusualWeather_StartGroudonWeather
 	end
 
 Route118_MapScript1_1F3DF3: @ 81F3DF3
-	compare VAR_0x4037, 7
-	call_if 1, Route118_EventScript_273985
-	compare VAR_0x4037, 8
-	call_if 1, Route118_EventScript_273998
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_118_EAST
+	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute118East
+	compare VAR_UNUSUAL_WEATHER_LOCATION, UNUSUAL_WEATHER_ROUTE_118_WEST
+	call_if_eq UnusualWeather_EventScript_PlaceTilesRoute118West
 	end
 
 Route118_MapScript2_1F3E0A: @ 81F3E0A
-	map_script_2 VAR_0x4039, 1, gUnknown_08273D1F
+	map_script_2 VAR_SHOULD_END_UNUSUAL_WEATHER, 1, UnusualWeather_EventScript_EndEventAndCleanup_1
 	.2byte 0
 
 Route118_EventScript_1F3E14:: @ 81F3E14
 	lock
 	faceplayer
-	checkflag FLAG_0x0E3
-	goto_eq Route118_EventScript_1F3E69
+	goto_if_set FLAG_RECEIVED_GOOD_ROD, Route118_EventScript_1F3E69
 	msgbox Route118_Text_1F427B, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_eq Route118_EventScript_1F3E3E
+	goto_if_eq Route118_EventScript_1F3E3E
 	compare VAR_RESULT, 0
-	goto_eq Route118_EventScript_1F3E5F
+	goto_if_eq Route118_EventScript_1F3E5F
 	end
 
 Route118_EventScript_1F3E3E:: @ 81F3E3E
 	msgbox Route118_Text_1F42AF, MSGBOX_DEFAULT
 	giveitem_std ITEM_GOOD_ROD
-	setflag FLAG_0x0E3
+	setflag FLAG_RECEIVED_GOOD_ROD
 	msgbox Route118_Text_1F42E7, MSGBOX_DEFAULT
 	release
 	end
@@ -70,7 +69,7 @@ Route118_EventScript_1F3E85:: @ 81F3E85
 Route118_EventScript_1F3E8E:: @ 81F3E8E
 	lockall
 	setvar VAR_0x8008, 0
-	applymovement 255, Route118_Movement_2725B2
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
 	applymovement 19, Route118_Movement_1F3F61
 	waitmovement 0
@@ -80,7 +79,7 @@ Route118_EventScript_1F3E8E:: @ 81F3E8E
 Route118_EventScript_1F3EAE:: @ 81F3EAE
 	lockall
 	setvar VAR_0x8008, 1
-	applymovement 255, Route118_Movement_2725B2
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
 	goto Route118_EventScript_1F3EE4
 	end
@@ -88,7 +87,7 @@ Route118_EventScript_1F3EAE:: @ 81F3EAE
 Route118_EventScript_1F3EC4:: @ 81F3EC4
 	lockall
 	setvar VAR_0x8008, 2
-	applymovement 255, Route118_Movement_2725B2
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
 	applymovement 19, Route118_Movement_1F3F63
 	waitmovement 0
@@ -103,30 +102,30 @@ Route118_EventScript_1F3EE4:: @ 81F3EE4
 	msgbox Route118_Text_1F40BE, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 0
-	call_if 1, Route118_EventScript_1F3F28
+	call_if_eq Route118_EventScript_1F3F28
 	compare VAR_0x8008, 1
-	call_if 1, Route118_EventScript_1F3F3A
+	call_if_eq Route118_EventScript_1F3F3A
 	compare VAR_0x8008, 2
-	call_if 1, Route118_EventScript_1F3F4C
-	setvar VAR_0x4071, 1
+	call_if_eq Route118_EventScript_1F3F4C
+	setvar VAR_ROUTE118_STATE, 1
 	removeobject 19
 	releaseall
 	end
 
 Route118_EventScript_1F3F28:: @ 81F3F28
-	applymovement 255, Route118_Movement_1F3F5E
+	applymovement EVENT_OBJ_ID_PLAYER, Route118_Movement_1F3F5E
 	applymovement 19, Route118_Movement_1F3F69
 	waitmovement 0
 	return
 
 Route118_EventScript_1F3F3A:: @ 81F3F3A
-	applymovement 255, Route118_Movement_1F3F5E
+	applymovement EVENT_OBJ_ID_PLAYER, Route118_Movement_1F3F5E
 	applymovement 19, Route118_Movement_1F3F74
 	waitmovement 0
 	return
 
 Route118_EventScript_1F3F4C:: @ 81F3F4C
-	applymovement 255, Route118_Movement_1F3F5E
+	applymovement EVENT_OBJ_ID_PLAYER, Route118_Movement_1F3F5E
 	applymovement 19, Route118_Movement_1F3F7E
 	waitmovement 0
 	return
@@ -190,7 +189,7 @@ Route118_EventScript_1F3F87:: @ 81F3F87
 	trainerbattle_single TRAINER_ROSE_1, Route118_Text_29D290, Route118_Text_29D2D8, Route118_EventScript_1F3FB3
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route118_EventScript_1F3FD2
+	goto_if_eq Route118_EventScript_1F3FD2
 	msgbox Route118_Text_29D2FA, MSGBOX_DEFAULT
 	release
 	end
@@ -222,7 +221,7 @@ Route118_EventScript_1F4017:: @ 81F4017
 	trainerbattle_single TRAINER_DALTON_1, Route118_Text_29D6AF, Route118_Text_29D6CD, Route118_EventScript_1F4043
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route118_EventScript_1F4062
+	goto_if_eq Route118_EventScript_1F4062
 	msgbox Route118_Text_29D6D8, MSGBOX_DEFAULT
 	release
 	end

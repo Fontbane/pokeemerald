@@ -135,7 +135,7 @@ struct Unk201C000
     u16 unk90;
     u16 unk92;
     u16 unk94;
-    u16 unk96[386];
+    u16 unk96[NATIONAL_DEX_COUNT];
     u16 unk39A;
     u16 unk39C[7];
 };
@@ -1102,7 +1102,6 @@ static const struct SpriteTemplate gUnknown_085E7068 =
     .callback = sub_81772B8,
 };
 
-void sub_8175620(void);
 static void sub_8175744(u8 taskIdA);
 static void sub_8175774(u8 taskIdA);
 static void sub_8175808(u8 taskIdA);
@@ -1344,7 +1343,7 @@ static void sub_81758E4(u8 taskIdA)
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 8;
         LZ77UnCompVram(gBirchHelpGfx, (void *)VRAM);
-        LZ77UnCompVram(gBirchGrassTilemap, (void *)(VRAM + 0x3800));
+        LZ77UnCompVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(7)));
         LoadPalette(gBirchBagGrassPal[0] + 1, 1, 31 * 2);
 
         for (i = 0; i < 0x800; i++)
@@ -1593,7 +1592,7 @@ static void sub_8175DA0(u8 taskIdB)
     case 5:
         if (!gPaletteFade.active)
         {
-            FillWindowPixelBuffer(0, 0);
+            FillWindowPixelBuffer(0, PIXEL_FILL(0));
             CopyWindowToVram(0, 2);
             gTasks[taskIdB].data[TDB_0] = 2;
         }
@@ -1870,7 +1869,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = sub_817B3DC(0, 0x2000, 0x20, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(0, 0x2000, 0x20, 8);
         break;
     case 1:
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].invisible = FALSE;
@@ -1881,7 +1880,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = sub_817B3DC(0, 0x2000, 0x20, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(0, 0x2000, 0x20, 8);
         break;
     case 2:
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].invisible = FALSE;
@@ -1892,7 +1891,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = sub_817B3DC(1, 0x2000, 0x200, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(1, 0x2000, 0x200, 8);
         break;
     case 3:
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].invisible = FALSE;
@@ -1903,7 +1902,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = sub_817B3DC(1, 0x2000, 0x200, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(1, 0x2000, 0x200, 8);
         break;
     case 4:
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].invisible = FALSE;
@@ -1914,7 +1913,7 @@ static void sub_817664C(u8 data, u8 taskIdA)
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].pos1.y = 46;
         gSprites[gTasks[taskIdA].data[TDA_PLAYER_CYCLIST]].data[0] = 0;
         gSprites[gTasks[taskIdA].data[TDA_RIVAL_CYCLIST]].data[0] = 0;
-        gTasks[taskIdA].data[TDA_0] = sub_817B3DC(2, 0x2000, 0x200, 8);
+        gTasks[taskIdA].data[TDA_0] = CreateBicycleAnimationTask(2, 0x2000, 0x200, 8);
         break;
     }
 
@@ -1964,9 +1963,9 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
     case 2:
         if (gSaveBlock2Ptr->playerGender == MALE)
         {
-            LoadCompressedObjectPic(gUnknown_085F5334);
-            LoadCompressedObjectPic(gUnknown_085F53BC);
-            LoadCompressedObjectPic(gUnknown_085F5354);
+            LoadCompressedSpriteSheet(gUnknown_085F5334);
+            LoadCompressedSpriteSheet(gUnknown_085F53BC);
+            LoadCompressedSpriteSheet(gUnknown_085F5354);
             LoadSpritePalettes(gUnknown_085F5384);
 
             spriteId = intro_create_brendan_sprite(120, 46);
@@ -1981,9 +1980,9 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
         }
         else
         {
-            LoadCompressedObjectPic(gUnknown_085F5344);
-            LoadCompressedObjectPic(gUnknown_085F53AC);
-            LoadCompressedObjectPic(gUnknown_085F5354);
+            LoadCompressedSpriteSheet(gUnknown_085F5344);
+            LoadCompressedSpriteSheet(gUnknown_085F53AC);
+            LoadCompressedSpriteSheet(gUnknown_085F5354);
             LoadSpritePalettes(gUnknown_085F5384);
 
             spriteId = intro_create_may_sprite(120, 46);
@@ -2220,8 +2219,8 @@ static void sub_8177050(struct Sprite *sprite)
         }
         else
         {
-            SetGpuReg(REG_OFFSET_BLDCNT, 0xF40);
-            SetGpuReg(REG_OFFSET_BLDALPHA, 0x10);
+            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3);
+            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
             sprite->oam.objMode = 1;
             sprite->data[3] = 16;
             sprite->data[0] += 1;
@@ -2254,12 +2253,12 @@ static void sub_8177050(struct Sprite *sprite)
     }
 }
 
-static u8 sub_8177224(u16 species, s16 x, s16 y, u16 position)
+static u8 sub_8177224(u16 nationalDexNum, s16 x, s16 y, u16 position)
 {
     u8 spriteId;
     u8 spriteId2;
 
-    spriteId = sub_80C0E9C(species, x, y, position);
+    spriteId = CreateMonSpriteFromNationalDexNumber(nationalDexNum, x, y, position);
     gSprites[spriteId].oam.priority = 1;
     gSprites[spriteId].data[1] = position + 1;
     gSprites[spriteId].invisible = TRUE;
@@ -2299,7 +2298,7 @@ static void sub_8177388(void)
 
     for (dexNum = 1, j = 0; dexNum < NATIONAL_DEX_COUNT; dexNum++)
     {
-        if (GetSetPokedexFlag(dexNum, 1))
+        if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT))
         {
             gUnknown_0203BCE8->unk96[j] = dexNum;
             j++;

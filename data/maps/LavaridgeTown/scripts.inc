@@ -1,36 +1,34 @@
 LavaridgeTown_MapScripts:: @ 81EA4D3
-	map_script 3, LavaridgeTown_MapScript1_1EA4DE
-	map_script 2, LavaridgeTown_MapScript2_1EA547
+	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_MapScript1_1EA4DE
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LavaridgeTown_MapScript2_1EA547
 	.byte 0
 
 LavaridgeTown_MapScript1_1EA4DE: @ 81EA4DE
 	setflag FLAG_VISITED_LAVARIDGE_TOWN
-	checkflag FLAG_0x06C
-	call_if 1, LavaridgeTown_EventScript_1EA514
-	checkflag FLAG_0x08B
-	call_if 1, LavaridgeTown_EventScript_1EA53F
-	call LavaridgeTown_EventScript_271ED7
-	call LavaridgeTown_EventScript_271EFB
-	compare VAR_0x4053, 1
-	call_if 1, LavaridgeTown_EventScript_1EA518
-	compare VAR_0x4053, 1
-	call_if 1, LavaridgeTown_EventScript_1EA543
+	call_if_set FLAG_FLANNERY_GIVES_BADGE_INFO, LavaridgeTown_EventScript_1EA514
+	call_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, LavaridgeTown_EventScript_1EA53F
+	call Common_EventScript_SetupRivalGender
+	call Common_EventScript_SetupRivalOnBikeGender
+	compare VAR_LAVARIDGE_RIVAL_STATE, 1
+	call_if_eq LavaridgeTown_EventScript_1EA518
+	compare VAR_LAVARIDGE_RIVAL_STATE, 1
+	call_if_eq LavaridgeTown_EventScript_1EA543
 	end
 
 LavaridgeTown_EventScript_1EA514:: @ 81EA514
-	clearflag FLAG_0x06C
+	clearflag FLAG_FLANNERY_GIVES_BADGE_INFO
 	return
 
 LavaridgeTown_EventScript_1EA518:: @ 81EA518
 	getplayerxy VAR_0x8004, VAR_0x8005
 	compare VAR_0x8004, 9
-	goto_eq LavaridgeTown_EventScript_1EA529
+	goto_if_eq LavaridgeTown_EventScript_1EA529
 	return
 
 LavaridgeTown_EventScript_1EA529:: @ 81EA529
 	setobjectxyperm 8, 11, 9
 	setobjectxyperm 7, 9, 8
-	setobjectmovementtype 7, 7
+	setobjectmovementtype 7, MOVEMENT_TYPE_FACE_UP
 	clearflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL_1
 	return
 
@@ -43,37 +41,37 @@ LavaridgeTown_EventScript_1EA543:: @ 81EA543
 	return
 
 LavaridgeTown_MapScript2_1EA547: @ 81EA547
-	map_script_2 VAR_0x4053, 1, LavaridgeTown_EventScript_1EA551
+	map_script_2 VAR_LAVARIDGE_RIVAL_STATE, 1, LavaridgeTown_EventScript_1EA551
 	.2byte 0
 
 LavaridgeTown_EventScript_1EA551:: @ 81EA551
 	lockall
 	getplayerxy VAR_0x8008, VAR_0x8009
 	compare VAR_0x8008, 9
-	call_if 1, LavaridgeTown_EventScript_1EA63A
+	call_if_eq LavaridgeTown_EventScript_1EA63A
 	compare VAR_0x8008, 9
-	call_if 5, LavaridgeTown_EventScript_1EA65C
+	call_if_ne LavaridgeTown_EventScript_1EA65C
 	delay 20
 	checkplayergender
-	compare VAR_RESULT, 0
-	call_if 1, LavaridgeTown_EventScript_1EA630
-	compare VAR_RESULT, 1
-	call_if 1, LavaridgeTown_EventScript_1EA635
+	compare VAR_RESULT, MALE
+	call_if_eq LavaridgeTown_EventScript_1EA630
+	compare VAR_RESULT, FEMALE
+	call_if_eq LavaridgeTown_EventScript_1EA635
 	compare VAR_0x8008, 9
-	call_if 1, LavaridgeTown_EventScript_1EA6A1
+	call_if_eq LavaridgeTown_EventScript_1EA6A1
 	compare VAR_0x8008, 9
-	call_if 5, LavaridgeTown_EventScript_1EA6AC
+	call_if_ne LavaridgeTown_EventScript_1EA6AC
 	checkplayergender
-	compare VAR_RESULT, 0
-	goto_eq LavaridgeTown_EventScript_1EA5B5
-	compare VAR_RESULT, 1
-	goto_eq LavaridgeTown_EventScript_1EA5DA
+	compare VAR_RESULT, MALE
+	goto_if_eq LavaridgeTown_EventScript_1EA5B5
+	compare VAR_RESULT, FEMALE
+	goto_if_eq LavaridgeTown_EventScript_1EA5DA
 	end
 
 LavaridgeTown_EventScript_1EA5B5:: @ 81EA5B5
 	msgbox LavaridgeTown_Text_1EA7C0, MSGBOX_DEFAULT
 	giveitem_std ITEM_GO_GOGGLES
-	setflag FLAG_0x0DD
+	setflag FLAG_RECEIVED_GO_GOGGLES
 	msgbox LavaridgeTown_Text_1EA897, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_1EA5FF
 	end
@@ -81,7 +79,7 @@ LavaridgeTown_EventScript_1EA5B5:: @ 81EA5B5
 LavaridgeTown_EventScript_1EA5DA:: @ 81EA5DA
 	msgbox LavaridgeTown_Text_1EA9A2, MSGBOX_DEFAULT
 	giveitem_std ITEM_GO_GOGGLES
-	setflag FLAG_0x0DD
+	setflag FLAG_RECEIVED_GO_GOGGLES
 	msgbox LavaridgeTown_Text_1EAA2E, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_1EA5FF
 	end
@@ -92,11 +90,11 @@ LavaridgeTown_EventScript_1EA5FF:: @ 81EA5FF
 	addobject 7
 	delay 30
 	compare VAR_0x8008, 9
-	call_if 1, LavaridgeTown_EventScript_1EA6B7
+	call_if_eq LavaridgeTown_EventScript_1EA6B7
 	compare VAR_0x8008, 9
-	call_if 5, LavaridgeTown_EventScript_1EA6C9
+	call_if_ne LavaridgeTown_EventScript_1EA6C9
 	removeobject 7
-	setvar VAR_0x4053, 2
+	setvar VAR_LAVARIDGE_RIVAL_STATE, 2
 	clearflag FLAG_SPECIAL_FLAG_0x4000
 	savebgm MUS_DUMMY
 	fadedefaultbgm
@@ -112,12 +110,12 @@ LavaridgeTown_EventScript_1EA635:: @ 81EA635
 	return
 
 LavaridgeTown_EventScript_1EA63A:: @ 81EA63A
-	applymovement 8, LavaridgeTown_Movement_2725A6
+	applymovement 8, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	playse SE_PIN
-	applymovement 8, LavaridgeTown_Movement_272598
+	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 8, LavaridgeTown_Movement_27259A
+	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
 	return
 
@@ -129,14 +127,14 @@ LavaridgeTown_EventScript_1EA65C:: @ 81EA65C
 	waitmovement 0
 	closedoor 12, 15
 	waitdooranim
-	applymovement 8, LavaridgeTown_Movement_2725A4
+	applymovement 8, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	playse SE_PIN
-	applymovement 8, LavaridgeTown_Movement_272598
+	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 8, LavaridgeTown_Movement_27259A
+	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
-	applymovement 255, LavaridgeTown_Movement_2725A8
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	return
 
@@ -151,7 +149,7 @@ LavaridgeTown_EventScript_1EA6AC:: @ 81EA6AC
 	return
 
 LavaridgeTown_EventScript_1EA6B7:: @ 81EA6B7
-	applymovement 255, LavaridgeTown_Movement_1EA6DF
+	applymovement EVENT_OBJ_ID_PLAYER, LavaridgeTown_Movement_1EA6DF
 	applymovement 7, LavaridgeTown_Movement_1EA6E3
 	waitmovement 0
 	return
@@ -214,7 +212,7 @@ LavaridgeTown_Movement_1EA6F8: @ 81EA6F8
 LavaridgeTown_EventScript_1EA6FA:: @ 81EA6FA
 	specialvar VAR_RESULT, GetPlayerFacingDirection
 	compare VAR_RESULT, 1
-	goto_eq LavaridgeTown_EventScript_1EA70B
+	goto_if_eq LavaridgeTown_EventScript_1EA70B
 	end
 
 LavaridgeTown_EventScript_1EA70B:: @ 81EA70B
@@ -248,16 +246,15 @@ LavaridgeTown_EventScript_1EA73B:: @ 81EA73B
 LavaridgeTown_EventScript_1EA744:: @ 81EA744
 	lock
 	faceplayer
-	checkflag FLAG_0x10A
-	goto_eq LavaridgeTown_EventScript_1EA787
+	goto_if_set FLAG_RECEIVED_LAVARIDGE_EGG, LavaridgeTown_EventScript_1EA787
 	msgbox LavaridgeTown_Text_1EAB80, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_eq LavaridgeTown_EventScript_1EA79B
+	goto_if_eq LavaridgeTown_EventScript_1EA79B
 	getpartysize
 	compare VAR_RESULT, 6
-	goto_eq LavaridgeTown_EventScript_1EA791
+	goto_if_eq LavaridgeTown_EventScript_1EA791
 	msgbox LavaridgeTown_Text_1EACC0, MSGBOX_DEFAULT
-	setflag FLAG_0x10A
+	setflag FLAG_RECEIVED_LAVARIDGE_EGG
 	playfanfare MUS_FANFA4
 	message LavaridgeTown_Text_1EACF4
 	waitfanfare

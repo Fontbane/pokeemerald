@@ -1,36 +1,34 @@
 SkyPillar_Top_MapScripts:: @ 82396B8
-	map_script 5, SkyPillar_Top_MapScript1_2396C8
-	map_script 3, SkyPillar_Top_MapScript1_2396E6
-	map_script 4, SkyPillar_Top_MapScript2_239713
+	map_script MAP_SCRIPT_ON_RESUME, SkyPillar_Top_MapScript1_2396C8
+	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Top_MapScript1_2396E6
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SkyPillar_Top_MapScript2_239713
 	.byte 0
 
 SkyPillar_Top_MapScript1_2396C8: @ 82396C8
-	checkflag FLAG_SYS_CTRL_OBJ_DELETE
-	call_if 1, SkyPillar_Top_EventScript_2396D2
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, SkyPillar_Top_EventScript_2396D2
 	end
 
 SkyPillar_Top_EventScript_2396D2:: @ 82396D2
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, 7
-	goto_if 5, SkyPillar_Top_EventScript_27374E
+	goto_if_ne Common_EventScript_NopReturn
 	removeobject VAR_LAST_TALKED
 	return
 
 SkyPillar_Top_MapScript1_2396E6: @ 82396E6
-	compare VAR_0x40CA, 2
-	call_if 0, SkyPillar_Top_EventScript_2396FD
-	compare VAR_0x40CA, 2
-	call_if 4, SkyPillar_Top_EventScript_239705
+	compare VAR_SKY_PILLAR_STATE, 2
+	call_if_lt SkyPillar_Top_EventScript_2396FD
+	compare VAR_SKY_PILLAR_STATE, 2
+	call_if_ge SkyPillar_Top_EventScript_239705
 	end
 
 SkyPillar_Top_EventScript_2396FD:: @ 82396FD
-	setmaplayoutindex 438
-	setobjectmovementtype 1, 8
+	setmaplayoutindex LAYOUT_SKY_PILLAR_TOP_CLEAN
+	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 SkyPillar_Top_EventScript_239705:: @ 8239705
-	checkflag FLAG_0x1C0
-	call_if 0, SkyPillar_Top_EventScript_23970F
+	call_if_unset FLAG_DEFEATED_RAYQUAZA, SkyPillar_Top_EventScript_23970F
 	return
 
 SkyPillar_Top_EventScript_23970F:: @ 823970F
@@ -38,7 +36,7 @@ SkyPillar_Top_EventScript_23970F:: @ 823970F
 	return
 
 SkyPillar_Top_MapScript2_239713: @ 8239713
-	map_script_2 VAR_0x40CA, 0, SkyPillar_Top_EventScript_23971D
+	map_script_2 VAR_SKY_PILLAR_STATE, 0, SkyPillar_Top_EventScript_23971D
 	.2byte 0
 
 SkyPillar_Top_EventScript_23971D:: @ 823971D
@@ -58,17 +56,17 @@ SkyPillar_Top_EventScript_239722:: @ 8239722
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, 1
-	goto_eq SkyPillar_Top_EventScript_239768
+	goto_if_eq SkyPillar_Top_EventScript_239768
 	compare VAR_RESULT, 4
-	goto_eq SkyPillar_Top_EventScript_239771
+	goto_if_eq SkyPillar_Top_EventScript_239771
 	compare VAR_RESULT, 5
-	goto_eq SkyPillar_Top_EventScript_239771
-	setflag FLAG_0x1C0
+	goto_if_eq SkyPillar_Top_EventScript_239771
+	setflag FLAG_DEFEATED_RAYQUAZA
 	releaseall
 	end
 
 SkyPillar_Top_EventScript_239768:: @ 8239768
-	setflag FLAG_0x1C0
+	setflag FLAG_DEFEATED_RAYQUAZA
 	goto SkyPillar_Top_EventScript_23977C
 	end
 
@@ -96,12 +94,12 @@ SkyPillar_Top_EventScript_239785:: @ 8239785
 SkyPillar_Top_EventScript_23979A:: @ 823979A
 	lockall
 	fadeoutbgm 1
-	applymovement 255, SkyPillar_Top_Movement_2725B2
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
-	special SpawnScriptEventObject
-	applymovement 127, SkyPillar_Top_Movement_239858
+	special SpawnCameraObject
+	applymovement EVENT_OBJ_ID_CAMERA, SkyPillar_Top_Movement_239858
 	waitmovement 0
-	special RemoveScriptEventObject
+	special RemoveCameraObject
 	applymovement 1, SkyPillar_Top_Movement_23983A
 	waitmovement 0
 	waitse
@@ -128,13 +126,13 @@ SkyPillar_Top_EventScript_23979A:: @ 823979A
 	closemessage
 	delay 20
 	fadeinbgm 1
-	special SpawnScriptEventObject
-	applymovement 127, SkyPillar_Top_Movement_23985C
+	special SpawnCameraObject
+	applymovement EVENT_OBJ_ID_CAMERA, SkyPillar_Top_Movement_23985C
 	waitmovement 0
-	special RemoveScriptEventObject
-	setvar VAR_0x405E, 5
-	setvar VAR_0x40CA, 1
-	setvar VAR_0x40D7, 1
+	special RemoveCameraObject
+	setvar VAR_RAYQUAZA_STATE, 5
+	setvar VAR_SKY_PILLAR_STATE, 1
+	setvar VAR_SKY_PILLAR_RAQUAZA_CRY_DONE, 1
 	releaseall
 	end
 

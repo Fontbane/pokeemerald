@@ -1,22 +1,22 @@
 VictoryRoad_1F_MapScripts:: @ 8235D7A
-	map_script 3, VictoryRoad_1F_MapScript1_235D80
+	map_script MAP_SCRIPT_ON_TRANSITION, VictoryRoad_1F_MapScript1_235D80
 	.byte 0
 
 VictoryRoad_1F_MapScript1_235D80: @ 8235D80
-	compare VAR_0x40C3, 1
-	call_if 1, VictoryRoad_1F_EventScript_235D97
-	compare VAR_0x40C3, 2
-	call_if 1, VictoryRoad_1F_EventScript_235DA3
+	compare VAR_VICTORY_ROAD_1F_STATE, 1
+	call_if_eq VictoryRoad_1F_EventScript_235D97
+	compare VAR_VICTORY_ROAD_1F_STATE, 2
+	call_if_eq VictoryRoad_1F_EventScript_235DA3
 	end
 
 VictoryRoad_1F_EventScript_235D97:: @ 8235D97
 	setobjectxyperm 4, 2, 24
-	setobjectmovementtype 4, 8
+	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 VictoryRoad_1F_EventScript_235DA3:: @ 8235DA3
 	setobjectxyperm 4, 3, 24
-	setobjectmovementtype 4, 8
+	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 VictoryRoad_1F_EventScript_235DAF:: @ 8235DAF
@@ -38,15 +38,15 @@ VictoryRoad_1F_EventScript_235DC8:: @ 8235DC8
 	end
 
 VictoryRoad_1F_EventScript_235DE1:: @ 8235DE1
-	applymovement 255, VictoryRoad_1F_Movement_2725AA
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	msgbox VictoryRoad_1F_Text_235EE6, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_WALLY_1, VictoryRoad_1F_Text_235FFC
 	msgbox VictoryRoad_1F_Text_236020, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
 	moveobjectoffscreen 4
-	setflag FLAG_0x07E
-	copyvar VAR_0x40C3, VAR_0x8008
+	setflag FLAG_DEFEATED_WALLY_VICTORY_ROAD
+	copyvar VAR_VICTORY_ROAD_1F_STATE, VAR_0x8008
 	releaseall
 	end
 
@@ -85,7 +85,7 @@ VictoryRoad_1F_EventScript_235E35:: @ 8235E35
 	trainerbattle_single TRAINER_WALLY_3, VictoryRoad_1F_Text_236073, VictoryRoad_1F_Text_2360DA
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq VictoryRoad_1F_EventScript_235E5C
+	goto_if_eq VictoryRoad_1F_EventScript_235E5C
 	msgbox VictoryRoad_1F_Text_2360FE, MSGBOX_AUTOCLOSE
 	end
 

@@ -129,7 +129,7 @@ void SetVBlankHBlankCallbacksToNull(void)
 void DisplayMessageAndContinueTask(u8 taskId, u8 windowId, u16 arg2, u8 arg3, u8 fontId, u8 textSpeed, const u8 *string, void *taskFunc)
 {
     gUnknown_0203A140 = windowId;
-    sub_8197B1C(windowId, TRUE, arg2, arg3);
+    DrawDialogFrameWithCustomTileAndPalette(windowId, TRUE, arg2, arg3);
 
     if (string != gStringVar4)
         StringExpandPlaceholders(gStringVar4, string);
@@ -152,7 +152,7 @@ static void Task_ContinueTaskAfterMessagePrints(u8 taskId)
         gUnknown_0300117C(taskId);
 }
 
-void sub_8121F68(u8 taskId, const struct YesNoFuncTable *data)
+void DoYesNoFuncWithChoice(u8 taskId, const struct YesNoFuncTable *data)
 {
     gUnknown_0203A138 = *data;
     gTasks[taskId].func = Task_CallYesOrNoCallback;
@@ -293,7 +293,7 @@ bool8 sub_8122148(u16 itemId)
 
 bool8 itemid_80BF6D8_mail_related(u16 itemId)
 {
-    if (is_c1_link_related_active() != TRUE && InUnionRoom() != TRUE)
+    if (IsUpdateLinkStateCBActive() != TRUE && InUnionRoom() != TRUE)
         return TRUE;
     else if (ItemIsMail(itemId) != TRUE)
         return TRUE;
@@ -303,7 +303,7 @@ bool8 itemid_80BF6D8_mail_related(u16 itemId)
 
 bool8 sub_81221AC(void)
 {
-    if (is_c1_link_related_active() == TRUE || gReceivedRemoteLinkPlayers == 1)
+    if (IsUpdateLinkStateCBActive() == TRUE || gReceivedRemoteLinkPlayers == 1)
         return TRUE;
     else
         return FALSE;
@@ -394,8 +394,8 @@ void sub_8122298(u16 *arg0, u16 *arg1, u8 arg2, u8 arg3, u8 arg4)
 
 void LoadListMenuArrowsGfx(void)
 {
-    LoadCompressedObjectPic(&gUnknown_0859F514);
-    LoadCompressedObjectPalette(&gUnknown_0859F51C);
+    LoadCompressedSpriteSheet(&gUnknown_0859F514);
+    LoadCompressedSpritePalette(&gUnknown_0859F51C);
 }
 
 void sub_8122344(u8 *spriteIds, u8 count)

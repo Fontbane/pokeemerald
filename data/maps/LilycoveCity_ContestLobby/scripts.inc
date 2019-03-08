@@ -1,6 +1,6 @@
 LilycoveCity_ContestLobby_MapScripts:: @ 821A211
-	map_script 3, LilycoveCity_ContestLobby_MapScript1_21A21C
-	map_script 2, LilycoveCity_ContestLobby_MapScript2_21A243
+	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_ContestLobby_MapScript1_21A21C
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LilycoveCity_ContestLobby_MapScript2_21A243
 	.byte 0
 
 LilycoveCity_ContestLobby_MapScript1_21A21C: @ 821A21C
@@ -11,7 +11,7 @@ LilycoveCity_ContestLobby_MapScript1_21A21C: @ 821A21C
 LilycoveCity_ContestLobby_EventScript_21A227:: @ 821A227
 	getpricereduction 4
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A23C
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A23C
 	clearflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_POKEBLOCK_EXPERT
 	setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_ONLOOKERS
 	return
@@ -22,14 +22,13 @@ LilycoveCity_ContestLobby_EventScript_21A23C:: @ 821A23C
 	return
 
 LilycoveCity_ContestLobby_MapScript2_21A243: @ 821A243
-	map_script_2 VAR_0x4099, 1, LilycoveCity_ContestLobby_EventScript_21A255
-	map_script_2 VAR_0x4099, 2, LilycoveCity_ContestLobby_EventScript_21A427
+	map_script_2 VAR_LILYCOVE_CONTEST_LOBBY_STATE, 1, LilycoveCity_ContestLobby_EventScript_21A255
+	map_script_2 VAR_LILYCOVE_CONTEST_LOBBY_STATE, 2, LilycoveCity_ContestLobby_EventScript_21A427
 	.2byte 0
 
 LilycoveCity_ContestLobby_EventScript_21A255:: @ 821A255
-	checkflag FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A264
-	setvar VAR_0x4099, 0
+	goto_if_set FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR, LilycoveCity_ContestLobby_EventScript_21A264
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	end
 
 LilycoveCity_ContestLobby_EventScript_21A264:: @ 821A264
@@ -37,7 +36,7 @@ LilycoveCity_ContestLobby_EventScript_21A264:: @ 821A264
 	addobject 4
 	applymovement 4, LilycoveCity_ContestLobby_Movement_21A407
 	waitmovement 4
-	applymovement 255, LilycoveCity_ContestLobby_Movement_21A418
+	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A418
 	waitmovement 0
 	msgbox LilycoveCity_ContestLobby_Text_21ADB9, MSGBOX_DEFAULT
 	lockall
@@ -46,9 +45,9 @@ LilycoveCity_ContestLobby_EventScript_21A264:: @ 821A264
 	lockall
 	msgbox LilycoveCity_ContestLobby_Text_21AE78, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A2AA
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A2AA
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A2E4
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A2E4
 	releaseall
 	end
 
@@ -56,10 +55,10 @@ LilycoveCity_ContestLobby_EventScript_21A2AA:: @ 821A2AA
 	msgbox LilycoveCity_ContestLobby_Text_21AF63, MSGBOX_DEFAULT
 	closemessage
 	special sub_80F88DC
-	setvar VAR_0x4099, 0
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	specialvar VAR_RESULT, GiveMonArtistRibbon
 	compare VAR_RESULT, 1
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21A314
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21A314
 	applymovement 4, LilycoveCity_ContestLobby_Movement_21A40F
 	waitmovement 0
 	removeobject 4
@@ -71,12 +70,12 @@ LilycoveCity_ContestLobby_EventScript_21A2AA:: @ 821A2AA
 LilycoveCity_ContestLobby_EventScript_21A2E4:: @ 821A2E4
 	msgbox LilycoveCity_ContestLobby_Text_21B0BC, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A2AA
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A2AA
 	msgbox LilycoveCity_ContestLobby_Text_21B132, MSGBOX_DEFAULT
 	closemessage
 	applymovement 4, LilycoveCity_ContestLobby_Movement_21A40F
 	waitmovement 0
-	setvar VAR_0x4099, 0
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	removeobject 4
 	releaseall
 	end
@@ -87,7 +86,7 @@ LilycoveCity_ContestLobby_EventScript_21A314:: @ 821A314
 	applymovement 4, LilycoveCity_ContestLobby_Movement_21A41A
 	waitmovement 0
 	playse SE_PIN
-	applymovement 4, LilycoveCity_ContestLobby_Movement_272598
+	applymovement 4, Common_Movement_ExclamationMark
 	waitmovement 0
 	applymovement 4, LilycoveCity_ContestLobby_Movement_21A41E
 	waitmovement 0
@@ -101,7 +100,7 @@ LilycoveCity_ContestLobby_EventScript_21A314:: @ 821A314
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A360:: @ 821A360
-	specialvar VAR_0x8004, sub_80F8940
+	specialvar VAR_0x8004, CountPlayerContestPaintings
 	switch VAR_0x8004
 	case 1, LilycoveCity_ContestLobby_EventScript_21A3A2
 	case 2, LilycoveCity_ContestLobby_EventScript_21A3A6
@@ -140,23 +139,23 @@ LilycoveCity_ContestLobby_EventScript_21A3B6:: @ 821A3B6
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A3F3:: @ 821A3F3
-	setflag FLAG_0x0A0
+	setflag FLAG_COOL_PAINTING_MADE
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A3F7:: @ 821A3F7
-	setflag FLAG_0x0A1
+	setflag FLAG_BEAUTY_PAINTING_MADE
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A3FB:: @ 821A3FB
-	setflag FLAG_0x0A2
+	setflag FLAG_CUTE_PAINTING_MADE
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A3FF:: @ 821A3FF
-	setflag FLAG_0x0A3
+	setflag FLAG_SMART_PAINTING_MADE
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A403:: @ 821A403
-	setflag FLAG_0x0A4
+	setflag FLAG_TOUGH_PAINTING_MADE
 	return
 
 LilycoveCity_ContestLobby_Movement_21A407: @ 821A407
@@ -202,9 +201,8 @@ LilycoveCity_ContestLobby_Movement_21A41E: @ 821A41E
 	step_end
 
 LilycoveCity_ContestLobby_EventScript_21A427:: @ 821A427
-	checkflag FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A436
-	setvar VAR_0x4099, 0
+	goto_if_set FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR, LilycoveCity_ContestLobby_EventScript_21A436
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	end
 
 LilycoveCity_ContestLobby_EventScript_21A436:: @ 821A436
@@ -212,7 +210,7 @@ LilycoveCity_ContestLobby_EventScript_21A436:: @ 821A436
 	addobject 11
 	applymovement 11, LilycoveCity_ContestLobby_Movement_21A533
 	waitmovement 11
-	applymovement 255, LilycoveCity_ContestLobby_Movement_21A545
+	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A545
 	waitmovement 0
 	msgbox LilycoveCity_ContestLobby_Text_21ADB9, MSGBOX_DEFAULT
 	lockall
@@ -220,19 +218,19 @@ LilycoveCity_ContestLobby_EventScript_21A436:: @ 821A436
 	drawcontestwinner 0
 	msgbox LilycoveCity_ContestLobby_Text_21AE78, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A47A
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A47A
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A4B4
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A4B4
 	end
 
 LilycoveCity_ContestLobby_EventScript_21A47A:: @ 821A47A
 	msgbox LilycoveCity_ContestLobby_Text_21AF63, MSGBOX_DEFAULT
 	closemessage
 	special sub_80F88DC
-	setvar VAR_0x4099, 0
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	specialvar VAR_RESULT, GiveMonArtistRibbon
 	compare VAR_RESULT, 1
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21A4E4
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21A4E4
 	applymovement 11, LilycoveCity_ContestLobby_Movement_21A53C
 	waitmovement 0
 	removeobject 11
@@ -244,12 +242,12 @@ LilycoveCity_ContestLobby_EventScript_21A47A:: @ 821A47A
 LilycoveCity_ContestLobby_EventScript_21A4B4:: @ 821A4B4
 	msgbox LilycoveCity_ContestLobby_Text_21B0BC, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A47A
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A47A
 	msgbox LilycoveCity_ContestLobby_Text_21B132, MSGBOX_DEFAULT
 	closemessage
 	applymovement 11, LilycoveCity_ContestLobby_Movement_21A53C
 	waitmovement 0
-	setvar VAR_0x4099, 0
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 0
 	removeobject 11
 	releaseall
 	end
@@ -261,7 +259,7 @@ LilycoveCity_ContestLobby_EventScript_21A4E4:: @ 821A4E4
 	applymovement 11, LilycoveCity_ContestLobby_Movement_21A547
 	waitmovement 0
 	playse SE_PIN
-	applymovement 11, LilycoveCity_ContestLobby_Movement_272598
+	applymovement 11, Common_Movement_ExclamationMark
 	waitmovement 0
 	applymovement 11, LilycoveCity_ContestLobby_Movement_21A54B
 	waitmovement 0
@@ -321,7 +319,7 @@ LilycoveCity_ContestLobby_EventScript_21A554:: @ 821A554
 	special sub_80F9154
 	specialvar VAR_RESULT, sub_80F8D24
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A5CF
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A5CF
 	call LilycoveCity_ContestLobby_EventScript_279CC5
 	call LilycoveCity_ContestLobby_EventScript_21A670
 	special SetContestTrainerGfxIds
@@ -340,33 +338,33 @@ LilycoveCity_ContestLobby_EventScript_21A585:: @ 821A585
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5B7:: @ 821A5B7
-	setvar VAR_0x4088, 1
+	setvar VAR_CONTEST_LOCATION, 1
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5BD:: @ 821A5BD
-	setvar VAR_0x4088, 2
+	setvar VAR_CONTEST_LOCATION, 2
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5C3:: @ 821A5C3
-	setvar VAR_0x4088, 3
+	setvar VAR_CONTEST_LOCATION, 3
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5C9:: @ 821A5C9
-	setvar VAR_0x4088, 4
+	setvar VAR_CONTEST_LOCATION, 4
 	return
 
 LilycoveCity_ContestLobby_EventScript_21A5CF:: @ 821A5CF
 	setflag FLAG_HIDE_LILYCOVE_MUSEUM_CURATOR
-	copyvar VAR_0x4094, 0x1
+	copyvar VAR_LILYCOVE_MUSEUM_2F_STATE, 0x1
 	giveitem ITEM_CONTEST_PASS, 1
 	setvar VAR_0x800B, 8
 	setvar VAR_CONTEST_RANK, 3
-	setvar VAR_0x4099, 1
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 1
 	setflag FLAG_SYS_RIBBON_GET
 	end
 
 LilycoveCity_ContestLobby_EventScript_21A5EF:: @ 821A5EF
-	setflag FLAG_0x155
+	setflag FLAG_ENTERED_LINK_CONTEST
 	switch VAR_CONTEST_CATEGORY
 	case 0, LilycoveCity_ContestLobby_EventScript_21A62F
 	case 1, LilycoveCity_ContestLobby_EventScript_21A63C
@@ -422,12 +420,12 @@ LilycoveCity_ContestLobby_EventScript_21A670:: @ 821A670
 	delay 20
 	applymovement 1, LilycoveCity_ContestLobby_Movement_21A706
 	waitmovement 0
-	applymovement 255, LilycoveCity_ContestLobby_Movement_21A6F2
+	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6F2
 	waitmovement 0
 	msgbox LilycoveCity_ContestLobby_Text_27B653, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, LilycoveCity_ContestLobby_Movement_21A6FD
-	applymovement 255, LilycoveCity_ContestLobby_Movement_21A6E8
+	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21A6E8
 	waitmovement 0
 	releaseall
 	return
@@ -616,7 +614,7 @@ LilycoveCity_ContestLobby_EventScript_21A7E9:: @ 821A7E9
 
 LilycoveCity_ContestLobby_EventScript_21A7F9:: @ 821A7F9
 	closemessage
-	applymovement VAR_LAST_TALKED, LilycoveCity_ContestLobby_Movement_2725A2
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
@@ -643,10 +641,10 @@ LilycoveCity_ContestLobby_EventScript_21A819:: @ 821A819
 LilycoveCity_ContestLobby_EventScript_21A856:: @ 821A856
 	msgbox LilycoveCity_ContestLobby_Text_27BD17, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A97F
-	call LilycoveCity_ContestLobby_EventScript_27134F
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A97F
+	call Common_EventScript_SaveGame
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A97F
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A97F
 	message LilycoveCity_ContestLobby_Text_27C8FD
 	waitmessage
 	specialvar VAR_TEMP_D, IsWirelessAdapterConnected
@@ -666,7 +664,7 @@ LilycoveCity_ContestLobby_EventScript_21A8BB:: @ 821A8BB
 LilycoveCity_ContestLobby_EventScript_21A8C6:: @ 821A8C6
 	setvar VAR_TEMP_C, 1
 	compare VAR_TEMP_D, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AAFC
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AAFC
 	goto LilycoveCity_ContestLobby_EventScript_21A8DC
 	end
 
@@ -719,18 +717,18 @@ LilycoveCity_ContestLobby_EventScript_21A98C:: @ 821A98C
 	setvar VAR_CONTEST_RANK, 0
 	choosecontestmon
 	compare VAR_0x8004, 255
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A97F
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A97F
 	special sub_80F7F30
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A9E0
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A9E0
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AA0A
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AA0A
 	compare VAR_RESULT, 2
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AA0A
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AA0A
 	compare VAR_RESULT, 3
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A9EE
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A9EE
 	compare VAR_RESULT, 4
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A9FC
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A9FC
 	end
 
 LilycoveCity_ContestLobby_EventScript_21A9E0:: @ 821A9E0
@@ -755,28 +753,28 @@ LilycoveCity_ContestLobby_EventScript_21AA0A:: @ 821AA0A
 
 LilycoveCity_ContestLobby_EventScript_21AA15:: @ 821AA15
 	compare VAR_TEMP_D, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AB4B
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AB4B
 	compare VAR_TEMP_D, 2
-	goto_if 4, LilycoveCity_ContestLobby_EventScript_21A97F
+	goto_if_ge LilycoveCity_ContestLobby_EventScript_21A97F
 	message LilycoveCity_ContestLobby_Text_27BF85
 	waitmessage
 	copyvar VAR_0x8004, VAR_RESULT
 	compare VAR_TEMP_C, 0
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21AABB
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21AABB
 	compare VAR_TEMP_C, 1
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21AAC0
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21AAC0
 	compare VAR_TEMP_C, 2
-	goto_if 4, LilycoveCity_ContestLobby_EventScript_21A97F
+	goto_if_ge LilycoveCity_ContestLobby_EventScript_21A97F
 	compare VAR_RESULT, 4
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AAD3
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AAD3
 	compare VAR_RESULT, 3
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AAD3
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AAD3
 	compare VAR_RESULT, 5
-	goto_eq LilycoveCity_ContestLobby_EventScript_21A97F
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21A97F
 	compare VAR_RESULT, 6
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AAEF
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AAEF
 	compare VAR_RESULT, 10
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AAE1
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AAE1
 	message3 LilycoveCity_ContestLobby_Text_27BEEC
 	contestlinktransfer
 	switch VAR_0x8004
@@ -835,24 +833,24 @@ LilycoveCity_ContestLobby_EventScript_21AB17:: @ 821AB17
 	waitmessage
 	subvar VAR_0x8004, 1
 	call LilycoveCity_ContestLobby_EventScript_21AC49
-	setvar VAR_0x4086, 1
+	setvar VAR_LINK_CONTEST_ROOM_STATE, 1
 	special sub_80F8AFC
-	setvar VAR_0x4088, 5
+	setvar VAR_CONTEST_LOCATION, 5
 	setvar VAR_CONTEST_RANK, 3
 	call LilycoveCity_ContestLobby_EventScript_21A5EF
 	end
 
 LilycoveCity_ContestLobby_EventScript_21AB4B:: @ 821AB4B
 	compare VAR_CONTEST_CATEGORY, 0
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21AB88
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21AB88
 	compare VAR_CONTEST_CATEGORY, 1
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21AB8E
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21AB8E
 	compare VAR_CONTEST_CATEGORY, 2
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21AB94
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21AB94
 	compare VAR_CONTEST_CATEGORY, 3
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21AB9A
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21AB9A
 	compare VAR_CONTEST_CATEGORY, 4
-	call_if 1, LilycoveCity_ContestLobby_EventScript_21ABA0
+	call_if_eq LilycoveCity_ContestLobby_EventScript_21ABA0
 	goto LilycoveCity_ContestLobby_EventScript_21ABA6
 	end
 
@@ -890,22 +888,22 @@ LilycoveCity_ContestLobby_EventScript_21ABA6:: @ 821ABA6
 LilycoveCity_ContestLobby_EventScript_21ABE3:: @ 821ABE3
 	call LilycoveCity_ContestLobby_EventScript_21AC33
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AC3D
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AC3D
 	compare VAR_RESULT, 5
-	goto_eq LilycoveCity_ContestLobby_EventScript_21ABA6
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21ABA6
 	compare VAR_RESULT, 8
-	goto_eq LilycoveCity_ContestLobby_EventScript_21ABE3
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21ABE3
 	release
 	end
 
 LilycoveCity_ContestLobby_EventScript_21AC0B:: @ 821AC0B
 	call LilycoveCity_ContestLobby_EventScript_21AC38
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AC3D
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AC3D
 	compare VAR_RESULT, 5
-	goto_eq LilycoveCity_ContestLobby_EventScript_21ABA6
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21ABA6
 	compare VAR_RESULT, 8
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AC0B
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_21AC0B
 	release
 	end
 
@@ -945,7 +943,7 @@ LilycoveCity_ContestLobby_EventScript_21AC49:: @ 821AC49
 	delay 20
 	applymovement 2, LilycoveCity_ContestLobby_Movement_21ACEF
 	waitmovement 0
-	applymovement 255, LilycoveCity_ContestLobby_Movement_21ACDB
+	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21ACDB
 	waitmovement 0
 	messageautoscroll LilycoveCity_ContestLobby_Text_27B653
 	waitmessage
@@ -953,7 +951,7 @@ LilycoveCity_ContestLobby_EventScript_21AC49:: @ 821AC49
 	closemessage
 	call LilycoveCity_ContestLobby_EventScript_27AD92
 	applymovement 2, LilycoveCity_ContestLobby_Movement_21ACE5
-	applymovement 255, LilycoveCity_ContestLobby_Movement_21ACD0
+	applymovement EVENT_OBJ_ID_PLAYER, LilycoveCity_ContestLobby_Movement_21ACD0
 	waitmovement 0
 	release
 	return
@@ -1006,8 +1004,7 @@ LilycoveCity_ContestLobby_Movement_21ACEF: @ 821ACEF
 LilycoveCity_ContestLobby_EventScript_21ACF1:: @ 821ACF1
 	lock
 	faceplayer
-	checkflag FLAG_0x05F
-	goto_eq LilycoveCity_ContestLobby_EventScript_21AD06
+	goto_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_21AD06
 	msgbox LilycoveCity_ContestLobby_Text_21AD10, MSGBOX_DEFAULT
 	release
 	end

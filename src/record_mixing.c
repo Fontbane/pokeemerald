@@ -22,8 +22,8 @@
 #include "constants/songs.h"
 #include "menu.h"
 #include "overworld.h"
-#include "field_screen.h"
-#include "fldeff_80F9BCC.h"
+#include "field_screen_effect.h"
+#include "fldeff_misc.h"
 #include "script.h"
 #include "event_data.h"
 #include "lilycove_lady.h"
@@ -106,7 +106,7 @@ static EWRAM_DATA union PlayerRecords *sSentRecord = NULL;
 // Static ROM declarations
 
 static void Task_RecordMixing_Main(u8 taskId);
-static void sub_80E7324(u8 taskId);
+static void Task_MixingRecordsRecv(u8 taskId);
 static void Task_SendPacket(u8 taskId);
 static void Task_CopyReceiveBuffer(u8 taskId);
 static void Task_SendPacket_SwitchToReceive(u8 taskId);
@@ -120,7 +120,7 @@ static void ReceiveLilycoveLadyData(LilycoveLady *, size_t, u8);
 static void sub_80E7B2C(const u8 *);
 static void ReceiveDaycareMailData(struct RecordMixingDayCareMail *, size_t, u8, TVShow *);
 static void ReceiveGiftItem(u16 *item, u8 which);
-static void sub_80E7FF8(u8 taskId);
+static void Task_DoRecordMixing(u8 taskId);
 static void sub_80E8110(struct Apprentice *arg0, struct Apprentice *arg1);
 static void ReceiveApprenticeData(struct Apprentice *arg0, size_t arg1, u32 arg2);
 static void ReceiveRankingHallRecords(struct PlayerHallRecords *hallRecords, size_t arg1, u32 arg2);
@@ -170,7 +170,8 @@ static const u8 gUnknown_0858CFBE[3][4] =
 
 #define BUFFER_CHUNK_SIZE 200
 
-void sub_80E6BE8(void)
+// Note: VAR_0x8005 contains the spotId.
+void RecordMixingPlayerSpotTriggered(void)
 {
     sub_80B37D4(Task_RecordMixing_Main);
 }
@@ -292,7 +293,7 @@ static void ReceiveExchangePacket(u32 which)
 
 static void PrintTextOnRecordMixing(const u8 *src)
 {
-    NewMenuHelpers_DrawDialogueFrame(0, 0);
+    DrawDialogueFrame(0, 0);
     AddTextPrinterParameterized(0, 1, src, 0, 1, 0, NULL);
     CopyWindowToVram(0, 3);
 }
@@ -313,6 +314,7 @@ static void Task_RecordMixing_SoundEffect(u8 taskId)
 #define tState        data[0]
 #define tSndEffTaskId data[15]
 
+// Note: Currently, special var 8005 contains the player's spot id.
 static void Task_RecordMixing_Main(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
@@ -322,16 +324,16 @@ static void Task_RecordMixing_Main(u8 taskId)
     case 0: // init
         sSentRecord = malloc(sizeof(union PlayerRecords));
         sReceivedRecords = malloc(sizeof(union PlayerRecords) * 4);
-        sub_8009628(gSpecialVar_0x8005);
+        SetLocalLinkPlayerId(gSpecialVar_0x8005);
         VarSet(VAR_TEMP_0, 1);
         gUnknown_03001130 = FALSE;
         PrepareExchangePacket();
         CreateRecordMixingSprite();
         tState = 1;
-        data[10] = CreateTask(sub_80E7324, 80);
+        data[10] = CreateTask(Task_MixingRecordsRecv, 80);
         tSndEffTaskId = CreateTask(Task_RecordMixing_SoundEffect, 81);
         break;
-    case 1: // wait for sub_80E7324
+    case 1: // wait for Task_MixingRecordsRecv
         if (!gTasks[data[10]].isActive)
         {
             tState = 2;
@@ -341,11 +343,11 @@ static void Task_RecordMixing_Main(u8 taskId)
         }
         break;
     case 2:
-        data[10] = CreateTask(sub_80E7FF8, 10);
+        data[10] = CreateTask(Task_DoRecordMixing, 10);
         tState = 3;
         PlaySE(SE_W226);
         break;
-    case 3: // wait for sub_80E7FF8
+    case 3: // wait for Task_DoRecordMixing
         if (!gTasks[data[10]].isActive)
         {
             tState = 4;
@@ -370,7 +372,7 @@ static void Task_RecordMixing_Main(u8 taskId)
             {
                 CreateTask(sub_80AF2B4, 10);
             }
-            sub_8197434(0, 1);
+            ClearDialogWindowAndFrame(0, 1);
             DestroyTask(taskId);
             EnableBothScriptContexts();
         }
@@ -381,7 +383,7 @@ static void Task_RecordMixing_Main(u8 taskId)
 #undef tState
 #undef tSndEffTaskId
 
-static void sub_80E7324(u8 taskId)
+static void Task_MixingRecordsRecv(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
@@ -405,7 +407,7 @@ static void sub_80E7324(u8 taskId)
             u8 players = GetLinkPlayerCount_2();
             if (IsLinkMaster() == TRUE)
             {
-                if (players == sub_800AA48())
+                if (players == GetSavedPlayerCount())
                 {
                     PlaySE(SE_PIN);
                     task->data[0] = 201;
@@ -420,14 +422,15 @@ static void sub_80E7324(u8 taskId)
         }
         break;
     case 201:
-        if (sub_800AA48() == GetLinkPlayerCount_2() && ++task->data[12] > (GetLinkPlayerCount_2() * 30))
+        // We're the link master. Delay for 30 frames per connected player.
+        if (GetSavedPlayerCount() == GetLinkPlayerCount_2() && ++task->data[12] > (GetLinkPlayerCount_2() * 30))
         {
-            sub_800A620();
+            CheckShouldAdvanceLinkState();
             task->data[0] = 1;
         }
         break;
     case 301:
-        if (sub_800AA48() == GetLinkPlayerCount_2())
+        if (GetSavedPlayerCount() == GetLinkPlayerCount_2())
             task->data[0] = 1;
         break;
     case 400: // wait 20 frames
@@ -470,6 +473,7 @@ static void sub_80E7324(u8 taskId)
                 StorePtrInTaskData(sReceivedRecords, (u16 *)&gTasks[subTaskId].data[5]);
                 sRecordStructSize = sizeof(struct PlayerRecordsEmerald);
             }
+            // Note: This task is destroyed by Task_CopyReceiveBuffer when it's done.
         }
         break;
     case 5: // wait 60 frames
@@ -647,7 +651,7 @@ static void ReceiveOldManData(OldMan *oldMan, size_t recordSize, u8 which)
 static void ReceiveBattleTowerData(void *battleTowerRecord, size_t recordSize, u8 which)
 {
     struct EmeraldBattleTowerRecord *dest;
-    struct UnknownPokemonStruct *btPokemon;
+    struct BattleTowerPokemon *btPokemon;
     u32 mixIndices[4];
     s32 i;
 
@@ -741,711 +745,184 @@ static u8 sub_80E7B54(void)
     return gUnknown_03001160;
 }
 
-#ifdef NONMATCHING
 static void ReceiveDaycareMailData(struct RecordMixingDayCareMail *src, size_t recordSize, u8 which, TVShow *shows)
 {
-    // r9 = which
-    u16 i;
-    u16 j;
+    u16 i, j;
     u8 linkPlayerCount;
-    u16 language;
-    u16 otNameLanguage;
-    u16 nicknameLanguage;
-    u32 version;
-    u8 dcMail1;
-    u8 dcMail2;
-    u8 r1_80e7b54;
-    struct DayCareMail *recordMixingMail;
+    u8 tableId;
     struct RecordMixingDayCareMail *_src;
+    u8 which0, which1;
+    void *ptr;
     u8 sp04[4];
     u8 sp08[4];
-    struct RecordMixingDayCareMail *sp0c[4]; // -> sp+48
-    u8 sp1c[4][2]; // [][0] -> sp+4c, [][1] -> sp+50
+    struct RecordMixingDayCareMail *sp0c[4];
+    u8 sp1c[4][2];
     u8 sp24[4][2];
-    // sp+2c = src
-    // sp+30 = recordSize
     u8 sp34;
     u16 oldSeed;
-    bool32 anyRS; // sp+3c
+    bool32 anyRS;
 
     oldSeed = Random2();
     SeedRng2(gLinkPlayers[0].trainerId);
     linkPlayerCount = GetLinkPlayerCount();
-    for (i = 0; i < 4; i ++)
+    for (i = 0; i < 4; i++)
     {
         sp04[i] = 0xFF;
         sp08[i] = 0;
         sp1c[i][0] = 0;
         sp1c[i][1] = 0;
     }
+
     anyRS = Link_AnyPartnersPlayingRubyOrSapphire();
-    for (i = 0; i < GetLinkPlayerCount(); i ++) // r8 = i
+    for (i = 0; i < GetLinkPlayerCount(); i++)
     {
-        // sp+54 = linkPlayerCount << 16
-        // sp+44 = which * recordSize
-        _src = (void *)src + i * recordSize; // r7
-        language = gLinkPlayers[i].language; // r9
-        version = (u8)gLinkPlayers[i].version; // sp+40
-        for (j = 0; j < _src->unk_70; j ++)
+        u32 language, version;
+
+        _src = (void *)src + i * recordSize;
+        language = gLinkPlayers[i].language;
+        version = gLinkPlayers[i].version & 0xFF;
+        for (j = 0; j < _src->numDaycareMons; j ++)
         {
-            // r10 = ~0x10
-            recordMixingMail = &_src->unk_00[j];
-            if (recordMixingMail->mail.itemId != ITEM_NONE)
+            u16 otNameLanguage, nicknameLanguage;
+            struct DayCareMail *recordMixingMail = &_src->mail[j];
+
+            if (!recordMixingMail->message.itemId)
+                continue;
+
+            if (anyRS)
             {
-                if (anyRS)
+                if (StringLength(recordMixingMail->OT_name) <= 5)
                 {
-                    if (StringLength(recordMixingMail->OT_name) <= 5)
-                    {
-                        otNameLanguage = LANGUAGE_JAPANESE;
-                    }
-                    else
-                    {
-                        StripExtCtrlCodes(recordMixingMail->OT_name);
-                        otNameLanguage = language;
-                    }
-                    if (recordMixingMail->monName[0] == EXT_CTRL_CODE_BEGIN && recordMixingMail->monName[1] == EXT_CTRL_CODE_JPN)
-                    {
-                        StripExtCtrlCodes(recordMixingMail->monName);
-                        nicknameLanguage = LANGUAGE_JAPANESE;
-                    }
-                    else
-                    {
-                        nicknameLanguage = language;
-                    }
-                    if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
-                    {
-                        recordMixingMail->language_maybe = otNameLanguage;
-                        recordMixingMail->unknown = nicknameLanguage;
-                    }
+                    otNameLanguage = LANGUAGE_JAPANESE;
                 }
-                else if (language == LANGUAGE_JAPANESE)
+                else
                 {
-                    if (IsStringJapanese(recordMixingMail->OT_name))
-                    {
-                        recordMixingMail->language_maybe = LANGUAGE_JAPANESE;
-                    }
-                    else
-                    {
-                        recordMixingMail->language_maybe = GAME_LANGUAGE;
-                    }
-                    if (IsStringJapanese(recordMixingMail->monName))
-                    {
-                        recordMixingMail->unknown = LANGUAGE_JAPANESE;
-                    }
-                    else
-                    {
-                        recordMixingMail->unknown = GAME_LANGUAGE;
-                    }
+                    StripExtCtrlCodes(recordMixingMail->OT_name);
+                    otNameLanguage = language;
                 }
+
+                if (recordMixingMail->monName[0] == EXT_CTRL_CODE_BEGIN && recordMixingMail->monName[1] == EXT_CTRL_CODE_JPN)
+                {
+                    StripExtCtrlCodes(recordMixingMail->monName);
+                    nicknameLanguage = LANGUAGE_JAPANESE;
+                }
+                else
+                {
+                    nicknameLanguage = language;
+                }
+
+                if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
+                {
+                    recordMixingMail->gameLanguage = otNameLanguage;
+                    recordMixingMail->monLanguage = nicknameLanguage;
+                }
+            }
+            else if (language == LANGUAGE_JAPANESE)
+            {
+                if (IsStringJapanese(recordMixingMail->OT_name))
+                    recordMixingMail->gameLanguage = LANGUAGE_JAPANESE;
+                else
+                    recordMixingMail->gameLanguage = GAME_LANGUAGE;
+
+                if (IsStringJapanese(recordMixingMail->monName))
+                    recordMixingMail->monLanguage = LANGUAGE_JAPANESE;
+                else
+                    recordMixingMail->monLanguage = GAME_LANGUAGE;
             }
         }
     }
+
     sp34 = 0;
-    for (i = 0; i < linkPlayerCount; i ++)
+    for (i = 0; i < linkPlayerCount; i++)
     {
-        _src = (void *)src + i * recordSize; // r7
-        if (_src->unk_70 != 0)
+        _src = (void *)src + i * recordSize;
+        if (_src->numDaycareMons == 0)
+            continue;
+
+        for (j = 0; j < _src->numDaycareMons; j ++)
         {
-            for (j = 0; j < _src->unk_70; j ++)
-            {
-                if (_src->unk_74[j] == 0)
-                {
-                    sp1c[i][j] = 1;
-                }
-            }
+            if (!_src->holdsItem[j])
+                sp1c[i][j] = 1;
         }
     }
-    i = 0;
-    for (j = 0; j < linkPlayerCount; j ++)
+
+    j = 0;
+    for (i = 0; i < linkPlayerCount; i++)
     {
-        _src = (void *)src + j * recordSize;
-        if (sp1c[j][0] == TRUE || sp1c[j][1] == TRUE)
+        _src = (void *)src + i * recordSize;
+        if (sp1c[i][0] == TRUE || sp1c[i][1] == TRUE)
+            sp34++;
+
+        if (sp1c[i][0] == TRUE && sp1c[i][1] == FALSE)
         {
-            sp34 ++;
+            sp24[j][0] = i;
+            sp24[j][1] = 0;
+            j++;
         }
-        if (sp1c[j][0] == TRUE && sp1c[j][1] == FALSE)
+        else if (sp1c[i][0] == FALSE && sp1c[i][1] == TRUE)
         {
-            sp24[i][0] = j;
-            sp24[i][1] = 0;
-            i ++;
+            sp24[j][0] = i;
+            sp24[j][1] = 1;
+            j++;
         }
-        else if (sp1c[j][0] == FALSE && sp1c[j][1] == TRUE)
+        else if (sp1c[i][0] == TRUE && sp1c[i][1] == TRUE)
         {
-            sp24[i][0] = j;
-            sp24[i][1] = 0;
-            i ++;
-        }
-        else if (sp1c[j][0] == TRUE && sp1c[j][1] == TRUE)
-        {
-            sp24[i][0] = j;
-            dcMail1 = sub_80E7A9C(&_src->unk_00[0]);
-            dcMail2 = sub_80E7A9C(&_src->unk_00[1]);
-            if (!dcMail1 && dcMail2)
+            u32 var1, var2;
+
+            sp24[j][0] = i;
+            var1 = sub_80E7A9C(&_src->mail[0]);
+            var2 = sub_80E7A9C(&_src->mail[1]);
+            if (!var1 && var2)
             {
-                sp24[i][1] = 1;
+                register u8 one asm("r0") = 1; // boo, a fakematch
+                sp24[j][1] = one;
             }
-            else if ((dcMail1 && dcMail2) || (!dcMail1 && !dcMail2))
+            else if ((var1 && var2) || (!var1 && !var2))
             {
-                sp24[i][1] = Random2() % 2;
+                 sp24[j][1] = Random2() % 2;
             }
-            else
+            else if (var1 && !var2)
             {
-                sp24[i][1] = 0;
+                sp24[j][1] = 0;
             }
-            i ++;
+            j++;
         }
     }
-    for (i = 0; i < 4; i ++)
+
+    for (i = 0; i < 4; i++)
     {
         _src = &src[which * recordSize];
         sp0c[i] = _src;
     }
-    r1_80e7b54 = sub_80E7B54() % 3;
+
+    tableId = sub_80E7B54() % 3;
     switch (sp34)
     {
-        case 2:
-            sub_80E7AA4(src, recordSize, sp24, 0, 1);
-            break;
-        case 3:
-            sub_80E7AA4(src, recordSize, sp24, gUnknown_0858CFB8[r1_80e7b54][0], gUnknown_0858CFB8[r1_80e7b54][1]);
-            break;
-        case 4:
-            sub_80E7AA4(src, recordSize, sp24, gUnknown_0858CFBE[r1_80e7b54][0], gUnknown_0858CFBE[r1_80e7b54][1]);
-            sub_80E7AA4(src, recordSize, sp24, gUnknown_0858CFBE[r1_80e7b54][2], gUnknown_0858CFBE[r1_80e7b54][3]);
-            break;
+    case 2:
+        sub_80E7AA4(src, recordSize, sp24, 0, 1);
+        break;
+    case 3:
+        which0 = gUnknown_0858CFB8[tableId][0];
+        which1 = gUnknown_0858CFB8[tableId][1];
+        sub_80E7AA4(src, recordSize, sp24, which0, which1);
+        break;
+    case 4:
+        ptr = sp24;
+        which0 = gUnknown_0858CFBE[tableId][0];
+        which1 = gUnknown_0858CFBE[tableId][1];
+        sub_80E7AA4(src, recordSize, ptr, which0, which1);
+        which0 = gUnknown_0858CFBE[tableId][2];
+        which1 = gUnknown_0858CFBE[tableId][3];
+        sub_80E7AA4(src, recordSize, ptr, which0, which1);
+        break;
     }
+
     _src = (void *)src + which * recordSize;
-    memcpy(&gSaveBlock1Ptr->daycare.mons[0].misc.mail, &_src->unk_00[0], sizeof(struct DayCareMail));
-    memcpy(&gSaveBlock1Ptr->daycare.mons[1].misc.mail, &_src->unk_00[1], sizeof(struct DayCareMail));
+    memcpy(&gSaveBlock1Ptr->daycare.mons[0].mail, &_src->mail[0], sizeof(struct DayCareMail));
+    memcpy(&gSaveBlock1Ptr->daycare.mons[1].mail, &_src->mail[1], sizeof(struct DayCareMail));
     SeedRng(oldSeed);
 }
-#else
-NAKED
-static void ReceiveDaycareMailData(struct RecordMixingDayCareMail *src, size_t recordSize, u8 which, TVShow *shows)
-{
-    asm_unified("\tpush {r4-r7,lr}\n"
-                    "\tmov r7, r10\n"
-                    "\tmov r6, r9\n"
-                    "\tmov r5, r8\n"
-                    "\tpush {r5-r7}\n"
-                    "\tsub sp, 0x58\n"
-                    "\tstr r0, [sp, 0x2C]\n"
-                    "\tstr r1, [sp, 0x30]\n"
-                    "\tlsls r2, 24\n"
-                    "\tlsrs r2, 24\n"
-                    "\tmov r9, r2\n"
-                    "\tbl Random2\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r0, 16\n"
-                    "\tstr r0, [sp, 0x38]\n"
-                    "\tldr r0, =gLinkPlayers\n"
-                    "\tldrh r0, [r0, 0x4]\n"
-                    "\tbl SeedRng2\n"
-                    "\tbl GetLinkPlayerCount\n"
-                    "\tlsls r0, 24\n"
-                    "\tlsrs r4, r0, 24\n"
-                    "\tmovs r0, 0\n"
-                    "\tmov r8, r0\n"
-                    "\tmov r1, sp\n"
-                    "\tadds r1, 0x1C\n"
-                    "\tstr r1, [sp, 0x4C]\n"
-                    "\tmov r2, sp\n"
-                    "\tadds r2, 0x1D\n"
-                    "\tstr r2, [sp, 0x50]\n"
-                    "\tmov r3, sp\n"
-                    "\tadds r3, 0xC\n"
-                    "\tstr r3, [sp, 0x48]\n"
-                    "\tmovs r7, 0xFF\n"
-                    "\tadd r3, sp, 0x8\n"
-                    "\tmovs r2, 0\n"
-                    "\tadds r6, r1, 0\n"
-                    "\tldr r5, [sp, 0x50]\n"
-                    "_080E7BB0:\n"
-                    "\tmov r1, sp\n"
-                    "\tadd r1, r8\n"
-                    "\tadds r1, 0x4\n"
-                    "\tldrb r0, [r1]\n"
-                    "\torrs r0, r7\n"
-                    "\tstrb r0, [r1]\n"
-                    "\tmov r1, r8\n"
-                    "\tadds r0, r3, r1\n"
-                    "\tstrb r2, [r0]\n"
-                    "\tlsls r1, 1\n"
-                    "\tadds r0, r6, r1\n"
-                    "\tstrb r2, [r0]\n"
-                    "\tadds r1, r5, r1\n"
-                    "\tstrb r2, [r1]\n"
-                    "\tmov r0, r8\n"
-                    "\tadds r0, 0x1\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r0, 16\n"
-                    "\tmov r8, r0\n"
-                    "\tcmp r0, 0x3\n"
-                    "\tbls _080E7BB0\n"
-                    "\tbl Link_AnyPartnersPlayingRubyOrSapphire\n"
-                    "\tstr r0, [sp, 0x3C]\n"
-                    "\tmovs r2, 0\n"
-                    "\tmov r8, r2\n"
-                    "\tlsls r4, 16\n"
-                    "\tstr r4, [sp, 0x54]\n"
-                    "\tldr r0, [sp, 0x30]\n"
-                    "\tmov r3, r9\n"
-                    "\tmuls r3, r0\n"
-                    "\tstr r3, [sp, 0x44]\n"
-                    "\tb _080E7D04\n"
-                    "\t.pool\n"
-                    "_080E7BF8:\n"
-                    "\tldr r1, [sp, 0x30]\n"
-                    "\tmov r0, r8\n"
-                    "\tmuls r0, r1\n"
-                    "\tldr r2, [sp, 0x2C]\n"
-                    "\tadds r7, r2, r0\n"
-                    "\tldr r1, =gLinkPlayers\n"
-                    "\tmov r3, r8\n"
-                    "\tlsls r0, r3, 3\n"
-                    "\tsubs r0, r3\n"
-                    "\tlsls r0, 2\n"
-                    "\tadds r0, r1\n"
-                    "\tldrh r1, [r0, 0x1A]\n"
-                    "\tmov r9, r1\n"
-                    "\tldrb r0, [r0]\n"
-                    "\tstr r0, [sp, 0x40]\n"
-                    "\tmovs r6, 0\n"
-                    "\tldr r0, [r7, 0x70]\n"
-                    "\tcmp r6, r0\n"
-                    "\tbcs _080E7CFA\n"
-                    "\tmovs r2, 0x10\n"
-                    "\tnegs r2, r2\n"
-                    "\tmov r10, r2\n"
-                    "_080E7C24:\n"
-                    "\tlsls r0, r6, 3\n"
-                    "\tsubs r0, r6\n"
-                    "\tlsls r0, 3\n"
-                    "\tadds r5, r7, r0\n"
-                    "\tldrh r0, [r5, 0x20]\n"
-                    "\tcmp r0, 0\n"
-                    "\tbeq _080E7CEE\n"
-                    "\tldr r3, [sp, 0x3C]\n"
-                    "\tcmp r3, 0\n"
-                    "\tbeq _080E7C9A\n"
-                    "\tadds r4, r5, 0\n"
-                    "\tadds r4, 0x24\n"
-                    "\tadds r0, r4, 0\n"
-                    "\tbl StringLength\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r0, 16\n"
-                    "\tcmp r0, 0x5\n"
-                    "\tbhi _080E7C54\n"
-                    "\tmovs r4, 0x1\n"
-                    "\tb _080E7C5C\n"
-                    "\t.pool\n"
-                    "_080E7C54:\n"
-                    "\tadds r0, r4, 0\n"
-                    "\tbl StripExtCtrlCodes\n"
-                    "\tmov r4, r9\n"
-                    "_080E7C5C:\n"
-                    "\tldrh r1, [r5, 0x2C]\n"
-                    "\tldr r0, =0x000015fc\n"
-                    "\tcmp r1, r0\n"
-                    "\tbne _080E7C74\n"
-                    "\tadds r0, r5, 0\n"
-                    "\tadds r0, 0x2C\n"
-                    "\tbl StripExtCtrlCodes\n"
-                    "\tmovs r1, 0x1\n"
-                    "\tb _080E7C76\n"
-                    "\t.pool\n"
-                    "_080E7C74:\n"
-                    "\tmov r1, r9\n"
-                    "_080E7C76:\n"
-                    "\tldr r0, [sp, 0x40]\n"
-                    "\tsubs r0, 0x1\n"
-                    "\tcmp r0, 0x1\n"
-                    "\tbhi _080E7CEE\n"
-                    "\tadds r2, r5, 0\n"
-                    "\tadds r2, 0x37\n"
-                    "\tmovs r0, 0xF\n"
-                    "\tands r4, r0\n"
-                    "\tldrb r0, [r2]\n"
-                    "\tmov r3, r10\n"
-                    "\tands r0, r3\n"
-                    "\torrs r0, r4\n"
-                    "\tlsls r1, 4\n"
-                    "\tmovs r3, 0xF\n"
-                    "\tands r0, r3\n"
-                    "\torrs r0, r1\n"
-                    "\tstrb r0, [r2]\n"
-                    "\tb _080E7CEE\n"
-                    "_080E7C9A:\n"
-                    "\tmov r0, r9\n"
-                    "\tcmp r0, 0x1\n"
-                    "\tbne _080E7CEE\n"
-                    "\tadds r0, r5, 0\n"
-                    "\tadds r0, 0x24\n"
-                    "\tbl IsStringJapanese\n"
-                    "\tcmp r0, 0\n"
-                    "\tbeq _080E7CBA\n"
-                    "\tadds r0, r5, 0\n"
-                    "\tadds r0, 0x37\n"
-                    "\tldrb r1, [r0]\n"
-                    "\tmov r2, r10\n"
-                    "\tands r1, r2\n"
-                    "\tmovs r2, 0x1\n"
-                    "\tb _080E7CC6\n"
-                    "_080E7CBA:\n"
-                    "\tadds r0, r5, 0\n"
-                    "\tadds r0, 0x37\n"
-                    "\tldrb r1, [r0]\n"
-                    "\tmov r3, r10\n"
-                    "\tands r1, r3\n"
-                    "\tmovs r2, 0x2\n"
-                    "_080E7CC6:\n"
-                    "\torrs r1, r2\n"
-                    "\tstrb r1, [r0]\n"
-                    "\tadds r4, r0, 0\n"
-                    "\tadds r0, r5, 0\n"
-                    "\tadds r0, 0x2C\n"
-                    "\tbl IsStringJapanese\n"
-                    "\tcmp r0, 0\n"
-                    "\tbeq _080E7CE2\n"
-                    "\tldrb r0, [r4]\n"
-                    "\tmovs r1, 0xF\n"
-                    "\tands r1, r0\n"
-                    "\tmovs r0, 0x10\n"
-                    "\tb _080E7CEA\n"
-                    "_080E7CE2:\n"
-                    "\tldrb r0, [r4]\n"
-                    "\tmovs r1, 0xF\n"
-                    "\tands r1, r0\n"
-                    "\tmovs r0, 0x20\n"
-                    "_080E7CEA:\n"
-                    "\torrs r1, r0\n"
-                    "\tstrb r1, [r4]\n"
-                    "_080E7CEE:\n"
-                    "\tadds r0, r6, 0x1\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r6, r0, 16\n"
-                    "\tldr r0, [r7, 0x70]\n"
-                    "\tcmp r6, r0\n"
-                    "\tbcc _080E7C24\n"
-                    "_080E7CFA:\n"
-                    "\tmov r0, r8\n"
-                    "\tadds r0, 0x1\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r0, 16\n"
-                    "\tmov r8, r0\n"
-                    "_080E7D04:\n"
-                    "\tbl GetLinkPlayerCount\n"
-                    "\tlsls r0, 24\n"
-                    "\tlsrs r0, 24\n"
-                    "\tcmp r8, r0\n"
-                    "\tbcs _080E7D12\n"
-                    "\tb _080E7BF8\n"
-                    "_080E7D12:\n"
-                    "\tmovs r0, 0\n"
-                    "\tstr r0, [sp, 0x34]\n"
-                    "\tmov r8, r0\n"
-                    "\tldr r1, [sp, 0x54]\n"
-                    "\tlsrs r0, r1, 16\n"
-                    "\tldr r2, [sp, 0x34]\n"
-                    "\tcmp r2, r0\n"
-                    "\tbcs _080E7D70\n"
-                    "\tadds r5, r0, 0\n"
-                    "_080E7D24:\n"
-                    "\tldr r3, [sp, 0x30]\n"
-                    "\tmov r0, r8\n"
-                    "\tmuls r0, r3\n"
-                    "\tldr r1, [sp, 0x2C]\n"
-                    "\tadds r7, r1, r0\n"
-                    "\tldr r0, [r7, 0x70]\n"
-                    "\tcmp r0, 0\n"
-                    "\tbeq _080E7D62\n"
-                    "\tmovs r6, 0\n"
-                    "\tcmp r6, r0\n"
-                    "\tbcs _080E7D62\n"
-                    "\tadds r3, r7, 0\n"
-                    "\tadds r3, 0x74\n"
-                    "\tldr r2, [sp, 0x4C]\n"
-                    "\tmov r0, r8\n"
-                    "\tlsls r1, r0, 1\n"
-                    "\tmovs r4, 0x1\n"
-                    "_080E7D46:\n"
-                    "\tlsls r0, r6, 1\n"
-                    "\tadds r0, r3, r0\n"
-                    "\tldrh r0, [r0]\n"
-                    "\tcmp r0, 0\n"
-                    "\tbne _080E7D56\n"
-                    "\tadds r0, r6, r1\n"
-                    "\tadds r0, r2, r0\n"
-                    "\tstrb r4, [r0]\n"
-                    "_080E7D56:\n"
-                    "\tadds r0, r6, 0x1\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r6, r0, 16\n"
-                    "\tldr r0, [r7, 0x70]\n"
-                    "\tcmp r6, r0\n"
-                    "\tbcc _080E7D46\n"
-                    "_080E7D62:\n"
-                    "\tmov r0, r8\n"
-                    "\tadds r0, 0x1\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r0, 16\n"
-                    "\tmov r8, r0\n"
-                    "\tcmp r8, r5\n"
-                    "\tbcc _080E7D24\n"
-                    "_080E7D70:\n"
-                    "\tmovs r6, 0\n"
-                    "\tmov r8, r6\n"
-                    "\tldr r1, [sp, 0x54]\n"
-                    "\tcmp r1, 0\n"
-                    "\tbeq _080E7E64\n"
-                    "\tadd r2, sp, 0x24\n"
-                    "\tmov r10, r2\n"
-                    "\tmovs r3, 0x25\n"
-                    "\tadd r3, sp\n"
-                    "\tmov r9, r3\n"
-                    "_080E7D84:\n"
-                    "\tldr r1, [sp, 0x30]\n"
-                    "\tmov r0, r8\n"
-                    "\tmuls r0, r1\n"
-                    "\tldr r2, [sp, 0x2C]\n"
-                    "\tadds r7, r2, r0\n"
-                    "\tmov r3, r8\n"
-                    "\tlsls r1, r3, 1\n"
-                    "\tldr r2, [sp, 0x4C]\n"
-                    "\tadds r0, r2, r1\n"
-                    "\tldrb r0, [r0]\n"
-                    "\tcmp r0, 0x1\n"
-                    "\tbeq _080E7DA6\n"
-                    "\tldr r3, [sp, 0x50]\n"
-                    "\tadds r0, r3, r1\n"
-                    "\tldrb r0, [r0]\n"
-                    "\tcmp r0, 0x1\n"
-                    "\tbne _080E7DB0\n"
-                    "_080E7DA6:\n"
-                    "\tldr r0, [sp, 0x34]\n"
-                    "\tadds r0, 0x1\n"
-                    "\tlsls r0, 24\n"
-                    "\tlsrs r0, 24\n"
-                    "\tstr r0, [sp, 0x34]\n"
-                    "_080E7DB0:\n"
-                    "\tldr r2, [sp, 0x4C]\n"
-                    "\tadds r0, r2, r1\n"
-                    "\tldrb r0, [r0]\n"
-                    "\tcmp r0, 0x1\n"
-                    "\tbne _080E7DD4\n"
-                    "\tldr r3, [sp, 0x50]\n"
-                    "\tadds r0, r3, r1\n"
-                    "\tldrb r2, [r0]\n"
-                    "\tcmp r2, 0\n"
-                    "\tbne _080E7DD4\n"
-                    "_080E7DC4:\n"
-                    "\tlsls r1, r6, 1\n"
-                    "\tmov r3, r10\n"
-                    "\tadds r0, r3, r1\n"
-                    "\tmov r3, r8\n"
-                    "\tstrb r3, [r0]\n"
-                    "\tadd r1, r9\n"
-                    "\tstrb r2, [r1]\n"
-                    "\tb _080E7E4E\n"
-                    "_080E7DD4:\n"
-                    "\tldr r2, [sp, 0x4C]\n"
-                    "\tadds r0, r2, r1\n"
-                    "\tldrb r0, [r0]\n"
-                    "\tcmp r0, 0\n"
-                    "\tbne _080E7DE8\n"
-                    "\tldr r3, [sp, 0x50]\n"
-                    "\tadds r0, r3, r1\n"
-                    "\tldrb r2, [r0]\n"
-                    "\tcmp r2, 0x1\n"
-                    "\tbeq _080E7DC4\n"
-                    "_080E7DE8:\n"
-                    "\tldr r2, [sp, 0x4C]\n"
-                    "\tadds r0, r2, r1\n"
-                    "\tldrb r0, [r0]\n"
-                    "\tcmp r0, 0x1\n"
-                    "\tbne _080E7E54\n"
-                    "\tldr r3, [sp, 0x50]\n"
-                    "\tadds r0, r3, r1\n"
-                    "\tldrb r0, [r0]\n"
-                    "\tcmp r0, 0x1\n"
-                    "\tbne _080E7E54\n"
-                    "\tlsls r5, r6, 1\n"
-                    "\tmov r1, r10\n"
-                    "\tadds r0, r1, r5\n"
-                    "\tmov r2, r8\n"
-                    "\tstrb r2, [r0]\n"
-                    "\tadds r0, r7, 0\n"
-                    "\tbl sub_80E7A9C\n"
-                    "\tadds r4, r0, 0\n"
-                    "\tlsls r4, 24\n"
-                    "\tlsrs r4, 24\n"
-                    "\tadds r0, r7, 0\n"
-                    "\tadds r0, 0x38\n"
-                    "\tbl sub_80E7A9C\n"
-                    "\tlsls r0, 24\n"
-                    "\tlsrs r1, r0, 24\n"
-                    "\tcmp r4, 0\n"
-                    "\tbne _080E7E30\n"
-                    "\tcmp r1, 0\n"
-                    "\tbeq _080E7E34\n"
-                    "\tmov r3, r9\n"
-                    "\tadds r1, r3, r5\n"
-                    "\tmovs r0, 0x1\n"
-                    "\tstrb r0, [r1]\n"
-                    "\tb _080E7E4E\n"
-                    "_080E7E30:\n"
-                    "\tcmp r1, 0\n"
-                    "\tbeq _080E7E48\n"
-                    "_080E7E34:\n"
-                    "\tbl Random2\n"
-                    "\tmov r1, r9\n"
-                    "\tadds r2, r1, r5\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r0, 16\n"
-                    "\tmovs r1, 0x1\n"
-                    "\tands r0, r1\n"
-                    "\tstrb r0, [r2]\n"
-                    "\tb _080E7E4E\n"
-                    "_080E7E48:\n"
-                    "\tmov r2, r9\n"
-                    "\tadds r0, r2, r5\n"
-                    "\tstrb r1, [r0]\n"
-                    "_080E7E4E:\n"
-                    "\tadds r0, r6, 0x1\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r6, r0, 16\n"
-                    "_080E7E54:\n"
-                    "\tmov r0, r8\n"
-                    "\tadds r0, 0x1\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r3, r0, 16\n"
-                    "\tmov r8, r3\n"
-                    "\tldr r1, [sp, 0x54]\n"
-                    "\tcmp r0, r1\n"
-                    "\tbcc _080E7D84\n"
-                    "_080E7E64:\n"
-                    "\tmovs r2, 0\n"
-                    "\tmov r8, r2\n"
-                    "\tldr r3, [sp, 0x44]\n"
-                    "\tlsls r0, r3, 4\n"
-                    "\tsubs r0, r3\n"
-                    "\tlsls r0, 3\n"
-                    "\tldr r1, [sp, 0x2C]\n"
-                    "\tadds r7, r1, r0\n"
-                    "\tldr r1, [sp, 0x48]\n"
-                    "_080E7E76:\n"
-                    "\tmov r2, r8\n"
-                    "\tlsls r0, r2, 2\n"
-                    "\tadds r0, r1, r0\n"
-                    "\tstr r7, [r0]\n"
-                    "\tmov r0, r8\n"
-                    "\tadds r0, 0x1\n"
-                    "\tlsls r0, 16\n"
-                    "\tlsrs r0, 16\n"
-                    "\tmov r8, r0\n"
-                    "\tcmp r0, 0x3\n"
-                    "\tbls _080E7E76\n"
-                    "\tbl sub_80E7B54\n"
-                    "\tlsls r0, 24\n"
-                    "\tlsrs r0, 24\n"
-                    "\tmovs r1, 0x3\n"
-                    "\tbl __umodsi3\n"
-                    "\tlsls r0, 24\n"
-                    "\tlsrs r1, r0, 24\n"
-                    "\tldr r3, [sp, 0x34]\n"
-                    "\tcmp r3, 0x3\n"
-                    "\tbeq _080E7EC8\n"
-                    "\tcmp r3, 0x3\n"
-                    "\tbgt _080E7EAE\n"
-                    "\tcmp r3, 0x2\n"
-                    "\tbeq _080E7EB6\n"
-                    "\tb _080E7F1C\n"
-                    "_080E7EAE:\n"
-                    "\tldr r0, [sp, 0x34]\n"
-                    "\tcmp r0, 0x4\n"
-                    "\tbeq _080E7EE8\n"
-                    "\tb _080E7F1C\n"
-                    "_080E7EB6:\n"
-                    "\tadd r2, sp, 0x24\n"
-                    "\tmovs r0, 0x1\n"
-                    "\tstr r0, [sp]\n"
-                    "\tldr r0, [sp, 0x2C]\n"
-                    "\tldr r1, [sp, 0x30]\n"
-                    "\tmovs r3, 0\n"
-                    "\tbl sub_80E7AA4\n"
-                    "\tb _080E7F1C\n"
-                    "_080E7EC8:\n"
-                    "\tldr r0, =gUnknown_0858CFB8\n"
-                    "\tlsls r1, 1\n"
-                    "\tadds r2, r1, r0\n"
-                    "\tldrb r3, [r2]\n"
-                    "\tadds r0, 0x1\n"
-                    "\tadds r1, r0\n"
-                    "\tldrb r0, [r1]\n"
-                    "\tadd r2, sp, 0x24\n"
-                    "\tstr r0, [sp]\n"
-                    "\tldr r0, [sp, 0x2C]\n"
-                    "\tldr r1, [sp, 0x30]\n"
-                    "\tbl sub_80E7AA4\n"
-                    "\tb _080E7F1C\n"
-                    "\t.pool\n"
-                    "_080E7EE8:\n"
-                    "\tadd r6, sp, 0x24\n"
-                    "\tldr r4, =gUnknown_0858CFBE\n"
-                    "\tlsls r5, r1, 2\n"
-                    "\tadds r0, r5, r4\n"
-                    "\tldrb r3, [r0]\n"
-                    "\tadds r0, r4, 0x1\n"
-                    "\tadds r0, r5, r0\n"
-                    "\tldrb r0, [r0]\n"
-                    "\tstr r0, [sp]\n"
-                    "\tldr r0, [sp, 0x2C]\n"
-                    "\tldr r1, [sp, 0x30]\n"
-                    "\tadds r2, r6, 0\n"
-                    "\tbl sub_80E7AA4\n"
-                    "\tadds r0, r4, 0x2\n"
-                    "\tadds r0, r5, r0\n"
-                    "\tldrb r3, [r0]\n"
-                    "\tadds r4, 0x3\n"
-                    "\tadds r5, r4\n"
-                    "\tldrb r0, [r5]\n"
-                    "\tstr r0, [sp]\n"
-                    "\tldr r0, [sp, 0x2C]\n"
-                    "\tldr r1, [sp, 0x30]\n"
-                    "\tadds r2, r6, 0\n"
-                    "\tbl sub_80E7AA4\n"
-                    "_080E7F1C:\n"
-                    "\tldr r1, [sp, 0x2C]\n"
-                    "\tldr r2, [sp, 0x44]\n"
-                    "\tadds r7, r1, r2\n"
-                    "\tldr r4, =gSaveBlock1Ptr\n"
-                    "\tldr r0, [r4]\n"
-                    "\tmovs r3, 0xC2\n"
-                    "\tlsls r3, 6\n"
-                    "\tadds r0, r3\n"
-                    "\tadds r1, r7, 0\n"
-                    "\tmovs r2, 0x38\n"
-                    "\tbl memcpy\n"
-                    "\tldr r0, [r4]\n"
-                    "\tldr r1, =0x0000310c\n"
-                    "\tadds r0, r1\n"
-                    "\tadds r1, r7, 0\n"
-                    "\tadds r1, 0x38\n"
-                    "\tmovs r2, 0x38\n"
-                    "\tbl memcpy\n"
-                    "\tldr r0, [sp, 0x38]\n"
-                    "\tbl SeedRng\n"
-                    "\tadd sp, 0x58\n"
-                    "\tpop {r3-r5}\n"
-                    "\tmov r8, r3\n"
-                    "\tmov r9, r4\n"
-                    "\tmov r10, r5\n"
-                    "\tpop {r4-r7}\n"
-                    "\tpop {r0}\n"
-                    "\tbx r0\n"
-                    "\t.pool");
-}
-#endif // NONMATCHING
+
 
 static void ReceiveGiftItem(u16 *item, u8 which)
 {
@@ -1465,7 +942,7 @@ static void ReceiveGiftItem(u16 *item, u8 which)
     }
 }
 
-static void sub_80E7FF8(u8 taskId)
+static void Task_DoRecordMixing(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
@@ -1480,20 +957,22 @@ static void sub_80E7FF8(u8 taskId)
         else
             task->data[0] = 6;
         break;
+    
+    // Mixing Ruby/Sapphire records.
     case 2:
-        sub_8076D5C();
-        sub_8153430();
+        SetContinueGameWarpStatusToDynamicWarp();
+        FullSaveGame();
         task->data[0] ++;
         break;
     case 3:
-        if (sub_8153474())
+        if (CheckSaveFile())
         {
-            sav2_gender2_inplace_and_xFE();
+            ClearContinueGameWarpStatus2();
             task->data[0] = 4;
             task->data[1] = 0;
         }
         break;
-    case 4:
+    case 4: // Wait 10 frames
         if (++task->data[1] > 10)
         {
             sub_800AC34();
@@ -1501,22 +980,24 @@ static void sub_80E7FF8(u8 taskId)
         }
         break;
     case 5:
-        if (gReceivedRemoteLinkPlayers == 0)
+        if (gReceivedRemoteLinkPlayers == FALSE)
             DestroyTask(taskId);
         break;
+
+    // Mixing Emerald records.
     case 6:
-        if (!sub_801048C(0))
+        if (!sub_801048C(FALSE))
         {
             CreateTask(sub_8153688, 5);
             task->data[0] ++;
         }
         break;
-    case 7:
+    case 7: // wait for sub_8153688 to finish.
         if (!FuncIsActiveTask(sub_8153688))
         {
             if (gWirelessCommType)
             {
-                sub_801048C(1);
+                sub_801048C(TRUE);
                 task->data[0] = 8;
             }
             else
@@ -1530,7 +1011,7 @@ static void sub_80E7FF8(u8 taskId)
         task->data[0] ++;
         break;
     case 9:
-        if (sub_800A520())
+        if (IsLinkTaskFinished())
             DestroyTask(taskId);
         break;
     }
@@ -1614,7 +1095,7 @@ void GetPlayerHallRecords(struct PlayerHallRecords *dst)
         CopyTrainerId(dst->twoPlayers[j].id1, gSaveBlock2Ptr->playerTrainerId);
         CopyTrainerId(dst->twoPlayers[j].id2, gSaveBlock2Ptr->frontier.field_EF1[j]);
         StringCopy(dst->twoPlayers[j].name1, gSaveBlock2Ptr->playerName);
-        StringCopy(dst->twoPlayers[j].name2, gSaveBlock2Ptr->frontier.field_EE1[j]);
+        StringCopy(dst->twoPlayers[j].name2, gSaveBlock2Ptr->frontier.opponentName[j]);
     }
 
     for (i = 0; i < 2; i++)
@@ -1866,7 +1347,7 @@ static void SanitizeEmeraldBattleTowerRecord(struct EmeraldBattleTowerRecord *ds
 
     for (i = 0; i < 4; i++)
     {
-        struct UnknownPokemonStruct *towerMon = &dst->party[i];
+        struct BattleTowerPokemon *towerMon = &dst->party[i];
         if (towerMon->species != 0)
             StripExtCtrlCodes(towerMon->nickname);
     }

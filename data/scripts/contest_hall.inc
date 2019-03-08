@@ -1,12 +1,10 @@
 LilycoveCity_ContestLobby_EventScript_279CC5:: @ 8279CC5
 	lock
 	faceplayer
-	compare VAR_0x408A, 0
-	goto_if 5, LilycoveCity_ContestLobby_EventScript_279D13
-	checkflag FLAG_0x05F
-	call_if 1, LilycoveCity_ContestLobby_EventScript_279CEA
-	checkflag FLAG_0x05F
-	call_if 0, LilycoveCity_ContestLobby_EventScript_279CF3
+	compare VAR_CONTEST_PRIZE_PICKUP, 0
+	goto_if_ne LilycoveCity_ContestLobby_EventScript_279D13
+	call_if_set FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_279CEA
+	call_if_unset FLAG_RECEIVED_POKEBLOCK_CASE, LilycoveCity_ContestLobby_EventScript_279CF3
 	goto LilycoveCity_ContestLobby_EventScript_279D5A
 	end
 
@@ -17,27 +15,27 @@ LilycoveCity_ContestLobby_EventScript_279CEA:: @ 8279CEA
 LilycoveCity_ContestLobby_EventScript_279CF3:: @ 8279CF3
 	msgbox LilycoveCity_ContestLobby_Text_27ADA7, MSGBOX_DEFAULT
 	giveitem_std ITEM_POKEBLOCK_CASE
-	setflag FLAG_0x05F
+	setflag FLAG_RECEIVED_POKEBLOCK_CASE
 	msgbox LilycoveCity_ContestLobby_Text_27AE47, MSGBOX_DEFAULT
 	return
 
 LilycoveCity_ContestLobby_EventScript_279D13:: @ 8279D13
 	msgbox LilycoveCity_ContestLobby_Text_27B67B, MSGBOX_DEFAULT
-	switch VAR_0x408A
+	switch VAR_CONTEST_PRIZE_PICKUP
 	case 4, LilycoveCity_ContestLobby_EventScript_279D2C
 	end
 
 LilycoveCity_ContestLobby_EventScript_279D2C:: @ 8279D2C
 	giveitem_std ITEM_LUXURY_BALL
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_ContestLobby_EventScript_279D4B
-	setvar VAR_0x408A, 0
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_279D4B
+	setvar VAR_CONTEST_PRIZE_PICKUP, 0
 	closemessage
 	release
 	end
 
 LilycoveCity_ContestLobby_EventScript_279D4B:: @ 8279D4B
-	call LilycoveCity_ContestLobby_EventScript_27205E
+	call Common_EventScript_BagIsFull
 	msgbox LilycoveCity_ContestLobby_Text_27B6E7, MSGBOX_DEFAULT
 	release
 	end
@@ -89,18 +87,18 @@ LilycoveCity_ContestLobby_EventScript_279E13:: @ 8279E13
 	msgbox LilycoveCity_ContestLobby_Text_27B44A, MSGBOX_DEFAULT
 	choosecontestmon
 	compare VAR_0x8004, 255
-	goto_eq LilycoveCity_ContestLobby_EventScript_279E09
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_279E09
 	special sub_80F7F30
 	compare VAR_RESULT, 0
-	goto_eq LilycoveCity_ContestLobby_EventScript_279F12
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_279F12
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_279F87
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_279F87
 	compare VAR_RESULT, 2
-	goto_eq LilycoveCity_ContestLobby_EventScript_279F45
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_279F45
 	compare VAR_RESULT, 3
-	goto_eq LilycoveCity_ContestLobby_EventScript_279F69
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_279F69
 	compare VAR_RESULT, 4
-	goto_eq LilycoveCity_ContestLobby_EventScript_279F78
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_279F78
 	end
 
 LilycoveCity_ContestLobby_EventScript_279E62:: @ 8279E62
@@ -183,7 +181,7 @@ LilycoveCity_ContestLobby_EventScript_279F87:: @ 8279F87
 	msgbox LilycoveCity_ContestLobby_Text_27B5E2, MSGBOX_DEFAULT
 	closemessage
 	releaseall
-	setvar VAR_0x4086, 1
+	setvar VAR_LINK_CONTEST_ROOM_STATE, 1
 	return
 
 LinkContestRoom1_EventScript_279F97:: @ 8279F97
@@ -206,7 +204,7 @@ LinkContestRoom1_EventScript_279F97:: @ 8279F97
 	call LinkContestRoom1_EventScript_27A9D4
 	call LinkContestRoom1_EventScript_27AA1B
 	call LinkContestRoom1_EventScript_27AB36
-	setvar VAR_0x4086, 2
+	setvar VAR_LINK_CONTEST_ROOM_STATE, 2
 	return
 
 LinkContestRoom1_EventScript_279FF2:: @ 8279FF2
@@ -273,8 +271,8 @@ LinkContestRoom1_EventScript_27A097:: @ 827A097
 	return
 
 LinkContestRoom1_EventScript_27A0B1:: @ 827A0B1
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A0C7
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A0C7
 	lockall
 	msgbox LinkContestRoom1_Text_27B711, MSGBOX_DEFAULT
 	releaseall
@@ -283,7 +281,7 @@ LinkContestRoom1_EventScript_27A0B1:: @ 827A0B1
 LinkContestRoom1_EventScript_27A0C7:: @ 827A0C7
 	specialvar VAR_RESULT, sub_80F9160
 	compare VAR_RESULT, 1
-	goto_eq LinkContestRoom1_EventScript_27A0DE
+	goto_if_eq LinkContestRoom1_EventScript_27A0DE
 	messageautoscroll LinkContestRoom1_Text_27B78F
 	waitmessage
 	return
@@ -307,7 +305,7 @@ LinkContestRoom1_EventScript_27A0F5:: @ 827A0F5
 	call LinkContestRoom1_EventScript_27A133
 	addvar VAR_0x8006, 1
 	compare VAR_0x8006, 4
-	goto_if 5, LinkContestRoom1_EventScript_27A0F5
+	goto_if_ne LinkContestRoom1_EventScript_27A0F5
 	call LinkContestRoom1_EventScript_27A230
 	setvar VAR_TEMP_1, 6
 	return
@@ -315,7 +313,7 @@ LinkContestRoom1_EventScript_27A0F5:: @ 827A0F5
 LinkContestRoom1_EventScript_27A133:: @ 827A133
 	specialvar VAR_RESULT, sub_80F9160
 	compare VAR_RESULT, 1
-	goto_eq LinkContestRoom1_EventScript_27A144
+	goto_if_eq LinkContestRoom1_EventScript_27A144
 	return
 
 LinkContestRoom1_EventScript_27A144:: @ 827A144
@@ -325,13 +323,13 @@ LinkContestRoom1_EventScript_27A144:: @ 827A144
 
 LinkContestRoom1_EventScript_27A149:: @ 827A149
 	compare VAR_0x8006, 0
-	goto_eq LinkContestRoom1_EventScript_27A176
+	goto_if_eq LinkContestRoom1_EventScript_27A176
 	compare VAR_0x8006, 1
-	goto_eq LinkContestRoom1_EventScript_27A18D
+	goto_if_eq LinkContestRoom1_EventScript_27A18D
 	compare VAR_0x8006, 2
-	goto_eq LinkContestRoom1_EventScript_27A1A4
+	goto_if_eq LinkContestRoom1_EventScript_27A1A4
 	compare VAR_0x8006, 3
-	goto_eq LinkContestRoom1_EventScript_27A1BB
+	goto_if_eq LinkContestRoom1_EventScript_27A1BB
 	return
 
 LinkContestRoom1_EventScript_27A176:: @ 827A176
@@ -393,8 +391,8 @@ LinkContestRoom1_EventScript_27A1D2:: @ 827A1D2
 	return
 
 LinkContestRoom1_EventScript_27A217:: @ 827A217
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A229
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A229
 	message LinkContestRoom1_Text_27B815
 	waitmessage
 	return
@@ -421,15 +419,15 @@ LinkContestRoom1_EventScript_27A230:: @ 827A230
 	return
 
 LinkContestRoom1_EventScript_27A26C:: @ 827A26C
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A280
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A280
 	msgbox LinkContestRoom1_Text_27B830, MSGBOX_DEFAULT
 	return
 
 LinkContestRoom1_EventScript_27A280:: @ 827A280
 	specialvar VAR_RESULT, sub_80F9160
 	compare VAR_RESULT, 1
-	goto_eq LinkContestRoom1_EventScript_27A297
+	goto_if_eq LinkContestRoom1_EventScript_27A297
 	messageautoscroll LinkContestRoom1_Text_27B830
 	waitmessage
 	return
@@ -447,8 +445,8 @@ LinkContestRoom1_EventScript_27A297:: @ 827A297
 	return
 
 LinkContestRoom1_EventScript_27A2B9:: @ 827A2B9
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A2CA
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A2CA
 	message LinkContestRoom1_Text_27B8F2
 	return
 
@@ -485,16 +483,16 @@ LinkContestRoom1_EventScript_27A2D5:: @ 827A2D5
 
 LinkContestRoom1_EventScript_27A34F:: @ 827A34F
 	special sub_80F82FC
-	compare VAR_0x4088, 1
-	call_if 1, LinkContestRoom1_EventScript_27A454
-	compare VAR_0x4088, 2
-	call_if 1, LinkContestRoom1_EventScript_27A4B2
-	compare VAR_0x4088, 3
-	call_if 1, LinkContestRoom1_EventScript_27A510
-	compare VAR_0x4088, 4
-	call_if 1, LinkContestRoom1_EventScript_27A56E
-	compare VAR_0x4088, 5
-	call_if 1, LinkContestRoom1_EventScript_27A5CC
+	compare VAR_CONTEST_LOCATION, 1
+	call_if_eq LinkContestRoom1_EventScript_27A454
+	compare VAR_CONTEST_LOCATION, 2
+	call_if_eq LinkContestRoom1_EventScript_27A4B2
+	compare VAR_CONTEST_LOCATION, 3
+	call_if_eq LinkContestRoom1_EventScript_27A510
+	compare VAR_CONTEST_LOCATION, 4
+	call_if_eq LinkContestRoom1_EventScript_27A56E
+	compare VAR_CONTEST_LOCATION, 5
+	call_if_eq LinkContestRoom1_EventScript_27A5CC
 	setvar VAR_TEMP_1, 9
 	setvar VAR_TEMP_2, 9
 	setvar VAR_TEMP_3, 9
@@ -504,7 +502,7 @@ LinkContestRoom1_EventScript_27A34F:: @ 827A34F
 	setvar VAR_TEMP_7, 9
 	setvar VAR_TEMP_8, 9
 	compare VAR_TEMP_0, 0
-	call_if 2, LinkContestRoom1_EventScript_27A3E5
+	call_if_gt LinkContestRoom1_EventScript_27A3E5
 	setvar VAR_TEMP_1, 0
 	setvar VAR_TEMP_2, 0
 	setvar VAR_TEMP_3, 0
@@ -519,123 +517,123 @@ LinkContestRoom1_EventScript_27A3E5:: @ 827A3E5
 	setvar VAR_RESULT, 8
 	special ScriptRandom
 	compare VAR_RESULT, 0
-	call_if 1, LinkContestRoom1_EventScript_27A65A
+	call_if_eq LinkContestRoom1_EventScript_27A65A
 	compare VAR_RESULT, 1
-	call_if 1, LinkContestRoom1_EventScript_27A67E
+	call_if_eq LinkContestRoom1_EventScript_27A67E
 	compare VAR_RESULT, 2
-	call_if 1, LinkContestRoom1_EventScript_27A6A2
+	call_if_eq LinkContestRoom1_EventScript_27A6A2
 	compare VAR_RESULT, 3
-	call_if 1, LinkContestRoom1_EventScript_27A6C6
+	call_if_eq LinkContestRoom1_EventScript_27A6C6
 	compare VAR_RESULT, 4
-	call_if 1, LinkContestRoom1_EventScript_27A6EA
+	call_if_eq LinkContestRoom1_EventScript_27A6EA
 	compare VAR_RESULT, 5
-	call_if 1, LinkContestRoom1_EventScript_27A70E
+	call_if_eq LinkContestRoom1_EventScript_27A70E
 	compare VAR_RESULT, 6
-	call_if 1, LinkContestRoom1_EventScript_27A732
+	call_if_eq LinkContestRoom1_EventScript_27A732
 	compare VAR_RESULT, 7
-	call_if 1, LinkContestRoom1_EventScript_27A756
+	call_if_eq LinkContestRoom1_EventScript_27A756
 	compare VAR_TEMP_0, 0
-	goto_if 2, LinkContestRoom1_EventScript_27A3E5
+	goto_if_gt LinkContestRoom1_EventScript_27A3E5
 	waitmovement 0
 	return
 
 LinkContestRoom1_EventScript_27A454:: @ 827A454
 	compare VAR_0x8004, 80
-	goto_if 2, LinkContestRoom1_EventScript_27A654
+	goto_if_gt LinkContestRoom1_EventScript_27A654
 	compare VAR_0x8004, 70
-	goto_if 2, LinkContestRoom1_EventScript_27A64E
+	goto_if_gt LinkContestRoom1_EventScript_27A64E
 	compare VAR_0x8004, 60
-	goto_if 2, LinkContestRoom1_EventScript_27A648
+	goto_if_gt LinkContestRoom1_EventScript_27A648
 	compare VAR_0x8004, 50
-	goto_if 2, LinkContestRoom1_EventScript_27A642
+	goto_if_gt LinkContestRoom1_EventScript_27A642
 	compare VAR_0x8004, 40
-	goto_if 2, LinkContestRoom1_EventScript_27A63C
+	goto_if_gt LinkContestRoom1_EventScript_27A63C
 	compare VAR_0x8004, 30
-	goto_if 2, LinkContestRoom1_EventScript_27A636
+	goto_if_gt LinkContestRoom1_EventScript_27A636
 	compare VAR_0x8004, 20
-	goto_if 2, LinkContestRoom1_EventScript_27A630
+	goto_if_gt LinkContestRoom1_EventScript_27A630
 	compare VAR_0x8004, 10
-	goto_if 2, LinkContestRoom1_EventScript_27A62A
+	goto_if_gt LinkContestRoom1_EventScript_27A62A
 	setvar VAR_TEMP_0, 0
 	return
 
 LinkContestRoom1_EventScript_27A4B2:: @ 827A4B2
 	compare VAR_0x8004, 230
-	goto_if 2, LinkContestRoom1_EventScript_27A654
+	goto_if_gt LinkContestRoom1_EventScript_27A654
 	compare VAR_0x8004, 210
-	goto_if 2, LinkContestRoom1_EventScript_27A64E
+	goto_if_gt LinkContestRoom1_EventScript_27A64E
 	compare VAR_0x8004, 190
-	goto_if 2, LinkContestRoom1_EventScript_27A648
+	goto_if_gt LinkContestRoom1_EventScript_27A648
 	compare VAR_0x8004, 170
-	goto_if 2, LinkContestRoom1_EventScript_27A642
+	goto_if_gt LinkContestRoom1_EventScript_27A642
 	compare VAR_0x8004, 150
-	goto_if 2, LinkContestRoom1_EventScript_27A63C
+	goto_if_gt LinkContestRoom1_EventScript_27A63C
 	compare VAR_0x8004, 130
-	goto_if 2, LinkContestRoom1_EventScript_27A636
+	goto_if_gt LinkContestRoom1_EventScript_27A636
 	compare VAR_0x8004, 110
-	goto_if 2, LinkContestRoom1_EventScript_27A630
+	goto_if_gt LinkContestRoom1_EventScript_27A630
 	compare VAR_0x8004, 90
-	goto_if 2, LinkContestRoom1_EventScript_27A62A
+	goto_if_gt LinkContestRoom1_EventScript_27A62A
 	setvar VAR_TEMP_0, 0
 	return
 
 LinkContestRoom1_EventScript_27A510:: @ 827A510
 	compare VAR_0x8004, 380
-	goto_if 2, LinkContestRoom1_EventScript_27A654
+	goto_if_gt LinkContestRoom1_EventScript_27A654
 	compare VAR_0x8004, 350
-	goto_if 2, LinkContestRoom1_EventScript_27A64E
+	goto_if_gt LinkContestRoom1_EventScript_27A64E
 	compare VAR_0x8004, 320
-	goto_if 2, LinkContestRoom1_EventScript_27A648
+	goto_if_gt LinkContestRoom1_EventScript_27A648
 	compare VAR_0x8004, 290
-	goto_if 2, LinkContestRoom1_EventScript_27A642
+	goto_if_gt LinkContestRoom1_EventScript_27A642
 	compare VAR_0x8004, 260
-	goto_if 2, LinkContestRoom1_EventScript_27A63C
+	goto_if_gt LinkContestRoom1_EventScript_27A63C
 	compare VAR_0x8004, 230
-	goto_if 2, LinkContestRoom1_EventScript_27A636
+	goto_if_gt LinkContestRoom1_EventScript_27A636
 	compare VAR_0x8004, 200
-	goto_if 2, LinkContestRoom1_EventScript_27A630
+	goto_if_gt LinkContestRoom1_EventScript_27A630
 	compare VAR_0x8004, 170
-	goto_if 2, LinkContestRoom1_EventScript_27A62A
+	goto_if_gt LinkContestRoom1_EventScript_27A62A
 	setvar VAR_TEMP_0, 0
 	return
 
 LinkContestRoom1_EventScript_27A56E:: @ 827A56E
 	compare VAR_0x8004, 600
-	goto_if 2, LinkContestRoom1_EventScript_27A654
+	goto_if_gt LinkContestRoom1_EventScript_27A654
 	compare VAR_0x8004, 560
-	goto_if 2, LinkContestRoom1_EventScript_27A64E
+	goto_if_gt LinkContestRoom1_EventScript_27A64E
 	compare VAR_0x8004, 520
-	goto_if 2, LinkContestRoom1_EventScript_27A648
+	goto_if_gt LinkContestRoom1_EventScript_27A648
 	compare VAR_0x8004, 480
-	goto_if 2, LinkContestRoom1_EventScript_27A642
+	goto_if_gt LinkContestRoom1_EventScript_27A642
 	compare VAR_0x8004, 440
-	goto_if 2, LinkContestRoom1_EventScript_27A63C
+	goto_if_gt LinkContestRoom1_EventScript_27A63C
 	compare VAR_0x8004, 400
-	goto_if 2, LinkContestRoom1_EventScript_27A636
+	goto_if_gt LinkContestRoom1_EventScript_27A636
 	compare VAR_0x8004, 360
-	goto_if 2, LinkContestRoom1_EventScript_27A630
+	goto_if_gt LinkContestRoom1_EventScript_27A630
 	compare VAR_0x8004, 320
-	goto_if 2, LinkContestRoom1_EventScript_27A62A
+	goto_if_gt LinkContestRoom1_EventScript_27A62A
 	setvar VAR_TEMP_0, 0
 	return
 
 LinkContestRoom1_EventScript_27A5CC:: @ 827A5CC
 	compare VAR_0x8004, 600
-	goto_if 2, LinkContestRoom1_EventScript_27A654
+	goto_if_gt LinkContestRoom1_EventScript_27A654
 	compare VAR_0x8004, 550
-	goto_if 2, LinkContestRoom1_EventScript_27A64E
+	goto_if_gt LinkContestRoom1_EventScript_27A64E
 	compare VAR_0x8004, 500
-	goto_if 2, LinkContestRoom1_EventScript_27A648
+	goto_if_gt LinkContestRoom1_EventScript_27A648
 	compare VAR_0x8004, 450
-	goto_if 2, LinkContestRoom1_EventScript_27A642
+	goto_if_gt LinkContestRoom1_EventScript_27A642
 	compare VAR_0x8004, 400
-	goto_if 2, LinkContestRoom1_EventScript_27A63C
+	goto_if_gt LinkContestRoom1_EventScript_27A63C
 	compare VAR_0x8004, 300
-	goto_if 2, LinkContestRoom1_EventScript_27A636
+	goto_if_gt LinkContestRoom1_EventScript_27A636
 	compare VAR_0x8004, 200
-	goto_if 2, LinkContestRoom1_EventScript_27A630
+	goto_if_gt LinkContestRoom1_EventScript_27A630
 	compare VAR_0x8004, 100
-	goto_if 2, LinkContestRoom1_EventScript_27A62A
+	goto_if_gt LinkContestRoom1_EventScript_27A62A
 	setvar VAR_TEMP_0, 0
 	return
 
@@ -673,7 +671,7 @@ LinkContestRoom1_EventScript_27A654:: @ 827A654
 
 LinkContestRoom1_EventScript_27A65A:: @ 827A65A
 	compare VAR_TEMP_1, 1
-	goto_eq LinkContestRoom1_EventScript_27A67D
+	goto_if_eq LinkContestRoom1_EventScript_27A67D
 	applymovement 6, LinkContestRoom1_Movement_27AD11
 	playse SE_PIN
 	delay 14
@@ -686,7 +684,7 @@ LinkContestRoom1_EventScript_27A67D:: @ 827A67D
 
 LinkContestRoom1_EventScript_27A67E:: @ 827A67E
 	compare VAR_TEMP_2, 1
-	goto_eq LinkContestRoom1_EventScript_27A6A1
+	goto_if_eq LinkContestRoom1_EventScript_27A6A1
 	applymovement 12, LinkContestRoom1_Movement_27AD11
 	playse SE_PIN
 	delay 14
@@ -699,7 +697,7 @@ LinkContestRoom1_EventScript_27A6A1:: @ 827A6A1
 
 LinkContestRoom1_EventScript_27A6A2:: @ 827A6A2
 	compare VAR_TEMP_3, 1
-	goto_eq LinkContestRoom1_EventScript_27A6C5
+	goto_if_eq LinkContestRoom1_EventScript_27A6C5
 	applymovement 7, LinkContestRoom1_Movement_27AD11
 	playse SE_PIN
 	delay 14
@@ -712,7 +710,7 @@ LinkContestRoom1_EventScript_27A6C5:: @ 827A6C5
 
 LinkContestRoom1_EventScript_27A6C6:: @ 827A6C6
 	compare VAR_TEMP_4, 1
-	goto_eq LinkContestRoom1_EventScript_27A6E9
+	goto_if_eq LinkContestRoom1_EventScript_27A6E9
 	applymovement 8, LinkContestRoom1_Movement_27AD11
 	playse SE_PIN
 	delay 14
@@ -725,7 +723,7 @@ LinkContestRoom1_EventScript_27A6E9:: @ 827A6E9
 
 LinkContestRoom1_EventScript_27A6EA:: @ 827A6EA
 	compare VAR_TEMP_5, 1
-	goto_eq LinkContestRoom1_EventScript_27A70D
+	goto_if_eq LinkContestRoom1_EventScript_27A70D
 	applymovement 9, LinkContestRoom1_Movement_27AD11
 	playse SE_PIN
 	delay 14
@@ -738,7 +736,7 @@ LinkContestRoom1_EventScript_27A70D:: @ 827A70D
 
 LinkContestRoom1_EventScript_27A70E:: @ 827A70E
 	compare VAR_TEMP_6, 1
-	goto_eq LinkContestRoom1_EventScript_27A731
+	goto_if_eq LinkContestRoom1_EventScript_27A731
 	applymovement 10, LinkContestRoom1_Movement_27AD11
 	playse SE_PIN
 	delay 14
@@ -751,7 +749,7 @@ LinkContestRoom1_EventScript_27A731:: @ 827A731
 
 LinkContestRoom1_EventScript_27A732:: @ 827A732
 	compare VAR_TEMP_7, 1
-	goto_eq LinkContestRoom1_EventScript_27A755
+	goto_if_eq LinkContestRoom1_EventScript_27A755
 	applymovement 11, LinkContestRoom1_Movement_27AD11
 	playse SE_PIN
 	delay 14
@@ -764,7 +762,7 @@ LinkContestRoom1_EventScript_27A755:: @ 827A755
 
 LinkContestRoom1_EventScript_27A756:: @ 827A756
 	compare VAR_TEMP_8, 1
-	goto_eq LinkContestRoom1_EventScript_27A779
+	goto_if_eq LinkContestRoom1_EventScript_27A779
 	applymovement 15, LinkContestRoom1_Movement_27AD11
 	playse SE_PIN
 	delay 14
@@ -845,15 +843,15 @@ LinkContestRoom1_EventScript_27A801:: @ 827A801
 	return
 
 LinkContestRoom1_EventScript_27A853:: @ 827A853
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A867
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A867
 	msgbox LinkContestRoom1_Text_27B904, MSGBOX_DEFAULT
 	return
 
 LinkContestRoom1_EventScript_27A867:: @ 827A867
 	specialvar VAR_RESULT, sub_80F9160
 	compare VAR_RESULT, 1
-	goto_eq LinkContestRoom1_EventScript_27A87E
+	goto_if_eq LinkContestRoom1_EventScript_27A87E
 	messageautoscroll LinkContestRoom1_Text_27B904
 	waitmessage
 	return
@@ -895,8 +893,8 @@ LinkContestRoom1_EventScript_27A8A5:: @ 827A8A5
 	return
 
 LinkContestRoom1_EventScript_27A8FB:: @ 827A8FB
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A90F
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A90F
 	msgbox LinkContestRoom1_Text_27BA15, MSGBOX_DEFAULT
 	return
 
@@ -908,8 +906,8 @@ LinkContestRoom1_EventScript_27A90F:: @ 827A90F
 	return
 
 LinkContestRoom1_EventScript_27A91E:: @ 827A91E
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A932
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A932
 	msgbox LinkContestRoom1_Text_27BA30, MSGBOX_DEFAULT
 	return
 
@@ -921,8 +919,8 @@ LinkContestRoom1_EventScript_27A932:: @ 827A932
 	return
 
 LinkContestRoom1_EventScript_27A941:: @ 827A941
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A955
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A955
 	msgbox LinkContestRoom1_Text_27BAAC, MSGBOX_DEFAULT
 	return
 
@@ -934,8 +932,8 @@ LinkContestRoom1_EventScript_27A955:: @ 827A955
 	return
 
 LinkContestRoom1_EventScript_27A964:: @ 827A964
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27A978
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27A978
 	msgbox LinkContestRoom1_Text_27BB25, MSGBOX_DEFAULT
 	return
 
@@ -985,8 +983,8 @@ LinkContestRoom1_EventScript_27A9D4:: @ 827A9D4
 	return
 
 LinkContestRoom1_EventScript_27AA00:: @ 827AA00
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27AA14
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27AA14
 	msgbox LinkContestRoom1_Text_27BB4C, MSGBOX_DEFAULT
 	return
 
@@ -998,8 +996,8 @@ LinkContestRoom1_EventScript_27AA14:: @ 827AA14
 LinkContestRoom1_EventScript_27AA1B:: @ 827AA1B
 	addvar VAR_TEMP_1, 1
 	lockall
-	compare VAR_0x4088, 1
-	call_if 2, LinkContestRoom1_EventScript_27AA6F
+	compare VAR_CONTEST_LOCATION, 1
+	call_if_gt LinkContestRoom1_EventScript_27AA6F
 	applymovement 9, LinkContestRoom1_Movement_27AD3B
 	applymovement 12, LinkContestRoom1_Movement_27AD3F
 	applymovement 7, LinkContestRoom1_Movement_27AD3B
@@ -1009,7 +1007,7 @@ LinkContestRoom1_EventScript_27AA1B:: @ 827AA1B
 	applymovement 6, LinkContestRoom1_Movement_27AD37
 	applymovement 8, LinkContestRoom1_Movement_27AD33
 	compare VAR_TEMP_1, 4
-	goto_if 5, LinkContestRoom1_EventScript_27AA1B
+	goto_if_ne LinkContestRoom1_EventScript_27AA1B
 	delay 30
 	return
 
@@ -1083,11 +1081,10 @@ LinkContestRoom1_EventScript_27AA6F:: @ 827AA6F
 	return
 
 LinkContestRoom1_EventScript_27AB36:: @ 827AB36
-	compare VAR_0x4088, 5
-	goto_eq LinkContestRoom1_EventScript_27ABD8
+	compare VAR_CONTEST_LOCATION, 5
+	goto_if_eq LinkContestRoom1_EventScript_27ABD8
 	call LinkContestRoom1_EventScript_27AB9E
-	checkflag FLAG_TEMP_2
-	goto_eq LinkContestRoom1_EventScript_27AB82
+	goto_if_set FLAG_TEMP_2, LinkContestRoom1_EventScript_27AB82
 	lockall
 	msgbox LinkContestRoom1_Text_27BBA8, MSGBOX_DEFAULT
 	releaseall
@@ -1099,7 +1096,7 @@ LinkContestRoom1_EventScript_27AB36:: @ 827AB36
 	delay 30
 	special sub_80F88E8
 	compare VAR_0x8004, 1
-	goto_eq LinkContestRoom1_EventScript_27ABD2
+	goto_if_eq LinkContestRoom1_EventScript_27ABD2
 	return
 
 LinkContestRoom1_EventScript_27AB82:: @ 827AB82
@@ -1109,24 +1106,24 @@ LinkContestRoom1_EventScript_27AB82:: @ 827AB82
 	delay 90
 	special sub_80F88E8
 	compare VAR_0x8004, 1
-	goto_eq LinkContestRoom1_EventScript_27ABD2
+	goto_if_eq LinkContestRoom1_EventScript_27ABD2
 	return
 
 LinkContestRoom1_EventScript_27AB9E:: @ 827AB9E
 	specialvar VAR_RESULT, sub_80F7F7C
 	compare VAR_RESULT, 1
-	goto_eq LinkContestRoom1_EventScript_27ABAF
+	goto_if_eq LinkContestRoom1_EventScript_27ABAF
 	return
 
 LinkContestRoom1_EventScript_27ABAF:: @ 827ABAF
 	special sub_80F831C
 	compare VAR_0x8005, 3
-	goto_eq LinkContestRoom1_EventScript_27ABBE
+	goto_if_eq LinkContestRoom1_EventScript_27ABBE
 	return
 
 LinkContestRoom1_EventScript_27ABBE:: @ 827ABBE
 	compare VAR_CONTEST_RANK, 3
-	goto_eq LinkContestRoom1_EventScript_27ABCD
+	goto_if_eq LinkContestRoom1_EventScript_27ABCD
 	setflag FLAG_TEMP_2
 	return
 
@@ -1134,11 +1131,11 @@ LinkContestRoom1_EventScript_27ABCD:: @ 827ABCD
 	return
 
 LinkContestRoom1_EventScript_27ABCE:: @ 827ABCE
-	setflag FLAG_0x10E
+	setflag FLAG_CONTEST_SKETCH_CREATED
 	return
 
 LinkContestRoom1_EventScript_27ABD2:: @ 827ABD2
-	setvar VAR_0x4099, 1
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 1
 	return
 
 LinkContestRoom1_EventScript_27ABD8:: @ 827ABD8
@@ -1147,12 +1144,12 @@ LinkContestRoom1_EventScript_27ABD8:: @ 827ABD8
 	special sub_80F831C
 	special sub_80F88E8
 	compare VAR_0x8004, 1
-	goto_eq LinkContestRoom1_EventScript_27ABF1
+	goto_if_eq LinkContestRoom1_EventScript_27ABF1
 	closemessage
 	return
 
 LinkContestRoom1_EventScript_27ABF1:: @ 827ABF1
-	setvar VAR_0x4099, 2
+	setvar VAR_LILYCOVE_CONTEST_LOBBY_STATE, 2
 	return
 
 LinkContestRoom1_EventScript_27ABF7:: @ 827ABF7
@@ -1197,20 +1194,20 @@ LinkContestRoom1_EventScript_27AC51:: @ 827AC51
 LinkContestRoom1_EventScript_27AC5E:: @ 827AC5E
 	special sub_80F831C
 	compare VAR_0x8005, 3
-	goto_eq LinkContestRoom1_EventScript_27AC77
+	goto_if_eq LinkContestRoom1_EventScript_27AC77
 	lockall
 	msgbox LinkContestRoom1_Text_27BB7A, MSGBOX_DEFAULT
 	releaseall
 	return
 
 LinkContestRoom1_EventScript_27AC77:: @ 827AC77
-	compare VAR_0x4088, 2
-	call_if 1, LinkContestRoom1_EventScript_27ABCE
+	compare VAR_CONTEST_LOCATION, 2
+	call_if_eq LinkContestRoom1_EventScript_27ABCE
 	specialvar VAR_RESULT, sub_80F7F7C
 	compare VAR_RESULT, 0
-	goto_eq LinkContestRoom1_EventScript_27ACDF
+	goto_if_eq LinkContestRoom1_EventScript_27ACDF
 	compare VAR_CONTEST_RANK, 3
-	goto_eq LinkContestRoom1_EventScript_27ACBD
+	goto_if_eq LinkContestRoom1_EventScript_27ACBD
 	lockall
 	msgbox LinkContestRoom1_Text_27BB7A, MSGBOX_DEFAULT
 	releaseall
@@ -1218,16 +1215,16 @@ LinkContestRoom1_EventScript_27AC77:: @ 827AC77
 
 LinkContestRoom1_EventScript_27ACA8:: @ 827ACA8
 	lockall
-	call LinkContestRoom1_EventScript_27205E
+	call Common_EventScript_BagIsFull
 	msgbox LinkContestRoom1_Text_27BC2F, MSGBOX_DEFAULT
 	releaseall
-	setvar VAR_0x408A, 4
+	setvar VAR_CONTEST_PRIZE_PICKUP, 4
 	return
 
 LinkContestRoom1_EventScript_27ACBD:: @ 827ACBD
 	giveitem_std ITEM_LUXURY_BALL
 	compare VAR_RESULT, 0
-	goto_eq LinkContestRoom1_EventScript_27ACA8
+	goto_if_eq LinkContestRoom1_EventScript_27ACA8
 	lockall
 	msgbox LinkContestRoom1_Text_27BB7A, MSGBOX_DEFAULT
 	releaseall
@@ -1433,7 +1430,7 @@ LinkContestRoom1_Movement_27AD7E: @ 827AD7E
 LinkContestRoom1_EventScript_27AD80:: @ 827AD80
 	specialvar VAR_RESULT, sub_80F9134
 	compare VAR_RESULT, 1
-	goto_eq LinkContestRoom1_EventScript_27AD91
+	goto_if_eq LinkContestRoom1_EventScript_27AD91
 	return
 
 LinkContestRoom1_EventScript_27AD91:: @ 827AD91
@@ -1442,7 +1439,7 @@ LinkContestRoom1_EventScript_27AD91:: @ 827AD91
 LilycoveCity_ContestLobby_EventScript_27AD92:: @ 827AD92
 	specialvar VAR_RESULT, sub_80F9134
 	compare VAR_RESULT, 1
-	goto_eq LilycoveCity_ContestLobby_EventScript_27ADA3
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_27ADA3
 	return
 
 LilycoveCity_ContestLobby_EventScript_27ADA3:: @ 827ADA3

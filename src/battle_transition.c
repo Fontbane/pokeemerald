@@ -3,8 +3,10 @@
 #include "battle_transition.h"
 #include "bg.h"
 #include "decompress.h"
+#include "event_object_movement.h"
 #include "field_camera.h"
 #include "field_effect.h"
+#include "field_weather.h"
 #include "gpu_regs.h"
 #include "main.h"
 #include "alloc.h"
@@ -56,10 +58,6 @@ struct StructRectangularSpiral
 
 typedef bool8 (*TransitionStateFunc)(struct Task *task);
 typedef bool8 (*TransitionSpriteCallback)(struct Sprite *sprite);
-
-extern const struct OamData gEventObjectBaseOam_32x32;
-
-extern void sub_80AC3D0(void);
 
 // this file's functions
 static void LaunchBattleTransitionTask(u8 transitionId);
@@ -981,7 +979,7 @@ static void Task_BattleTransitionMain(u8 taskId)
 
 static bool8 Transition_Phase1(struct Task *task)
 {
-    sub_80AC3D0();
+    SetWeatherScreenFadeOut();
     CpuCopy32(gPlttBufferFaded, gPlttBufferUnfaded, 0x400);
     if (sPhase1_Tasks[task->tTransitionId] != NULL)
     {

@@ -1,7 +1,7 @@
 Route110_MapScripts:: @ 81EF269
-	map_script 5, Route110_MapScript1_1EF279
-	map_script 3, Route110_MapScript1_1EF27D
-	map_script 2, Route110_MapScript2_1EF297
+	map_script MAP_SCRIPT_ON_RESUME, Route110_MapScript1_1EF279
+	map_script MAP_SCRIPT_ON_TRANSITION, Route110_MapScript1_1EF27D
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route110_MapScript2_1EF297
 	.byte 0
 
 Route110_MapScript1_1EF279: @ 81EF279
@@ -9,10 +9,10 @@ Route110_MapScript1_1EF279: @ 81EF279
 	end
 
 Route110_MapScript1_1EF27D: @ 81EF27D
-	call Route110_EventScript_271ED7
-	call Route110_EventScript_271EFB
+	call Common_EventScript_SetupRivalGender
+	call Common_EventScript_SetupRivalOnBikeGender
 	compare VAR_CYCLING_CHALLENGE_STATE, 1
-	call_if 1, Route110_EventScript_1EF293
+	call_if_eq Route110_EventScript_1EF293
 	end
 
 Route110_EventScript_1EF293:: @ 81EF293
@@ -32,7 +32,7 @@ Route110_EventScript_1EF2AA:: @ 81EF2AA
 	lock
 	faceplayer
 	msgbox Route110_Text_1EFB5D, MSGBOX_DEFAULT
-	applymovement VAR_LAST_TALKED, Route110_Movement_2725A2
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
@@ -41,7 +41,7 @@ Route110_EventScript_1EF2C0:: @ 81EF2C0
 	lock
 	faceplayer
 	msgbox Route110_Text_1EFB93, MSGBOX_DEFAULT
-	applymovement VAR_LAST_TALKED, Route110_Movement_2725A2
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
@@ -50,7 +50,7 @@ Route110_EventScript_1EF2D6:: @ 81EF2D6
 	lock
 	faceplayer
 	msgbox Route110_Text_1EFBCA, MSGBOX_DEFAULT
-	applymovement VAR_LAST_TALKED, Route110_Movement_2725A2
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
@@ -59,7 +59,7 @@ Route110_EventScript_1EF2EC:: @ 81EF2EC
 	lock
 	faceplayer
 	msgbox Route110_Text_1EFC0D, MSGBOX_DEFAULT
-	applymovement VAR_LAST_TALKED, Route110_Movement_2725A2
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end
@@ -132,7 +132,7 @@ Route110_EventScript_1EF392:: @ 81EF392
 	lockall
 	specialvar VAR_RESULT, GetRecordedCyclingRoadResults
 	compare VAR_RESULT, 0
-	goto_eq Route110_EventScript_1EF3AD
+	goto_if_eq Route110_EventScript_1EF3AD
 	msgbox Route110_Text_1F0A1E, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -147,9 +147,9 @@ Route110_EventScript_1EF3B7:: @ 81EF3B7
 	faceplayer
 	specialvar VAR_RESULT, GetPlayerAvatarBike
 	compare VAR_RESULT, 1
-	goto_eq Route110_EventScript_1EF3E8
+	goto_if_eq Route110_EventScript_1EF3E8
 	compare VAR_CYCLING_CHALLENGE_STATE, 0
-	goto_eq Route110_EventScript_1EF3DE
+	goto_if_eq Route110_EventScript_1EF3DE
 	msgbox Route110_Text_1F06FB, MSGBOX_DEFAULT
 	release
 	end
@@ -178,7 +178,7 @@ Route110_EventScript_1EF420:: @ 81EF420
 	trainerbattle_single TRAINER_EDWIN_1, Route110_Text_29815E, Route110_Text_29818F, Route110_EventScript_1EF44C
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route110_EventScript_1EF46B
+	goto_if_eq Route110_EventScript_1EF46B
 	msgbox Route110_Text_2981B3, MSGBOX_DEFAULT
 	release
 	end
@@ -215,7 +215,7 @@ Route110_EventScript_1EF4C7:: @ 81EF4C7
 	trainerbattle_single TRAINER_BENJAMIN_1, Route110_Text_297C63, Route110_Text_297C8A, Route110_EventScript_1EF4F3
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route110_EventScript_1EF512
+	goto_if_eq Route110_EventScript_1EF512
 	msgbox Route110_Text_297CB4, MSGBOX_DEFAULT
 	release
 	end
@@ -242,7 +242,7 @@ Route110_EventScript_1EF540:: @ 81EF540
 	trainerbattle_single TRAINER_ABIGAIL_1, Route110_Text_297DFA, Route110_Text_297E69, Route110_EventScript_1EF56C
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route110_EventScript_1EF58B
+	goto_if_eq Route110_EventScript_1EF58B
 	msgbox Route110_Text_297E88, MSGBOX_DEFAULT
 	release
 	end
@@ -264,7 +264,7 @@ Route110_EventScript_1EF5A2:: @ 81EF5A2
 	trainerbattle_single TRAINER_ISABEL_1, Route110_Text_298349, Route110_Text_298389, Route110_EventScript_1EF5CE
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route110_EventScript_1EF5ED
+	goto_if_eq Route110_EventScript_1EF5ED
 	msgbox Route110_Text_2983A2, MSGBOX_DEFAULT
 	release
 	end
@@ -307,7 +307,7 @@ Route110_EventScript_1EF64A:: @ 81EF64A
 
 Route110_EventScript_1EF661:: @ 81EF661
 	lockall
-	applymovement 21, Route110_Movement_2725A8
+	applymovement 21, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	call Route110_EventScript_1EF673
 	releaseall
@@ -379,28 +379,28 @@ Route110_EventScript_1EF763:: @ 81EF763
 Route110_EventScript_1EF76E:: @ 81EF76E
 	lockall
 	checkplayergender
-	compare VAR_RESULT, 0
-	call_if 1, Route110_EventScript_1EF7E1
-	compare VAR_RESULT, 1
-	call_if 1, Route110_EventScript_1EF7E6
-	applymovement 28, Route110_Movement_2725AA
+	compare VAR_RESULT, MALE
+	call_if_eq Route110_EventScript_1EF7E1
+	compare VAR_RESULT, FEMALE
+	call_if_eq Route110_EventScript_1EF7E6
+	applymovement 28, Common_Movement_WalkInPlaceDown
 	waitmovement 0
-	applymovement 28, Route110_Movement_272598
+	applymovement 28, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 28, Route110_Movement_27259A
+	applymovement 28, Common_Movement_Delay48
 	waitmovement 0
 	delay 30
 	compare VAR_0x8008, 1
-	call_if 1, Route110_EventScript_1EF94E
+	call_if_eq Route110_EventScript_1EF94E
 	compare VAR_0x8008, 2
-	call_if 1, Route110_EventScript_1EF959
+	call_if_eq Route110_EventScript_1EF959
 	compare VAR_0x8008, 3
-	call_if 1, Route110_EventScript_1EF964
+	call_if_eq Route110_EventScript_1EF964
 	checkplayergender
-	compare VAR_RESULT, 0
-	goto_eq Route110_EventScript_1EF7EB
-	compare VAR_RESULT, 1
-	goto_eq Route110_EventScript_1EF865
+	compare VAR_RESULT, MALE
+	goto_if_eq Route110_EventScript_1EF7EB
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Route110_EventScript_1EF865
 	releaseall
 	end
 
@@ -479,24 +479,24 @@ Route110_EventScript_1EF8DF:: @ 81EF8DF
 Route110_EventScript_1EF8EC:: @ 81EF8EC
 	closemessage
 	compare VAR_0x8008, 1
-	call_if 1, Route110_EventScript_1EF990
+	call_if_eq Route110_EventScript_1EF990
 	compare VAR_0x8008, 2
-	call_if 1, Route110_EventScript_1EF998
+	call_if_eq Route110_EventScript_1EF998
 	compare VAR_0x8008, 3
-	call_if 1, Route110_EventScript_1EF9A0
-	setobjectmovementtype 28, 10
-	setobjectmovementtype 29, 10
+	call_if_eq Route110_EventScript_1EF9A0
+	setobjectmovementtype 28, MOVEMENT_TYPE_FACE_RIGHT
+	setobjectmovementtype 29, MOVEMENT_TYPE_FACE_RIGHT
 	removeobject 28
 	addobject 29
 	delay 45
 	compare VAR_0x8008, 1
-	call_if 1, Route110_EventScript_1EF96F
+	call_if_eq Route110_EventScript_1EF96F
 	compare VAR_0x8008, 2
-	call_if 1, Route110_EventScript_1EF97A
+	call_if_eq Route110_EventScript_1EF97A
 	compare VAR_0x8008, 3
-	call_if 1, Route110_EventScript_1EF985
+	call_if_eq Route110_EventScript_1EF985
 	removeobject 29
-	setvar VAR_0x4069, 1
+	setvar VAR_ROUTE110_STATE, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall
@@ -616,28 +616,28 @@ Route110_EventScript_1EF9F7:: @ 81EF9F7
 	applymovement 36, Route110_Movement_1EFB30
 	waitmovement 0
 	playse SE_PIN
-	applymovement 36, Route110_Movement_272598
+	applymovement 36, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 36, Route110_Movement_27259A
+	applymovement 36, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_0x8008, 1
-	call_if 1, Route110_EventScript_1EFAD8
+	call_if_eq Route110_EventScript_1EFAD8
 	compare VAR_0x8008, 2
-	call_if 1, Route110_EventScript_1EFAE3
+	call_if_eq Route110_EventScript_1EFAE3
 	compare VAR_0x8008, 3
-	call_if 1, Route110_EventScript_1EFAEE
+	call_if_eq Route110_EventScript_1EFAEE
 	compare VAR_0x8008, 4
-	call_if 1, Route110_EventScript_1EFAF9
+	call_if_eq Route110_EventScript_1EFAF9
 	msgbox Route110_Text_1F0AB5, MSGBOX_DEFAULT
 	closemessage
 	delay 20
-	applymovement 36, Route110_Movement_2725A4
+	applymovement 36, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	delay 10
-	applymovement 36, Route110_Movement_2725A8
+	applymovement 36, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	delay 20
-	applymovement 36, Route110_Movement_2725AA
+	applymovement 36, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	delay 30
 	msgbox Route110_Text_1F0AFF, MSGBOX_DEFAULT
@@ -648,17 +648,17 @@ Route110_EventScript_1EF9F7:: @ 81EF9F7
 	waitfanfare
 	closemessage
 	delay 30
-	setflag FLAG_0x119
+	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
 	msgbox Route110_Text_1F0C33, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 1
-	call_if 1, Route110_EventScript_1EFB04
+	call_if_eq Route110_EventScript_1EFB04
 	compare VAR_0x8008, 2
-	call_if 1, Route110_EventScript_1EFB0F
+	call_if_eq Route110_EventScript_1EFB0F
 	compare VAR_0x8008, 3
-	call_if 1, Route110_EventScript_1EFB1A
+	call_if_eq Route110_EventScript_1EFB1A
 	compare VAR_0x8008, 4
-	call_if 1, Route110_EventScript_1EFB25
+	call_if_eq Route110_EventScript_1EFB25
 	removeobject 36
 	setvar VAR_0x40DA, 2
 	releaseall

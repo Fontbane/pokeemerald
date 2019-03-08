@@ -1,5 +1,6 @@
 #include "global.h"
 #include "apprentice.h"
+#include "battle.h"
 #include "battle_tower.h"
 #include "data2.h"
 #include "event_data.h"
@@ -1079,7 +1080,7 @@ void ResetApprenticeStruct(struct Apprentice *apprentice)
     u8 i;
 
     for (i = 0; i < 6; i++)
-        apprentice->easyChatWords[i] |= 0xFFFF;
+        apprentice->easyChatWords[i] = 0xFFFF;
 
     apprentice->playerName[0] = EOS;
     apprentice->id = 16;
@@ -1093,7 +1094,7 @@ void ResetAllApprenticeData(void)
     for (i = 0; i < 4; i++)
     {
         for (j = 0; j < 6; j++)
-            gSaveBlock2Ptr->apprentices[i].easyChatWords[j] |= 0xFFFF;
+            gSaveBlock2Ptr->apprentices[i].easyChatWords[j] = 0xFFFF;
         gSaveBlock2Ptr->apprentices[i].id = 16;
         gSaveBlock2Ptr->apprentices[i].playerName[0] = EOS;
         gSaveBlock2Ptr->apprentices[i].lvlMode = 0;
@@ -1298,7 +1299,7 @@ static u16 sub_819FF98(u8 arg0)
 
     knownMovesCount = j;
     i = 0;
-    while (i < 5)
+    while (i <= MAX_MON_MOVES)
     {
         if (Random() % 2 == 0 || var_24 == TRUE)
         {
@@ -1317,7 +1318,7 @@ static u16 sub_819FF98(u8 arg0)
                 if (knownMovesCount < 5)
                     j = 0;
                 else
-                    j = knownMovesCount - 4;
+                    j = knownMovesCount - MAX_MON_MOVES;
 
                 for (; j < knownMovesCount; j++)
                 {
@@ -1331,7 +1332,7 @@ static u16 sub_819FF98(u8 arg0)
         }
         else
         {
-            if (knownMovesCount < 5)
+            if (knownMovesCount <= MAX_MON_MOVES)
             {
                 var_24 = TRUE;
                 continue;
@@ -1343,7 +1344,7 @@ static u16 sub_819FF98(u8 arg0)
                     u8 learnsetId = Random() % (knownMovesCount - 4);
                     moveId = learnset[learnsetId].move;
                     valid = TRUE;
-                    for (j = knownMovesCount - 4; j < knownMovesCount; j++)
+                    for (j = knownMovesCount - MAX_MON_MOVES; j < knownMovesCount; j++)
                     {
                         if ((learnset[j].move) == moveId)
                         {
@@ -1400,8 +1401,8 @@ static void GetLatestLearnedMoves(u16 species, u16 *moves)
     }
 
     knownMovesCount = i;
-    if (knownMovesCount > 4)
-        knownMovesCount = 4;
+    if (knownMovesCount > MAX_MON_MOVES)
+        knownMovesCount = MAX_MON_MOVES;
 
     for (j = 0; j < knownMovesCount; j++)
         moves[j] = learnset[(i - 1) - j].move;
@@ -1447,7 +1448,7 @@ static void sub_81A0390(u8 arg0)
     {
         gSaveBlock2Ptr->apprentices[0].party[i].species = 0;
         gSaveBlock2Ptr->apprentices[0].party[i].item = 0;
-        for (j = 0; j < 4; j++)
+        for (j = 0; j < MAX_MON_MOVES; j++)
             gSaveBlock2Ptr->apprentices[0].party[i].moves[j] = 0;
     }
 
@@ -1618,7 +1619,7 @@ static u8 CreateAndShowWindow(u8 left, u8 top, u8 width, u8 height)
 
 static void RemoveAndHideWindow(u8 windowId)
 {
-    sub_8198070(windowId, TRUE);
+    ClearStdWindowAndFrameToTransparent(windowId, TRUE);
     RemoveWindow(windowId);
 }
 
@@ -1825,7 +1826,7 @@ static void Script_PrintMessage(void)
     FreezeEventObjects();
     sub_808B864();
     sub_808BCF4();
-    NewMenuHelpers_DrawDialogueFrame(0, 1);
+    DrawDialogueFrame(0, 1);
     PrintMessage();
 }
 

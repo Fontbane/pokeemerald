@@ -40,10 +40,10 @@ static void sub_8117FD0(u8);
 
 const u16 gUnknown_08597418 = RGB(31, 31, 31);
 
-// no clue what these are...
-// possibly some register offsets
-const u8 gUnknown_0859741A[] = {0x08, 0x0a, 0x0c, 0x0e};
-const u8 gUnknown_0859741E[] = {0x08, 0x0a, 0x0c, 0x0e};
+// These belong in battle_intro.c, but there putting them there causes 2 bytes of alignment padding
+// between the two .rodata segments. Perhaps battle_intro.c actually belongs in this file, too.
+const u8 gUnknown_0859741A[] = {REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT};
+const u8 gUnknown_0859741E[] = {REG_OFFSET_BG0CNT, REG_OFFSET_BG1CNT, REG_OFFSET_BG2CNT, REG_OFFSET_BG3CNT};
 
 void sub_8116620(u8 taskId)
 {
@@ -236,7 +236,7 @@ static void sub_81169F8(u8 taskId)
         }
         else
         {
-            task->data[6] = duplicate_obj_of_side_rel2move_in_transparent_mode(task->data[0]);
+            task->data[6] = CloneBattlerSpriteWithBlend(task->data[0]);
             if (task->data[6] >= 0)
             {
                 gSprites[task->data[6]].oam.priority = task->data[0] ? 1 : 2;
@@ -276,7 +276,7 @@ void sub_8116B14(u8 taskId)
     int spriteId, newSpriteId;
     u16 var0;
     u16 bg1Cnt;
-    struct UnknownAnimStruct2 unknownStruct;
+    struct BattleAnimBgData unknownStruct;
 
     var0 = 0;
     gBattle_WIN0H = 0;
@@ -330,8 +330,8 @@ void sub_8116B14(u8 taskId)
     newSpriteId = sub_80A89C8(gBattleAnimAttacker, spriteId, species);
     sub_80A6B30(&unknownStruct);
     sub_80A6D60(&unknownStruct, gUnknown_08C20684, 0);
-    sub_80A6CC0(unknownStruct.bgId, gUnknown_08C20668, unknownStruct.tilesOffset);
-    LoadPalette(&gUnknown_08597418, unknownStruct.unk8 * 16 + 1, 2);
+    AnimLoadCompressedBgGfx(unknownStruct.bgId, gUnknown_08C20668, unknownStruct.tilesOffset);
+    LoadPalette(&gUnknown_08597418, unknownStruct.paletteId * 16 + 1, 2);
 
     gBattle_BG1_X = -gSprites[spriteId].pos1.x + 32;
     gBattle_BG1_Y = -gSprites[spriteId].pos1.y + 32;
@@ -342,7 +342,7 @@ void sub_8116B14(u8 taskId)
 
 static void sub_8116D64(u8 taskId)
 {
-    struct UnknownAnimStruct2 unknownStruct;
+    struct BattleAnimBgData unknownStruct;
     struct Sprite *sprite;
     u16 bg1Cnt;
 
@@ -453,7 +453,7 @@ static void sub_8116F04(u8 taskId)
 
 static void sub_81170EC(u8 taskId)
 {
-    struct UnknownAnimStruct2 unknownStruct;
+    struct BattleAnimBgData unknownStruct;
     u8 spriteId, spriteId2;
     u8 battlerSpriteId;
 
@@ -472,32 +472,32 @@ static void sub_81170EC(u8 taskId)
     else
         sub_80A6D60(&unknownStruct, gBattleStatMask2_Tilemap, 0);
 
-    sub_80A6CC0(unknownStruct.bgId, gBattleStatMask_Gfx, unknownStruct.tilesOffset);
+    AnimLoadCompressedBgGfx(unknownStruct.bgId, gBattleStatMask_Gfx, unknownStruct.tilesOffset);
     switch (sAnimStatsChangeData->data[1])
     {
     case 0:
-        LoadCompressedPalette(gBattleStatMask2_Pal, unknownStruct.unk8 << 4, 32);
+        LoadCompressedPalette(gBattleStatMask2_Pal, unknownStruct.paletteId * 16, 32);
         break;
     case 1:
-        LoadCompressedPalette(gBattleStatMask1_Pal, unknownStruct.unk8 << 4, 32);
+        LoadCompressedPalette(gBattleStatMask1_Pal, unknownStruct.paletteId * 16, 32);
         break;
     case 2:
-        LoadCompressedPalette(gBattleStatMask3_Pal, unknownStruct.unk8 << 4, 32);
+        LoadCompressedPalette(gBattleStatMask3_Pal, unknownStruct.paletteId * 16, 32);
         break;
     case 3:
-        LoadCompressedPalette(gBattleStatMask4_Pal, unknownStruct.unk8 << 4, 32);
+        LoadCompressedPalette(gBattleStatMask4_Pal, unknownStruct.paletteId * 16, 32);
         break;
     case 4:
-        LoadCompressedPalette(gBattleStatMask6_Pal, unknownStruct.unk8 << 4, 32);
+        LoadCompressedPalette(gBattleStatMask6_Pal, unknownStruct.paletteId * 16, 32);
         break;
     case 5:
-        LoadCompressedPalette(gBattleStatMask7_Pal, unknownStruct.unk8 << 4, 32);
+        LoadCompressedPalette(gBattleStatMask7_Pal, unknownStruct.paletteId * 16, 32);
         break;
     case 6:
-        LoadCompressedPalette(gBattleStatMask8_Pal, unknownStruct.unk8 << 4, 32);
+        LoadCompressedPalette(gBattleStatMask8_Pal, unknownStruct.paletteId * 16, 32);
         break;
     default:
-        LoadCompressedPalette(gBattleStatMask5_Pal, unknownStruct.unk8 << 4, 32);
+        LoadCompressedPalette(gBattleStatMask5_Pal, unknownStruct.paletteId * 16, 32);
         break;
     }
 
@@ -767,12 +767,13 @@ void sub_81177E4(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
-void sub_8117854(u8 taskId, int unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5, u8 arg6, u8 arg7, const u8 *arg8, const u8 *arg9, const u16 *palette)
+
+void sub_8117854(u8 taskId, int unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5, u8 arg6, u8 arg7, const u32 *gfx, const u32 *tilemap, const u32 *palette)
 {
     u16 species;
     u8 spriteId, spriteId2;
     u16 bg1Cnt;
-    struct UnknownAnimStruct2 unknownStruct;
+    struct BattleAnimBgData unknownStruct;
     u8 battler2;
 
     spriteId2 = 0;
@@ -818,9 +819,9 @@ void sub_8117854(u8 taskId, int unused, u16 arg2, u8 battler1, u8 arg4, u8 arg5,
         spriteId2 = sub_80A89C8(battler2, gBattlerSpriteIds[battler2], species);
 
     sub_80A6B30(&unknownStruct);
-    sub_80A6D60(&unknownStruct, arg9, 0);
-    sub_80A6CC0(unknownStruct.bgId, arg8, unknownStruct.tilesOffset);
-    LoadCompressedPalette(palette, unknownStruct.unk8 << 4, 32);
+    sub_80A6D60(&unknownStruct, tilemap, 0);
+    AnimLoadCompressedBgGfx(unknownStruct.bgId, gfx, unknownStruct.tilesOffset);
+    LoadCompressedPalette(palette, unknownStruct.paletteId * 16, 32);
 
     gBattle_BG1_X = 0;
     gBattle_BG1_Y = 0;

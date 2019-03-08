@@ -77,20 +77,19 @@ RustboroCity_PokemonSchool_EventScript_213F8C:: @ 8213F8C
 RustboroCity_PokemonSchool_EventScript_213F95:: @ 8213F95
 	lock
 	faceplayer
-	checkflag FLAG_0x113
-	goto_eq RustboroCity_PokemonSchool_EventScript_213FFB
+	goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_213FFB
 	compare VAR_FACING, 4
-	call_if 1, RustboroCity_PokemonSchool_EventScript_213FE5
+	call_if_eq RustboroCity_PokemonSchool_EventScript_213FE5
 	compare VAR_FACING, 3
-	call_if 1, RustboroCity_PokemonSchool_EventScript_213FF0
+	call_if_eq RustboroCity_PokemonSchool_EventScript_213FF0
 	msgbox RustboroCity_PokemonSchool_Text_214433, MSGBOX_DEFAULT
 	giveitem_std ITEM_QUICK_CLAW
 	compare VAR_RESULT, 0
-	goto_eq RustboroCity_PokemonSchool_EventScript_272054
+	goto_if_eq Common_EventScript_ShowBagIsFull
 	closemessage
-	applymovement VAR_LAST_TALKED, RustboroCity_PokemonSchool_Movement_2725AA
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceDown
 	waitmovement 0
-	setflag FLAG_0x113
+	setflag FLAG_RECEIVED_QUICK_CLAW
 	release
 	end
 
@@ -107,7 +106,7 @@ RustboroCity_PokemonSchool_EventScript_213FF0:: @ 8213FF0
 RustboroCity_PokemonSchool_EventScript_213FFB:: @ 8213FFB
 	msgbox RustboroCity_PokemonSchool_Text_2144C8, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_LAST_TALKED, RustboroCity_PokemonSchool_Movement_2725AA
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	release
 	end
@@ -167,21 +166,17 @@ RustboroCity_PokemonSchool_Movement_214027: @ 8214027
 RustboroCity_PokemonSchool_EventScript_214040:: @ 8214040
 	lock
 	faceplayer
-	checkflag FLAG_0x1CB
-	goto_eq RustboroCity_PokemonSchool_EventScript_2140A8
-	checkflag FLAG_0x136
-	goto_eq RustboroCity_PokemonSchool_EventScript_21406F
-	checkflag FLAG_BADGE01_GET
-	goto_eq RustboroCity_PokemonSchool_EventScript_214082
+	goto_if_set FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE, RustboroCity_PokemonSchool_EventScript_2140A8
+	goto_if_set FLAG_MET_SCOTT_RUSTBORO, RustboroCity_PokemonSchool_EventScript_21406F
+	goto_if_set FLAG_BADGE01_GET, RustboroCity_PokemonSchool_EventScript_214082
 	msgbox RustboroCity_PokemonSchool_Text_2148C0, MSGBOX_DEFAULT
-	addvar VAR_0x40D1, 1
-	setflag FLAG_0x136
+	addvar VAR_SCOTT_STATE, 1
+	setflag FLAG_MET_SCOTT_RUSTBORO
 	release
 	end
 
 RustboroCity_PokemonSchool_EventScript_21406F:: @ 821406F
-	checkflag FLAG_BADGE01_GET
-	goto_eq RustboroCity_PokemonSchool_EventScript_214090
+	goto_if_set FLAG_BADGE01_GET, RustboroCity_PokemonSchool_EventScript_214090
 	msgbox RustboroCity_PokemonSchool_Text_214A5F, MSGBOX_DEFAULT
 	release
 	end
@@ -197,8 +192,8 @@ RustboroCity_PokemonSchool_EventScript_214090:: @ 8214090
 	end
 
 RustboroCity_PokemonSchool_EventScript_21409E:: @ 821409E
-	addvar VAR_0x40D1, 1
-	setflag FLAG_0x1CB
+	addvar VAR_SCOTT_STATE, 1
+	setflag FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE
 	release
 	end
 

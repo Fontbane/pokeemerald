@@ -1,6 +1,5 @@
 #include "global.h"
-#include "constants/region_map_sections.h"
-#include "constants/weather.h"
+#include "battle_pyramid.h"
 #include "bg.h"
 #include "event_data.h"
 #include "gpu_regs.h"
@@ -9,11 +8,13 @@
 #include "map_name_popup.h"
 #include "palette.h"
 #include "region_map.h"
-#include "rom_818CFC8.h"
 #include "start_menu.h"
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
+#include "constants/layouts.h"
+#include "constants/region_map_sections.h"
+#include "constants/weather.h"
 
 // enums
 enum MapPopUp_Themes
@@ -157,22 +158,22 @@ static const u8 gRegionMapSectionId_To_PopUpThemeIdMapping[] =
     [MAPSEC_SKY_PILLAR] = MAPPOPUP_THEME_STONE,
     [MAPSEC_SECRET_BASE] = MAPPOPUP_THEME_STONE,
     [MAPSEC_DYNAMIC] = MAPPOPUP_THEME_MARBLE,
-    [MAPSEC_AQUA_HIDEOUT - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_MAGMA_HIDEOUT - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_MIRAGE_TOWER - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_BIRTH_ISLAND_2 - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_FARAWAY_ISLAND - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_WOOD,
-    [MAPSEC_ARTISAN_CAVE - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_MARINE_CAVE - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_UNDERWATER_MARINE_CAVE - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_TERRA_CAVE - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_UNDERWATER_TERRA_CAVE - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_UNDERWATER_UNK1 - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_UNDERWATER_129 - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE2,
-    [MAPSEC_DESERT_UNDERPASS - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_ALTERING_CAVE_2 - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_NAVEL_ROCK2 - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_STONE,
-    [MAPSEC_TRAINER_HILL - MAPSEC_SUBTRACT_KANTO] = MAPPOPUP_THEME_MARBLE
+    [MAPSEC_AQUA_HIDEOUT - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_MAGMA_HIDEOUT - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_MIRAGE_TOWER - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_BIRTH_ISLAND_2 - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_WOOD,
+    [MAPSEC_FARAWAY_ISLAND - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_WOOD,
+    [MAPSEC_ARTISAN_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_MARINE_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_UNDERWATER_MARINE_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE2,
+    [MAPSEC_TERRA_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_UNDERWATER_TERRA_CAVE - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE2,
+    [MAPSEC_UNDERWATER_UNK1 - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE2,
+    [MAPSEC_UNDERWATER_129 - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE2,
+    [MAPSEC_DESERT_UNDERPASS - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_ALTERING_CAVE_2 - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_NAVEL_ROCK2 - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_STONE,
+    [MAPSEC_TRAINER_HILL - KANTO_MAPSEC_COUNT] = MAPPOPUP_THEME_MARBLE
 };
 
 static const u8 gText_PyramidFloor1[] = _("PYRAMID FLOOR 1");
@@ -275,7 +276,7 @@ static void Task_MapNamePopUpWindow(u8 taskId)
         }
         break;
     case 4:
-        sub_819746C(GetMapNamePopUpWindowId(), TRUE);
+        ClearStdWindowAndFrame(GetMapNamePopUpWindowId(), TRUE);
         task->data[0] = 5;
         break;
     case 5:
@@ -289,7 +290,7 @@ void HideMapNamePopUpWindow(void)
 {
     if (FuncIsActiveTask(Task_MapNamePopUpWindow))
     {
-        sub_819746C(GetMapNamePopUpWindowId(), TRUE);
+        ClearStdWindowAndFrame(GetMapNamePopUpWindowId(), TRUE);
         RemoveMapNamePopUpWindow();
         SetGpuReg_ForcedBlank(REG_OFFSET_BG0VOFS, 0);
         DestroyTask(sPopupTaskId);
@@ -305,7 +306,7 @@ static void ShowMapNamePopUpWindow(void)
 
     if (InBattlePyramid())
     {
-        if (gMapHeader.mapLayoutId == 0x17A)
+        if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_TOP)
         {
             withoutPrefixPtr = &(mapDisplayHeader[3]);
             mapDisplayHeaderSource = gBattlePyramid_MapHeaderStrings[7];

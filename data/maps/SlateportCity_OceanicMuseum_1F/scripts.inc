@@ -7,14 +7,14 @@ SlateportCity_OceanicMuseum_1F_EventScript_20AD96:: @ 820AD96
 
 SlateportCity_OceanicMuseum_1F_EventScript_20AD9F:: @ 820AD9F
 	lockall
-	applymovement 255, SlateportCity_OceanicMuseum_1F_Movement_2725A4
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	goto SlateportCity_OceanicMuseum_1F_EventScript_20ADC1
 	end
 
 SlateportCity_OceanicMuseum_1F_EventScript_20ADB0:: @ 820ADB0
 	lockall
-	applymovement 255, SlateportCity_OceanicMuseum_1F_Movement_2725A8
+	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	goto SlateportCity_OceanicMuseum_1F_EventScript_20ADC1
 	end
@@ -23,12 +23,12 @@ SlateportCity_OceanicMuseum_1F_EventScript_20ADC1:: @ 820ADC1
 	showmoneybox 0, 0, 0
 	msgbox SlateportCity_OceanicMuseum_1F_Text_20AFD5, MSGBOX_YESNO
 	compare VAR_RESULT, 1
-	goto_eq SlateportCity_OceanicMuseum_1F_EventScript_20ADE8
+	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_20ADE8
 	closemessage
 	hidemoneybox
 	nop
 	nop
-	applymovement 255, SlateportCity_OceanicMuseum_1F_Movement_20AE4B
+	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_20AE4B
 	waitmovement 0
 	releaseall
 	end
@@ -36,13 +36,13 @@ SlateportCity_OceanicMuseum_1F_EventScript_20ADC1:: @ 820ADC1
 SlateportCity_OceanicMuseum_1F_EventScript_20ADE8:: @ 820ADE8
 	checkmoney 0x32, 0
 	compare VAR_RESULT, 0
-	goto_eq SlateportCity_OceanicMuseum_1F_EventScript_20AE18
+	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_20AE18
 	playse SE_REGI
 	takemoney 0x32, 0
 	updatemoneybox 0, 0
 	nop
 	msgbox SlateportCity_OceanicMuseum_1F_Text_20B026, MSGBOX_DEFAULT
-	setvar VAR_0x40AA, 1
+	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
 	hidemoneybox
 	nop
 	nop
@@ -50,21 +50,20 @@ SlateportCity_OceanicMuseum_1F_EventScript_20ADE8:: @ 820ADE8
 	end
 
 SlateportCity_OceanicMuseum_1F_EventScript_20AE18:: @ 820AE18
-	checkflag FLAG_0x095
-	goto_if 0, SlateportCity_OceanicMuseum_1F_EventScript_20AE39
+	goto_if_unset FLAG_DELIVERED_DEVON_GOODS, SlateportCity_OceanicMuseum_1F_EventScript_20AE39
 	msgbox SlateportCity_OceanicMuseum_1F_Text_20B03D, MSGBOX_DEFAULT
 	closemessage
 	hidemoneybox
 	nop
 	nop
-	applymovement 255, SlateportCity_OceanicMuseum_1F_Movement_20AE4B
+	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_20AE4B
 	waitmovement 0
 	releaseall
 	end
 
 SlateportCity_OceanicMuseum_1F_EventScript_20AE39:: @ 820AE39
 	msgbox SlateportCity_OceanicMuseum_1F_Text_20B075, MSGBOX_DEFAULT
-	setvar VAR_0x40AA, 1
+	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
 	hidemoneybox
 	nop
 	nop
@@ -156,29 +155,29 @@ SlateportCity_OceanicMuseum_1F_EventScript_20AEF8:: @ 820AEF8
 	faceplayer
 	delay 8
 	playse SE_PIN
-	applymovement 13, SlateportCity_OceanicMuseum_1F_Movement_272598
+	applymovement 13, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 13, SlateportCity_OceanicMuseum_1F_Movement_27259A
+	applymovement 13, Common_Movement_Delay48
 	waitmovement 0
 	msgbox SlateportCity_OceanicMuseum_1F_Text_20B3AB, MSGBOX_DEFAULT
 	giveitem_std ITEM_TM46
 	compare VAR_RESULT, 0
-	goto_eq SlateportCity_OceanicMuseum_1F_EventScript_20AFB5
-	setflag FLAG_0x10D
+	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_20AFB5
+	setflag FLAG_RECEIVED_TM46
 	msgbox SlateportCity_OceanicMuseum_1F_Text_20B449, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_FACING, 2
-	goto_eq SlateportCity_OceanicMuseum_1F_EventScript_20AF6C
+	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_20AF6C
 	compare VAR_FACING, 1
-	goto_eq SlateportCity_OceanicMuseum_1F_EventScript_20AF83
+	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_20AF83
 	compare VAR_FACING, 3
-	goto_eq SlateportCity_OceanicMuseum_1F_EventScript_20AF93
+	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_20AF93
 	compare VAR_FACING, 4
-	goto_eq SlateportCity_OceanicMuseum_1F_EventScript_20AF93
+	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_20AF93
 	end
 
 SlateportCity_OceanicMuseum_1F_EventScript_20AF6C:: @ 820AF6C
-	applymovement 255, SlateportCity_OceanicMuseum_1F_Movement_20AFBF
+	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_20AFBF
 	applymovement 13, SlateportCity_OceanicMuseum_1F_Movement_20AFCE
 	waitmovement 0
 	goto SlateportCity_OceanicMuseum_1F_EventScript_20AFAA
@@ -191,7 +190,7 @@ SlateportCity_OceanicMuseum_1F_EventScript_20AF83:: @ 820AF83
 	end
 
 SlateportCity_OceanicMuseum_1F_EventScript_20AF93:: @ 820AF93
-	applymovement 255, SlateportCity_OceanicMuseum_1F_Movement_20AFC4
+	applymovement EVENT_OBJ_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_20AFC4
 	applymovement 13, SlateportCity_OceanicMuseum_1F_Movement_20AFC7
 	waitmovement 0
 	goto SlateportCity_OceanicMuseum_1F_EventScript_20AFAA

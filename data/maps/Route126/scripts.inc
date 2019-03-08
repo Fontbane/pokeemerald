@@ -1,10 +1,9 @@
 Route126_MapScripts:: @ 81F68C6
-	map_script 3, Route126_MapScript1_1F68CC
+	map_script MAP_SCRIPT_ON_TRANSITION, Route126_MapScript1_1F68CC
 	.byte 0
 
 Route126_MapScript1_1F68CC: @ 81F68CC
-	checkflag FLAG_SYS_WEATHER_CTRL
-	call_if 1, Route126_EventScript_27207A
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetWeather15
 	end
 
 Route126_EventScript_1F68D6:: @ 81F68D6
@@ -46,7 +45,7 @@ Route126_EventScript_1F6977:: @ 81F6977
 	trainerbattle_single TRAINER_PABLO_1, Route126_Text_2A1EA5, Route126_Text_2A1EE3, Route126_EventScript_1F69A3
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, 1
-	goto_eq Route126_EventScript_1F69C2
+	goto_if_eq Route126_EventScript_1F69C2
 	msgbox Route126_Text_2A1F10, MSGBOX_DEFAULT
 	release
 	end

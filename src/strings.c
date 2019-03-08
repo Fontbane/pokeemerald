@@ -252,7 +252,7 @@ const u8 gText_ThePokemonList[] = _("the POKéMON LIST");
 const u8 gText_TheShop[] = _("the shop");
 const u8 gText_ThePC[] = _("the PC");
 
-const u8 *const gReturnToXStringsTable[] = 
+const u8 *const gReturnToXStringsTable[] =
 {
     gText_TheField,
     gText_TheBattle,
@@ -268,7 +268,7 @@ const u8 *const gReturnToXStringsTable[] =
     gText_ThePC
 };
 
-const u8 *const gReturnToXStringsTable2[] = 
+const u8 *const gReturnToXStringsTable2[] =
 {
     gText_TheField,
     gText_TheBattle,
@@ -283,7 +283,7 @@ const u8 gText_TMHMPocket[] = _("TMs & HMs");
 const u8 gText_BerriesPocket[] = _("BERRIES");
 const u8 gText_KeyItemsPocket[] = _("KEY ITEMS");
 
-const u8 *const gPocketNamesStringsTable[] = 
+const u8 *const gPocketNamesStringsTable[] =
 {
     gText_ItemsPocket,
     gText_PokeBallsPocket,
@@ -390,7 +390,7 @@ const u8 gText_RemoveMailBeforeItem[] = _("MAIL must be removed before\nholding 
 const u8 gText_PkmnWasGivenItem[] = _("{STR_VAR_1} was given the\n{STR_VAR_2} to hold.{PAUSE_UNTIL_PRESS}");
 const u8 gText_SwitchPkmnItem[] = _("{STR_VAR_1} is already holding\none {STR_VAR_2}.\pWould you like to switch the\ntwo items?");
 const u8 gText_PkmnNotHolding[] = _("{STR_VAR_1} isn't holding\nanything.{PAUSE_UNTIL_PRESS}");
-const u8 gText_RecievedItemFromPkmn[] = _("Received the {STR_VAR_2}\nfrom {STR_VAR_1}.{PAUSE_UNTIL_PRESS}");
+const u8 gText_ReceivedItemFromPkmn[] = _("Received the {STR_VAR_2}\nfrom {STR_VAR_1}.{PAUSE_UNTIL_PRESS}");
 const u8 gText_MailTakenFromPkmn[] = _("MAIL was taken from the\nPOKéMON.{PAUSE_UNTIL_PRESS}");
 const u8 gText_SwitchedPkmnItem[] = _("The {STR_VAR_2} was taken and\nreplaced with the {STR_VAR_1}.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnHoldingItemCantHoldMail[] = _("This POKéMON is holding an\nitem. It cannot hold MAIL.{PAUSE_UNTIL_PRESS}");
@@ -749,10 +749,10 @@ const u8 gUnknown_085EB2FF[] = _("I'll battle now!");
 const u8 gUnknown_085EB310[] = _("I won!");
 const u8 gUnknown_085EB317[] = _("I lost!");
 const u8 gUnknown_085EB31F[] = _("I won't tell.");
-const u8 gUnknown_085EB32D[] = _("NORMAL TAG MATCH");
-const u8 gUnknown_085EB33E[] = _("VARIETY TAG MATCH");
-const u8 gUnknown_085EB350[] = _("UNIQUE TAG MATCH");
-const u8 gUnknown_085EB361[] = _("EXPERT TAG MATCH");
+const u8 gText_NormalTagMatch[] = _("NORMAL TAG MATCH");
+const u8 gText_VarietyTagMatch[] = _("VARIETY TAG MATCH");
+const u8 gText_UniqueTagMatch[] = _("UNIQUE TAG MATCH");
+const u8 gText_ExpertTagMatch[] = _("EXPERT TAG MATCH");
 const u8 gUnknown_085EB372[] = _("TRADE CENTER");
 const u8 gUnknown_085EB37F[] = _("COLOSSEUM");
 const u8 gUnknown_085EB389[] = _("RECORD CORNER");
@@ -965,18 +965,18 @@ const u8 gUnknown_085EBE8E[] = _("Can't call opponent here.");
 const u8 gUnknown_085EBEA8[] = _("STRATEGY");
 const u8 gUnknown_085EBEB1[] = _("TRAINER'S POKéMON");
 const u8 gUnknown_085EBEC3[] = _("SELF-INTRODUCTION");
-const u8 gUnknown_085EBED5[] = _("{CLEAR 0x80}");
-const u8 gUnknown_085EBED9[] = _("{A_BUTTON}ZOOM {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBEE9[] = _("{A_BUTTON}FULL {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBEF9[] = _("{A_BUTTON}CONDITION {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBF0E[] = _("{A_BUTTON}MARKINGS {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBF22[] = _("{A_BUTTON}SELECT MARK {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBF39[] = _("{A_BUTTON}MENU {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBF49[] = _("{A_BUTTON}OK {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBF57[] = _("{B_BUTTON}CANCEL");
-const u8 gUnknown_085EBF60[] = _("{A_BUTTON}RIBBONS {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBF73[] = _("{A_BUTTON}CHECK {B_BUTTON}CANCEL");
-const u8 gUnknown_085EBF84[] = _("{B_BUTTON}CANCEL");
+const u8 gText_Navgear_ClearButtonList[] = _("{CLEAR 0x80}");
+const u8 gText_NavgearMap_ZoomedOutButtons[] = _("{A_BUTTON}ZOOM {B_BUTTON}CANCEL");
+const u8 gText_NavgearMap_ZoomedInButtons[] = _("{A_BUTTON}FULL {B_BUTTON}CANCEL");
+const u8 gText_NavgearCondition_MonListButtons[] = _("{A_BUTTON}CONDITION {B_BUTTON}CANCEL");
+const u8 gText_NavgearCondition_MonStatusButtons[] = _("{A_BUTTON}MARKINGS {B_BUTTON}CANCEL");
+const u8 gText_NavgearCondition_MarkingButtons[] = _("{A_BUTTON}SELECT MARK {B_BUTTON}CANCEL");
+const u8 gText_NavgearMatchCall_TrainerListButtons[] = _("{A_BUTTON}MENU {B_BUTTON}CANCEL");
+const u8 gText_NavgearMatchCall_CallMenuButtons[] = _("{A_BUTTON}OK {B_BUTTON}CANCEL");
+const u8 gText_NavgearMatchCall_CheckTrainerButtons[] = _("{B_BUTTON}CANCEL");
+const u8 gText_NavgearRibbons_MonListButtons[] = _("{A_BUTTON}RIBBONS {B_BUTTON}CANCEL");
+const u8 gText_NavgearRibbons_RibbonListButtons[] = _("{A_BUTTON}CHECK {B_BUTTON}CANCEL");
+const u8 gText_NavgearRibbons_RibbonCheckButtons[] = _("{B_BUTTON}CANCEL");
 const u8 gText_NatureSlash[] = _("NATURE/");
 const u8 gText_TrainerCloseBy[] = _("That TRAINER is close by.\nTalk to the TRAINER in person!");
 const u8 gText_InParty[] = _("IN PARTY");
@@ -1737,10 +1737,10 @@ const u8 gText_Lv[] = _("{LV}");
 const u8 gText_TimeBoard[] = _("TIME BOARD");
 const u8 gText_TimeCleared[] = _("TIME CLEARED ");
 const u8 gText_XMinYDotZSec[] = _("{STR_VAR_1} min. {STR_VAR_2}.{STR_VAR_3} sec.");
-const u8 gUnknown_085EF8B6[] = _("1F");
-const u8 gUnknown_085EF8B9[] = _("2F");
-const u8 gUnknown_085EF8BC[] = _("3F");
-const u8 gUnknown_085EF8BF[] = _("4F");
+const u8 gText_TrainerHill1F[] = _("1F");
+const u8 gText_TrainerHill2F[] = _("2F");
+const u8 gText_TrainerHill3F[] = _("3F");
+const u8 gText_TrainerHill4F[] = _("4F");
 const u8 gText_TeachWhichMoveToPkmn[] = _("Teach which move to {STR_VAR_1}?");
 const u8 gText_TeachX[] = _("Teach {STR_VAR_2}?");
 const u8 gText_PkmnLearnedMove4[] = _("{STR_VAR_1} learned\n{STR_VAR_2}!");

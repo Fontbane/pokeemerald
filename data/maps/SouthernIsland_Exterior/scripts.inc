@@ -1,5 +1,5 @@
 SouthernIsland_Exterior_MapScripts:: @ 82429C8
-	map_script 3, SouthernIsland_Exterior_MapScript1_2429CE
+	map_script MAP_SCRIPT_ON_TRANSITION, SouthernIsland_Exterior_MapScript1_2429CE
 	.byte 0
 
 SouthernIsland_Exterior_MapScript1_2429CE: @ 82429CE
@@ -11,10 +11,10 @@ SouthernIsland_Exterior_EventScript_2429D2:: @ 82429D2
 	faceplayer
 	msgbox SouthernIsland_Exterior_Text_2A69F1, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_eq SouthernIsland_Exterior_EventScript_242A17
+	goto_if_eq SouthernIsland_Exterior_EventScript_242A17
 	msgbox SouthernIsland_Exterior_Text_2A6A5D, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_LAST_TALKED, SouthernIsland_Exterior_Movement_2725AA
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceDown
 	waitmovement 0
 	delay 30
 	hideobjectat 1, MAP_SOUTHERN_ISLAND_EXTERIOR
@@ -31,12 +31,12 @@ SouthernIsland_Exterior_EventScript_242A17:: @ 8242A17
 	end
 
 BattleFrontier_OutsideWest_EventScript_242A21:: @ 8242A21
-	applymovement 255, BattleFrontier_OutsideWest_Movement_242A37
+	applymovement EVENT_OBJ_ID_PLAYER, BattleFrontier_OutsideWest_Movement_242A37
 	waitmovement 0
 	return
 
 BattleFrontier_OutsideWest_EventScript_242A2C:: @ 8242A2C
-	applymovement 255, BattleFrontier_OutsideWest_Movement_242A39
+	applymovement EVENT_OBJ_ID_PLAYER, BattleFrontier_OutsideWest_Movement_242A39
 	waitmovement 0
 	return
 
