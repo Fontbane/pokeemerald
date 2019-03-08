@@ -97,7 +97,7 @@ LilycoveCity_MoveDeletersHouse_Text_21EC06: @ 821EC06
 	.string "{STR_VAR_2} completely.$"
 
 LilycoveCity_MoveDeletersHouse_Text_21EC3F: @ 821EC3F
-	.string "Come again if there are moves that\n"
+	.string "Remember me if there are moves that\n"
 	.string "need to be forgotten.$"
 
 LilycoveCity_MoveDeletersHouse_Text_21EC78: @ 821EC78

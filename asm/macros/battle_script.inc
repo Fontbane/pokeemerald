@@ -1585,6 +1585,10 @@
 	various \battler, VARIOUS_SET_POWDER
 	.endm
 
+	.macro tryactivatebattlecoat battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_BATTLE_COAT
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 4 | \down << 7

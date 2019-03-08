@@ -10,7 +10,6 @@ Route120_EventScript_2906BB:: @ 82906BB
 Route121_EventScript_2906BB:: @ 82906BB
 Route123_EventScript_2906BB:: @ 82906BB
 	lockall
-	checkflag FLAG_BADGE01_GET
 	goto_if 0, Route103_EventScript_290721
 	checkpartymove MOVE_CUT
 	compare VAR_RESULT, 6
@@ -84,7 +83,6 @@ SeafloorCavern_Room2_EventScript_2907A6:: @ 82907A6
 SeafloorCavern_Room5_EventScript_2907A6:: @ 82907A6
 VictoryRoad_B1F_EventScript_2907A6:: @ 82907A6
 	lockall
-	checkflag FLAG_BADGE03_GET
 	goto_if 0, Route111_EventScript_29082D
 	checkpartymove MOVE_ROCK_SMASH
 	compare VAR_RESULT, 6
@@ -160,7 +158,6 @@ SeafloorCavern_Room8_EventScript_2908BA:: @ 82908BA
 ShoalCave_LowTideLowerRoom_EventScript_2908BA:: @ 82908BA
 VictoryRoad_B1F_EventScript_2908BA:: @ 82908BA
 	lockall
-	checkflag FLAG_BADGE04_GET
 	goto_if 0, FieryPath_EventScript_290915
 	checkflag FLAG_SYS_USE_STRENGTH
 	goto_eq FieryPath_EventScript_29091F

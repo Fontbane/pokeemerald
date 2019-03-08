@@ -25,6 +25,8 @@ struct PokedexEntry
     /*0x1C*/ u16 trainerOffset;
 };  /*size = 0x20*/
 
+#define HOENN_DEX_COUNT 280
+#define NATIONAL_DEX_COUNT 972
 void ResetPokedex(void);
 u16 GetPokedexHeightWeight(u16 dexNum, u8 data);
 u16 GetNationalPokedexCount(u8);

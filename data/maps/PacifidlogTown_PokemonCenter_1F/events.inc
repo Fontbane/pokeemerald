@@ -4,6 +4,7 @@ PacifidlogTown_PokemonCenter_1F_EventObjects: @ 852EA70
 	object_event 3, EVENT_OBJ_GFX_GIRL_2, 0, 2, 2, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, PacifidlogTown_PokemonCenter_1F_EventScript_2034C4, 0
 	object_event 4, EVENT_OBJ_GFX_WOMAN_1, 0, 4, 5, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, PacifidlogTown_PokemonCenter_1F_EventScript_2034CD, 0
 	object_event 5, EVENT_OBJ_GFX_MAN_5, 0, 12, 8, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, PacifidlogTown_PokemonCenter_1F_EventScript_2C82BE, 0
+	object_event 6, EVENT_OBJ_GFX_EXPERT_M, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, LilycoveCity_MoveDeletersHouse_EventScript_21EA0B, FLAG_BADGE01_GET
 
 PacifidlogTown_PokemonCenter_1F_MapWarps: @ 852EAE8
 	warp_def 7, 8, 3, 0, MAP_PACIFIDLOG_TOWN

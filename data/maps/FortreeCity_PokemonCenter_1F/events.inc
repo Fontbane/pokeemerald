@@ -3,6 +3,7 @@ FortreeCity_PokemonCenter_1F_EventObjects: @ 8530D94
 	object_event 2, EVENT_OBJ_GFX_GENTLEMAN, 0, 4, 7, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, FortreeCity_PokemonCenter_1F_EventScript_2173F5, 0
 	object_event 3, EVENT_OBJ_GFX_MAN_3, 0, 8, 5, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, FortreeCity_PokemonCenter_1F_EventScript_2173FE, 0
 	object_event 4, EVENT_OBJ_GFX_BOY_3, 0, 2, 3, 3, MOVEMENT_TYPE_FACE_DOWN, 1, 1, 0, 0, FortreeCity_PokemonCenter_1F_EventScript_217407, 0
+	object_event 5, EVENT_OBJ_GFX_EXPERT_M, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, LilycoveCity_MoveDeletersHouse_EventScript_21EA0B, FLAG_BADGE01_GET
 
 FortreeCity_PokemonCenter_1F_MapWarps: @ 8530DF4
 	warp_def 7, 8, 3, 0, MAP_FORTREE_CITY

@@ -4,6 +4,7 @@ MauvilleCity_PokemonCenter_1F_EventObjects: @ 85301C8
 	object_event 3, EVENT_OBJ_GFX_WOMAN_1, 0, 8, 6, 3, MOVEMENT_TYPE_LOOK_AROUND, 0, 0, 0, 0, MauvilleCity_PokemonCenter_1F_EventScript_210E86, 0
 	object_event 4, EVENT_OBJ_GFX_WOMAN_5, 0, 11, 4, 3, MOVEMENT_TYPE_WANDER_UP_AND_DOWN, 0, 1, 0, 0, MauvilleCity_PokemonCenter_1F_EventScript_210E8F, 0
 	object_event 5, EVENT_OBJ_GFX_YOUNGSTER, 0, 2, 8, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, MauvilleCity_PokemonCenter_1F_EventScript_210E98, 0
+	object_event 6, EVENT_OBJ_GFX_EXPERT_M, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, LilycoveCity_MoveDeletersHouse_EventScript_21EA0B, FLAG_BADGE01_GET
 
 MauvilleCity_PokemonCenter_1F_MapWarps: @ 8530240
 	warp_def 7, 8, 3, 1, MAP_MAUVILLE_CITY

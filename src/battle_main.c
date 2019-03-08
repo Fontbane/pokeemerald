@@ -4693,13 +4693,13 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
     speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
 
-    // player's badge boost
+    /*/ player's badge boost
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000 | BATTLE_TYPE_FRONTIER))
         && FlagGet(FLAG_BADGE03_GET)
         && GetBattlerSide(battlerId) == B_SIDE_PLAYER)
     {
         speed = (speed * 110) / 100;
-    }
+    }*/
 
     // item effects
     if (holdEffect == HOLD_EFFECT_MACHO_BRACE)

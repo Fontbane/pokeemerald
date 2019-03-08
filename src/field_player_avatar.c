@@ -600,6 +600,10 @@ static u8 CheckMovementInputNotOnBike(u8 direction)
 
 static void PlayerNotOnBikeNotMoving(u8 direction, u16 heldKeys)
 {
+    if (heldKeys == B_BUTTON)
+    {
+        gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
+    }
     PlayerFaceDirection(GetPlayerFacingDirection());
 }
 
@@ -647,11 +651,10 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         return;
     }
 
-    if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH)
-     && IsRunningDisallowed(gEventObjects[gPlayerAvatar.eventObjectId].currentMetatileBehavior) == 0)
+    if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_DASH) && FlagGet(FLAG_SYS_B_DASH)
+     && IsRunningDisallowedByMetatile(gEventObjects[gPlayerAvatar.eventObjectId].currentMetatileBehavior) == 0)
     {
         PlayerRun(direction);
-        gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
         return;
     }
     else

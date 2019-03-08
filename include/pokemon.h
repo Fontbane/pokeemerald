@@ -141,6 +141,8 @@ struct PokemonSubstruct0
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
+    u8 hasHA:1;
+    u8 form:7;
 };
 
 struct PokemonSubstruct1
@@ -332,16 +334,17 @@ struct BaseStats
  /* 0x0C */ u16 item1;
  /* 0x0E */ u16 item2;
  /* 0x10 */ u8 genderRatio;
- /* 0x11 */ u8 eggCycles;
  /* 0x12 */ u8 friendship;
- /* 0x13 */ u8 growthRate;
- /* 0x14 */ u8 eggGroup1;
- /* 0x15 */ u8 eggGroup2;
+ /* 0x11 */ u8 eggCycles:4;
+ /* 0x13 */ u8 growthRate:3;
+            u8 noFlip:1;
+ /* 0x14 */ u8 eggGroup1:4;
+ /* 0x15 */ u8 eggGroup2:4;
  /* 0x16 */ u8 ability1;
  /* 0x17 */ u8 ability2;
- /* 0x18 */ u8 safariZoneFleeRate;
- /* 0x19 */ u8 bodyColor : 7;
-            u8 noFlip : 1;
+ /* 0x18 */ u8 safariZoneFleeRate:4;
+ /* 0x19 */ u8 bodyColor:4;
+            u8 ability3;
 };
 
 // Argument and effect field are temporarily switched till functions referencing gBattleMoves are decompiled.
@@ -412,6 +415,16 @@ enum
 #define EVO_LEVEL_NINJASK    0x000d // Pokémon reaches the specified level (special value for Ninjask)
 #define EVO_LEVEL_SHEDINJA   0x000e // Pokémon reaches the specified level (special value for Shedinja)
 #define EVO_BEAUTY           0x000f // Pokémon levels up with beauty ≥ specified value
+#define EVO_LEVEL_MALE       0x0010 // Pokémon levels up with a specific gender.
+#define EVO_LEVEL_FEMALE     0x0011 // Pokémon levels up with a specific gender.
+#define EVO_LV52_HELD_ITEM   0x0012 // Pokémon reaches Lv52 while holding the specified item.
+#define EVO_MOVE             0x0013 // Pokémon levels up while knowing the specified move
+#define EVO_MAP              0x0014 // Pokémon levels up in a specific map
+#define EVO_HELD_ITEM_DAY    0x0015 // Pokémon levels up during the day while holding the specified item
+#define EVO_HELD_ITEM_NIGHT  0x0016 // Pokémon levels up during the night while holding the specified item
+#define EVO_SPECIES          0x0017 // Pokémon levels up while a specific pokémon is in the party.
+#define EVO_ITEM_MALE        0x0018 // Specified item is used on male Pokémon
+#define EVO_ITEM_FEMALE      0x0019 // Specified item is used on female Pokémon
 
 #define EVO_MEGA_EVOLUTION   0xffff // Not an actual evolution, used to temporarily mega evolve in battle.
 
@@ -422,7 +435,7 @@ struct Evolution
     u16 targetSpecies;
 };
 
-#define EVOS_PER_MON 5
+#define EVOS_PER_MON 7
 
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];

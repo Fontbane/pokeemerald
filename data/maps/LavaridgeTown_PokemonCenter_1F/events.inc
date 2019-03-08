@@ -3,6 +3,7 @@ LavaridgeTown_PokemonCenter_1F_EventObjects: @ 852E1B4
 	object_event 2, EVENT_OBJ_GFX_YOUNGSTER, 0, 11, 8, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, LavaridgeTown_PokemonCenter_1F_EventScript_1FFB1C, 0
 	object_event 3, EVENT_OBJ_GFX_WOMAN_3, 0, 10, 6, 0, MOVEMENT_TYPE_FACE_LEFT, 0, 0, 0, 0, LavaridgeTown_PokemonCenter_1F_EventScript_1FFB25, 0
 	object_event 4, EVENT_OBJ_GFX_GENTLEMAN, 0, 1, 3, 3, MOVEMENT_TYPE_FACE_RIGHT, 0, 0, 0, 0, LavaridgeTown_PokemonCenter_1F_EventScript_1FFB2E, 0
+	object_event 5, EVENT_OBJ_GFX_EXPERT_M, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, LilycoveCity_MoveDeletersHouse_EventScript_21EA0B, FLAG_BADGE01_GET
 
 LavaridgeTown_PokemonCenter_1F_MapWarps: @ 852E214
 	warp_def 7, 8, 3, 3, MAP_LAVARIDGE_TOWN

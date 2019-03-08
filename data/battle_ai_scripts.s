@@ -3318,6 +3318,7 @@ AI_TrySkillSwapOnAllyPlus3:
 AI_TryStatusOnAlly:
 	get_ability AI_TARGET
 	if_not_equal ABILITY_GUTS, Score_Minus30_
+	if_equal ABILITY_FLARE_BOOST, Score_Plus10
 	if_status AI_TARGET, STATUS1_ANY, Score_Minus30_
 	if_hp_less_than AI_USER, 91, Score_Minus30_
 	goto Score_Plus5
@@ -3328,6 +3329,7 @@ AI_TryHelpingHandOnAlly:
 
 AI_TrySwaggerOnAlly:
 	if_holds_item AI_TARGET, ITEM_PERSIM_BERRY, AI_TrySwaggerOnAlly2
+	if_ability AI_USER_PARTNER, ABILITY_OWN_TEMPO, AI_TrySwaggerOnAlly2
 	goto Score_Minus30_
 
 AI_TrySwaggerOnAlly2:

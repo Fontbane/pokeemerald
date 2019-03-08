@@ -3,6 +3,7 @@ OldaleTown_PokemonCenter_1F_EventObjects: @ 852D844
 	object_event 2, EVENT_OBJ_GFX_GENTLEMAN, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, OldaleTown_PokemonCenter_1F_EventScript_1FC028, 0
 	object_event 3, EVENT_OBJ_GFX_BOY_1, 0, 10, 6, 3, MOVEMENT_TYPE_FACE_RIGHT, 0, 0, 0, 0, OldaleTown_PokemonCenter_1F_EventScript_1FC031, 0
 	object_event 4, EVENT_OBJ_GFX_GIRL_3, 0, 3, 7, 3, MOVEMENT_TYPE_FACE_RIGHT, 1, 1, 0, 0, OldaleTown_PokemonCenter_1F_EventScript_1FC03A, 0
+	object_event 5, EVENT_OBJ_GFX_EXPERT_M, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, LilycoveCity_MoveDeletersHouse_EventScript_21EA0B, FLAG_BADGE01_GET
 
 OldaleTown_PokemonCenter_1F_MapWarps: @ 852D8A4
 	warp_def 7, 8, 3, 2, MAP_OLDALE_TOWN

@@ -75,8 +75,6 @@ struct UnknownStruct4
     u8 unk9;
 };
 
-#define HOENN_DEX_COUNT 202
-#define NATIONAL_DEX_COUNT 386
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
@@ -4693,7 +4691,7 @@ int sub_80C0F30(u8 dexMode, u8 sortMode, u8 abcGroup, u8 bodyColor, u8 type1, u8
     }
 
     // Search by body color
-    if (bodyColor != 0xFF)
+    if (bodyColor != 0xF)
     {
         for (i = 0, resultsCount = 0; i < sPokedexView->pokemonListCount; i++)
         {

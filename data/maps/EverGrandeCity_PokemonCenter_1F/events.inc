@@ -3,6 +3,7 @@ EverGrandeCity_PokemonCenter_1F_EventObjects: @ 8533930
 	object_event 2, EVENT_OBJ_GFX_WOMAN_5, 0, 5, 5, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, EverGrandeCity_PokemonCenter_1F_EventScript_229A67, 0
 	object_event 3, EVENT_OBJ_GFX_EXPERT_M, 0, 10, 7, 3, MOVEMENT_TYPE_FACE_RIGHT, 0, 0, 0, 0, EverGrandeCity_PokemonCenter_1F_EventScript_229A70, 0
 	object_event 4, EVENT_OBJ_GFX_SCOTT, 0, 9, 4, 3, MOVEMENT_TYPE_FACE_UP, 0, 0, 0, 0, EverGrandeCity_PokemonCenter_1F_EventScript_229A79, FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT
+	object_event 5, EVENT_OBJ_GFX_EXPERT_M, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, LilycoveCity_MoveDeletersHouse_EventScript_21EA0B, 0
 
 EverGrandeCity_PokemonCenter_1F_MapWarps: @ 8533990
 	warp_def 7, 8, 3, 1, MAP_EVER_GRANDE_CITY

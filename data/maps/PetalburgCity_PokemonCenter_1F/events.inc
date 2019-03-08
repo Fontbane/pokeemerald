@@ -4,6 +4,7 @@ PetalburgCity_PokemonCenter_1F_EventObjects: @ 852F164
 	object_event 3, EVENT_OBJ_GFX_FAT_MAN, 0, 2, 3, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, PetalburgCity_PokemonCenter_1F_EventScript_207A0A, 0
 	object_event 4, EVENT_OBJ_GFX_YOUNGSTER, 0, 9, 6, 3, MOVEMENT_TYPE_WANDER_AROUND, 1, 1, 0, 0, PetalburgCity_PokemonCenter_1F_EventScript_207A13, 0
 	object_event 5, EVENT_OBJ_GFX_WOMAN_5, 0, 5, 4, 3, MOVEMENT_TYPE_LOOK_AROUND, 1, 1, 0, 0, PetalburgCity_PokemonCenter_1F_EventScript_207A1C, 0
+	object_event 6, EVENT_OBJ_GFX_EXPERT_M, 0, 4, 4, 3, MOVEMENT_TYPE_FACE_DOWN, 0, 0, 0, 0, LilycoveCity_MoveDeletersHouse_EventScript_21EA0B, FLAG_BADGE01_GET
 
 PetalburgCity_PokemonCenter_1F_MapWarps: @ 852F1DC
 	warp_def 7, 8, 3, 3, MAP_PETALBURG_CITY

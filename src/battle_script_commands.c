@@ -771,6 +771,7 @@ static const u16 sMovesForbiddenToCopy[] =
     MOVE_COVET,
     MOVE_TRICK,
     MOVE_FOCUS_PUNCH,
+    MOVE_DARK_VOID
     MOVE_CIRCLE_THROW,
     MOVE_DRAGON_TAIL,
     MOVE_RAGE_POWDER,
@@ -849,9 +850,23 @@ static const u8 sTerrainToType[] =
     TYPE_WATER, // pond water
     TYPE_ROCK, // rock
     TYPE_ROCK, // cave
-    TYPE_NORMAL, // building
+    TYPE_STEEL, // building
     TYPE_NORMAL, // plain
 };
+
+static const u8 sColorToType[] =
+{
+    TYPE_FIRE, //RED
+    TYPE_WATER, //BLUE
+    TYPE_ELECTRIC, //YELLOW
+    TYPE_GRASS, //GREEN
+    TYPE_DARK, //BLACK
+    TYPE_GROUND, //BROWN
+    TYPE_POISON, //PURPLE
+    TYPE_STEEL, //GRAY
+    TYPE_ICE, //WHITE
+    TYPE_FAIRY, //PINK
+}
 
 static const u8 sBallCatchBonuses[] =
 {
@@ -1232,9 +1247,9 @@ static void atk01_accuracycheck(void)
         if (atkAbility == ABILITY_COMPOUND_EYES)
             calc = (calc * 130) / 100; // 1.3 compound eyes boost
         else if (atkAbility == ABILITY_VICTORY_STAR)
-            calc = (calc * 110) / 100; // 1.1 victory star boost
+            calc = (calc * 120) / 100; // 1.1 victory star boost
         if (IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker)) && GetBattlerAbility(BATTLE_PARTNER(gBattlerAttacker)) == ABILITY_VICTORY_STAR)
-            calc = (calc * 110) / 100; // 1.1 ally's victory star boost
+            calc = (calc * 120) / 100; // 1.1 ally's victory star boost
 
         if (defAbility == ABILITY_SAND_VEIL && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
             calc = (calc * 80) / 100; // 1.2 sand veil loss
@@ -7197,6 +7212,21 @@ static void atk76_various(void)
             gBattlescriptCurrInstr += 7;
         }
         return;
+    case VARIOUS_TRY_ACTIVATE_BATTLE_COAT:
+        if (GetBattlerAbility(gActiveBattler) == ABILITY_BATTLE_COAT
+            && HasAttackerFaintedTarget()
+            && !IsBattleLostForPlayer()
+            && !IsBattleWonForPlayer()
+            && gBattleMons[gBattlerAttacker].statStages[STAT_DEF] != 12)
+        {
+            gBattleMons[gBattlerAttacker].statStages[STAT_DEF]++;
+            SET_STATCHANGER(STAT_DEF, 1, FALSE);
+            PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_DEF);
+            BattleScriptPush(gBattlescriptCurrInstr + 3);
+            gBattlescriptCurrInstr = BattleScript_AttackerAbilityStatRaise;
+            return;
+        }
+        break;
     }
 
     gBattlescriptCurrInstr += 3;
