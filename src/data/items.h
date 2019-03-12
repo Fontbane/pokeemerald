@@ -942,7 +942,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_034] =
+    [ITEM_OLD_GATEAU] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -960,7 +960,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_035] =
+    [ITEM_CASTELIACONE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -978,7 +978,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_036] =
+    [ITEM_CAKE_OF_RAGE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -996,7 +996,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_037] =
+    [ITEM_LUMIOSE_GALETTE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1014,7 +1014,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_038] =
+    [ITEM_SHALOUR_SABLE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1032,7 +1032,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_039] =
+    [ITEM_BIG_MALASADA] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1050,7 +1050,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_03A] =
+    [ITEM_SWEET_HEART] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1068,7 +1068,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_03B] =
+    [ITEM_ABILITY_CAPSULE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1486,21 +1486,21 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_052] =
+    [ITEM_POKE_TOY] =
     {
-        .name = _("????????"),
-        .itemId = ITEM_NONE,
-        .price = 0,
+        .name = _("Poké Toy"),
+        .itemId = ITEM_POKE_TOY,
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_NONE,
         .holdEffectParam = 0,
-        .description = gDummyItemDescription,
+        .description = gFluffyTailItemDescription,
         .importance = 0,
         .unk19 = 0,
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .battleUsage = 0,
-        .battleUseFunc = NULL,
+        .battleUsage = 2,
+        .battleUseFunc = ItemUseInBattle_Escape,
         .secondaryId = 0,
     },
 
@@ -1796,7 +1796,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_063] =
+    [ITEM_ICE_STONE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1814,7 +1814,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_064] =
+    [ITEM_DAWN_STONE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1832,7 +1832,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_065] =
+    [ITEM_SHINY_STONE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1850,7 +1850,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_066] =
+    [ITEM_DUSK_STONE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -1906,7 +1906,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_069] =
+    [ITEM_BALM_MUSHROOM] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -2032,7 +2032,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_070] =
+    [ITEM_BIG_NUGGET] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -2050,7 +2050,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_071] =
+    [ITEM_RARE_BONE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -2068,7 +2068,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_072] =
+    [ITEM_PEARL_STRING] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -2086,7 +2086,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_073] =
+    [ITEM_COMET_SHARD] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4107,7 +4107,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E3] =
+    [ITEM_ROCK_INCENSE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4125,7 +4125,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E4] =
+    [ITEM_WAVE_INCENSE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4143,7 +4143,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E5] =
+    [ITEM_FULL_INCENSE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4161,7 +4161,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E6] =
+    [ITEM_ODD_INCENSE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4179,7 +4179,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E7] =
+    [ITEM_ROSE_INCENSE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4197,7 +4197,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E8] =
+    [ITEM_PURE_INCENSE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4215,7 +4215,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E9] =
+    [ITEM_LUCK_INCENSE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4233,7 +4233,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0EA] =
+    [ITEM_ELECTRIZER] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4251,7 +4251,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0EB] =
+    [ITEM_MAGMARIZER] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4269,7 +4269,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0EC] =
+    [ITEM_PROTECTOR] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4287,7 +4287,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0ED] =
+    [ITEM_REAPER_CLOTH] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4305,7 +4305,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0EE] =
+    [ITEM_DUBIOUS_DISC] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4323,7 +4323,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0EF] =
+    [ITEM_OVAL_STONE] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4341,7 +4341,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0F0] =
+    [ITEM_RAZOR_FANG] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4359,7 +4359,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0F1] =
+    [ITEM_RAZOR_CLAW] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4377,7 +4377,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0F2] =
+    [ITEM_RED_CARD] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4395,7 +4395,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0F3] =
+    [ITEM_EJECT_BUTTON] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4413,7 +4413,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0F4] =
+    [ITEM_AIR_BALLOON] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -4431,9 +4431,9 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0F5] =
+    [ITEM_ROCKY_HELMET] =
     {
-        .name = _("????????"),
+        .name = _("Rocky Helmet"),
         .itemId = ITEM_NONE,
         .price = 0,
         .holdEffect = HOLD_EFFECT_NONE,
@@ -4829,7 +4829,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_10B] =
+    [ITEM_SHINY_CHARM] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -5171,10 +5171,10 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_ROOT_FOSSIL] =
+    [ITEM_ROOT_FOSSIL_KEY] =
     {
         .name = _("Root Fossil"),
-        .itemId = ITEM_ROOT_FOSSIL,
+        .itemId = ITEM_ROOT_FOSSIL_KEY,
         .price = 0,
         .holdEffect = HOLD_EFFECT_NONE,
         .holdEffectParam = 0,
@@ -5189,10 +5189,10 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_CLAW_FOSSIL] =
+    [ITEM_CLAW_FOSSIL_KEY] =
     {
         .name = _("Claw Fossil"),
-        .itemId = ITEM_CLAW_FOSSIL,
+        .itemId = ITEM_CLAW_FOSSIL_KEY,
         .price = 0,
         .holdEffect = HOLD_EFFECT_NONE,
         .holdEffectParam = 0,
@@ -6271,7 +6271,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_15B] =
+    [ITEM_EXP_ALL] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -6289,7 +6289,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_15C] =
+    [ITEM_APRICORN_BOX] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
@@ -6399,10 +6399,10 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_OLD_AMBER] =
+    [ITEM_OLD_AMBER_KEY] =
     {
         .name = _("Old Amber"),
-        .itemId = ITEM_OLD_AMBER,
+        .itemId = ITEM_OLD_AMBER_KEY,
         .price = 0,
         .holdEffect = HOLD_EFFECT_NONE,
         .holdEffectParam = 0,
@@ -6453,10 +6453,10 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_HELIX_FOSSIL] =
+    [ITEM_HELIX_FOSSIL_KEY] =
     {
         .name = _("Helix Fossil"),
-        .itemId = ITEM_HELIX_FOSSIL,
+        .itemId = ITEM_HELIX_FOSSIL_KEY,
         .price = 0,
         .holdEffect = HOLD_EFFECT_NONE,
         .holdEffectParam = 0,
@@ -6471,10 +6471,10 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_DOME_FOSSIL] =
+    [ITEM_DOME_FOSSIL_KEY] =
     {
         .name = _("Dome Fossil"),
-        .itemId = ITEM_DOME_FOSSIL,
+        .itemId = ITEM_DOME_FOSSIL_KEY,
         .price = 0,
         .holdEffect = HOLD_EFFECT_NONE,
         .holdEffectParam = 0,

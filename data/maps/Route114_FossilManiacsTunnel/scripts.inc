@@ -35,10 +35,10 @@ Route114_FossilManiacsTunnel_EventScript_22AF87:: @ 822AF87
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_REVIVED_FOSSIL_MON, Route114_FossilManiacsTunnel_EventScript_22AFC6
-	checkitem ITEM_ROOT_FOSSIL, 1
+	checkitem ITEM_ROOT_FOSSIL_KEY, 1
 	compare VAR_RESULT, 1
 	goto_if_eq Route114_FossilManiacsTunnel_EventScript_22AFBC
-	checkitem ITEM_CLAW_FOSSIL, 1
+	checkitem ITEM_CLAW_FOSSIL_KEY, 1
 	compare VAR_RESULT, 1
 	goto_if_eq Route114_FossilManiacsTunnel_EventScript_22AFBC
 	msgbox Route114_FossilManiacsTunnel_Text_22AFD0, MSGBOX_DEFAULT

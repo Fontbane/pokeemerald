@@ -67,10 +67,10 @@ RustboroCity_DevonCorp_2F_EventScript_2118F1:: @ 82118F1
 	compare VAR_FOSSIL_RESURRECTION_STATE, 1
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_2119F9
 	msgbox RustboroCity_DevonCorp_2F_Text_211F48, MSGBOX_DEFAULT
-	checkitem ITEM_ROOT_FOSSIL, 1
+	checkitem ITEM_ROOT_FOSSIL_KEY, 1
 	compare VAR_RESULT, 1
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211933
-	checkitem ITEM_CLAW_FOSSIL, 1
+	checkitem ITEM_CLAW_FOSSIL_KEY, 1
 	compare VAR_RESULT, 1
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211991
 	release
@@ -86,16 +86,16 @@ RustboroCity_DevonCorp_2F_EventScript_211933:: @ 8211933
 	msgbox RustboroCity_DevonCorp_2F_Text_211FA6, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_2119EF
-	checkitem ITEM_CLAW_FOSSIL, 1
+	checkitem ITEM_CLAW_FOSSIL_KEY, 1
 	compare VAR_RESULT, 1
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211B84
 	goto RustboroCity_DevonCorp_2F_EventScript_211974
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_211974:: @ 8211974
-	bufferitemname 0, ITEM_ROOT_FOSSIL
+	bufferitemname 0, ITEM_ROOT_FOSSIL_KEY
 	msgbox RustboroCity_DevonCorp_2F_Text_212153, MSGBOX_DEFAULT
-	takeitem ITEM_ROOT_FOSSIL, 1
+	takeitem ITEM_ROOT_FOSSIL_KEY, 1
 	setvar VAR_FOSSIL_RESURRECTION_STATE, 1
 	setvar VAR_WHICH_FOSSIL_REVIVED, 1
 	release
@@ -111,16 +111,16 @@ RustboroCity_DevonCorp_2F_EventScript_211991:: @ 8211991
 	msgbox RustboroCity_DevonCorp_2F_Text_211FA6, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_2119EF
-	checkitem ITEM_ROOT_FOSSIL, 1
+	checkitem ITEM_ROOT_FOSSIL_KEY, 1
 	compare VAR_RESULT, 1
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211B84
 	goto RustboroCity_DevonCorp_2F_EventScript_2119D2
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_2119D2:: @ 82119D2
-	bufferitemname 0, ITEM_CLAW_FOSSIL
+	bufferitemname 0, ITEM_CLAW_FOSSIL_KEY
 	msgbox RustboroCity_DevonCorp_2F_Text_212153, MSGBOX_DEFAULT
-	takeitem ITEM_CLAW_FOSSIL, 1
+	takeitem ITEM_CLAW_FOSSIL_KEY, 1
 	setvar VAR_FOSSIL_RESURRECTION_STATE, 1
 	setvar VAR_WHICH_FOSSIL_REVIVED, 2
 	release
