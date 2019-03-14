@@ -15,13 +15,13 @@ DesertUnderpass_EventScript_23AF41:: @ 823AF41
 	end
 
 DesertUnderpass_EventScript_23AF57:: @ 823AF57
-	giveitem_std ITEM_CLAW_FOSSIL
+	giveitem_std ITEM_CLAW_FOSSIL_KEY
 	removeobject 1
 	release
 	end
 
 DesertUnderpass_EventScript_23AF68:: @ 823AF68
-	giveitem_std ITEM_ROOT_FOSSIL
+	giveitem_std ITEM_ROOT_FOSSIL_KEY
 	removeobject 1
 	release
 	end
