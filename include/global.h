@@ -141,7 +141,7 @@ enum LanguageId
 #define BAG_ITEMS_COUNT      30
 #define BAG_KEYITEMS_COUNT   30
 #define BAG_POKEBALLS_COUNT  16
-#define BAG_TMHM_COUNT      100
+#define BAG_TMHM_COUNT       64
 #define BAG_BERRIES_COUNT    46
 #define EVENT_OBJECT_TEMPLATES_COUNT 64
 
