@@ -398,7 +398,7 @@ enum
 #define EVO_LEVEL            0x0004 // Pokémon reaches the specified level
 #define EVO_TRADE            0x0005 // Pokémon is traded
 #define EVO_TRADE_ITEM       0x0006 // Pokémon is traded while it's holding the specified item
-#define EVO_ITEM             0x0007 // specified item is used on Pokémon
+#define EVO_ITEM             0x0007 // Specified item is used on Pokémon
 #define EVO_LEVEL_ATK_GT_DEF 0x0008 // Pokémon reaches the specified level with attack > defense
 #define EVO_LEVEL_ATK_EQ_DEF 0x0009 // Pokémon reaches the specified level with attack = defense
 #define EVO_LEVEL_ATK_LT_DEF 0x000a // Pokémon reaches the specified level with attack < defense
@@ -409,14 +409,20 @@ enum
 #define EVO_BEAUTY           0x000f // Pokémon levels up with beauty ≥ specified value
 #define EVO_LEVEL_MALE       0x0010 // Pokémon levels up with a specific gender.
 #define EVO_LEVEL_FEMALE     0x0011 // Pokémon levels up with a specific gender.
-#define EVO_LV52_HELD_ITEM   0x0012 // Pokémon reaches Lv52 while holding the specified item.
+#define EVO_LV52_HELD_ITEM   0x0012 // Pokémon levels up to 52 while holding the specified item.
 #define EVO_MOVE             0x0013 // Pokémon levels up while knowing the specified move
 #define EVO_MAP              0x0014 // Pokémon levels up in a specific map
 #define EVO_HELD_ITEM_DAY    0x0015 // Pokémon levels up during the day while holding the specified item
 #define EVO_HELD_ITEM_NIGHT  0x0016 // Pokémon levels up during the night while holding the specified item
-#define EVO_SPECIES          0x0017 // Pokémon levels up while a specific pokémon is in the party.
+#define EVO_PARTY_SPECIES    0x0017 // Pokémon levels up while a specific pokémon is in the party.
 #define EVO_ITEM_MALE        0x0018 // Specified item is used on male Pokémon
 #define EVO_ITEM_FEMALE      0x0019 // Specified item is used on female Pokémon
+#define EVO_MOVE_TYPE        0x0020 // Pokémon levels up while knowing a move of the specified type.
+#define EVO_PARTY_TYPE       0x0021 // Pokémon reaches the specified level while a Pokémon of the specified type is in the party.
+#define EVO_SMART            0x0022 //Pokémon levels up with smart ≥ specified value
+#define EVO_COOL             0x0023 //Pokémon levels up with cool ≥ specified value
+#define EVO_TOUGH            0x0024 //Pokémon levels up with tough ≥ specified value
+#define EVO_CUTE             0X0025 //Pokémon levels up with cute ≥ specified value
 
 #define EVO_MEGA_EVOLUTION   0xffff // Not an actual evolution, used to temporarily mega evolve in battle.
 

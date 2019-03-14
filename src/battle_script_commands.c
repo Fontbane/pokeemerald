@@ -1252,7 +1252,7 @@ static void atk01_accuracycheck(void)
             calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
         if (atkAbility == ABILITY_HUSTLE && IS_MOVE_PHYSICAL(move))
-            calc = (calc * 80) / 100; // 1.2 hustle loss
+            calc = (calc * 90) / 100; // 1.2 hustle loss
 
         defHoldEffect = GetBattlerHoldEffect(gBattlerTarget, TRUE);
         defParam = GetBattlerHoldEffectParam(gBattlerTarget);
@@ -2814,6 +2814,8 @@ static void atk15_seteffectwithchance(void)
 
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE)
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
+    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SHEER_FORCE)
+        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 0;
     else
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
 
@@ -6816,7 +6818,7 @@ static void atk76_various(void)
         }
         else
         {
-            if (GetBattlerAbility(gBattlerAttacker) == ABILITY_MEGA_LAUNCHER && gBattleMoves[gCurrentMove].flags & FLAG_MEGA_LAUNCHER_BOOST)
+            if (GetBattlerAbility(gBattlerAttacker) == ABILITY_MEGA_LAUNCHER && gBattleMoves[gCurrentMove].flags & FLAG_BALLISTIC)
                 gBattleMoveDamage = -(gBattleMons[gActiveBattler].maxHP * 75 / 100);
             else
                 gBattleMoveDamage = -(gBattleMons[gActiveBattler].maxHP / 2);

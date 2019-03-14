@@ -5694,6 +5694,18 @@ bool8 MonKnowsMove(struct Pokemon *mon, u16 move)
     return FALSE;
 }
 
+bool8 MonKnowsMoveOfType(struct Pokemon *mon, u32 type)
+{
+    u8 i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (gBattleMoves[GetMonData(mon, MON_DATA_MOVE1 + i)].type == type)
+            return TRUE;
+    }
+    return FALSE;
+}
+
 static void sub_81B6D74(const u8 *str)
 {
     StringExpandPlaceholders(gStringVar4, str);
