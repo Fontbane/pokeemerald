@@ -2128,7 +2128,7 @@ void sub_808D194(void)
     sub_808D1FC(CreateTask(sub_808D1FC, 0));
 }
 
-bool8 sub_808D1B4(void)
+bool32 sub_808D1B4(void)
 {
     return FuncIsActiveTask(sub_808D1FC);
 }
@@ -2138,7 +2138,7 @@ void sub_808D1C8(void)
     sub_808D094(CreateTask(sub_808D094, 0));
 }
 
-bool8 sub_808D1E8(void)
+bool32 sub_808D1E8(void)
 {
     return FuncIsActiveTask(sub_808D094);
 }

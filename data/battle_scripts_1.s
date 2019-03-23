@@ -6294,17 +6294,18 @@ BattleScript_MummyActivates::
 	return
 	
 BattleScript_AngryPointActivates::
-	setbyte sB_ANIM_ARG1 0x38
-	setbyte sB_ANIM_ARG2 0x0
 	call BattleScript_AbilityPopUp
+	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
+	setgraphicalstatchangevalues
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_ANGRYPOINTACTIVATES
 	waitmessage 0x40
 	return
 	
 BattleScript_TargetAbilityStatRaise::
-	setgraphicalstatchangevalues
 	call BattleScript_AbilityPopUp
+	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
+	setgraphicalstatchangevalues
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
 	printstring STRINGID_TARGETABILITYSTATRAISE
@@ -6312,8 +6313,8 @@ BattleScript_TargetAbilityStatRaise::
 	return
 	
 BattleScript_WeakArmorActivates::
-	setstatchanger STAT_DEF, 1, TRUE
 	call BattleScript_AbilityPopUp
+	setstatchanger STAT_DEF, 1, TRUE
 	statbuffchange 0x1, BattleScript_WeakArmorActivatesSpeed
 	jumpifbyte CMP_LESS_THAN, cMULTISTRING_CHOOSER, 0x2, BattleScript_WeakArmorDefAnim
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_WeakArmorActivatesSpeed
@@ -6327,7 +6328,7 @@ BattleScript_WeakArmorDefAnim:
 	printstring STRINGID_TARGETABILITYSTATLOWER
 	waitmessage 0x40
 BattleScript_WeakArmorActivatesSpeed:
-	setstatchanger STAT_SPEED, 1, FALSE
+	setstatchanger STAT_SPEED, 2, FALSE
 	statbuffchange 0x1, BattleScript_WeakArmorActivatesEnd
 	jumpifbyte CMP_LESS_THAN, cMULTISTRING_CHOOSER, 0x2, BattleScript_WeakArmorSpeedAnim
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_WeakArmorActivatesEnd
