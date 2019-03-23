@@ -327,7 +327,7 @@ struct BaseStats
  /* 0x0E */ u16 item2;
  /* 0x10 */ u8 genderRatio;
  /* 0x12 */ u8 friendship;
- /* 0x11 */ u8 eggCycles:4;
+ /* 0x11 */ u8 eggCycles;
  /* 0x13 */ u8 growthRate:3;
             u8 noFlip:1;
  /* 0x14 */ u8 eggGroup1:4;

@@ -40,6 +40,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/moves.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
@@ -1317,30 +1318,6 @@ const u16 gHoennToNationalOrder[] = // Assigns Hoenn Dex Pokémon (Using Nationa
     HOENN_TO_NATIONAL(HO_OH),
     HOENN_TO_NATIONAL(CELEBI),
     HOENN_TO_NATIONAL(OLD_UNOWN_B),
-    HOENN_TO_NATIONAL(OLD_UNOWN_C),
-    HOENN_TO_NATIONAL(OLD_UNOWN_D),
-    HOENN_TO_NATIONAL(OLD_UNOWN_E),
-    HOENN_TO_NATIONAL(OLD_UNOWN_F),
-    HOENN_TO_NATIONAL(OLD_UNOWN_G),
-    HOENN_TO_NATIONAL(OLD_UNOWN_H),
-    HOENN_TO_NATIONAL(OLD_UNOWN_I),
-    HOENN_TO_NATIONAL(OLD_UNOWN_J),
-    HOENN_TO_NATIONAL(OLD_UNOWN_K),
-    HOENN_TO_NATIONAL(OLD_UNOWN_L),
-    HOENN_TO_NATIONAL(OLD_UNOWN_M),
-    HOENN_TO_NATIONAL(OLD_UNOWN_N),
-    HOENN_TO_NATIONAL(OLD_UNOWN_O),
-    HOENN_TO_NATIONAL(OLD_UNOWN_P),
-    HOENN_TO_NATIONAL(OLD_UNOWN_Q),
-    HOENN_TO_NATIONAL(OLD_UNOWN_R),
-    HOENN_TO_NATIONAL(OLD_UNOWN_S),
-    HOENN_TO_NATIONAL(OLD_UNOWN_T),
-    HOENN_TO_NATIONAL(OLD_UNOWN_U),
-    HOENN_TO_NATIONAL(OLD_UNOWN_V),
-    HOENN_TO_NATIONAL(OLD_UNOWN_W),
-    HOENN_TO_NATIONAL(OLD_UNOWN_X),
-    HOENN_TO_NATIONAL(OLD_UNOWN_Y),
-    HOENN_TO_NATIONAL(OLD_UNOWN_Z),
 };
 
 const struct SpindaSpot gSpindaSpotGraphics[] =
@@ -5458,8 +5435,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
     u16 upperPersonality = personality >> 16;
     u8 holdEffect;
     u8 gender = GetMonGender(mon);
-    u8 mapGroup = sav1_map_get_name();
-    u8 mapNum = sav1_map_get_name();
+    u8 map = gMapHeader.regionMapSectionId;
 
 
     if (heldItem == ITEM_ENIGMA_BERRY)
@@ -5546,7 +5522,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_MAP:
-                if (EVO_MAP_GROUP(gEvolutionTable[species][i].param) == mapGroup && EVO_MAP_NUM(gEvolutionTable[species][i].param) == mapNum)
+                if (map==gEvolutionTable[species][i].param)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_HELD_ITEM_DAY:

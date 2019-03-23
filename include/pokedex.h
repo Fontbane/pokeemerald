@@ -4,8 +4,8 @@
 extern u8 gUnusedPokedexU8;
 extern void (*gUnknown_030060B4)(void);
 
-#define HOENN_DEX_COUNT 202
-#define NATIONAL_DEX_COUNT 386
+#define HOENN_DEX_COUNT 280
+#define NATIONAL_DEX_COUNT 972
 
 enum
 {
@@ -34,8 +34,6 @@ struct PokedexEntry
     /*0x1C*/ u16 trainerOffset;
 };  /*size = 0x20*/
 
-#define HOENN_DEX_COUNT 280
-#define NATIONAL_DEX_COUNT 972
 void ResetPokedex(void);
 u16 GetPokedexHeightWeight(u16 dexNum, u8 data);
 u16 GetNationalPokedexCount(u8);

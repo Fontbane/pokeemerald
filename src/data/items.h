@@ -4233,7 +4233,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_ELECTRIZER] =
+    [ITEM_ELECTIRIZER] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,

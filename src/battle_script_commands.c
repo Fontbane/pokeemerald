@@ -756,7 +756,6 @@ static const u16 sMovesForbiddenToCopy[] =
     MOVE_COVET,
     MOVE_TRICK,
     MOVE_FOCUS_PUNCH,
-    MOVE_DARK_VOID
     MOVE_CIRCLE_THROW,
     MOVE_DRAGON_TAIL,
     MOVE_RAGE_POWDER,
@@ -851,7 +850,7 @@ static const u8 sColorToType[] =
     TYPE_STEEL, //GRAY
     TYPE_ICE, //WHITE
     TYPE_FAIRY, //PINK
-}
+};
 
 static const u8 sBallCatchBonuses[] =
 {

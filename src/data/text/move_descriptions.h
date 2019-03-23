@@ -2541,6 +2541,13 @@ static const u8 sPLASMA_FISTSDescription[]  = _(
     "Normal moves are Electric\n"
     "for the rest of the turn.");
 
+static const u8 sPHOTON_GEYSERDescription[]  = _(
+    "A gush of light using\n"
+    "the higher Atk. stat.");
+static const u8 sDOUBLE_IRON_BASHDescription[]  = _(
+    "Clobbers foe two times.\n"
+    "May cause flinching.");
+
 static const u8 sNotDoneYetDescription[] = _(
 	"Not done yet.");
 
