@@ -416,7 +416,26 @@ struct Evolution
     u16 targetSpecies;
 };
 
+
+#define FORMCHANGE_RANDOM       0x0001
+#define FORMCHANGE_WILD         0x0002
+#define FORMCHANGE_USE_ITEM     0x0003
+#define FORMCHANGE_HOLD_ITEM    0x0004
+#define FORMCHANGE_TERRAIN      0x0005
+#define FORMCHANGE_USE_MOVE     0x0006
+#define FORMCHANGE_ABILITY      0x0007
+#define FORMCHANGE_MEGA         0x0008
+
+struct PokemonForm
+{
+    u16 method;
+    u16 param;
+    u8 targetForm;
+    u32 flags;
+};
+
 #define EVOS_PER_MON 5
+#define FORMS_PER_MON 28
 
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
@@ -428,6 +447,7 @@ extern const struct BattleMove gBattleMoves[];
 extern const u8 gFacilityClassToPicIndex[];
 extern const u8 gFacilityClassToTrainerClass[];
 extern const struct BaseStats gBaseStats[];
+extern const struct PokemonForm gPokemonForms[][FORMS_PER_MON];
 extern const u8 *const gItemEffectTable[];
 extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
 extern const u32 gExperienceTables[][MAX_LEVEL + 1];

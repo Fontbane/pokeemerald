@@ -110,4 +110,10 @@
 #define SPLIT_SPECIAL   0x1
 #define SPLIT_STATUS    0x2
 
+//Form flags.
+#define FLAG_BASE_STATS 0x0001
+#define FLAG_SPRITE     0x0002
+#define FLAG_PALETTE    0x0004
+#define FLAG_MOVESET    0x0008
+
 #endif // GUARD_CONSTANTS_POKEMON_H
