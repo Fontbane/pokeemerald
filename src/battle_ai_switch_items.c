@@ -764,13 +764,13 @@ static bool8 ShouldUseItem(void)
         item = gBattleResources->battleHistory->trainerItems[i];
         if (item == ITEM_NONE)
             continue;
-        if (gItemEffectTable[item - 13] == NULL)
+        if (gItemEffectTable[item - ITEM_POTION] == NULL)
             continue;
 
         if (item == ITEM_ENIGMA_BERRY)
             itemEffects = gSaveBlock1Ptr->enigmaBerry.itemEffect;
         else
-            itemEffects = gItemEffectTable[item - 13];
+            itemEffects = gItemEffectTable[item - ITEM_POTION];
 
         *(gBattleStruct->AI_itemType + gActiveBattler / 2) = GetAI_ItemType(item, itemEffects);
 

@@ -59,6 +59,8 @@ static u16 GetBattlerPokeballItemId(u8 battlerId);
 #define GFX_TAG_TIMERBALL   55009
 #define GFX_TAG_LUXURYBALL  55010
 #define GFX_TAG_PREMIERBALL 55011
+#define GFX_TAG_CHERISHBALL 55012
+#define GFX_TAG_DUSKBALL 55013
 
 const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
 {
@@ -74,6 +76,9 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     {gInterfaceGfx_TimerBall,   384, GFX_TAG_TIMERBALL},
     {gInterfaceGfx_LuxuryBall,  384, GFX_TAG_LUXURYBALL},
     {gInterfaceGfx_PremierBall, 384, GFX_TAG_PREMIERBALL},
+    {gInterfaceGfx_CherishBall, 384, GFX_TAG_CHERISHBALL},
+    {gInterfaceGfx_DuskBall, 384, GFX_TAG_DUSKBALL},
+
 };
 
 const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
@@ -90,6 +95,9 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     {gInterfacePal_TimerBall,   GFX_TAG_TIMERBALL},
     {gInterfacePal_LuxuryBall,  GFX_TAG_LUXURYBALL},
     {gInterfacePal_PremierBall, GFX_TAG_PREMIERBALL},
+    {gInterfacePal_CherishBall, GFX_TAG_CHERISHBALL},
+    {gInterfacePal_DuskBall, GFX_TAG_DUSKBALL},
+
 };
 
 static const struct OamData sBallOamData =
@@ -1253,6 +1261,15 @@ void LoadBallGfx(u8 ballId)
     case BALL_DIVE:
     case BALL_LUXURY:
     case BALL_PREMIER:
+    case BALL_GREAT:
+    case BALL_ULTRA:
+    case BALL_SAFARI:
+    case BALL_TIMER:
+    case BALL_NEST:
+    case BALL_NET:
+    case BALL_REPEAT:
+    case BALL_CHERISH:
+    case BALL_DUSK:
         break;
     default:
         var = GetSpriteTileStartByTag(gBallSpriteSheets[ballId].tag);
