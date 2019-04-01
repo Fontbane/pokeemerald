@@ -13,7 +13,7 @@ DewfordTown_House1_EventScript_1FC3E0:: @ 81FC3E0
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_ZIGZAGOON, 0
+	playmoncry SPECIES_TEDDICHOO, 0
 	msgbox DewfordTown_House1_Text_1FC510, MSGBOX_DEFAULT
 	waitmoncry
 	release

@@ -240,7 +240,7 @@ SlateportCity_PokemonFanClub_EventScript_20A1FA:: @ 820A1FA
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_SKITTY, 0
+	playmoncry SPECIES_MAREANIE, 0
 	msgbox SlateportCity_PokemonFanClub_Text_20AD5A, MSGBOX_DEFAULT
 	waitmoncry
 	release
@@ -250,7 +250,7 @@ SlateportCity_PokemonFanClub_EventScript_20A20D:: @ 820A20D
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_ZIGZAGOON, 0
+	playmoncry SPECIES_TEDDICHOO, 0
 	msgbox SlateportCity_PokemonFanClub_Text_20AD6E, MSGBOX_DEFAULT
 	waitmoncry
 	release

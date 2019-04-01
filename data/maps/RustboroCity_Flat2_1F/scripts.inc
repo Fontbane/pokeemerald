@@ -9,7 +9,7 @@ RustboroCity_Flat2_1F_EventScript_215F80:: @ 8215F80
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_SKITTY, 0
+	playmoncry SPECIES_MAREANIE, 0
 	msgbox RustboroCity_Flat2_1F_Text_215FC6, MSGBOX_DEFAULT
 	waitmoncry
 	release

@@ -92,7 +92,7 @@ Route104_MrBrineysHouse_EventScript_229E5D:: @ 8229E5D
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_WINGULL, 0
+	playmoncry SPECIES_LUCHIK, 0
 	msgbox Route104_MrBrineysHouse_Text_22A337, MSGBOX_DEFAULT
 	waitmoncry
 	release

@@ -144,20 +144,20 @@ RustboroCity_DevonCorp_2F_EventScript_211A03:: @ 8211A03
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_211A1A:: @ 8211A1A
-	bufferspeciesname 1, SPECIES_LILEEP
+	bufferspeciesname 1, SPECIES_TYRUNT
 	msgbox RustboroCity_DevonCorp_2F_Text_212251, MSGBOX_DEFAULT
 	goto RustboroCity_DevonCorp_2F_EventScript_211A3E
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_211A2C:: @ 8211A2C
-	bufferspeciesname 1, SPECIES_ANORITH
+	bufferspeciesname 1, SPECIES_AMAURA
 	msgbox RustboroCity_DevonCorp_2F_Text_212251, MSGBOX_DEFAULT
 	goto RustboroCity_DevonCorp_2F_EventScript_211AE1
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_211A3E:: @ 8211A3E
 	setvar VAR_TEMP_1, 388
-	givemon SPECIES_LILEEP, 20, ITEM_NONE, 0x0, 0x0, 0
+	givemon SPECIES_TYRUNT, 20, ITEM_NONE, 0x0, 0x0, 0
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211A6E
 	compare VAR_RESULT, 1
@@ -190,12 +190,12 @@ RustboroCity_DevonCorp_2F_EventScript_211AB9:: @ 8211AB9
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_211AC4:: @ 8211AC4
-	bufferspeciesname 1, SPECIES_LILEEP
+	bufferspeciesname 1, SPECIES_TYRUNT
 	playfanfare MUS_FANFA4
 	message RustboroCity_DevonCorp_2F_Text_2122CB
 	waitmessage
 	waitfanfare
-	bufferspeciesname 0, SPECIES_LILEEP
+	bufferspeciesname 0, SPECIES_TYRUNT
 	return
 
 RustboroCity_DevonCorp_2F_EventScript_211AD7:: @ 8211AD7
@@ -206,7 +206,7 @@ RustboroCity_DevonCorp_2F_EventScript_211AD7:: @ 8211AD7
 
 RustboroCity_DevonCorp_2F_EventScript_211AE1:: @ 8211AE1
 	setvar VAR_TEMP_1, 390
-	givemon SPECIES_ANORITH, 20, ITEM_NONE, 0x0, 0x0, 0
+	givemon SPECIES_AMAURA, 20, ITEM_NONE, 0x0, 0x0, 0
 	compare VAR_RESULT, 0
 	goto_if_eq RustboroCity_DevonCorp_2F_EventScript_211B11
 	compare VAR_RESULT, 1
@@ -239,12 +239,12 @@ RustboroCity_DevonCorp_2F_EventScript_211B5C:: @ 8211B5C
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_211B67:: @ 8211B67
-	bufferspeciesname 1, SPECIES_ANORITH
+	bufferspeciesname 1, SPECIES_AMAURA
 	playfanfare MUS_FANFA4
 	message RustboroCity_DevonCorp_2F_Text_2122CB
 	waitmessage
 	waitfanfare
-	bufferspeciesname 0, SPECIES_ANORITH
+	bufferspeciesname 0, SPECIES_AMAURA
 	return
 
 RustboroCity_DevonCorp_2F_EventScript_211B7A:: @ 8211B7A

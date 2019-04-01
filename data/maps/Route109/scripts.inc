@@ -359,7 +359,7 @@ Route109_EventScript_1EEA18:: @ 81EEA18
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_ZIGZAGOON, 0
+	playmoncry SPECIES_TEDDICHOO, 0
 	msgbox Route109_Text_1EF173, MSGBOX_DEFAULT
 	waitmoncry
 	release

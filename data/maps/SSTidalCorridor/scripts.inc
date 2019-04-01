@@ -89,7 +89,7 @@ SSTidalCorridor_EventScript_23C0E2:: @ 823C0E2
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_WINGULL, 0
+	playmoncry SPECIES_LUCHIK, 0
 	msgbox SSTidalCorridor_Text_23C7E1, MSGBOX_DEFAULT
 	waitmoncry
 	release

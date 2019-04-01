@@ -57,7 +57,7 @@ FortreeCity_House4_EventScript_217D20:: @ 8217D20
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_WINGULL, 0
+	playmoncry SPECIES_LUCHIK, 0
 	msgbox FortreeCity_House4_Text_217EE0, MSGBOX_DEFAULT
 	waitmoncry
 	release

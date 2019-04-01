@@ -57,7 +57,7 @@ FortreeCity_House1_EventScript_216368:: @ 8216368
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_ZIGZAGOON, 0
+	playmoncry SPECIES_TEDDICHOO, 0
 	msgbox FortreeCity_House1_Text_216597, MSGBOX_DEFAULT
 	waitmoncry
 	release

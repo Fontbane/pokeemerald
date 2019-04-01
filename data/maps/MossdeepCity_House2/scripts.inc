@@ -13,7 +13,7 @@ MossdeepCity_House2_EventScript_2220F1:: @ 82220F1
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_WINGULL, 0
+	playmoncry SPECIES_LUCHIK, 0
 	msgbox MossdeepCity_House2_Text_22222E, MSGBOX_DEFAULT
 	waitmoncry
 	closemessage

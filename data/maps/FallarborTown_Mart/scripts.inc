@@ -41,7 +41,7 @@ FallarborTown_Mart_EventScript_1FFD06:: @ 81FFD06
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_SKITTY, 0
+	playmoncry SPECIES_MAREANIE, 0
 	msgbox FallarborTown_Mart_Text_1FFDFA, MSGBOX_DEFAULT
 	waitmoncry
 	release

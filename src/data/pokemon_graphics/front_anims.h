@@ -2910,14 +2910,6 @@ const union AnimCmd gAnimCmd_CELEBI_1[] =
     ANIMCMD_END,
 };
 
-const union AnimCmd gAnimCmd_OLD_UNOWN_B_1[] =
-{
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_FRAME(1, 30),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
 const union AnimCmd gAnimCmd_TREECKO_1[] =
 {
     ANIMCMD_FRAME(0, 6),
@@ -6103,11 +6095,6 @@ const union AnimCmd *const gAnims_CELEBI[] ={
     gAnimCmd_CELEBI_1,
 };
 
-const union AnimCmd *const gAnims_OLD_UNOWN_B[] ={
-    gAnimCmd_General_Frame0,
-    gAnimCmd_OLD_UNOWN_B_1,
-};
-
 const union AnimCmd *const gAnims_TREECKO[] ={
     gAnimCmd_General_Frame0,
     gAnimCmd_TREECKO_1,
@@ -7203,31 +7190,6 @@ const union AnimCmd* const * const gMonAnimationsSpriteAnimsPtrTable[] =
     ANIM_CMD(LUGIA),
     ANIM_CMD(HO_OH),
     ANIM_CMD(CELEBI),
-    ANIM_CMD(OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_C, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_D, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_E, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_F, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_G, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_H, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_I, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_J, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_K, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_L, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_M, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_N, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_O, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_P, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_Q, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_R, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_S, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_T, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_U, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_V, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_W, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_X, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_Y, gAnims_OLD_UNOWN_B),
-    ANIM_CMD_FULL(OLD_UNOWN_Z, gAnims_OLD_UNOWN_B),
     ANIM_CMD(TREECKO),
     ANIM_CMD(GROVYLE),
     ANIM_CMD(SCEPTILE),

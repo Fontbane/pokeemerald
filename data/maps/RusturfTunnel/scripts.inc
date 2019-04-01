@@ -301,7 +301,7 @@ RusturfTunnel_EventScript_22D0AF:: @ 822D0AF
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_WINGULL, 0
+	playmoncry SPECIES_LUCHIK, 0
 	msgbox RusturfTunnel_Text_22D1F7, MSGBOX_DEFAULT
 	waitmoncry
 	release
@@ -333,7 +333,7 @@ RusturfTunnel_EventScript_22D0C2:: @ 822D0C2
 	message RusturfTunnel_Text_22D3BA
 	waitmessage
 	waitse
-	playmoncry SPECIES_WINGULL, 0
+	playmoncry SPECIES_LUCHIK, 0
 	waitbuttonpress
 	waitmoncry
 	closemessage

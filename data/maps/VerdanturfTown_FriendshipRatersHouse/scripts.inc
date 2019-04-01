@@ -56,7 +56,7 @@ VerdanturfTown_FriendshipRatersHouse_EventScript_2030DA:: @ 82030DA
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_PIKACHU, 0
+	playmoncry SPECIES_DENKI, 0
 	msgbox VerdanturfTown_FriendshipRatersHouse_Text_20334A, MSGBOX_DEFAULT
 	waitmoncry
 	release

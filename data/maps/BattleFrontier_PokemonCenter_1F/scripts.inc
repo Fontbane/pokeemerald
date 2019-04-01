@@ -31,7 +31,7 @@ BattleFrontier_PokemonCenter_1F_EventScript_267931:: @ 8267931
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_SKITTY, 0
+	playmoncry SPECIES_MAREANIE, 0
 	msgbox BattleFrontier_PokemonCenter_1F_Text_267A90, MSGBOX_DEFAULT
 	waitmoncry
 	release

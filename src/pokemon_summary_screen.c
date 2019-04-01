@@ -2871,7 +2871,7 @@ static void sub_81C2794(void)
 
 static void sub_81C27DC(struct Pokemon *mon, u16 species)
 {
-    if (species != SPECIES_NIDORAN_M && species != SPECIES_NIDORAN_F)
+    if (species != SPECIES_BEADRA && species != SPECIES_PARACHNID)
     {
         u8 gender = GetMonGender(mon);
         switch (gender)

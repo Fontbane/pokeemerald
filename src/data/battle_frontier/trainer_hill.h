@@ -52,7 +52,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [1] =
                         {
-                            .species = SPECIES_SOLROCK,
+                            .species = SPECIES_CRUMBOLT,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_PSYCHIC, MOVE_FLAMETHROWER, MOVE_ROCK_SLIDE, MOVE_CALM_MIND},
                             .level = 0,
@@ -97,7 +97,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [3] =
                         {
-                            .species = SPECIES_WEEZING,
+                            .species = SPECIES_KOGOZHAR,
                             .heldItem = ITEM_SALAC_BERRY,
                             .moves = {MOVE_SLUDGE_BOMB, MOVE_SHADOW_BALL, MOVE_FRUSTRATION, MOVE_DESTINY_BOND},
                             .level = 0,
@@ -119,7 +119,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [4] =
                         {
-                            .species = SPECIES_LUNATONE,
+                            .species = SPECIES_SNOWKI,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_PSYCHIC, MOVE_ICE_BEAM, MOVE_ROCK_SLIDE, MOVE_CALM_MIND},
                             .level = 0,
@@ -219,7 +219,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [2] =
                         {
-                            .species = SPECIES_MACHOKE,
+                            .species = SPECIES_GURDURR,
                             .heldItem = ITEM_BLACK_BELT,
                             .moves = {MOVE_DYNAMIC_PUNCH, MOVE_MUD_SLAP, MOVE_COUNTER, MOVE_SCARY_FACE},
                             .level = 0,
@@ -282,7 +282,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [5] =
                         {
-                            .species = SPECIES_PINSIR,
+                            .species = SPECIES_SYROAR,
                             .heldItem = ITEM_QUICK_CLAW,
                             .moves = {MOVE_GUILLOTINE, MOVE_BRICK_BREAK, MOVE_SWAGGER, MOVE_FAINT_ATTACK},
                             .level = 0,
@@ -374,7 +374,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [2] =
                         {
-                            .species = SPECIES_HITMONTOP,
+                            .species = SPECIES_KIXWOLE,
                             .heldItem = ITEM_SHELL_BELL,
                             .moves = {MOVE_FOCUS_PUNCH, MOVE_PROTECT, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -396,7 +396,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [3] =
                         {
-                            .species = SPECIES_MACHOP,
+                            .species = SPECIES_TIMBURR,
                             .heldItem = ITEM_SALAC_BERRY,
                             .moves = {MOVE_FOCUS_PUNCH, MOVE_REVENGE, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -418,7 +418,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [4] =
                         {
-                            .species = SPECIES_PINSIR,
+                            .species = SPECIES_SYROAR,
                             .heldItem = ITEM_SALAC_BERRY,
                             .moves = {MOVE_FOCUS_PUNCH, MOVE_REVENGE, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -440,7 +440,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [5] =
                         {
-                            .species = SPECIES_HITMONCHAN,
+                            .species = SPECIES_HAXORUS,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_FOCUS_PUNCH, MOVE_REVENGE, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -497,7 +497,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [1] =
                         {
-                            .species = SPECIES_MINUN,
+                            .species = SPECIES_TRANCELL,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_THUNDER_WAVE, MOVE_CHARM, MOVE_ENCORE, MOVE_SPARK},
                             .level = 0,
@@ -541,7 +541,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [3] =
                         {
-                            .species = SPECIES_MR_MIME,
+                            .species = SPECIES_MEOWPLE,
                             .heldItem = ITEM_SITRUS_BERRY,
                             .moves = {MOVE_SAFEGUARD, MOVE_REFLECT, MOVE_LIGHT_SCREEN, MOVE_PSYCHIC},
                             .level = 0,
@@ -563,7 +563,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [4] =
                         {
-                            .species = SPECIES_PLUSLE,
+                            .species = SPECIES_SHOROAM,
                             .heldItem = ITEM_SITRUS_BERRY,
                             .moves = {MOVE_RAIN_DANCE, MOVE_LIGHT_SCREEN, MOVE_HELPING_HAND, MOVE_THUNDER},
                             .level = 0,
@@ -655,7 +655,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [1] =
                         {
-                            .species = SPECIES_DODRIO,
+                            .species = SPECIES_YUEHFOE,
                             .heldItem = ITEM_KINGS_ROCK,
                             .moves = {MOVE_HAZE, MOVE_TRI_ATTACK, MOVE_TAUNT, MOVE_TORMENT},
                             .level = 0,
@@ -677,7 +677,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [2] =
                         {
-                            .species = SPECIES_OMASTAR,
+                            .species = SPECIES_CAMOTAURUS,
                             .heldItem = ITEM_QUICK_CLAW,
                             .moves = {MOVE_HAZE, MOVE_HYDRO_PUMP, MOVE_TICKLE, MOVE_ATTRACT},
                             .level = 0,
@@ -743,7 +743,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [5] =
                         {
-                            .species = SPECIES_LINOONE,
+                            .species = SPECIES_URSARTIC,
                             .heldItem = ITEM_LUM_BERRY,
                             .moves = {MOVE_BELLY_DRUM, MOVE_REST, MOVE_MUD_SLAP, MOVE_SWAGGER},
                             .level = 0,
@@ -778,7 +778,7 @@ static const struct TrHillTag sDataTagNormal =
                     {
                         [0] =
                         {
-                            .species = SPECIES_SKITTY,
+                            .species = SPECIES_MAREANIE,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_PSYCH_UP, MOVE_DOUBLE_EDGE, MOVE_SHADOW_BALL, MOVE_IRON_TAIL},
                             .level = 0,
@@ -821,7 +821,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [2] =
                         {
-                            .species = SPECIES_STANTLER,
+                            .species = SPECIES_DEDENNE,
                             .heldItem = ITEM_SHELL_BELL,
                             .moves = {MOVE_PSYCH_UP, MOVE_RETURN, MOVE_EARTHQUAKE, MOVE_SHADOW_BALL},
                             .level = 0,
@@ -843,7 +843,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [3] =
                         {
-                            .species = SPECIES_NIDOQUEEN,
+                            .species = SPECIES_ARACHILLES,
                             .heldItem = ITEM_SALAC_BERRY,
                             .moves = {MOVE_SUPERPOWER, MOVE_BITE, MOVE_CHARM, MOVE_FLATTER},
                             .level = 0,
@@ -887,7 +887,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [5] =
                         {
-                            .species = SPECIES_CHARIZARD,
+                            .species = SPECIES_TONROAST,
                             .heldItem = ITEM_SALAC_BERRY,
                             .moves = {MOVE_OVERHEAT, MOVE_BEAT_UP, MOVE_SCARY_FACE, MOVE_GROWL},
                             .level = 0,
@@ -935,7 +935,7 @@ static const struct TrHillTag sDataTagNormal =
                     {
                         [0] =
                         {
-                            .species = SPECIES_ALAKAZAM,
+                            .species = SPECIES_REUNICLUS,
                             .heldItem = ITEM_PETAYA_BERRY,
                             .moves = {MOVE_SKILL_SWAP, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH, MOVE_REFLECT},
                             .level = 0,
@@ -978,7 +978,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [2] =
                         {
-                            .species = SPECIES_GRUMPIG,
+                            .species = SPECIES_DRIFTANGLE,
                             .heldItem = ITEM_TWISTED_SPOON,
                             .moves = {MOVE_SKILL_SWAP, MOVE_PSYCHIC, MOVE_CONFUSE_RAY, MOVE_REST},
                             .level = 0,
@@ -1076,7 +1076,7 @@ static const struct TrHillTag sDataTagNormal =
                     {
                         [0] =
                         {
-                            .species = SPECIES_WEEZING,
+                            .species = SPECIES_KOGOZHAR,
                             .heldItem = ITEM_POISON_BARB,
                             .moves = {MOVE_TOXIC, MOVE_SLUDGE_BOMB, MOVE_SMOKESCREEN, MOVE_HAZE},
                             .level = 0,
@@ -1118,7 +1118,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [2] =
                         {
-                            .species = SPECIES_MUK,
+                            .species = SPECIES_SCAFETY,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_SCREECH, MOVE_DISABLE, MOVE_SLUDGE_BOMB, MOVE_ACID_ARMOR},
                             .level = 0,
@@ -1182,7 +1182,7 @@ static const struct TrHillTag sDataTagNormal =
                         },
                         [5] =
                         {
-                            .species = SPECIES_MEGANIUM,
+                            .species = SPECIES_RAVAGON,
                             .heldItem = ITEM_MIRACLE_SEED,
                             .moves = {MOVE_RAZOR_LEAF, MOVE_BODY_SLAM, MOVE_LEECH_SEED, MOVE_SYNTHESIS},
                             .level = 0,
@@ -1243,7 +1243,7 @@ static const struct TrHillTag sDataTagVariety =
                     {
                         [0] =
                         {
-                            .species = SPECIES_DELIBIRD,
+                            .species = SPECIES_FITTO,
                             .heldItem = ITEM_SITRUS_BERRY,
                             .moves = {MOVE_PRESENT, MOVE_SPLASH, MOVE_HAIL, MOVE_PROTECT},
                             .level = 0,
@@ -1285,7 +1285,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [2] =
                         {
-                            .species = SPECIES_PIKACHU,
+                            .species = SPECIES_DENKI,
                             .heldItem = ITEM_SITRUS_BERRY,
                             .moves = {MOVE_PRESENT, MOVE_GROWL, MOVE_TAIL_WHIP, MOVE_AGILITY},
                             .level = 0,
@@ -1327,7 +1327,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [4] =
                         {
-                            .species = SPECIES_JIGGLYPUFF,
+                            .species = SPECIES_KITTEA,
                             .heldItem = ITEM_SITRUS_BERRY,
                             .moves = {MOVE_PRESENT, MOVE_SING, MOVE_DISABLE, MOVE_REST},
                             .level = 0,
@@ -1382,7 +1382,7 @@ static const struct TrHillTag sDataTagVariety =
                     {
                         [0] =
                         {
-                            .species = SPECIES_WIGGLYTUFF,
+                            .species = SPECIES_TABBREW,
                             .heldItem = ITEM_SILK_SCARF,
                             .moves = {MOVE_ROLLOUT, MOVE_DEFENSE_CURL, MOVE_SING, MOVE_DREAM_EATER},
                             .level = 0,
@@ -1424,7 +1424,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [2] =
                         {
-                            .species = SPECIES_GRUMPIG,
+                            .species = SPECIES_DRIFTANGLE,
                             .heldItem = ITEM_SILK_SCARF,
                             .moves = {MOVE_PSYBEAM, MOVE_MAGIC_COAT, MOVE_BOUNCE, MOVE_FUTURE_SIGHT},
                             .level = 0,
@@ -1466,7 +1466,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [4] =
                         {
-                            .species = SPECIES_CLAMPERL,
+                            .species = SPECIES_PANCHAM,
                             .heldItem = ITEM_SILK_SCARF,
                             .moves = {MOVE_WHIRLPOOL, MOVE_IRON_DEFENSE, MOVE_ENDURE, MOVE_CONFUSE_RAY},
                             .level = 0,
@@ -1534,7 +1534,7 @@ static const struct TrHillTag sDataTagVariety =
                     {
                         [0] =
                         {
-                            .species = SPECIES_JIGGLYPUFF,
+                            .species = SPECIES_KITTEA,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_SING, MOVE_HYPER_VOICE, MOVE_ATTRACT, MOVE_NONE},
                             .level = 0,
@@ -1559,7 +1559,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [1] =
                         {
-                            .species = SPECIES_JYNX,
+                            .species = SPECIES_SAPPURR,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_PERISH_SONG, MOVE_FAKE_TEARS, MOVE_ATTRACT, MOVE_NONE},
                             .level = 0,
@@ -1584,7 +1584,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [2] =
                         {
-                            .species = SPECIES_EXPLOUD,
+                            .species = SPECIES_MANDIBUZZ,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_HOWL, MOVE_HYPER_VOICE, MOVE_ATTRACT, MOVE_NONE},
                             .level = 0,
@@ -1634,7 +1634,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [4] =
                         {
-                            .species = SPECIES_PIDGEOTTO,
+                            .species = SPECIES_KISTRUCT,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_FEATHER_DANCE, MOVE_AERIAL_ACE, MOVE_ATTRACT, MOVE_NONE},
                             .level = 0,
@@ -1719,7 +1719,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [1] =
                         {
-                            .species = SPECIES_WHISMUR,
+                            .species = SPECIES_RUFFLET,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_UPROAR, MOVE_ATTRACT, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -1807,7 +1807,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [5] =
                         {
-                            .species = SPECIES_VIGOROTH,
+                            .species = SPECIES_SYLVEON,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_ENCORE, MOVE_ATTRACT, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -1877,7 +1877,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [1] =
                         {
-                            .species = SPECIES_POLIWAG,
+                            .species = SPECIES_TYMPOLE,
                             .heldItem = ITEM_WIKI_BERRY,
                             .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_MIST, MOVE_HYPNOSIS},
                             .level = 0,
@@ -1965,7 +1965,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [5] =
                         {
-                            .species = SPECIES_CUBONE,
+                            .species = SPECIES_HALBERDOME,
                             .heldItem = ITEM_SOFT_SAND,
                             .moves = {MOVE_EARTHQUAKE, MOVE_NONE, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -2087,7 +2087,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [4] =
                         {
-                            .species = SPECIES_PINECO,
+                            .species = SPECIES_PUPPERONI,
                             .heldItem = ITEM_SILK_SCARF,
                             .moves = {MOVE_EXPLOSION, MOVE_SELF_DESTRUCT, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -2109,7 +2109,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [5] =
                         {
-                            .species = SPECIES_VOLTORB,
+                            .species = SPECIES_FOONGUS,
                             .heldItem = ITEM_SILK_SCARF,
                             .moves = {MOVE_EXPLOSION, MOVE_SELF_DESTRUCT, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -2242,7 +2242,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [4] =
                         {
-                            .species = SPECIES_PLUSLE,
+                            .species = SPECIES_SHOROAM,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_HELPING_HAND, MOVE_THUNDERBOLT, MOVE_AGILITY, MOVE_BATON_PASS},
                             .level = 0,
@@ -2319,7 +2319,7 @@ static const struct TrHillTag sDataTagVariety =
                         },
                         [1] =
                         {
-                            .species = SPECIES_MINUN,
+                            .species = SPECIES_TRANCELL,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_HELPING_HAND, MOVE_THUNDERBOLT, MOVE_AGILITY, MOVE_BATON_PASS},
                             .level = 0,
@@ -2463,7 +2463,7 @@ static const struct TrHillTag sDataTagUnique =
                     {
                         [0] =
                         {
-                            .species = SPECIES_SUNFLORA,
+                            .species = SPECIES_SANDSTOMP,
                             .heldItem = ITEM_PERSIM_BERRY,
                             .moves = {MOVE_PETAL_DANCE, MOVE_GRASS_WHISTLE, MOVE_LIGHT_SCREEN, MOVE_SUNNY_DAY},
                             .level = 0,
@@ -2506,7 +2506,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [2] =
                         {
-                            .species = SPECIES_VENUSAUR,
+                            .species = SPECIES_HORSE3,
                             .heldItem = ITEM_LEFTOVERS,
                             .moves = {MOVE_SOLAR_BEAM, MOVE_EARTHQUAKE, MOVE_SYNTHESIS, MOVE_SUNNY_DAY},
                             .level = 0,
@@ -2530,7 +2530,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [3] =
                         {
-                            .species = SPECIES_LANTURN,
+                            .species = SPECIES_STOUTLAND,
                             .heldItem = ITEM_PERSIM_BERRY,
                             .moves = {MOVE_SPARK, MOVE_WATER_PULSE, MOVE_CONFUSE_RAY, MOVE_RAIN_DANCE},
                             .level = 0,
@@ -2551,7 +2551,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [4] =
                         {
-                            .species = SPECIES_MANECTRIC,
+                            .species = SPECIES_NIGHTSNARE,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_THUNDERBOLT, MOVE_HEADBUTT, MOVE_BITE, MOVE_RAIN_DANCE},
                             .level = 0,
@@ -2572,7 +2572,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [5] =
                         {
-                            .species = SPECIES_RAIKOU,
+                            .species = SPECIES_SIGILYPH,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_THUNDER, MOVE_CRUNCH, MOVE_ROAR, MOVE_RAIN_DANCE},
                             .level = 0,
@@ -2649,7 +2649,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [2] =
                         {
-                            .species = SPECIES_BLASTOISE,
+                            .species = SPECIES_ICECARGO,
                             .heldItem = ITEM_SHELL_BELL,
                             .moves = {MOVE_HYDRO_PUMP, MOVE_BITE, MOVE_MIRROR_COAT, MOVE_RAIN_DANCE},
                             .level = 0,
@@ -2670,7 +2670,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [3] =
                         {
-                            .species = SPECIES_MAGCARGO,
+                            .species = SPECIES_LEDGEHOG,
                             .heldItem = ITEM_QUICK_CLAW,
                             .moves = {MOVE_HEAT_WAVE, MOVE_ROCK_SLIDE, MOVE_PROTECT, MOVE_SUNNY_DAY},
                             .level = 0,
@@ -2691,7 +2691,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [4] =
                         {
-                            .species = SPECIES_RAPIDASH,
+                            .species = SPECIES_MAWTHORNE,
                             .heldItem = ITEM_KINGS_ROCK,
                             .moves = {MOVE_FIRE_BLAST, MOVE_BOUNCE, MOVE_QUICK_ATTACK, MOVE_SUNNY_DAY},
                             .level = 0,
@@ -2712,7 +2712,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [5] =
                         {
-                            .species = SPECIES_MOLTRES,
+                            .species = SPECIES_TERMAFROST,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_SKY_ATTACK, MOVE_AERIAL_ACE, MOVE_ROAR, MOVE_SUNNY_DAY},
                             .level = 0,
@@ -2926,7 +2926,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [1] =
                         {
-                            .species = SPECIES_MEOWTH,
+                            .species = SPECIES_BAAZE,
                             .heldItem = ITEM_QUICK_CLAW,
                             .moves = {MOVE_PAY_DAY, MOVE_NONE, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -2970,7 +2970,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [3] =
                         {
-                            .species = SPECIES_CUBONE,
+                            .species = SPECIES_HALBERDOME,
                             .heldItem = ITEM_THICK_CLUB,
                             .moves = {MOVE_BONEMERANG, MOVE_NONE, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -2992,7 +2992,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [4] =
                         {
-                            .species = SPECIES_BEEDRILL,
+                            .species = SPECIES_PRISMOTH,
                             .heldItem = ITEM_SHELL_BELL,
                             .moves = {MOVE_TWINEEDLE, MOVE_NONE, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -3013,7 +3013,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [5] =
                         {
-                            .species = SPECIES_RATICATE,
+                            .species = SPECIES_DIRTSKRT,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_SUPER_FANG, MOVE_NONE, MOVE_NONE, MOVE_NONE},
                             .level = 0,
@@ -3061,7 +3061,7 @@ static const struct TrHillTag sDataTagUnique =
                     {
                         [0] =
                         {
-                            .species = SPECIES_CHARMELEON,
+                            .species = SPECIES_BISON,
                             .heldItem = ITEM_CHARCOAL,
                             .moves = {MOVE_FIRE_SPIN, MOVE_DRAGON_RAGE, MOVE_FLAMETHROWER, MOVE_SLASH},
                             .level = 0,
@@ -3083,7 +3083,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [1] =
                         {
-                            .species = SPECIES_WARTORTLE,
+                            .species = SPECIES_SNAIL2,
                             .heldItem = ITEM_MYSTIC_WATER,
                             .moves = {MOVE_HYDRO_PUMP, MOVE_SKULL_BASH, MOVE_RAIN_DANCE, MOVE_PROTECT},
                             .level = 0,
@@ -3104,7 +3104,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [2] =
                         {
-                            .species = SPECIES_IVYSAUR,
+                            .species = SPECIES_GARDENEIGH,
                             .heldItem = ITEM_MIRACLE_SEED,
                             .moves = {MOVE_SOLAR_BEAM, MOVE_SYNTHESIS, MOVE_GROWTH, MOVE_SWEET_SCENT},
                             .level = 0,
@@ -3126,7 +3126,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [3] =
                         {
-                            .species = SPECIES_BAYLEEF,
+                            .species = SPECIES_DEVASTAIL,
                             .heldItem = ITEM_MIRACLE_SEED,
                             .moves = {MOVE_SOLAR_BEAM, MOVE_SAFEGUARD, MOVE_LIGHT_SCREEN, MOVE_BODY_SLAM},
                             .level = 0,
@@ -3148,7 +3148,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [4] =
                         {
-                            .species = SPECIES_CROCONAW,
+                            .species = SPECIES_OVERCROSS,
                             .heldItem = ITEM_MYSTIC_WATER,
                             .moves = {MOVE_SCARY_FACE, MOVE_SLASH, MOVE_HYDRO_PUMP, MOVE_SCREECH},
                             .level = 0,
@@ -3170,7 +3170,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [5] =
                         {
-                            .species = SPECIES_QUILAVA,
+                            .species = SPECIES_PUPULSE,
                             .heldItem = ITEM_CHARCOAL,
                             .moves = {MOVE_QUICK_ATTACK, MOVE_FLAMETHROWER, MOVE_FLAME_WHEEL, MOVE_SWIFT},
                             .level = 0,
@@ -3205,7 +3205,7 @@ static const struct TrHillTag sDataTagUnique =
                     {
                         [0] =
                         {
-                            .species = SPECIES_SMOOCHUM,
+                            .species = SPECIES_METOLE,
                             .heldItem = ITEM_PETAYA_BERRY,
                             .moves = {MOVE_ICE_BEAM, MOVE_PSYCHIC, MOVE_SWEET_KISS, MOVE_FAKE_TEARS},
                             .level = 0,
@@ -3293,7 +3293,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [4] =
                         {
-                            .species = SPECIES_WYNAUT,
+                            .species = SPECIES_VENOFLAP,
                             .heldItem = ITEM_LEFTOVERS,
                             .moves = {MOVE_ENCORE, MOVE_COUNTER, MOVE_MIRROR_COAT, MOVE_DESTINY_BOND},
                             .level = 0,
@@ -3406,7 +3406,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [2] =
                         {
-                            .species = SPECIES_ENTEI,
+                            .species = SPECIES_DWEBBLE,
                             .heldItem = ITEM_PETAYA_BERRY,
                             .moves = {MOVE_FLAMETHROWER, MOVE_CALM_MIND, MOVE_FIRE_SPIN, MOVE_ROAR},
                             .level = 0,
@@ -3427,7 +3427,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [3] =
                         {
-                            .species = SPECIES_HITMONCHAN,
+                            .species = SPECIES_HAXORUS,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_MEGA_PUNCH, MOVE_DETECT, MOVE_COUNTER, MOVE_SKY_UPPERCUT},
                             .level = 0,
@@ -3469,7 +3469,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [5] =
                         {
-                            .species = SPECIES_ZAPDOS,
+                            .species = SPECIES_WINTERM,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_THUNDERBOLT, MOVE_DRILL_PECK, MOVE_THUNDER_WAVE, MOVE_AGILITY},
                             .level = 0,
@@ -3503,7 +3503,7 @@ static const struct TrHillTag sDataTagUnique =
                     {
                         [0] =
                         {
-                            .species = SPECIES_HITMONLEE,
+                            .species = SPECIES_AXEW,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_MEGA_KICK, MOVE_MIND_READER, MOVE_FOCUS_ENERGY, MOVE_HI_JUMP_KICK},
                             .level = 0,
@@ -3545,7 +3545,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [2] =
                         {
-                            .species = SPECIES_SUICUNE,
+                            .species = SPECIES_CRUSTLE,
                             .heldItem = ITEM_PETAYA_BERRY,
                             .moves = {MOVE_SURF, MOVE_CALM_MIND, MOVE_MIRROR_COAT, MOVE_MIST},
                             .level = 0,
@@ -3587,7 +3587,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [4] =
                         {
-                            .species = SPECIES_STANTLER,
+                            .species = SPECIES_DEDENNE,
                             .heldItem = ITEM_LEFTOVERS,
                             .moves = {MOVE_CONFUSE_RAY, MOVE_SWAGGER, MOVE_PSYCH_UP, MOVE_TAKE_DOWN},
                             .level = 0,
@@ -3608,7 +3608,7 @@ static const struct TrHillTag sDataTagUnique =
                         },
                         [5] =
                         {
-                            .species = SPECIES_ARTICUNO,
+                            .species = SPECIES_HIBERMITE,
                             .heldItem = ITEM_NEVER_MELT_ICE,
                             .moves = {MOVE_BLIZZARD, MOVE_SHEER_COLD, MOVE_MIST, MOVE_AERIAL_ACE},
                             .level = 0,
@@ -3668,7 +3668,7 @@ static const struct TrHillTag sDataTagExpert =
                     {
                         [0] =
                         {
-                            .species = SPECIES_SNORLAX,
+                            .species = SPECIES_ACHILLAUNCH,
                             .heldItem = ITEM_QUICK_CLAW,
                             .moves = {MOVE_MEGA_KICK, MOVE_SHADOW_BALL, MOVE_BRICK_BREAK, MOVE_EARTHQUAKE},
                             .level = 0,
@@ -3690,7 +3690,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [1] =
                         {
-                            .species = SPECIES_MILTANK,
+                            .species = SPECIES_CLIFFOLE,
                             .heldItem = ITEM_LEFTOVERS,
                             .moves = {MOVE_DOUBLE_EDGE, MOVE_SHADOW_BALL, MOVE_ATTRACT, MOVE_MILK_DRINK},
                             .level = 0,
@@ -3734,7 +3734,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [3] =
                         {
-                            .species = SPECIES_SLAKING,
+                            .species = SPECIES_VULLABY,
                             .heldItem = ITEM_CHESTO_BERRY,
                             .moves = {MOVE_HYPER_BEAM, MOVE_SHADOW_BALL, MOVE_BRICK_BREAK, MOVE_REST},
                             .level = 0,
@@ -3756,7 +3756,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [4] =
                         {
-                            .species = SPECIES_KANGASKHAN,
+                            .species = SPECIES_BRILLANEON,
                             .heldItem = ITEM_LEFTOVERS,
                             .moves = {MOVE_MEGA_KICK, MOVE_SHADOW_BALL, MOVE_ATTRACT, MOVE_FAKE_OUT},
                             .level = 0,
@@ -3879,7 +3879,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [3] =
                         {
-                            .species = SPECIES_GENGAR,
+                            .species = SPECIES_SCORCHUGAR,
                             .heldItem = ITEM_LUM_BERRY,
                             .moves = {MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_FIRE_PUNCH, MOVE_ICE_PUNCH},
                             .level = 0,
@@ -3923,7 +3923,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [5] =
                         {
-                            .species = SPECIES_ALAKAZAM,
+                            .species = SPECIES_REUNICLUS,
                             .heldItem = ITEM_LUM_BERRY,
                             .moves = {MOVE_PSYCHIC, MOVE_RECOVER, MOVE_THUNDER_WAVE, MOVE_ATTRACT},
                             .level = 0,
@@ -3971,7 +3971,7 @@ static const struct TrHillTag sDataTagExpert =
                     {
                         [0] =
                         {
-                            .species = SPECIES_SWELLOW,
+                            .species = SPECIES_DRAGALGE,
                             .heldItem = ITEM_LEFTOVERS,
                             .moves = {MOVE_AERIAL_ACE, MOVE_AGILITY, MOVE_FACADE, MOVE_ATTRACT},
                             .level = 0,
@@ -3993,7 +3993,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [1] =
                         {
-                            .species = SPECIES_MACHAMP,
+                            .species = SPECIES_CONKELDURR,
                             .heldItem = ITEM_LEFTOVERS,
                             .moves = {MOVE_LOW_KICK, MOVE_ROCK_SLIDE, MOVE_FACADE, MOVE_ATTRACT},
                             .level = 0,
@@ -4037,7 +4037,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [3] =
                         {
-                            .species = SPECIES_KINGLER,
+                            .species = SPECIES_CLAWITZER,
                             .heldItem = ITEM_PERSIM_BERRY,
                             .moves = {MOVE_RETURN, MOVE_PROTECT, MOVE_CRABHAMMER, MOVE_ATTRACT},
                             .level = 0,
@@ -4081,7 +4081,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [5] =
                         {
-                            .species = SPECIES_DRAGONITE,
+                            .species = SPECIES_GOODRA,
                             .heldItem = ITEM_PERSIM_BERRY,
                             .moves = {MOVE_BODY_SLAM, MOVE_THUNDER_WAVE, MOVE_EARTHQUAKE, MOVE_ATTRACT},
                             .level = 0,
@@ -4138,7 +4138,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [1] =
                         {
-                            .species = SPECIES_ALAKAZAM,
+                            .species = SPECIES_REUNICLUS,
                             .heldItem = ITEM_KINGS_ROCK,
                             .moves = {MOVE_PSYCHIC, MOVE_ICE_PUNCH, MOVE_ATTRACT, MOVE_SWAGGER},
                             .level = 0,
@@ -4274,7 +4274,7 @@ static const struct TrHillTag sDataTagExpert =
                     {
                         [0] =
                         {
-                            .species = SPECIES_WOBBUFFET,
+                            .species = SPECIES_PUPPERMINT,
                             .heldItem = ITEM_LEFTOVERS,
                             .moves = {MOVE_MIRROR_COAT, MOVE_COUNTER, MOVE_SAFEGUARD, MOVE_ENCORE},
                             .level = 0,
@@ -4296,7 +4296,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [1] =
                         {
-                            .species = SPECIES_EXPLOUD,
+                            .species = SPECIES_MANDIBUZZ,
                             .heldItem = ITEM_CHESTO_BERRY,
                             .moves = {MOVE_HYPER_VOICE, MOVE_COUNTER, MOVE_REST, MOVE_ROCK_SLIDE},
                             .level = 0,
@@ -4318,7 +4318,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [2] =
                         {
-                            .species = SPECIES_CROBAT,
+                            .species = SPECIES_LILLIPUP,
                             .heldItem = ITEM_KINGS_ROCK,
                             .moves = {MOVE_MEAN_LOOK, MOVE_CONFUSE_RAY, MOVE_AERIAL_ACE, MOVE_TOXIC},
                             .level = 0,
@@ -4340,7 +4340,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [3] =
                         {
-                            .species = SPECIES_DUGTRIO,
+                            .species = SPECIES_GOARYU,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_DOUBLE_TEAM, MOVE_PROTECT, MOVE_RETURN, MOVE_SLUDGE_BOMB},
                             .level = 0,
@@ -4362,7 +4362,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [4] =
                         {
-                            .species = SPECIES_ELECTRODE,
+                            .species = SPECIES_AMOONGUSS,
                             .heldItem = ITEM_PETAYA_BERRY,
                             .moves = {MOVE_TORMENT, MOVE_MIRROR_COAT, MOVE_THUNDERBOLT, MOVE_LIGHT_SCREEN},
                             .level = 0,
@@ -4384,7 +4384,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [5] =
                         {
-                            .species = SPECIES_GENGAR,
+                            .species = SPECIES_SCORCHUGAR,
                             .heldItem = ITEM_FOCUS_BAND,
                             .moves = {MOVE_CONFUSE_RAY, MOVE_MEAN_LOOK, MOVE_GIGA_DRAIN, MOVE_WILL_O_WISP},
                             .level = 0,
@@ -4419,7 +4419,7 @@ static const struct TrHillTag sDataTagExpert =
                     {
                         [0] =
                         {
-                            .species = SPECIES_LAPRAS,
+                            .species = SPECIES_CHAIBULL,
                             .heldItem = ITEM_QUICK_CLAW,
                             .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_PERISH_SONG, MOVE_SING},
                             .level = 0,
@@ -4485,7 +4485,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [3] =
                         {
-                            .species = SPECIES_DEWGONG,
+                            .species = SPECIES_GARBODOR,
                             .heldItem = ITEM_CHESTO_BERRY,
                             .moves = {MOVE_ICE_BEAM, MOVE_SIGNAL_BEAM, MOVE_REST, MOVE_PERISH_SONG},
                             .level = 0,
@@ -4507,7 +4507,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [4] =
                         {
-                            .species = SPECIES_POLITOED,
+                            .species = SPECIES_GRASTRO,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_HYDRO_PUMP, MOVE_BLIZZARD, MOVE_MIND_READER, MOVE_PERISH_SONG},
                             .level = 0,
@@ -4529,7 +4529,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [5] =
                         {
-                            .species = SPECIES_MAROWAK,
+                            .species = SPECIES_AXEW,
                             .heldItem = ITEM_QUICK_CLAW,
                             .moves = {MOVE_PERISH_SONG, MOVE_EARTHQUAKE, MOVE_COUNTER, MOVE_PROTECT},
                             .level = 0,
@@ -4577,7 +4577,7 @@ static const struct TrHillTag sDataTagExpert =
                     {
                         [0] =
                         {
-                            .species = SPECIES_FORRETRESS,
+                            .species = SPECIES_SALAMUTT,
                             .heldItem = ITEM_QUICK_CLAW,
                             .moves = {MOVE_EXPLOSION, MOVE_EARTHQUAKE, MOVE_ATTRACT, MOVE_SPIKES},
                             .level = 0,
@@ -4599,7 +4599,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [1] =
                         {
-                            .species = SPECIES_ELECTRODE,
+                            .species = SPECIES_AMOONGUSS,
                             .heldItem = ITEM_SALAC_BERRY,
                             .moves = {MOVE_EXPLOSION, MOVE_THUNDERBOLT, MOVE_SWIFT, MOVE_LIGHT_SCREEN},
                             .level = 0,
@@ -4620,7 +4620,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [2] =
                         {
-                            .species = SPECIES_EXEGGUTOR,
+                            .species = SPECIES_ADZKULL,
                             .heldItem = ITEM_SHELL_BELL,
                             .moves = {MOVE_EXPLOSION, MOVE_HYPNOSIS, MOVE_PSYCHIC, MOVE_SOLAR_BEAM},
                             .level = 0,
@@ -4739,7 +4739,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [1] =
                         {
-                            .species = SPECIES_GENGAR,
+                            .species = SPECIES_SCORCHUGAR,
                             .heldItem = ITEM_LUM_BERRY,
                             .moves = {MOVE_PSYCHIC, MOVE_GIGA_DRAIN, MOVE_WILL_O_WISP, MOVE_DESTINY_BOND},
                             .level = 0,
@@ -4760,7 +4760,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [2] =
                         {
-                            .species = SPECIES_GYARADOS,
+                            .species = SPECIES_LAMPPEST,
                             .heldItem = ITEM_BRIGHT_POWDER,
                             .moves = {MOVE_DRAGON_DANCE, MOVE_HYPER_BEAM, MOVE_BITE, MOVE_EARTHQUAKE},
                             .level = 0,
@@ -4781,7 +4781,7 @@ static const struct TrHillTag sDataTagExpert =
                         },
                         [3] =
                         {
-                            .species = SPECIES_GENGAR,
+                            .species = SPECIES_SCORCHUGAR,
                             .heldItem = ITEM_SALAC_BERRY,
                             .moves = {MOVE_EXPLOSION, MOVE_MEAN_LOOK, MOVE_SHADOW_BALL, MOVE_CONFUSE_RAY},
                             .level = 0,

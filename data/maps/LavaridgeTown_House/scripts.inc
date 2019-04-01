@@ -9,7 +9,7 @@ LavaridgeTown_House_EventScript_1FF91B:: @ 81FF91B
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_ZIGZAGOON, 0
+	playmoncry SPECIES_TEDDICHOO, 0
 	msgbox LavaridgeTown_House_Text_1FF9BB, MSGBOX_DEFAULT
 	waitmoncry
 	release

@@ -9,7 +9,7 @@ Route119_House_EventScript_27096F:: @ 827096F
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_WINGULL, 0
+	playmoncry SPECIES_LUCHIK, 0
 	msgbox Route119_House_Text_270A17, MSGBOX_DEFAULT
 	waitmoncry
 	release

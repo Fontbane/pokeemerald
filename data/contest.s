@@ -302,7 +302,7 @@ gUnknown_08587F44:: @ 8587F44
 	.align 2
 gUnknown_08587FA4:: @ 8587FA4
 	.4byte NULL, 0xFFFF
-	.2byte SPECIES_ELECTRIKE
+	.2byte SPECIES_CATCHULA
 	.byte 2
 	.string "ELECTER$", 11
 	.string "EZRA$", 8
@@ -320,7 +320,7 @@ gUnknown_08587FA4:: @ 8587FA4
 	.string "JULIET$", 8
 	.2byte 0
 	.4byte NULL, 0xFFFF
-	.2byte SPECIES_PLUSLE
+	.2byte SPECIES_SHOROAM
 	.byte 4
 	.string "PULSE$", 11
 	.string "BAILY$", 8
@@ -338,13 +338,13 @@ gUnknown_08587FA4:: @ 8587FA4
 	.string "HANA$", 8
 	.2byte 2
 	.4byte NULL, 0xFFFF
-	.2byte SPECIES_LOUDRED
+	.2byte SPECIES_BRAVIARY
 	.byte 1
 	.string "LOUDED$", 11
 	.string "BRYANT$", 8
 	.2byte 2
 	.4byte NULL, 0xFFFF
-	.2byte SPECIES_DELCATTY
+	.2byte SPECIES_TOXAPEX
 	.byte 2
 	.string "KITSY$", 11
 	.string "OMAR$", 8

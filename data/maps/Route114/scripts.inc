@@ -68,7 +68,7 @@ Route114_EventScript_1F2612:: @ 81F2612
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_POOCHYENA, 2
+	playmoncry SPECIES_MOOSWOLE, 2
 	msgbox Route114_Text_1F28A6, MSGBOX_DEFAULT
 	waitmoncry
 	release

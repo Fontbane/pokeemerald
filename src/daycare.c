@@ -730,13 +730,13 @@ void RejectEggFromDayCare(void)
 static void AlterEggSpeciesWithIncenseItem(u16 *species, struct DayCare *daycare)
 {
     u16 motherItem, fatherItem;
-    if (*species == SPECIES_WYNAUT || *species == SPECIES_AZURILL)
+    if (*species == SPECIES_VENOFLAP || *species == SPECIES_AZURILL)
     {
         motherItem = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM);
         fatherItem = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM);
-        if (*species == SPECIES_WYNAUT && motherItem != ITEM_LAX_INCENSE && fatherItem != ITEM_LAX_INCENSE)
+        if (*species == SPECIES_VENOFLAP && motherItem != ITEM_LAX_INCENSE && fatherItem != ITEM_LAX_INCENSE)
         {
-            *species = SPECIES_WOBBUFFET;
+            *species = SPECIES_PUPPERMINT;
         }
 
         if (*species == SPECIES_AZURILL && motherItem != ITEM_SEA_INCENSE && fatherItem != ITEM_SEA_INCENSE)
@@ -783,9 +783,9 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     }
 
     eggSpecies = GetEggSpecies(species[parentSlots[0]]);
-    if (eggSpecies == SPECIES_NIDORAN_F && daycare->offspringPersonality & 0x8000)
+    if (eggSpecies == SPECIES_PARACHNID && daycare->offspringPersonality & 0x8000)
     {
-        eggSpecies = SPECIES_NIDORAN_M;
+        eggSpecies = SPECIES_BEADRA;
     }
     if (eggSpecies == SPECIES_ILLUMISE && daycare->offspringPersonality & 0x8000)
     {
@@ -816,7 +816,7 @@ static void _GiveEggFromDaycare(struct DayCare *daycare) // give_egg
     InheritIVs(&egg, daycare);
     BuildEggMoveset(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
 
-    if (species == SPECIES_PICHU)
+    if (species == SPECIES_WARPHAN)
         GiveVoltTackleIfLightBall(&egg, daycare);
 
     isEgg = TRUE;

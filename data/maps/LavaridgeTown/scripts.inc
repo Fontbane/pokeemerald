@@ -258,7 +258,7 @@ LavaridgeTown_EventScript_1EA744:: @ 81EA744
 	playfanfare MUS_FANFA4
 	message LavaridgeTown_Text_1EACF4
 	waitfanfare
-	giveegg SPECIES_WYNAUT
+	giveegg SPECIES_VENOFLAP
 	release
 	end
 

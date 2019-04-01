@@ -1,5 +1,5 @@
 @todo: cleanup
-	.2byte SPECIES_POOCHYENA
+	.2byte SPECIES_MOOSWOLE
 	.string "POOCHY$    "
 	.string "JIMMY$  "
 	.byte 7
@@ -87,7 +87,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_TAILLOW
+	.2byte SPECIES_SKRELP
 	.string "TATAY$     "
 	.string "MADISON$"
 	.byte 18
@@ -175,7 +175,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SLAKOTH
+	.2byte SPECIES_DRAMPA
 	.string "SLOKTH$    "
 	.string "ALEC$   "
 	.byte 31
@@ -197,7 +197,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_WHISMUR
+	.2byte SPECIES_RUFFLET
 	.string "WHIRIS$    "
 	.string "SYDNEY$ "
 	.byte 47
@@ -219,7 +219,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_MAKUHITA
+	.2byte SPECIES_KEYCRET
 	.string "MAHITA$    "
 	.string "MORRIS$ "
 	.byte 38
@@ -263,7 +263,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_CROBAT
+	.2byte SPECIES_LILLIPUP
 	.string "BATRO$     "
 	.string "RUSSELL$"
 	.byte 33
@@ -285,7 +285,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_GULPIN
+	.2byte SPECIES_JOLTIK
 	.string "GULIN$     "
 	.string "MELANIE$"
 	.byte 6
@@ -307,7 +307,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_MANECTRIC
+	.2byte SPECIES_NIGHTSNARE
 	.string "RIKELEC$   "
 	.string "CHANCE$ "
 	.byte 15
@@ -329,7 +329,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_BULBASAUR
+	.2byte SPECIES_TROTRUNK
 	.string "BULBY$     "
 	.string "AGATHA$ "
 	.byte 20
@@ -351,7 +351,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_BUTTERFREE
+	.2byte SPECIES_SLEEPIYAUN
 	.string "FUTTERBE$  "
 	.string "BEAU$   "
 	.byte 40
@@ -373,7 +373,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_PIDGEOTTO
+	.2byte SPECIES_KISTRUCT
 	.string "PIDEOT$    "
 	.string "KAY$    "
 	.byte 34
@@ -395,7 +395,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_DIGLETT
+	.2byte SPECIES_BITTLE
 	.string "DIGLE$     "
 	.string "CALE$   "
 	.byte 55
@@ -417,7 +417,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_POLIWAG
+	.2byte SPECIES_TYMPOLE
 	.string "WAGIL$     "
 	.string "CAITLIN$"
 	.byte 53
@@ -439,7 +439,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_TOTODILE
+	.2byte SPECIES_CLOUTYKE
 	.string "TOTDIL$    "
 	.string "COLBY$  "
 	.byte 5
@@ -461,7 +461,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_LEDYBA
+	.2byte SPECIES_KERNOSE
 	.string "BALEDY$    "
 	.string "KYLIE$  "
 	.byte 45
@@ -483,7 +483,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_DELIBIRD
+	.2byte SPECIES_FITTO
 	.string "BIRDLY$    "
 	.string "LIAM$   "
 	.byte 66
@@ -549,7 +549,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_DODRIO
+	.2byte SPECIES_YUEHFOE
 	.string "DUODO$     "
 	.string "BOBBY$  "
 	.byte 51
@@ -593,7 +593,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_CACNEA
+	.2byte SPECIES_SANDYGAST
 	.string "NACAC$     "
 	.string "WILLIE$ "
 	.byte 11
@@ -615,7 +615,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SANDSLASH
+	.2byte SPECIES_THIEVERINE
 	.string "SHRAND$    "
 	.string "CASSIDY$"
 	.byte 18
@@ -725,7 +725,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SPOINK
+	.2byte SPECIES_MINERAIN
 	.string "POINKER$   "
 	.string "AVERY$  "
 	.byte 38
@@ -769,7 +769,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_GOLDEEN
+	.2byte SPECIES_PONDURR
 	.string "GOLDEN$    "
 	.string "ASHTON$ "
 	.byte 33
@@ -791,7 +791,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_BARBOACH
+	.2byte SPECIES_GREMINI
 	.string "BOBOACH$   "
 	.string "SANDRA$ "
 	.byte 6
@@ -879,7 +879,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_FARFETCHD
+	.2byte SPECIES_ELGYEM
 	.string "FETCHIN$   "
 	.string "RAUL$   "
 	.byte 66
@@ -901,7 +901,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SEEL
+	.2byte SPECIES_TRUBBISH
 	.string "SEELEY$    "
 	.string "JADA$   "
 	.byte 20
@@ -923,7 +923,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_DROWZEE
+	.2byte SPECIES_LIQWIL
 	.string "DROWZIN$   "
 	.string "ZEEK$   "
 	.byte 37
@@ -945,7 +945,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_HITMONCHAN
+	.2byte SPECIES_HAXORUS
 	.string "HITEMON$   "
 	.string "DIEGO$  "
 	.byte 21
@@ -1121,7 +1121,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SWELLOW
+	.2byte SPECIES_DRAGALGE
 	.string "WELOW$     "
 	.string "JADE$   "
 	.byte 18
@@ -1143,7 +1143,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_MIGHTYENA
+	.2byte SPECIES_CARIBUFF
 	.string "YENA$      "
 	.string "FRANCIS$"
 	.byte 44
@@ -1187,7 +1187,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SEAKING
+	.2byte SPECIES_THALAGOS
 	.string "KINGSEA$   "
 	.string "SAUL$   "
 	.byte 31
@@ -1231,7 +1231,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_MACHOKE
+	.2byte SPECIES_GURDURR
 	.string "CHOKEM$    "
 	.string "EMILIO$ "
 	.byte 38
@@ -1319,7 +1319,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_MAGIKARP
+	.2byte SPECIES_BLOOMOUSE
 	.string "KARPAG$    "
 	.string "NOEL$   "
 	.byte 35
@@ -1341,7 +1341,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_LUNATONE
+	.2byte SPECIES_SNOWKI
 	.string "LUNONE$    "
 	.string "LACEY$  "
 	.byte 16
@@ -1385,7 +1385,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_EXEGGUTOR
+	.2byte SPECIES_ADZKULL
 	.string "EGGSOR$    "
 	.string "GRACIE$ "
 	.byte 32
@@ -1407,7 +1407,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_CUBONE
+	.2byte SPECIES_HALBERDOME
 	.string "CUBIN$     "
 	.string "COLTIN$ "
 	.byte 65
@@ -1429,7 +1429,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_HITMONLEE
+	.2byte SPECIES_AXEW
 	.string "HITMON$    "
 	.string "ELLIE$  "
 	.byte 22
@@ -1451,7 +1451,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SQUIRTLE
+	.2byte SPECIES_WOOSHELL
 	.string "SURTLE$    "
 	.string "MARCUS$ "
 	.byte 49
@@ -1473,7 +1473,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_KANGASKHAN
+	.2byte SPECIES_BRILLANEON
 	.string "KHANKAN$   "
 	.string "KIARA$  "
 	.byte 14
@@ -1495,7 +1495,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_PINECO
+	.2byte SPECIES_PUPPERONI
 	.string "PINOC$     "
 	.string "BRYCE$  "
 	.byte 36
@@ -1561,7 +1561,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_MILTANK
+	.2byte SPECIES_CLIFFOLE
 	.string "MILKAN$    "
 	.string "DEVON$  "
 	.byte 25
@@ -1583,7 +1583,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_GYARADOS
+	.2byte SPECIES_LAMPPEST
 	.string "RADOS$     "
 	.string "JUSTINA$"
 	.byte 32
@@ -1605,7 +1605,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_LOUDRED
+	.2byte SPECIES_BRAVIARY
 	.string "LOUDERD$   "
 	.string "RALPH$  "
 	.byte 21
@@ -1627,7 +1627,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SKITTY
+	.2byte SPECIES_MAREANIE
 	.string "SITTY$     "
 	.string "ROSA$   "
 	.byte 8
@@ -1649,7 +1649,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SLAKING
+	.2byte SPECIES_VULLABY
 	.string "SLING$     "
 	.string "KEATON$ "
 	.byte 11
@@ -1781,7 +1781,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_SHARPEDO
+	.2byte SPECIES_MAWLOW
 	.string "PEDOS$     "
 	.string "DEON$   "
 	.byte 38
@@ -1847,7 +1847,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_ELECTRODE
+	.2byte SPECIES_AMOONGUSS
 	.string "RODLECT$   "
 	.string "SASHA$  "
 	.byte 6
@@ -1869,7 +1869,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_PICHU
+	.2byte SPECIES_WARPHAN
 	.string "CHUPY$     "
 	.string "FRANKIE$"
 	.byte 35
@@ -1891,7 +1891,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_WOBBUFFET
+	.2byte SPECIES_PUPPERMINT
 	.string "WOBET$     "
 	.string "HELEN$  "
 	.byte 16
@@ -1913,7 +1913,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_GENGAR
+	.2byte SPECIES_SCORCHUGAR
 	.string "GAREN$     "
 	.string "CAMILE$ "
 	.byte 40
@@ -1957,7 +1957,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_DRAGONITE
+	.2byte SPECIES_GOODRA
 	.string "DRITE$     "
 	.string "SERGIO$ "
 	.byte 7
@@ -1979,7 +1979,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_MEOWTH
+	.2byte SPECIES_BAAZE
 	.string "MEOWY$     "
 	.string "KAILEY$ "
 	.byte 6
@@ -2001,7 +2001,7 @@
 	.4byte 0x0
 	.4byte 0x0
 	.4byte 0xffff
-	.2byte SPECIES_JYNX
+	.2byte SPECIES_SAPPURR
 	.string "NYX$       "
 	.string "PERLA$  "
 	.byte 45

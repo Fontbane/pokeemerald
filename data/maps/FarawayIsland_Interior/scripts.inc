@@ -124,7 +124,7 @@ FarawayIsland_Interior_EventScript_267DF2:: @ 8267DF2
 	special sub_81D4A90
 	message FarawayIsland_Interior_Text_2C6DFF
 	waitse
-	playmoncry SPECIES_MEW, 2
+	playmoncry SPECIES_SKUNTRED, 2
 	compare VAR_FACING, 2
 	call_if_eq FarawayIsland_Interior_EventScript_267EAF
 	compare VAR_FACING, 1

@@ -1178,7 +1178,7 @@ static const struct InGameTrade gIngameTrades[] =
         _("KOBE"), MALE, 10,
         SPECIES_RALTS
     }, {
-        _("PLUSES"), SPECIES_PLUSLE,
+        _("PLUSES"), SPECIES_SHOROAM,
         4, 4, 4, 5, 5, 4,
         FALSE, 73996,
         5, 5, 30, 5, 5,
@@ -1198,14 +1198,14 @@ static const struct InGameTrade gIngameTrades[] =
         SPECIES_BAGON
     }, {
         _("MEOWOW"),
-        SPECIES_MEOWTH,
+        SPECIES_BAAZE,
         4, 5, 4, 5, 4, 4,
         FALSE, 91481,
         5, 5, 5, 30, 5,
         0x8B,
         ITEM_RETRO_MAIL, 2,
         _("ISIS"), FEMALE, 10,
-        SPECIES_SKITTY
+        SPECIES_MAREANIE
     }
 };
 
@@ -2652,7 +2652,7 @@ static u8 sub_80790D4(u8 *a0, u8 a1, u8 a2, u8 a3)
     a3 %= PARTY_SIZE;
     species = GetMonData(&gEnemyParty[a3], MON_DATA_SPECIES);
 
-    if (species == SPECIES_DEOXYS || species == SPECIES_MEW)
+    if (species == SPECIES_DEOXYS || species == SPECIES_SKUNTRED)
     {
         if (!GetMonData(&gEnemyParty[a3], MON_DATA_OBEDIENCE))
         {
@@ -3538,7 +3538,7 @@ static u32 sub_807A5F4(struct Pokemon *monList, int a1, int monIdx)
         }
     }
 
-    if (species[monIdx] == SPECIES_DEOXYS || species[monIdx] == SPECIES_MEW)
+    if (species[monIdx] == SPECIES_DEOXYS || species[monIdx] == SPECIES_SKUNTRED)
     {
         if (!GetMonData(&monList[monIdx], MON_DATA_OBEDIENCE))
         {
@@ -3619,7 +3619,7 @@ s32 sub_807A728(void)
 
 static bool32 IsDeoxysOrMewUntradable(u16 species, bool8 isObedientBitSet)
 {
-    if (species == SPECIES_DEOXYS || species == SPECIES_MEW)
+    if (species == SPECIES_DEOXYS || species == SPECIES_SKUNTRED)
     {
         if (!isObedientBitSet)
             return TRUE;

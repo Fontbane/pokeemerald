@@ -2985,7 +2985,7 @@ static bool16 sub_81B2134(struct Pokemon *mon)
 
 static bool16 sub_81B2164(struct Pokemon *mon)
 {
-    if (GetMonData(mon, MON_DATA_IS_EGG) != TRUE && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_DODRIO)
+    if (GetMonData(mon, MON_DATA_IS_EGG) != TRUE && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_YUEHFOE)
         return TRUE;
     return FALSE;
 }
@@ -3391,7 +3391,7 @@ static void DisplayPartyPokemonGender(u8 gender, u16 species, u8 *nickname, stru
 
     if (species == SPECIES_NONE)
         return;
-    if ((species == SPECIES_NIDORAN_M || species == SPECIES_NIDORAN_F) && StringCompare(nickname, gSpeciesNames[species]) == 0)
+    if ((species == SPECIES_BEADRA || species == SPECIES_PARACHNID) && StringCompare(nickname, gSpeciesNames[species]) == 0)
         return;
     switch (gender)
     {

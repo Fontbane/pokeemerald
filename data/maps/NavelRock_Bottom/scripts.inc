@@ -49,7 +49,7 @@ NavelRock_Bottom_EventScript_2692A2:: @ 82692A2
 	delay 30
 	delay 50
 	waitse
-	playmoncry SPECIES_LUGIA, 2
+	playmoncry SPECIES_KLISH, 2
 	waitmoncry
 	delay 20
 	setvar VAR_0x8004, 249

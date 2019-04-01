@@ -910,7 +910,7 @@ static void sub_8140470(void)
         case SPECIES_SHROOMISH:
             gUnknown_0203AB88->var02 |= 0x1;
             break;
-        case SPECIES_TAILLOW:
+        case SPECIES_SKRELP:
             gUnknown_0203AB88->var02 |= 0x2;
             break;
         }
@@ -4385,11 +4385,11 @@ static void sub_8144A24(struct Sprite *sprite)
     {
         if (sprite->data[0])
         {
-            PlayCry1(SPECIES_TAILLOW, -63);
+            PlayCry1(SPECIES_SKRELP, -63);
         }
         else
         {
-            PlayCry1(SPECIES_TAILLOW, 63);
+            PlayCry1(SPECIES_SKRELP, 63);
         }
     }
     else
@@ -4942,9 +4942,9 @@ static void sub_81450D8(struct Sprite *sprite)
         {
             m4aSongNumStartOrChange(SE_BASABASA);
             if (gUnknown_0203AB88->var38->data[0] == 0)
-                PlayCry1(SPECIES_TAILLOW, 63);
+                PlayCry1(SPECIES_SKRELP, 63);
             else
-                PlayCry1(SPECIES_TAILLOW, -63);
+                PlayCry1(SPECIES_SKRELP, -63);
             StartSpriteAnim(sprite, gUnknown_0203AB88->var38->data[0] + 2);
             sprite->data[1] = 45;
             sprite->callback = sub_8145030;

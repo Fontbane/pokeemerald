@@ -45,7 +45,7 @@ NavelRock_Top_EventScript_26916F:: @ 826916F
 	setweather WEATHER_NONE
 	doweather
 	waitse
-	playmoncry SPECIES_HO_OH, 2
+	playmoncry SPECIES_KLOSH, 2
 	delay 30
 	waitmoncry
 	delay 60

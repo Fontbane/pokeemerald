@@ -208,7 +208,7 @@ static const struct {
         25, 0x23 // Route 110
     },
     {
-        SPECIES_SKITTY,
+        SPECIES_MAREANIE,
         {MOVE_GROWL, MOVE_TACKLE, MOVE_TAIL_WHIP, MOVE_ATTRACT},
         8, 0x1F // Route 116
     }

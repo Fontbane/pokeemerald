@@ -70,7 +70,7 @@ BattleFrontier_OutsideEast_EventScript_242C9F:: @ 8242C9F
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_ZIGZAGOON, 0
+	playmoncry SPECIES_TEDDICHOO, 0
 	msgbox BattleFrontier_OutsideEast_Text_24334B, MSGBOX_DEFAULT
 	waitmoncry
 	release

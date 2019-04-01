@@ -13,7 +13,7 @@ RustboroCity_House3_EventScript_2161A3:: @ 82161A3
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_PIKACHU, 0
+	playmoncry SPECIES_DENKI, 0
 	msgbox RustboroCity_House3_Text_2162AB, MSGBOX_DEFAULT
 	waitmoncry
 	release

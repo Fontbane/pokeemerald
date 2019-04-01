@@ -512,11 +512,11 @@ void BattleSetup_StartLegendaryBattle(void)
     case SPECIES_DEOXYS:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_DEO);
         break;
-    case SPECIES_LUGIA:
-    case SPECIES_HO_OH:
+    case SPECIES_KLISH:
+    case SPECIES_KLOSH:
         CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_DEN);
         break;
-    case SPECIES_MEW:
+    case SPECIES_SKUNTRED:
         CreateBattleStartTask(B_TRANSITION_GRID_SQUARES, MUS_VS_MEW);
         break;
     }

@@ -34,7 +34,7 @@ MossdeepCity_House4_EventScript_222E1E:: @ 8222E1E
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_SKITTY, 0
+	playmoncry SPECIES_MAREANIE, 0
 	msgbox MossdeepCity_House4_Text_222F31, MSGBOX_DEFAULT
 	waitmoncry
 	release
