@@ -3947,6 +3947,8 @@ extern const u32 gItemIcon_Eviolite[];
 extern const u32 gItemIconPalette_Eviolite[];
 extern const u32 gItemIcon_FloatStone[];
 extern const u32 gItemIconPalette_FloatStone[];
+extern const u32 gItemIcon_RockyHelmet[];
+extern const u32 gItemIconPalette_RockyHelmet[];
 extern const u32 gItemIcon_BindingBand[];
 extern const u32 gItemIconPalette_BindingBand[];
 extern const u32 gItemIcon_DouseDrive[];

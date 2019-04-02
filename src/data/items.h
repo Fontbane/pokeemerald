@@ -7678,6 +7678,24 @@ const struct Item gItems[] =
         .battleUseFunc = NULL,
         .secondaryId = 0,
     },
+
+    [ITEM_ROCKY_HELMET] =
+	{
+        .name = _("Rocky Helmet"),
+        .itemId = ITEM_ROCKY_HELMET,
+        .price = 200,
+        .holdEffect = HOLD_EFFECT_ROCKY_HELMET,
+        .holdEffectParam = 0,
+        .description = gRockyHelmetItemDescription,
+        .importance = 0,
+        .unk19 = 0,
+        .pocket = POCKET_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = 0,
+        .battleUseFunc = NULL,
+        .secondaryId = 0,
+    },
 	
 	[ITEM_BINDING_BAND] =
 	{

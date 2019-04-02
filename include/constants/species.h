@@ -453,6 +453,7 @@
 #define SPECIES_CHERRIM 0
 #define SPECIES_ARCEUS 0
 #define SPECIES_SILVALLY 0
+#define SPECIES_GENESECT 0
 
 // National Dex Index Defines
 
