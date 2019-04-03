@@ -4167,6 +4167,7 @@ enum
     ATK49_TARGET_VISIBLE,
     ATK49_ITEM_EFFECTS_ALL,
     ATK49_KINGSROCK_SHELLBELL,
+    ATK49_ROCKYHELMET,
     ATK49_SUBSTITUTE,
     ATK49_UPDATE_LAST_MOVES,
     ATK49_MIRROR_MOVE,
@@ -4301,6 +4302,11 @@ static void atk49_moveend(void)
             break;
         case ATK49_KINGSROCK_SHELLBELL: // king's rock and shell bell
             if (ItemBattleEffects(ITEMEFFECT_KINGSROCK_SHELLBELL, 0, FALSE))
+                effect = TRUE;
+            gBattleScripting.atk49_state++;
+            break;
+        case ATK49_ROCKYHELMET: // rocky helmet
+            if (ItemBattleEffects(ITEMEFFECT_ROCKY_HELMET, 0, FALSE))
                 effect = TRUE;
             gBattleScripting.atk49_state++;
             break;
