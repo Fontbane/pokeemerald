@@ -35,7 +35,7 @@ void SetStandardWindowBorderStyle(u8 windowId, bool8 copyToVram);
 void DisplayYesNoMenuDefaultYes(void);
 u32 GetPlayerTextSpeed(void);
 u8 GetPlayerTextSpeedDelay(void);
-void sub_81978B0(u16 arg0);
+void Menu_LoadStdPalAt(u16 arg0);
 void AddTextPrinterWithCallbackForMessage(bool8 a1, void (*callback)(struct TextPrinterTemplate *, u16));
 void sub_8199DF0(u32 bg, u8 a1, int a2, int a3);
 void AddTextPrinterParameterized3(u8 windowId, u8 fontId, u8 left, u8 top, const u8 *color, s8 speed, const u8 *str);
@@ -99,5 +99,8 @@ void sub_8199CBC(u8 bgId, u16 *dest, u8 left, u8 top, u8 width, u8 height);
 u8 sub_81980F0(u8 bg, u8 xPos, u8 yPos, u8 palette, u16 baseTile);
 void sub_8198314(void);
 void sub_8198180(const u8 *string, u8 a2, bool8 copyToVram);
+void AddTextPrinterWithCustomSpeedForMessage(bool8 allowSkippingDelayWithButtonPress, u8 speed);
+void sub_8198C78(void);
+void PrintTextArray(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *strs);
 
 #endif // GUARD_MENU_H

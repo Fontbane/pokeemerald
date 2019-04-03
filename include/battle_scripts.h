@@ -225,9 +225,8 @@ extern const u8 BattleScript_ActionWatchesCarefully[];
 extern const u8 BattleScript_ActionGetNear[];
 extern const u8 BattleScript_ActionThrowPokeblock[];
 extern const u8 BattleScript_EmbargoEndTurn[];
-extern const u8 BattleScript_MagnetRiseEndTurn[];
 extern const u8 BattleScript_TelekinesisEndTurn[];
-extern const u8 BattleScript_HealBlockEndTurn[];
+extern const u8 BattleScript_BufferEndTurn[];
 extern const u8 BattleScript_AquaRingHeal[];
 extern const u8 BattleScript_AuroraVeilEnds[];
 extern const u8 BattleScript_LuckyChantEnds[];
@@ -301,5 +300,8 @@ extern const u8 BattleScript_PowderMoveNoEffect[];
 extern const u8 BattleScript_GrassyTerrainLoop[];
 extern const u8 BattleScript_VCreateStatLoss[];
 extern const u8 BattleScript_ItemHurtsOnContact[];
+extern const u8 BattleScript_SpikyShieldEffect[];
+extern const u8 BattleScript_FlowerVeilProtectsRet[];
+extern const u8 BattleScript_SweetVeilProtectsRet[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

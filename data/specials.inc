@@ -434,7 +434,7 @@ gSpecials:: @ 81DBA64
 	def_special sub_81B8958
 	def_special sub_8018090
 	def_special sub_813990C
-	def_special sub_801B27C
+	def_special ValidateReceivedWonderCard
 	def_special HasAtLeastOneBerry
 	def_special sub_802C920
 	def_special sub_802E3C4
@@ -471,11 +471,11 @@ gSpecials:: @ 81DBA64
 	def_special sub_813AA04
 	def_special sub_813AA18
 	def_special sub_813AA44
-	def_special sub_80248B0
-	def_special sub_8024918
-	def_special sub_80246D4
-	def_special sub_802477C
-	def_special sub_802488C
+	def_special DisplayBerryPowderVendorMenu
+	def_special RemoveBerryPowderVendorMenu
+	def_special HasEnoughBerryPowder
+	def_special TakeBerryPowder
+	def_special PrintPlayerBerryPowderAmount
 	def_special sub_813A820
 	def_special sub_813A854
 	def_special sub_813B7D8

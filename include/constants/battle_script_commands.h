@@ -11,7 +11,7 @@
 #define sB_ANIM_ARG2 gBattleScripting + 0x11
 #define sTRIPLE_KICK_POWER gBattleScripting + 0x12
 #define sMOVEEND_STATE gBattleScripting + 0x14
-#define sBATTLER_WITH_ABILITY gBattleScripting + 0x15
+#define sUNUSED_15 gBattleScripting + 0x15
 #define sUNUSED_16 gBattleScripting + 0x16
 #define sBATTLER gBattleScripting + 0x17
 #define sB_ANIM_TURN gBattleScripting + 0x18
@@ -45,7 +45,7 @@
 #define BS_BATTLER_0                7
 #define BS_ATTACKER_WITH_PARTNER    4 // for atk98_status_icon_update
 #define BS_ATTACKER_SIDE            8 // for atk1E_jumpifability
-#define BS_NOT_ATTACKER_SIDE        9 // for atk1E_jumpifability
+#define BS_TARGET_SIDE              9 // for atk1E_jumpifability
 #define BS_SCRIPTING                10
 #define BS_PLAYER1                  11
 #define BS_OPPONENT1                12
@@ -154,14 +154,34 @@
 // statchange defines
 #define STAT_CHANGE_BS_PTR                  0x1
 #define STAT_CHANGE_NOT_PROTECT_AFFECTED    0x20
-#define STAT_CHANGE_WORKED      0
-#define STAT_CHANGE_DIDNT_WORK  1
 
 // atk48
 #define ATK48_STAT_NEGATIVE         0x1
 #define ATK48_STAT_BY_TWO           0x2
 #define ATK48_ONLY_MULTIPLE         0x4
 #define ATK48_DONT_CHECK_LOWER      0x8
+
+// atk49, moveend cases
+#define ATK49_SPIKY_SHIELD 0
+#define ATK49_RAGE 1
+#define ATK49_DEFROST 2
+#define ATK49_SYNCHRONIZE_TARGET 3
+#define ATK49_MOVE_END_ABILITIES 4
+#define ATK49_STATUS_IMMUNITY_ABILITIES 5
+#define ATK49_SYNCHRONIZE_ATTACKER 6
+#define ATK49_CHOICE_MOVE 7
+#define ATK49_CHANGED_ITEMS 8
+#define ATK49_ATTACKER_INVISIBLE 9
+#define ATK49_ATTACKER_VISIBLE 10
+#define ATK49_TARGET_VISIBLE 11
+#define ATK49_ITEM_EFFECTS_ALL 12
+#define ATK49_KINGSROCK_SHELLBELL 13
+#define ATK49_SUBSTITUTE 14
+#define ATK49_UPDATE_LAST_MOVES 15
+#define ATK49_MIRROR_MOVE 16
+#define ATK49_NEXT_TARGET 17
+#define ATK49_CLEAR_BITS 18
+#define ATK49_COUNT 19
 
 #define BIT_HP                      0x1
 #define BIT_ATK                     0x2

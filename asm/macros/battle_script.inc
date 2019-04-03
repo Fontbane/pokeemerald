@@ -171,11 +171,20 @@
 	.4byte \ptr
 	.endm
 
-	.macro jumpiftype battler:req, type:req, ptr:req
+	.macro jumpbasedontype battler:req, type:req, case:req, ptr:req
 	.byte 0x22
 	.byte \battler
 	.byte \type
+	.byte \case
 	.4byte \ptr
+	.endm
+	
+	.macro jumpiftype battler:req, type:req, ptr:req
+	jumpbasedontype \battler, \type, 1, \ptr
+	.endm
+	
+	.macro jumpifnottype battler:req, type:req, ptr:req
+	jumpbasedontype \battler, \type, 0, \ptr
 	.endm
 
 	.macro getexp battler:req
@@ -399,6 +408,38 @@
 	.byte 0x49
 	.byte \param0
 	.byte \param1
+	.endm
+	
+	@ Help macros for 5 uses of moveend command
+	
+	@ All cases
+	.macro moveendall
+	setbyte sMOVEEND_STATE, 0
+	moveend 0, 0
+	.endm
+	
+	@ Chosen case
+	.macro moveendcase case:req
+	setbyte sMOVEEND_STATE, \case
+	moveend 1, 0
+	.endm
+	
+	@ All cases from (inclusive)
+	.macro moveendfrom from:req
+	setbyte sMOVEEND_STATE, \from
+	moveend 0, 0
+	.endm
+	
+	@ All cases from 0 to (not inclusive)
+	.macro moveendto to:req
+	setbyte sMOVEEND_STATE, 0
+	moveend 2, \to
+	.endm
+	
+	@ Cases from (inclusive) to (not inclusive)
+	.macro moveendfromto from:req, to:req
+	setbyte sMOVEEND_STATE, \from
+	moveend 2, \to
 	.endm
 
 	.macro sethealblock ptr
@@ -1696,3 +1737,10 @@
 	.macro dmgtocurrattackerhp
 	manipulatedamage ATK80_CURR_ATTACKER_HP
 	.endm
+	
+	.macro jumpifflowerveil jumpptr:req
+	jumpifnottype BS_TARGET, TYPE_GRASS, 1f
+	jumpifability BS_TARGET_SIDE, ABILITY_FLOWER_VEIL, \jumpptr
+	1:
+	.endm
+
