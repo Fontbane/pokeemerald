@@ -182,6 +182,7 @@
 #define ATK49_NEXT_TARGET 17
 #define ATK49_CLEAR_BITS 18
 #define ATK49_COUNT 19
+#define ATK49_ROCKYHELMET 20
 
 #define BIT_HP                      0x1
 #define BIT_ATK                     0x2
