@@ -5345,13 +5345,10 @@ u16 HoennToNationalOrder(u16 hoennNum)
 
 u16 SpeciesToCryId(u16 species)
 {
-    if (species <= SPECIES_CELEBI - 1)
+    if (species <= SPECIES_SALAMUTT - 1)
         return species;
 
-    if (species < SPECIES_TREECKO - 1)
-        return SPECIES_UNOWN - 1;
-
-    return gSpeciesIdToCryId[species - (SPECIES_TREECKO - 1)];
+    return gSpeciesIdToCryId[species];
 }
 
 void sub_806D544(u16 species, u32 personality, u8 *dest)
