@@ -4089,7 +4089,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_0E2] =
+    [ITEM_MEGA_STONE_TESTING] =
     {
         .name = _("????????"),
         .itemId = ITEM_NONE,
