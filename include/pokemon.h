@@ -390,6 +390,7 @@ enum
     BODY_COLOR_PINK
 };
 
+#define EVO_MEGA_EVOLUTION 0xffff // Not an actual evolution, used to temporarily mega evolve in battle.
 #define EVO_FRIENDSHIP       0x0001 // Pokémon levels up with friendship ≥ 220
 #define EVO_FRIENDSHIP_DAY   0x0002 // Pokémon levels up during the day with friendship ≥ 220
 #define EVO_FRIENDSHIP_NIGHT 0x0003 // Pokémon levels up at night with friendship ≥ 220
@@ -421,8 +422,6 @@ enum
 #define EVO_COOL             0x0023 //Pokémon levels up with cool ≥ specified value
 #define EVO_TOUGH            0x0024 //Pokémon levels up with tough ≥ specified value
 #define EVO_CUTE             0X0025 //Pokémon levels up with cute ≥ specified value
-
-#define EVO_MEGA_EVOLUTION   0xffff // Not an actual evolution, used to temporarily mega evolve in battle.
 
 struct Evolution
 {

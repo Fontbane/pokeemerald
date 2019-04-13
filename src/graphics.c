@@ -458,8 +458,8 @@ const u32 gUnusedTilemap_OldContest[] = INCBIN_U32("graphics/unused/old_contest.
 const u32 gUnknownTilemap_C15BC0[] = INCBIN_U32("graphics/unknown/unknown_C15BC0.bin.lz");
 
 const u32 gUnusedGfx_OldContest2[] = INCBIN_U32("graphics/unused/old_contest_2.4bpp.lz");
-const u32 gUnknown_08C16E90[] = INCBIN_U32("graphics/unused/old_contest_2.gbapal.lz");
-const u32 gUnknown_08C16FA8[] = INCBIN_U32("graphics/unused/old_contest_2.bin.lz");
+const u32 gOldContestPalette[] = INCBIN_U32("graphics/unused/old_contest_2.gbapal.lz");
+const u32 gOldContestGfx[] = INCBIN_U32("graphics/unused/old_contest_2.bin.lz");
 
 const u32 gUnknown_08C17170[] = INCBIN_U32("graphics/unknown/unknown_C17170.bin.lz");
 
@@ -1375,7 +1375,7 @@ const u16 gPokenavMessageBox_Pal[] = INCBIN_U16("graphics/pokenav/message.gbapal
 const u32 gPokenavMessageBox_Gfx[] = INCBIN_U32("graphics/pokenav/message.4bpp.lz");
 const u32 gPokenavMessageBox_Tilemap[] = INCBIN_U32("graphics/pokenav/message.bin.lz");
 
-const u16 gHoennMapZoomIcons_Pal[] = INCBIN_U16("graphics/pokenav/zoom.gbapal");
+const u16 gHoennMapZoomIcons_Pal[] = INCBIN_U16("graphics/pokenav/zoom_tiles.gbapal");
 const u32 gHoennMapZoomIcons_Gfx[] = INCBIN_U32("graphics/pokenav/zoom.4bpp.lz");
 
 const u16 gPokenavConditionCancel_Pal[] = INCBIN_U16("graphics/pokenav/cancel.gbapal");

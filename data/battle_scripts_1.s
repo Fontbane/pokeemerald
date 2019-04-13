@@ -348,6 +348,7 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectSpectralThief
 	.4byte BattleScript_EffectVCreate
 	.4byte BattleScript_EffectMatBlock
+	.4byte BattleScript_EffectStompingTantrum
 
 BattleScript_EffectVCreate:
 	setmoveeffect MOVE_EFFECT_V_CREATE | MOVE_EFFECT_AFFECTS_USER
@@ -1736,6 +1737,7 @@ BattleScript_EffectPlaceholder:
 	printstring STRINGID_NOTDONEYET
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectStompingTantrum:
 BattleScript_EffectEvasionDownHit:
 BattleScript_EffectVitalThrow:
 BattleScript_EffectFalseSwipe:
@@ -2875,7 +2877,7 @@ BattleScript_EffectDoNothing::
 	goto BattleScript_MoveEnd
 BattleScript_EffectHoldHands:
 	jumpifsideaffecting BS_TARGET, SIDE_STATUS_CRAFTY_SHIELD, BattleScript_ButItFailed
-	jumpifnotbattletype BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_DOUBLE, BattleScript_ButItFailed
+	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	goto BattleScript_MoveEnd

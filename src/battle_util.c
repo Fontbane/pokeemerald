@@ -3585,14 +3585,15 @@ u32 GetBattlerAbility(u8 battlerId)
 {
     if (gStatuses3[battlerId] & STATUS3_GASTRO_ACID)
         return ABILITY_NONE;
-    else if ((gBattleMons[gBattlerAttacker].ability == ABILITY_MOLD_BREAKER
+    else if ((((gBattleMons[gBattlerAttacker].ability == ABILITY_MOLD_BREAKER
             || gBattleMons[gBattlerAttacker].ability == ABILITY_TERAVOLT
             || gBattleMons[gBattlerAttacker].ability == ABILITY_TURBOBLAZE)
-        && sAbilitiesAffectedByMoldBreaker[gBattleMons[battlerId].ability]
-        && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
-        && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
-        && gCurrentTurnActionNumber < gBattlersCount
-        && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID))
+            && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID))
+            || gBattleMoves[gCurrentMove].flags & FLAG_TARGET_ABILITY_IGNORED)
+            && sAbilitiesAffectedByMoldBreaker[gBattleMons[battlerId].ability]
+            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
+            && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
+            && gCurrentTurnActionNumber < gBattlersCount)
         return ABILITY_NONE;
 	else
 		return gBattleMons[battlerId].ability;
@@ -4590,7 +4591,9 @@ u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
 
     gPotentialItemEffectBattler = battlerId;
 
-    if (gBattleMons[battlerId].item == ITEM_ENIGMA_BERRY)
+    if (USE_BATTLE_DEBUG && gBattleStruct->debugHoldEffects[battlerId] != 0)
+        return gBattleStruct->debugHoldEffects[battlerId];
+    else if (gBattleMons[battlerId].item == ITEM_ENIGMA_BERRY)
         return gEnigmaBerries[battlerId].holdEffect;
     else
         return ItemId_GetHoldEffect(gBattleMons[battlerId].item);
@@ -5177,6 +5180,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     case EFFECT_SOLARBEAM:
         if (WEATHER_HAS_EFFECT && gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY))
             MulModifier(&modifier, UQ_4_12(0.5));
+        break;
+    case EFFECT_STOMPING_TANTRUM:
+        if (gBattleStruct->lastMoveFailed & gBitTable[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case EFFECT_BULLDOZE:
     case EFFECT_MAGNITUDE:
