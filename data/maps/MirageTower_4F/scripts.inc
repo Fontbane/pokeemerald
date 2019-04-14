@@ -7,7 +7,7 @@ MirageTower_4F_EventScript_23AD48:: @ 823AD48
 	msgbox MirageTower_4F_Text_23ADF9, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq MirageTower_4F_EventScript_23AD7F
-	giveitem_std ITEM_ROOT_FOSSIL_KEY
+	giveitem_std ITEM_ROOT_FOSSIL
 	closemessage
 	setflag FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
 	setflag FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
@@ -28,7 +28,7 @@ MirageTower_4F_EventScript_23AD89:: @ 823AD89
 	msgbox MirageTower_4F_Text_23AE98, MSGBOX_YESNO
 	compare VAR_RESULT, 0
 	goto_if_eq MirageTower_4F_EventScript_23ADC0
-	giveitem_std ITEM_CLAW_FOSSIL_KEY
+	giveitem_std ITEM_CLAW_FOSSIL
 	closemessage
 	setflag FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
 	setflag FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
