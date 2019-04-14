@@ -316,7 +316,7 @@ struct BaseStats
  /* 0x06 */ u8 type1;
  /* 0x07 */ u8 type2;
  /* 0x08 */ u8 catchRate;
- /* 0x09 */ u8 expYield;
+ /* 0x09 */ u16 expYield;
  /* 0x0A */ u16 evYield_HP:2;
  /* 0x0A */ u16 evYield_Attack:2;
  /* 0x0A */ u16 evYield_Defense:2;
@@ -390,7 +390,7 @@ enum
     BODY_COLOR_PINK
 };
 
-#define EVO_MEGA_EVOLUTION 0xffff // Not an actual evolution, used to temporarily mega evolve in battle.
+#define EVO_MEGA_EVOLUTION   0xffff // Not an actual evolution, used to temporarily mega evolve in battle.
 #define EVO_FRIENDSHIP       0x0001 // Pokémon levels up with friendship ≥ 220
 #define EVO_FRIENDSHIP_DAY   0x0002 // Pokémon levels up during the day with friendship ≥ 220
 #define EVO_FRIENDSHIP_NIGHT 0x0003 // Pokémon levels up at night with friendship ≥ 220
@@ -406,22 +406,21 @@ enum
 #define EVO_LEVEL_NINJASK    0x000d // Pokémon reaches the specified level (special value for Ninjask)
 #define EVO_LEVEL_SHEDINJA   0x000e // Pokémon reaches the specified level (special value for Shedinja)
 #define EVO_BEAUTY           0x000f // Pokémon levels up with beauty ≥ specified value
-#define EVO_LEVEL_MALE       0x0010 // Pokémon levels up with a specific gender.
-#define EVO_LEVEL_FEMALE     0x0011 // Pokémon levels up with a specific gender.
-#define EVO_LV52_HELD_ITEM   0x0012 // Pokémon levels up to 52 while holding the specified item.
-#define EVO_MOVE             0x0013 // Pokémon levels up while knowing the specified move
-#define EVO_MAP              0x0014 // Pokémon levels up in a specific map
-#define EVO_HELD_ITEM_DAY    0x0015 // Pokémon levels up during the day while holding the specified item
-#define EVO_HELD_ITEM_NIGHT  0x0016 // Pokémon levels up during the night while holding the specified item
-#define EVO_PARTY_SPECIES    0x0017 // Pokémon levels up while a specific pokémon is in the party.
-#define EVO_ITEM_MALE        0x0018 // Specified item is used on male Pokémon
-#define EVO_ITEM_FEMALE      0x0019 // Specified item is used on female Pokémon
-#define EVO_MOVE_TYPE        0x0020 // Pokémon levels up while knowing a move of the specified type.
-#define EVO_PARTY_TYPE       0x0021 // Pokémon reaches the specified level while a Pokémon of the specified type is in the party.
-#define EVO_SMART            0x0022 //Pokémon levels up with smart ≥ specified value
-#define EVO_COOL             0x0023 //Pokémon levels up with cool ≥ specified value
-#define EVO_TOUGH            0x0024 //Pokémon levels up with tough ≥ specified value
-#define EVO_CUTE             0X0025 //Pokémon levels up with cute ≥ specified value
+#define EVO_LEVEL_FEMALE     0x0010 // Pokémon reaches the specified level, is female
+#define EVO_LEVEL_MALE       0x0011 // Pokémon reaches the specified level, is male
+#define EVO_LEVEL_NIGHT      0x0012 // Pokémon reaches the specified level, is night
+#define EVO_LEVEL_DAY        0x0013 // Pokémon reaches the specified level, is day
+#define EVO_LEVEL_DUSK       0x0014 // Pokémon reaches the specified level, is dusk (5-6 P.M)
+#define EVO_ITEM_HOLD_DAY    0x0015 // Pokémon levels up, holds specified item at day
+#define EVO_ITEM_HOLD_NIGHT  0x0016 // Pokémon levels up, holds specified item at night
+#define EVO_MOVE             0x0017 // Pokémon levels up, knows specified move
+#define EVO_MOVE_TYPE        0x0018 // Pokémon levels up, knows move with specified type
+#define EVO_MAP              0x0019 // Pokémon levels up on specified map
+#define EVO_ITEM_MALE        0x001A // specified item is used on a male Pokémon
+#define EVO_ITEM_FEMALE      0x001B // specified item is used on a female Pokémon
+#define EVO_LEVEL_RAIN       0x001B // Pokémon reaches the specified level while it's raining
+#define EVO_SPECIFIC_MON_IN_PARTY  0x001C // Pokémon levels up with a specified Pokémon in party
+#define EVO_LEVEL_SPECIFIC_MON_TYPE_IN_PARTY  0x001D // Pokémon reaches the specified level with a specified Pokémon in party
 
 struct Evolution
 {
@@ -430,7 +429,7 @@ struct Evolution
     u16 targetSpecies;
 };
 
-#define EVOS_PER_MON 7
+#define EVOS_PER_MON 8
 
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
@@ -501,6 +500,7 @@ u8 GetDefaultMoveTarget(u8 battlerId);
 u8 GetMonGender(struct Pokemon *mon);
 u8 GetBoxMonGender(struct BoxPokemon *boxMon);
 u8 GetGenderFromSpeciesAndPersonality(u16 species, u32 personality);
+u32 GetUnownSpeciesId(u32 personality);
 void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition);
 void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerSpriteId, u8 battlerPosition);
 void SetMultiuseSpriteTemplateToTrainerFront(u16 arg0, u8 battlerPosition);
@@ -548,7 +548,6 @@ u16 NationalToHoennOrder(u16 nationalNum);
 u16 SpeciesToNationalPokedexNum(u16 species);
 u16 SpeciesToHoennPokedexNum(u16 species);
 u16 HoennToNationalOrder(u16 hoennNum);
-u16 SpeciesToCryId(u16 species);
 void sub_806D544(u16 species, u32 personality, u8 *dest);
 void DrawSpindaSpots(u16 species, u32 personality, u8 *dest, u8 a4);
 void EvolutionRenameMon(struct Pokemon *mon, u16 oldSpecies, u16 newSpecies);
