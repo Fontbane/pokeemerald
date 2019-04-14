@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "pokedex.h": "c",
+        "starter_choose.h": "c"
+    }
+}

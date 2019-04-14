@@ -27,4 +27,5 @@ Thumbs.db
 build/
 .DS_Store
 *.ddump
-porymap.project.cfg
+*.bin
+*.ipch
