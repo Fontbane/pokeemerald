@@ -5387,6 +5387,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             }
+            case EVO_DATA_BIG:
+                if (gEvolutionTable[species][i].param <= 170)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
         }
         break;
     case 1:

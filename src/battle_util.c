@@ -2763,6 +2763,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 effect++;
             }
             break;
+        case ABILITY_INFUSION:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gBattleMons[battler].type1 = TYPE_GRASS;    \
+                gBattleMons[battler].type2 = TYPE_FIRE;     \
+                gBattleMons[battler].type3 = TYPE_WATER;    \
+                gSpecialStatuses[battler].switchInAbilityDone = 1;
+            }
+            break;
         case ABILITY_DOWNLOAD:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {

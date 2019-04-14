@@ -421,6 +421,7 @@ enum
 #define EVO_LEVEL_RAIN       0x001B // Pokémon reaches the specified level while it's raining
 #define EVO_SPECIFIC_MON_IN_PARTY  0x001C // Pokémon levels up with a specified Pokémon in party
 #define EVO_LEVEL_SPECIFIC_MON_TYPE_IN_PARTY  0x001D // Pokémon reaches the specified level with a specified Pokémon in party
+#define EVO_DATA_BIG         0x001E // Pokémon levels up with stat ≥ 170
 
 struct Evolution
 {
