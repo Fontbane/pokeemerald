@@ -324,7 +324,7 @@ const u8 gSapphireItemDescription[] = _("A brilliant blue gem\nthat symbolizes\n
 // Emerald-specific key items
 const u8 gMagmaEmblemItemDescription[] = _("A medal-like item in\nthe same shape as\nTeam Magma's mark.");
 const u8 gOldSeaMapItemDescription[] = _("A faded sea chart\nthat shows the way\nto a certain island.");
-//New items
+// New items
 const u8 gWideLensItemDescription[] = _("A magnifying lens\nthat boosts the\naccuracy of moves.");
 const u8 gMuscleBandItemDescription[] = _("A headband that\nboosts the power of\nphysical moves.");
 const u8 gWiseGlassesItemDescription[] = _("A pair of glasses\nthat boosts the power\nof special moves.");
