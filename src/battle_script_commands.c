@@ -1212,7 +1212,7 @@ static void atk01_accuracycheck(void)
 
         accStage = gBattleMons[gBattlerAttacker].statStages[STAT_ACC];
         evasionStage = gBattleMons[gBattlerTarget].statStages[STAT_EVASION];
-        if (atkAbility == ABILITY_UNAWARE)
+        if (atkAbility == ABILITY_UNAWARE || ABILITY_KEEN_EYE)
             evasionStage = 6;
         if (gBattleMoves[move].flags & FLAG_STAT_STAGES_IGNORED)
             evasionStage = 6;
@@ -4585,7 +4585,7 @@ static void atk4D_switchindataupdate(void)
     gBattleMons[gActiveBattler].type1 = gBaseStats[gBattleMons[gActiveBattler].species].type1;
     gBattleMons[gActiveBattler].type2 = gBaseStats[gBattleMons[gActiveBattler].species].type2;
     gBattleMons[gActiveBattler].type3 = TYPE_MYSTERY;
-    gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].altAbility);
+    gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilitySlot);
 
     // check knocked off item
     i = GetBattlerSide(gActiveBattler);
@@ -9366,7 +9366,7 @@ static void atkAE_healpartystatus(void)
         for (i = 0; i < PARTY_SIZE; i++)
         {
             u16 species = GetMonData(&party[i], MON_DATA_SPECIES2);
-            u8 abilityBit = GetMonData(&party[i], MON_DATA_ALT_ABILITY);
+            u8 abilityBit = GetMonData(&party[i], MON_DATA_ABILITY_SLOT);
 
             if (species != SPECIES_NONE && species != SPECIES_EGG)
             {
@@ -10616,7 +10616,7 @@ static void atkE5_pickup(void)
             species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
             heldItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
 
-            if (GetMonData(&gPlayerParty[i], MON_DATA_ALT_ABILITY))
+            if (GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_SLOT))
                 ability = gBaseStats[species].ability2;
             else
                 ability = gBaseStats[species].ability1;
@@ -10642,7 +10642,7 @@ static void atkE5_pickup(void)
             if (lvlDivBy10 > 9)
                 lvlDivBy10 = 9;
 
-            if (GetMonData(&gPlayerParty[i], MON_DATA_ALT_ABILITY))
+            if (GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_SLOT))
                 ability = gBaseStats[species].ability2;
             else
                 ability = gBaseStats[species].ability1;
