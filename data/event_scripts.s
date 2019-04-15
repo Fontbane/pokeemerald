@@ -7141,3 +7141,5 @@ gText_082C877B:: @ 82C877B
 	.align 2
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/SnugglaiveTown/scripts.inc"
