@@ -2226,7 +2226,7 @@ Route119_EventScript_272365:: @ 8272365
 	playmoncry SPECIES_KECLEON, 2
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_KECLEON, 30, ITEM_NONE
+	setwildbattle SPECIES_KECLEON, 30, ITEM_NONE, 2
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE

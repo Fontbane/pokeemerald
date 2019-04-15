@@ -209,7 +209,7 @@ Route120_EventScript_1F568B:: @ 81F568B
 	playmoncry SPECIES_KECLEON, 2
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_KECLEON, 30, ITEM_NONE
+	setwildbattle SPECIES_KECLEON, 30, ITEM_NONE, 0
 	setvar VAR_0x8009, 0
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle

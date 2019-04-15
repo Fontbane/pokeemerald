@@ -57,7 +57,7 @@ struct InGameTrade {
     /*0x00*/ u8 name[11];
     /*0x0C*/ u16 species;
     /*0x0E*/ u8 ivs[6];
-    /*0x14*/ bool8 secondAbility;
+    /*0x14*/ u8 abilSlot;
     /*0x18*/ u32 otId;
     /*0x1C*/ u8 stats[5];
     /*0x24*/ u32 personality;
@@ -5840,7 +5840,7 @@ static void _CreateInGameTradePokemon(u8 whichPlayerMon, u8 whichInGameTrade)
     SetMonData(pokemon, MON_DATA_NICKNAME, inGameTrade->name);
     SetMonData(pokemon, MON_DATA_OT_NAME, inGameTrade->otName);
     SetMonData(pokemon, MON_DATA_OT_GENDER, &inGameTrade->otGender);
-    SetMonData(pokemon, MON_DATA_ABILITY_SLOT, &inGameTrade->secondAbility);
+    SetMonData(pokemon, MON_DATA_ABILITY_SLOT, &inGameTrade->abilSlot);
     SetMonData(pokemon, MON_DATA_BEAUTY, &inGameTrade->stats[1]);
     SetMonData(pokemon, MON_DATA_CUTE, &inGameTrade->stats[2]);
     SetMonData(pokemon, MON_DATA_COOL, &inGameTrade->stats[0]);

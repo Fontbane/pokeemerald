@@ -2377,6 +2377,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     GiveBoxMonInitialMoveset(boxMon);
 }
 
+void CreateMonWithHiddenAbility(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV)
+{
+    u8 a = 2;
+    CreateMon(mon, species, level, fixedIV, 0, 0, OT_ID_PLAYER_ID, 0);
+    SetMonData(mon, MON_DATA_ABILITY_SLOT, &a);
+}
+
 void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 nature)
 {
     u32 personality;
@@ -2388,6 +2395,21 @@ void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV,
     while (nature != GetNatureFromPersonality(personality));
 
     CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_PLAYER_ID, 0);
+}
+
+void CreateMonWithNatureHiddenAbility(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 nature)
+{
+    u32 personality;
+    u8 a = 2;
+
+    do
+    {
+        personality = Random32();
+    }
+    while (nature != GetNatureFromPersonality(personality));
+
+    CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_PLAYER_ID, 0);
+    SetMonData(mon, MON_DATA_ABILITY_SLOT, &a);
 }
 
 void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 unownLetter)
@@ -4289,18 +4311,22 @@ u8 GetMonsStateToDoubles_2(void)
     return (aliveCount > 1) ? PLAYER_HAS_TWO_USABLE_MONS : PLAYER_HAS_ONE_USABLE_MON;
 }
 
-u8 GetAbilityBySpecies(u16 species, bool8 abilitySlot)
+u8 GetAbilityBySpecies(u16 species, u8 abilitySlot)
 {
     switch (abilitySlot)
     {
         case 0:
             gLastUsedAbility = gBaseStats[species].ability1;
+            break;
         case 1:
             gLastUsedAbility = gBaseStats[species].ability2;
+            break;
         case 2:
             gLastUsedAbility = gBaseStats[species].ability3;
+            break;
         case 3:
             gLastUsedAbility = gBaseStats[species].ability3;
+            break;
     }
 
     return gLastUsedAbility;

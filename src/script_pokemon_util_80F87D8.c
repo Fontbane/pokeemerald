@@ -544,7 +544,7 @@ void HealPlayerParty(void)
     }
 }
 
-u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
+u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 ability)
 {
     u16 nationalDexNum;
     int sentToPc;
@@ -555,6 +555,7 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
+    SetMonData(&mon, MON_DATA_ABILITY_SLOT, &ability);
     sentToPc = GiveMonToPlayer(&mon);
     nationalDexNum = SpeciesToNationalPokedexNum(species);
 
@@ -619,7 +620,7 @@ bool8 sub_80F9370(void)
     return hasItem;
 }
 
-void CreateScriptedWildMon(u16 species, u8 level, u16 item)
+void CreateScriptedWildMon(u16 species, u8 level, u16 item, u8 ability)
 {
     u8 heldItem[2];
 
@@ -631,6 +632,8 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
         heldItem[1] = item >> 8;
         SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
     }
+    if (ability==2)
+        SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_SLOT, &ability);
 }
 
 void ScriptSetMonMoveSlot(u8 monIndex, u16 move, u8 slot)

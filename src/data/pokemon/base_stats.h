@@ -6366,6 +6366,7 @@ const struct BaseStats gBaseStats[] =
 		.eggGroup1 = EGG_GROUP_FIELD,
 		.eggGroup2 = EGG_GROUP_FIELD,
 		.ability1 = ABILITY_BLAZE,
+		.ability3 = ABILITY_TOUGH_CLAWS,
 		.bodyColor = BODY_COLOR_RED,
 	},
 
@@ -6390,6 +6391,7 @@ const struct BaseStats gBaseStats[] =
 		.eggGroup1 = EGG_GROUP_FIELD,
 		.eggGroup2 = EGG_GROUP_FIELD,
 		.ability1 = ABILITY_BLAZE,
+		.ability3 = ABILITY_TOUGH_CLAWS,
 		.bodyColor = BODY_COLOR_RED,
 	},
 
@@ -6414,6 +6416,7 @@ const struct BaseStats gBaseStats[] =
 		.eggGroup1 = EGG_GROUP_FIELD,
 		.eggGroup2 = EGG_GROUP_FIELD,
 		.ability1 = ABILITY_BLAZE,
+		.ability3 = ABILITY_TOUGH_CLAWS,
 		.bodyColor = BODY_COLOR_RED,
 	},
 
@@ -8799,6 +8802,7 @@ const struct BaseStats gBaseStats[] =
 		.eggGroup1 = EGG_GROUP_FIELD,
 		.eggGroup2 = EGG_GROUP_FIELD,
 		.ability1 = ABILITY_COLOR_CHANGE,
+		.ability3 = ABILITY_PROTEAN,
 		.bodyColor = BODY_COLOR_GREEN,
 	},
 
