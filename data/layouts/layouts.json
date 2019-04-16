@@ -4419,6 +4419,16 @@
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Rustboro",
             "width": 30
+        },
+        {
+            "blockdata_filepath": "data/layouts/Route1/map.bin",
+            "border_filepath": "data/layouts/Route1/border.bin",
+            "height": 34,
+            "id": "LAYOUT_ROUTE1",
+            "name": "Route1_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Rustboro",
+            "width": 50
         }
     ],
     "layouts_table_label": "gMapLayouts"
