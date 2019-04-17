@@ -80,6 +80,7 @@ bool8 MonKnowsMove(struct Pokemon *mon, u16 move);
 bool8 MonKnowsMoveOfType(struct Pokemon *mon, u32 type);
 void sub_81B6DC4(u8 taskId, TaskFunc task);
 void dp05_rare_candy(u8 taskId, TaskFunc task);
+void dp05_ability_capsule(u8 taskId, TaskFunc task);
 void sub_81B79E8(u8 taskId, TaskFunc task);
 void sub_81B7C74(u8 taskId, TaskFunc task);
 u8 GetItemEffectType(u16 item);

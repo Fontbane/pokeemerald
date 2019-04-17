@@ -63,6 +63,7 @@
 #include "trade.h"
 #include "union_room.h"
 #include "window.h"
+#include "constants/abilities.h"
 #include "constants/battle.h"
 #include "constants/battle_frontier.h"
 #include "constants/easy_chat.h"
@@ -5974,6 +5975,65 @@ void dp05_rare_candy(u8 taskId, TaskFunc task)
         GetMonNickname(mon, gStringVar1);
         ConvertIntToDecimalStringN(gStringVar2, GetMonData(mon, MON_DATA_LEVEL), 0, 3);
         StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
+        sub_81B1B5C(gStringVar4, 1);
+        schedule_bg_copy_tilemap_to_vram(2);
+        gTasks[taskId].func = sub_81B75D4;
+    }
+}
+
+oid dp05_ability_capsule(u8 taskId, TaskFunc task)
+{
+    struct Pokemon *mon = &gPlayerParty[gUnknown_0203CEC8.unk9];
+    struct Struct203CEC4 *ptr = gUnknown_0203CEC4;
+    s16 *arrayPtr = ptr->data;
+    u16 *itemPtr = &gSpecialVar_ItemId;
+    bool8 cannotUseEffect;
+    u8 abilitySlot = GetMonData(mon, MON_DATA_ABILITY_SLOT);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    cannotUseEffect = (abilitySlot >= 2 || GetAbilityBySpecies(species, 1)==ABILITY_NONE);
+/*
+    switch(abilitySlot)
+    {
+        case 0:
+        {
+            cannotUseEffect = FALSE;
+            SetMonData(mon, MON_DATA_ABILITY_SLOT, 1);
+            break;
+        }
+        case 1:
+        {
+            if (GetAbilityBySpecies(species, 1)==ABILITY_NONE)
+            {
+                cannotUseEffect = FALSE;
+                SetMonData(mon, MON_DATA_ABILITY_SLOT, 0);
+                break;
+            }
+            else
+            {
+            cannotUseEffect = TRUE;
+            }
+        }
+        default:
+            cannotUseEffect = TRUE;
+    }*/
+    PlaySE(SE_SELECT);
+    if (cannotUseEffect)
+    {
+        gUnknown_0203CEE8 = 0;
+        sub_81B1B5C(gText_WontHaveEffect, 1);
+        schedule_bg_copy_tilemap_to_vram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+    {
+        SetMonData(mon, MON_DATA_ABILITY_SLOT, (bool8)abilitySlot^1);
+        gUnknown_0203CEE8 = 1;
+        PlayFanfareByFanfareNum(0);
+        sub_81B754C(gUnknown_0203CEC8.unk9, mon);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        GetMonNickname(mon, gStringVar1);
+        StringCopy(gStringVar2, gAbilityNames[GetAbilityBySpecies(species, abilitySlot)]);
+        StringExpandPlaceholders(gStringVar4, gText_PkmnAbilityChangedToVar2);
         sub_81B1B5C(gStringVar4, 1);
         schedule_bg_copy_tilemap_to_vram(2);
         gTasks[taskId].func = sub_81B75D4;

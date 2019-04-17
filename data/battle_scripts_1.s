@@ -349,6 +349,7 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectVCreate
 	.4byte BattleScript_EffectMatBlock
 	.4byte BattleScript_EffectStompingTantrum
+	.4byte BattleScript_EffectTrueColors
 
 BattleScript_EffectVCreate:
 	setmoveeffect MOVE_EFFECT_V_CREATE | MOVE_EFFECT_AFFECTS_USER
@@ -1737,6 +1738,7 @@ BattleScript_EffectPlaceholder:
 	printstring STRINGID_NOTDONEYET
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectTrueColors:
 BattleScript_EffectStompingTantrum:
 BattleScript_EffectEvasionDownHit:
 BattleScript_EffectVitalThrow:

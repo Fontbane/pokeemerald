@@ -457,6 +457,16 @@ const u8 gAbilityNames[ABILITIES_COUNT_GEN7][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_FULL_METAL_BODY] = _("FullMetalBod"),
     [ABILITY_SHADOW_SHIELD] = _("ShadowShield"),
     [ABILITY_PRISM_ARMOR] = _("Prism Armor"),
+    [ABILITY_SUN_DANCE] = _("Sun Dance"),
+    [ABILITY_RAINY_DAY] = _("Rainy Day"),
+    [ABILITY_BATTLE_COAT] = _("Battle Coat"),
+    [ABILITY_LEG_DAY] = _("Leg Day"),
+    [ABILITY_HOT_FLASH] = _("Hot Flash"),
+    [ABILITY_STEAMING] = _("Steaming"),
+    [ABILITY_WELL_ROUNDED] = _("Well Rounded"),
+    [ABILITY_INFUSION] = _("Infusion"),
+    [ABILITY_COLOR_GUARD] = _("Color Guard"),
+    [ABILITY_NATURES_CALL] = _("Nature's Call")
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN7] =
