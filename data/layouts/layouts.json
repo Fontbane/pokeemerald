@@ -4429,6 +4429,16 @@
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Rustboro",
             "width": 50
+        },
+        {
+            "blockdata_filepath": "data/layouts/BillonAcademy/map.bin",
+            "border_filepath": "data/layouts/BillonAcademy/border.bin",
+            "height": 50,
+            "id": "LAYOUT_BILLON_ACADEMY",
+            "name": "BillonAcademy_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Petalburg",
+            "width": 60
         }
     ],
     "layouts_table_label": "gMapLayouts"

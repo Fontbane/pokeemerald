@@ -7145,3 +7145,5 @@ gText_082C877B:: @ 82C877B
 	.include "data/maps/SnugglaiveTown/scripts.inc"
 
 	.include "data/maps/Route1/scripts.inc"
+
+	.include "data/maps/BillonAcademy/scripts.inc"
