@@ -6566,6 +6566,7 @@ const struct BaseStats gBaseStats[] =
 		.eggGroup2 = EGG_GROUP_FIELD,
 		.ability1 = ABILITY_PICKUP,
 		.ability2 = ABILITY_GLUTTONY,
+		.ability3 = ABILITY_RUN_AWAY,
 		.bodyColor = BODY_COLOR_BROWN,
 	},
 

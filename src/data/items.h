@@ -5961,5 +5961,16 @@ const struct Item gItems[] =
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = 0,
+    },
+    [ITEM_ABILITY_CAPSULE] =
+    {
+        .name = _("Ability Pill"),
+        .itemId = ITEM_ABILITY_CAPSULE,
+        .price = 19800,
+        .description = gHoneyItemDescription,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_AbilityCapsule,
+        .secondaryId = 0,
     }
 };

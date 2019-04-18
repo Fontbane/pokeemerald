@@ -221,7 +221,7 @@ static const u8 sMistySurgeDescription[] = _("Field becomes misty.");
 static const u8 sGrassySurgeDescription[] = _("Field becomes grassy.");
 static const u8 sFullMetalBodyDescription[] = _("Prevents stat reduction.");
 
-const u8 gAbilityNames[ABILITIES_COUNT_GEN7][ABILITY_NAME_LENGTH + 1] =
+const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
     [ABILITY_NONE] = _("-------"),
     [ABILITY_STENCH] = _("Stench"),
@@ -466,10 +466,10 @@ const u8 gAbilityNames[ABILITIES_COUNT_GEN7][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_WELL_ROUNDED] = _("Well Rounded"),
     [ABILITY_INFUSION] = _("Infusion"),
     [ABILITY_COLOR_GUARD] = _("Color Guard"),
-    [ABILITY_NATURES_CALL] = _("Nature's Call")
+    [ABILITY_NATURES_CALL] = _("Nature'sCall"),
 };
 
-const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN7] =
+const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 {
     [ABILITY_NONE] = sNoneDescription,
     [ABILITY_STENCH] = sStenchDescription,
