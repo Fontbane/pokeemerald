@@ -1,6 +1,8 @@
 #include "global.h"
 #include "berry.h"
 #include "event_data.h"
+#include "event_object_movement.h"
+#include "event_scripts.h"
 #include "field_control_avatar.h"
 #include "fieldmap.h"
 #include "item.h"
@@ -11,11 +13,6 @@
 #include "text.h"
 #include "constants/event_object_movement_constants.h"
 #include "constants/items.h"
-#include "event_object_movement.h"
-
-
-
-extern const u8 BerryTreeScript[];
 
 static u32 GetEnigmaBerryChecksum(struct EnigmaBerry *enigmaBerry);
 static bool32 BerryTreeGrow(struct BerryTree *tree);
@@ -115,8 +112,46 @@ static const u8 sBerryDescriptionPart2_Starf[] = _("world's edge. Considered a m
 static const u8 sBerryDescriptionPart1_Enigma[] = _("A completely enigmatic BERRY.");
 static const u8 sBerryDescriptionPart2_Enigma[] = _("Appears to have the power of stars.");
 
+static const u8 sBerryDescriptionPart1_Occa[] = _("Said to grow in the tropics once,");
+static const u8 sBerryDescriptionPart2_Occa[] = _("it boasts an intensely hot spiciness.");
+static const u8 sBerryDescriptionPart1_Passho[] = _("Its flesh is dotted with many tiny");
+static const u8 sBerryDescriptionPart2_Passho[] = _("bubbles that keep it afloat in water.");
+static const u8 sBerryDescriptionPart1_Wacan[] = _("Energy drawn from lightning strikes");
+static const u8 sBerryDescriptionPart2_Wacan[] = _("makes this Berry grow big and rich.");
+static const u8 sBerryDescriptionPart1_Rindo[] = _("This berry has a vegetable-like flavor,");
+static const u8 sBerryDescriptionPart2_Rindo[] = _("but is rich in health-promoting fiber.");
+static const u8 sBerryDescriptionPart1_Yache[] = _("This Berry has a refreshing dry and");
+static const u8 sBerryDescriptionPart2_Yache[] = _("sour flavor. Tastes better chilled.");
+static const u8 sBerryDescriptionPart1_Chople[] = _("Contains a substance that generates");
+static const u8 sBerryDescriptionPart2_Chople[] = _("heat. Can even fire up a chilly heart.");
+static const u8 sBerryDescriptionPart1_Kebia[] = _("Brilliant green on the outside, inside");
+static const u8 sBerryDescriptionPart2_Kebia[] = _("it is packed with black-colored flesh.");
+static const u8 sBerryDescriptionPart1_Shuca[] = _("The sweet pulp has just the hint of a");
+static const u8 sBerryDescriptionPart2_Shuca[] = _("a hard-edged and fragrant bite to it.");
+static const u8 sBerryDescriptionPart1_Coba[] = _("This Berry is said to be a cross of");
+static const u8 sBerryDescriptionPart2_Coba[] = _("two Berries blown in from far away.");
+static const u8 sBerryDescriptionPart1_Payapa[] = _("Said to sense human emotions, it swells");
+static const u8 sBerryDescriptionPart2_Payapa[] = _("roundly when a person approaches.");
+static const u8 sBerryDescriptionPart1_Tanga[] = _("It grows a flower at the tip that lures");
+static const u8 sBerryDescriptionPart2_Tanga[] = _("Bug Pokémon with its stringy petals.");
+static const u8 sBerryDescriptionPart1_Charti[] = _("Often used for pickles because of its");
+static const u8 sBerryDescriptionPart2_Charti[] = _("dry flavor. Sometimes eaten raw.");
+static const u8 sBerryDescriptionPart1_Kasib[] = _("Old superstitions say it has an odd");
+static const u8 sBerryDescriptionPart2_Kasib[] = _("power. A popular good-luck charm.");
+static const u8 sBerryDescriptionPart1_Haban[] = _("Less bitter if enough of this Berry");
+static const u8 sBerryDescriptionPart2_Haban[] = _("is boiled down. Makes a good jam.");
+static const u8 sBerryDescriptionPart1_Colbur[] = _("Tiny hooks on the surface latch onto");
+static const u8 sBerryDescriptionPart2_Colbur[] = _("Pokémon to reach far-off places.");
+static const u8 sBerryDescriptionPart1_Babiri[] = _("Very tough with a strong flavor. It");
+static const u8 sBerryDescriptionPart2_Babiri[] = _("was used to make medicine in the past.");
+static const u8 sBerryDescriptionPart1_Chilan[] = _("It can be made into a whistle that");
+static const u8 sBerryDescriptionPart2_Chilan[] = _("produces an indescribable sound.");
+static const u8 sBerryDescriptionPart1_Roseli[] = _("In nature, they grow in wide rings");
+static const u8 sBerryDescriptionPart2_Roseli[] = _("for reasons that are still unknown.");
+
 const struct Berry gBerries[] =
 {
+    [ITEM_CHERI_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("CHERI"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -133,6 +168,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 25,
     },
+
+    [ITEM_CHESTO_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("CHESTO"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -149,6 +186,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 25,
     },
+
+    [ITEM_PECHA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("PECHA"),
         .firmness = BERRY_FIRMNESS_VERY_SOFT,
@@ -165,6 +204,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 25,
     },
+
+    [ITEM_RAWST_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("RAWST"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -181,6 +222,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 25,
     },
+
+    [ITEM_ASPEAR_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("ASPEAR"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -197,6 +240,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 25,
     },
+
+    [ITEM_LEPPA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("LEPPA"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -213,6 +258,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_ORAN_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("ORAN"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -229,6 +276,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_PERSIM_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("PERSIM"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -245,6 +294,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_LUM_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("LUM"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -261,6 +312,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_SITRUS_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("SITRUS"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -277,6 +330,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_FIGY_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("FIGY"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -293,6 +348,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 25,
     },
+
+    [ITEM_WIKI_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("WIKI"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -309,6 +366,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 25,
     },
+
+    [ITEM_MAGO_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("MAGO"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -325,6 +384,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 25,
     },
+
+    [ITEM_AGUAV_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("AGUAV"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -341,6 +402,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 25,
     },
+
+    [ITEM_IAPAPA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("IAPAPA"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -357,6 +420,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 25,
     },
+
+    [ITEM_RAZZ_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("RAZZ"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -373,6 +438,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 20,
     },
+
+    [ITEM_BLUK_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("BLUK"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -389,6 +456,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 20,
     },
+
+    [ITEM_NANAB_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("NANAB"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -405,6 +474,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 20,
     },
+
+    [ITEM_WEPEAR_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("WEPEAR"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -421,6 +492,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_PINAP_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("PINAP"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -437,6 +510,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_POMEG_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("POMEG"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -453,6 +528,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 20,
     },
+
+    [ITEM_KELPSY_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("KELPSY"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -469,6 +546,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_QUALOT_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("QUALOT"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -485,6 +564,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_HONDEW_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("HONDEW"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -501,6 +582,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 20,
     },
+
+    [ITEM_GREPA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("GREPA"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -517,6 +600,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 20,
     },
+
+    [ITEM_TAMATO_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("TAMATO"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -533,6 +618,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 30,
     },
+
+    [ITEM_CORNN_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("CORNN"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -549,6 +636,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 30,
     },
+
+    [ITEM_MAGOST_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("MAGOST"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -565,6 +654,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 30,
     },
+
+    [ITEM_RABUTA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("RABUTA"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -581,6 +672,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 30,
     },
+
+    [ITEM_NOMEL_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("NOMEL"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -597,6 +690,8 @@ const struct Berry gBerries[] =
         .sour = 20,
         .smoothness = 30,
     },
+
+    [ITEM_SPELON_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("SPELON"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -613,6 +708,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 70,
     },
+
+    [ITEM_PAMTRE_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("PAMTRE"),
         .firmness = BERRY_FIRMNESS_VERY_SOFT,
@@ -629,6 +726,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 70,
     },
+
+    [ITEM_WATMEL_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("WATMEL"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -645,6 +744,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 70,
     },
+
+    [ITEM_DURIN_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("DURIN"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -661,6 +762,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 70,
     },
+
+    [ITEM_BELUE_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("BELUE"),
         .firmness = BERRY_FIRMNESS_VERY_SOFT,
@@ -677,6 +780,8 @@ const struct Berry gBerries[] =
         .sour = 40,
         .smoothness = 70,
     },
+
+    [ITEM_LIECHI_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("LIECHI"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -693,6 +798,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 80,
     },
+
+    [ITEM_GANLON_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("GANLON"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -709,6 +816,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 80,
     },
+
+    [ITEM_SALAC_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("SALAC"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -725,6 +834,8 @@ const struct Berry gBerries[] =
         .sour = 40,
         .smoothness = 80,
     },
+
+    [ITEM_PETAYA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("PETAYA"),
         .firmness = BERRY_FIRMNESS_VERY_HARD,
@@ -741,6 +852,8 @@ const struct Berry gBerries[] =
         .sour = 0,
         .smoothness = 80,
     },
+
+    [ITEM_APICOT_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("APICOT"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -757,6 +870,8 @@ const struct Berry gBerries[] =
         .sour = 40,
         .smoothness = 80,
     },
+
+    [ITEM_LANSAT_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("LANSAT"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -773,6 +888,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 30,
     },
+
+    [ITEM_STARF_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("STARF"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -789,6 +906,8 @@ const struct Berry gBerries[] =
         .sour = 10,
         .smoothness = 30,
     },
+
+    [ITEM_ENIGMA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("ENIGMA"),
         .firmness = BERRY_FIRMNESS_UNKNOWN,
@@ -804,6 +923,330 @@ const struct Berry gBerries[] =
         .bitter = 40,
         .sour = 40,
         .smoothness = 40,
+    },
+
+    [ITEM_OCCA_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("OCCA"),
+        .firmness = BERRY_FIRMNESS_SUPER_HARD,
+        .size = 89,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Occa,
+        .description2 = sBerryDescriptionPart2_Occa,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_PASSHO_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("PASSHO"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .size = 33,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Passho,
+        .description2 = sBerryDescriptionPart2_Passho,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_WACAN_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("WACAN"),
+        .firmness = BERRY_FIRMNESS_VERY_SOFT,
+        .size = 250,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Wacan,
+        .description2 = sBerryDescriptionPart2_Wacan,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_RINDO_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("RINDO"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .size = 155,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Rindo,
+        .description2 = sBerryDescriptionPart2_Rindo,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_YACHE_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("YACHE"),
+        .firmness = BERRY_FIRMNESS_VERY_HARD,
+        .size = 135,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Yache,
+        .description2 = sBerryDescriptionPart2_Yache,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_CHOPLE_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("CHOPLE"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .size = 77,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Chople,
+        .description2 = sBerryDescriptionPart2_Chople,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_KEBIA_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("KEBIA"),
+        .firmness = BERRY_FIRMNESS_HARD,
+        .size = 89,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Kebia,
+        .description2 = sBerryDescriptionPart2_Kebia,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_SHUCA_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("SHUCA"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .size = 42,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Shuca,
+        .description2 = sBerryDescriptionPart2_Shuca,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_COBA_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("COBA"),
+        .firmness = BERRY_FIRMNESS_VERY_HARD,
+        .size = 277,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Coba,
+        .description2 = sBerryDescriptionPart2_Coba,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_PAYAPA_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("PAYAPA"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .size = 251,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Payapa,
+        .description2 = sBerryDescriptionPart2_Payapa,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_TANGA_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("TANGA"),
+        .firmness = BERRY_FIRMNESS_VERY_SOFT,
+        .size = 43,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Tanga,
+        .description2 = sBerryDescriptionPart2_Tanga,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_CHARTI_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("CHARTI"),
+        .firmness = BERRY_FIRMNESS_VERY_SOFT,
+        .size = 28,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Charti,
+        .description2 = sBerryDescriptionPart2_Charti,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_KASIB_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("KASIB"),
+        .firmness = BERRY_FIRMNESS_HARD,
+        .size = 144,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Kasib,
+        .description2 = sBerryDescriptionPart2_Kasib,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_HABAN_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("HABAN"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .size = 23,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Haban,
+        .description2 = sBerryDescriptionPart2_Haban,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_COLBUR_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("COLBUR"),
+        .firmness = BERRY_FIRMNESS_SUPER_HARD,
+        .size = 38,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Colbur,
+        .description2 = sBerryDescriptionPart2_Colbur,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_BABIRI_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("BABIRI"),
+        .firmness = BERRY_FIRMNESS_SUPER_HARD,
+        .size = 265,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Babiri,
+        .description2 = sBerryDescriptionPart2_Babiri,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_CHILAN_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("CHILAN"),
+        .firmness = BERRY_FIRMNESS_VERY_SOFT,
+        .size = 33,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Chilan,
+        .description2 = sBerryDescriptionPart2_Chilan,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
+    },
+
+    [ITEM_ROSELI_BERRY - FIRST_BERRY_INDEX] =
+    {
+        .name = _("ROSELI"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .size = 35,
+        .maxYield = 5,
+        .minYield = 1,
+        .description1 = sBerryDescriptionPart1_Roseli,
+        .description2 = sBerryDescriptionPart2_Roseli,
+        .stageDuration = 18,
+        .spicy = 10,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 70,
     },
 };
 

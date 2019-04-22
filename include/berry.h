@@ -1,6 +1,8 @@
 #ifndef GUARD_BERRY_H
 #define GUARD_BERRY_H
 
+#include "constants/items.h"
+
 #define BERRY_NONE 0
 
 enum
@@ -33,12 +35,6 @@ enum
     BERRY_STAGE_BERRIES,
     BERRY_STAGE_SPARKLING = 0xFF,
 };
-
-#define NUM_BERRIES 44
-
-extern const u8 *const gBerryTreeEventObjectGraphicsIdTablePointers[];
-extern const struct SpriteFrameImage *const gBerryTreePicTablePointers[];
-extern const u8 *const gBerryTreePaletteSlotTablePointers[];
 
 void ClearEnigmaBerries(void);
 void SetEnigmaBerry(u8 *src);
