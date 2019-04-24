@@ -3345,6 +3345,7 @@ AI_TryFireMoveOnAlly_FlashFire:
 
 AI_TryStatusMoveOnAlly:
 	if_move MOVE_SKILL_SWAP, AI_TrySkillSwapOnAlly
+	if_move MOVE_SIMPLE_BEAM, AI_TrySkillSwapOnAlly
 	if_move MOVE_WILL_O_WISP, AI_TryStatusOnAlly
 	if_move MOVE_TOXIC, AI_TryStatusOnAlly
 	if_move MOVE_HELPING_HAND, AI_TryHelpingHandOnAlly

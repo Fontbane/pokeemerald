@@ -246,7 +246,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_MIRROR_COAT] = _("Mirror Coat"),
     [MOVE_PSYCH_UP] = _("Psych Up"),
     [MOVE_EXTREME_SPEED] = _("Extremespeed"),
-    [MOVE_ANCIENT_POWER] = _("Ancientpower"),
+    [MOVE_ANCIENT_POWER] = _("AncientPower"),
     [MOVE_SHADOW_BALL] = _("Shadow Ball"),
     [MOVE_FUTURE_SIGHT] = _("Future Sight"),
     [MOVE_ROCK_SMASH] = _("Rock Smash"),
@@ -673,4 +673,8 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_ZING_ZAP] = _("Zing Zap"),
     [MOVE_NATURES_MADNESS] = _("Nature's Mad"),
     [MOVE_MULTI_ATTACK] = _("Multi Attack"),
+    [MOVE_ANCIENT_POWER_HAX] = _("AncientPower"),
+    [MOVE_WATER_PULSE_HAX] = _("Water Pulse"),
+    [MOVE_SUPER_WET] = _("Moist Splash"),
+    [MOVE_BULLET_SHOOT] = _("Tickle Time"),
 };
