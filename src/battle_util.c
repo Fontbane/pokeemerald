@@ -100,28 +100,6 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_WATER_BUBBLE] = 1,
 };
 
-static const u8 sHoldEffectToType[][2] =
-{
-    {HOLD_EFFECT_BUG_POWER, TYPE_BUG},
-    {HOLD_EFFECT_STEEL_POWER, TYPE_STEEL},
-    {HOLD_EFFECT_GROUND_POWER, TYPE_GROUND},
-    {HOLD_EFFECT_ROCK_POWER, TYPE_ROCK},
-    {HOLD_EFFECT_GRASS_POWER, TYPE_GRASS},
-    {HOLD_EFFECT_DARK_POWER, TYPE_DARK},
-    {HOLD_EFFECT_FIGHTING_POWER, TYPE_FIGHTING},
-    {HOLD_EFFECT_ELECTRIC_POWER, TYPE_ELECTRIC},
-    {HOLD_EFFECT_WATER_POWER, TYPE_WATER},
-    {HOLD_EFFECT_FLYING_POWER, TYPE_FLYING},
-    {HOLD_EFFECT_POISON_POWER, TYPE_POISON},
-    {HOLD_EFFECT_ICE_POWER, TYPE_ICE},
-    {HOLD_EFFECT_GHOST_POWER, TYPE_GHOST},
-    {HOLD_EFFECT_PSYCHIC_POWER, TYPE_PSYCHIC},
-    {HOLD_EFFECT_FIRE_POWER, TYPE_FIRE},
-    {HOLD_EFFECT_DRAGON_POWER, TYPE_DRAGON},
-    {HOLD_EFFECT_NORMAL_POWER, TYPE_NORMAL},
-    {HOLD_EFFECT_FAIRY_POWER, TYPE_FAIRY},
-};
-
 // percent in UQ_4_12 format
 static const u16 sPercentToModifier[] =
 {
@@ -5296,35 +5274,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (gSpecialStatuses[battlerAtk].gemBoost && gBattleMons[battlerAtk].item)
             MulModifier(&modifier, UQ_4_12(1.0) + sPercentToModifier[gSpecialStatuses[battlerAtk].gemParam]);
         break;
-    case HOLD_EFFECT_BUG_POWER:
-    case HOLD_EFFECT_STEEL_POWER:
-    case HOLD_EFFECT_GROUND_POWER:
-    case HOLD_EFFECT_ROCK_POWER:
-    case HOLD_EFFECT_GRASS_POWER:
-    case HOLD_EFFECT_DARK_POWER:
-    case HOLD_EFFECT_FIGHTING_POWER:
-    case HOLD_EFFECT_ELECTRIC_POWER:
-    case HOLD_EFFECT_WATER_POWER:
-    case HOLD_EFFECT_FLYING_POWER:
-    case HOLD_EFFECT_POISON_POWER:
-    case HOLD_EFFECT_ICE_POWER:
-    case HOLD_EFFECT_GHOST_POWER:
-    case HOLD_EFFECT_PSYCHIC_POWER:
-    case HOLD_EFFECT_FIRE_POWER:
-    case HOLD_EFFECT_DRAGON_POWER:
-    case HOLD_EFFECT_NORMAL_POWER:
-    case HOLD_EFFECT_FAIRY_POWER:
-        for (i = 0; i < ARRAY_COUNT(sHoldEffectToType); i++)
-        {
-            if (holdEffectAtk == sHoldEffectToType[i][0])
-            {
-                if (moveType == sHoldEffectToType[i][1])
-                    MulModifier(&modifier, holdEffectModifier);
-                break;
-            }
-        }
+    case HOLD_EFFECT_TYPE_POWER:
+    case HOLD_EFFECT_PLATE:
+        if (moveType == ItemId_GetSecondaryId(gBattleMons[battlerAtk].item))
+            MulModifier(&modifier, holdEffectModifier);
         break;
-    }
+    };
 
     // move effect
     switch (gBattleMoves[move].effect)
@@ -6102,6 +6057,12 @@ bool32 CanBattlerGetOrLoseItem(u8 battlerId, u16 itemId)
     else if (ItemId_GetHoldEffect(itemId) == HOLD_EFFECT_MEGA_STONE && GetMegaEvolutionSpecies(species, itemId) != SPECIES_NONE)
         return FALSE;
     else if (species == SPECIES_GIRATINA && itemId == ITEM_GRISEOUS_ORB)
+        return FALSE;
+    else if (gBattleMons[battlerId].ability == ABILITY_MULTITYPE && ItemId_GetHoldEffect(itemId) == HOLD_EFFECT_PLATE)
+        return FALSE;
+    else if (species == SPECIES_GENESECT && ItemId_GetHoldEffect(itemId) == HOLD_EFFECT_DRIVE)
+        return FALSE;
+    else if (gBattleMons[battlerId].ability == ABILITY_RKS_SYSTEM && ItemId_GetHoldEffect(itemId) == HOLD_EFFECT_MEMORY)
         return FALSE;
     else
         return TRUE;

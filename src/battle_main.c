@@ -5033,14 +5033,15 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         if (GetBattlerHoldEffect(battlerAtk, TRUE) == HOLD_EFFECT_DRIVE)
             gBattleStruct->dynamicMoveType = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item) | 0x80;
     }
-    else if (move == MOVE_MULTI_ATTACK)
+    else if (gBattleMoves[move].effect == EFFECT_JUDGMENT)
+    {
+        if (GetBattlerHoldEffect(battlerAtk, TRUE) == HOLD_EFFECT_PLATE)
+            gBattleStruct->dynamicMoveType = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item) | 0x80;
+    }
+    else if (gBattleMoves[move].effect == EFFECT_MULTI_ATTACK)
     {
         if (GetBattlerHoldEffect(battlerAtk, TRUE) == HOLD_EFFECT_MEMORY)
             gBattleStruct->dynamicMoveType = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item) | 0x80;
-    }
-    else if (gBattleMoves[move].effect == EFFECT_JUDGMENT)
-    {
-        // TODO:
     }
     else if (gBattleMoves[move].effect == EFFECT_REVELATION_DANCE)
     {
@@ -5063,6 +5064,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_JUDGMENT
+             && gBattleMoves[move].effect != EFFECT_MULTI_ATTACK
              && ((attackerAbility == ABILITY_PIXILATE && (ateType = TYPE_FAIRY))
                  || (attackerAbility == ABILITY_REFRIGERATE && (ateType = TYPE_ICE))
                  || (attackerAbility == ABILITY_AERILATE && (ateType = TYPE_FLYING))

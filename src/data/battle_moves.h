@@ -9432,7 +9432,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_MULTI_ATTACK] =
     {
-        .effect = EFFECT_PLACEHOLDER,
+        .effect = EFFECT_MULTI_ATTACK,
         .power = 90,
         .type = TYPE_NORMAL,
         .accuracy = 100,
