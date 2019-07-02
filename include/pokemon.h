@@ -112,6 +112,11 @@
 #define MON_FEMALE     0xFE
 #define MON_GENDERLESS 0xFF
 
+#define GDIFF_NONE 0x0
+#define GDIFF_SPRITE 0x1
+#define GDIFF_PALETTE 0x2
+#define GDIFF_SPRITE_PALETTE 0x3
+
 #define FRIENDSHIP_EVENT_GROW_LEVEL           0x0
 #define FRIENDSHIP_EVENT_VITAMIN              0x1 // unused
 #define FRIENDSHIP_EVENT_BATTLE_ITEM          0x2 // unused
@@ -327,8 +332,9 @@ struct BaseStats
  /* 0x11 */ u8 eggCycles;
  /* 0x12 */ u8 friendship;
  /* 0x13 */ u8 growthRate;
- /* 0x14 */ u8 eggGroup1;
- /* 0x15 */ u8 eggGroup2;
+ /* 0x14 */ u8 eggGroup1:4;
+ /* 0x14 */ u8 eggGroup2:4;
+ /* 0x15 */ u8 genderDifference;
  /* 0x16 */ u8 abilities[2];
  /* 0x18 */ u8 abilityHidden;
  /* 0x19 */ u8 safariZoneFleeRate;
