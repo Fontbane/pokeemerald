@@ -1564,7 +1564,7 @@ static const u16 gTMHMMoves[] =
     MOVE_THIEF,
     MOVE_STEEL_WING,
     MOVE_SKILL_SWAP,
-    MOVE_SNATCH,
+    MOVE_BATON_PASS,
     MOVE_OVERHEAT,
     MOVE_CUT,
     MOVE_FLY,

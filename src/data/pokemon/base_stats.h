@@ -4214,7 +4214,7 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_LEDIAN] =
     {
-        .baseHP        = 55,
+        .baseHP        = 65,
         .baseAttack    = 35,
         .baseDefense   = 50,
         .baseSpeed     = 85,
@@ -16977,8 +16977,8 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_PICKUP, ABILITY_CHEEK_POUCH},
-        .abilityHidden = ABILITY_HUGE_POWER,
+        .abilities = {ABILITY_HUGE_POWER, ABILITY_NONE},
+        .abilityHidden = ABILITY_PICKUP,
         .bodyColor = BODY_COLOR_BROWN,
     },
 
@@ -17002,8 +17002,8 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_PICKUP, ABILITY_CHEEK_POUCH},
-        .abilityHidden = ABILITY_HUGE_POWER,
+        .abilities = {ABILITY_HUGE_POWER, ABILITY_NONE},
+        .abilityHidden = ABILITY_PICKUP,
         .bodyColor = BODY_COLOR_BROWN,
     },
 
