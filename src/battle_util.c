@@ -6096,10 +6096,6 @@ s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
         dmg = 0;
         break;
     case UQ_4_12(0.25):
-        dmg = maxHp / 32;
-        if (dmg == 0)
-            dmg = 1;
-        break;
     case UQ_4_12(0.5):
         dmg = maxHp / 16;
         if (dmg == 0)
@@ -6111,12 +6107,8 @@ s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId)
             dmg = 1;
         break;
     case UQ_4_12(2.0):
-        dmg = maxHp / 4;
-        if (dmg == 0)
-            dmg = 1;
-        break;
     case UQ_4_12(4.0):
-        dmg = maxHp / 2;
+        dmg = maxHp / 4;
         if (dmg == 0)
             dmg = 1;
         break;
