@@ -436,7 +436,7 @@
               {
                 "min_level": 9,
                 "max_level": 9,
-                "species": "SPECIES_MARILL"
+                "species": "SPECIES_AZUMARILL"
               },
               {
                 "min_level": 9,
@@ -695,7 +695,8 @@
                 "min_level": 23,
                 "max_level": 23,
                 "species": "SPECIES_MINUN"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  {
+              },
+              {
                 "min_level": 23,
                 "max_level": 23,
                 "species": "SPECIES_SWALOT"
@@ -1343,7 +1344,7 @@
               {
                 "min_level": 15,
                 "max_level": 15,
-                "species": "SPECIES_NINCADA"
+                "species": "SPECIES_NINJASK"
               },
               {
                 "min_level": 14,
@@ -1368,7 +1369,7 @@
               {
                 "min_level": 16,
                 "max_level": 16,
-                "species": "SPECIES_POOCHYENA"
+                "species": "SPECIES_MIGHTYENA"
               },
               {
                 "min_level": 14,
@@ -1823,7 +1824,7 @@
               },
               {
                 "min_level": 11,
-                "max_level": 11,
+                "max_level": 12,
                 "species": "SPECIES_SHROOMISH"
               },
               {
@@ -1843,7 +1844,7 @@
               },
               {
                 "min_level": 11,
-                "max_level": 11,
+                "max_level": 12,
                 "species": "SPECIES_SLAKOTH"
               }
             ]
