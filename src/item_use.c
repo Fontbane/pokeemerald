@@ -90,7 +90,7 @@ EWRAM_DATA static void(*gUnknown_0203A0F4)(u8 taskId) = NULL;
 
 // .rodata
 
-static const MainCallback gUnknown_085920D8[] =
+static const MainCallback sItemUseCallbacks[] =
 {
     CB2_ShowPartyMenuForItemUse,
     CB2_ReturnToField,
@@ -116,12 +116,12 @@ void SetUpItemUseCallback(u8 taskId)
         type = ItemId_GetType(gSpecialVar_ItemId) - 1;
     if (!InBattlePyramid())
     {
-        gBagMenu->mainCallback2 = gUnknown_085920D8[type];
+        gBagMenu->mainCallback2 = sItemUseCallbacks[type];
         unknown_ItemMenu_Confirm(taskId);
     }
     else
     {
-        gPyramidBagResources->callback2 = gUnknown_085920D8[type];
+        gPyramidBagResources->callback2 = sItemUseCallbacks[type];
         sub_81C5B14(taskId);
     }
 }
@@ -724,6 +724,12 @@ void ItemUseOnFieldCB_WailmerPailSudowoodo(u8 taskId)
 void ItemUseOutOfBattle_Medicine(u8 taskId)
 {
     gItemUseCB = ItemUseCB_Medicine;
+    SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_AbilityCapsule(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_AbilityCapsule;
     SetUpItemUseCallback(taskId);
 }
 
