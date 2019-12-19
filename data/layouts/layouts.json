@@ -4429,6 +4429,26 @@
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Petalburg",
             "width": 40
+        },
+        {
+            "blockdata_filepath": "data/layouts/SmolTown/map.bin",
+            "border_filepath": "data/layouts/SmolTown/border.bin",
+            "height": 30,
+            "id": "LAYOUT_SMOL_TOWN",
+            "name": "SmolTown_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Petalburg",
+            "width": 30
+        },
+        {
+            "blockdata_filepath": "data/layouts/NewMap1/map.bin",
+            "border_filepath": "data/layouts/NewMap1/border.bin",
+            "height": 30,
+            "id": "LAYOUT_NEW_MAP1",
+            "name": "NewMap1_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Petalburg",
+            "width": 20
         }
     ],
     "layouts_table_label": "gMapLayouts"
