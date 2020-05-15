@@ -5,7 +5,13 @@
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
     ],
-    "connections": null,
+    "connections": [
+        {
+            "direction": "down",
+            "map": "MAP_ROUTE1",
+            "offset": 3
+        }
+    ],
     "coord_events": [
     ],
     "id": "MAP_SMOL_TOWN",

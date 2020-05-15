@@ -63,6 +63,11 @@
             "direction": "right",
             "map": "MAP_NEW_MAP1",
             "offset": 0
+        },
+        {
+            "direction": "up",
+            "map": "MAP_SMOL_TOWN",
+            "offset": -3
         }
     ],
     "coord_events": [
