@@ -687,13 +687,14 @@ gBattleAnims_General::
 
 	.align 2
 gBattleAnims_Special::
-	.4byte Special_LevelUp                  @ B_ANIM_LVL_UP
-	.4byte Special_SwitchOutPlayerMon       @ B_ANIM_SWITCH_OUT_PLAYER_MON
-	.4byte Special_SwitchOutOpponentMon     @ B_ANIM_SWITCH_OUT_OPPONENT_MON
-	.4byte Special_BallThrow                @ B_ANIM_BALL_THROW
-	.4byte Special_SafariBallThrow          @ B_ANIM_SAFARI_BALL_THROW
-	.4byte Special_SubstituteToMon          @ B_ANIM_SUBSTITUTE_TO_MON
-	.4byte Special_MonToSubstitute          @ B_ANIM_MON_TO_SUBSTITUTE
+	.4byte Special_LevelUp
+	.4byte Special_SwitchOutPlayerMon
+	.4byte Special_SwitchOutOpponentMon
+	.4byte Special_BallThrow
+	.4byte Special_SafariBallThrow
+	.4byte Special_SubstituteToMon
+	.4byte Special_MonToSubstitute
+    .4byte Special_CriticalCaptureBallThrow
 
 Move_ROOST:
 	loadspritegfx ANIM_TAG_WHITE_FEATHER
@@ -15549,3 +15550,13 @@ Special_SubstituteToMon:
 Special_MonToSubstitute:
 	createvisualtask AnimTask_SwapMonSpriteToFromSubstitute, 2, FALSE
 	end
+    
+Special_CriticalCaptureBallThrow:
+	createvisualtask sub_8170CFC, 2
+	delay 0
+	playsewithpan SE_RU_HYUU, 0
+	createvisualtask sub_8170E04, 2
+	createvisualtask AnimTask_IsBallBlockedByTrainer, 2
+	jumpreteq -1, BallThrowTrainerBlock
+    goto BallThrowEnd
+
