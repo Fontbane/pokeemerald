@@ -5821,6 +5821,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_FIRE)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
+    case ABILITY_PUNK_ROCK:
+        if (gBattleMoves[move].flags & FLAG_SOUND)
+            MulModifier(&modifier, UQ_4_12(0.5));
+        break;
     }
 
     holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
