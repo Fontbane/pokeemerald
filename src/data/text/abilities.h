@@ -221,9 +221,8 @@ static const u8 sMistySurgeDescription[] = _("Field becomes misty.");
 static const u8 sGrassySurgeDescription[] = _("Field becomes grassy.");
 static const u8 sFullMetalBodyDescription[] = _("Prevents stat reduction.");
 static const u8 sNeuroforceDescription[] = _("Ups “super effective.“.");
-static const u8 sBattleCoatDescription[] = _("KOs raise Defense.");
 
-const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
+const u8 gAbilityNames[ABILITIES_COUNT_GEN7][ABILITY_NAME_LENGTH + 1] =
 {
     [ABILITY_NONE] = _("-------"),
     [ABILITY_STENCH] = _("Stench"),
@@ -460,7 +459,6 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SHADOW_SHIELD] = _("ShadowShield"),
     [ABILITY_PRISM_ARMOR] = _("Prism Armor"),
     [ABILITY_NEUROFORCE] = _("Neuroforce"),
-    [ABILITY_BATTLE_COAT] = _("Battle Coat"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN7] =
@@ -700,5 +698,4 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN7] =
     [ABILITY_SHADOW_SHIELD] = sMultiscaleDescription,
     [ABILITY_PRISM_ARMOR] = sFilterDescription,
     [ABILITY_NEUROFORCE] = sNeuroforceDescription,
-    [ABILITY_BATTLE_COAT] = sBattleCoatDescription,
 };

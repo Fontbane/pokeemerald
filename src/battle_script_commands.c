@@ -7235,20 +7235,6 @@ static void Cmd_various(void)
             return;
         }
         break;
-    case VARIOUS_TRY_ACTIVATE_BATTLE_COAT:
-        if (GetBattlerAbility(gActiveBattler) == ABILITY_BATTLE_COAT
-            && HasAttackerFaintedTarget()
-            && !NoAliveMonsForEitherParty()
-            && gBattleMons[gBattlerAttacker].statStages[STAT_DEF] != 12)
-        {
-            gBattleMons[gBattlerAttacker].statStages[STAT_DEF]++;
-            SET_STATCHANGER(STAT_DEF, 1, FALSE);
-            PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_DEF);
-            BattleScriptPush(gBattlescriptCurrInstr + 3);
-            gBattlescriptCurrInstr = BattleScript_AttackerAbilityStatRaise;
-            return;
-        }
-        break;
     case VARIOUS_TRY_ACTIVATE_RECEIVER: // Partner gets fainted's ally ability
         gBattlerAbility = BATTLE_PARTNER(gActiveBattler);
         i = GetBattlerAbility(gBattlerAbility);
