@@ -160,6 +160,7 @@
 #define VARIOUS_JUMP_IF_NO_HOLD_EFFECT          97
 #define VARIOUS_INFATUATE_WITH_BATTLER          98
 #define VARIOUS_SET_LAST_USED_ITEM              99
+#define VARIOUS_TRY_ACTIVATE_BATTLE_COAT        100
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

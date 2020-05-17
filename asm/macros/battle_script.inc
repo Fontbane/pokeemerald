@@ -1438,6 +1438,10 @@
 	.macro tryactivatemoxie battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_MOXIE
 	.endm
+
+	.macro tryactivatebattlecoat battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_BATTLE_COAT
+	.endm
 	
 	.macro tryactivatebeastboost battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_BEAST_BOOST
