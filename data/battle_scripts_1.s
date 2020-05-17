@@ -364,6 +364,8 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectGeomancy
 	.4byte BattleScript_EffectFairyLock
 	.4byte BattleScript_EffectAllySwitch
+	.4byte BattleScript_EffectPlasmaFists
+	.4byte BattleScript_EffectDoubleIronBash
 	
 BattleScript_EffectAllySwitch:
 	attackcanceler
@@ -1550,6 +1552,16 @@ BattleScript_EffectIonDeluge:
 	printstring STRINGID_IONDELUGEON
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectPlasmaFists:
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	orword gFieldStatuses, STATUS_FIELD_ION_DELUGE
+	attackanimation
+	waitanimation
+	goto BattleScript_EffectHit
 
 BattleScript_EffectQuash:
 	attackcanceler
@@ -3139,6 +3151,16 @@ BattleScript_EffectTwineedle::
 	initmultihitstring
 	goto BattleScript_MultiHitLoop
 
+BattleScript_EffectDoubleIronBash::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	setbyte sMULTIHIT_EFFECT, MOVE_EFFECT_FLINCH
+	attackstring
+	ppreduce
+	setmultihitcounter 0x2
+	initmultihitstring
+	goto BattleScript_MultiHitLoop
+
 BattleScript_EffectSubstitute::
 	attackcanceler
 	ppreduce
@@ -3819,7 +3841,7 @@ BattleScript_EffectBatonPass::
 
 BattleScript_EffectRapidSpin::
 	setmoveeffect MOVE_EFFECT_RAPIDSPIN | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-	goto BattleScript_EffectHit
+	goto BattleScript_EffectSpeedUpHit
 
 BattleScript_EffectSonicboom::
 	attackcanceler
@@ -6667,6 +6689,9 @@ BattleScript_IntimidateActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_IntimidatePrevented
 	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_IntimidatePrevented
 	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_IntimidatePrevented
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_IntimidateActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 0x1, BattleScript_IntimidateActivatesLoopIncrement
 	setgraphicalstatchangevalues
