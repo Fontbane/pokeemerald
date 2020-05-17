@@ -111,7 +111,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
 
 static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
 {
-    [ABILITY_BATTLE_BOND] = 1,
+    //[ABILITY_BATTLE_BOND] = 1,
     [ABILITY_COMATOSE] = 1,
     [ABILITY_DISGUISE] = 1,
     [ABILITY_FLOWER_GIFT] = 1,
@@ -3573,7 +3573,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 switch (gBattleMons[gBattlerAttacker].ability)
                 {
                 case ABILITY_MUMMY:
-                case ABILITY_BATTLE_BOND:
+                //case ABILITY_BATTLE_BOND:
                 case ABILITY_COMATOSE:
                 case ABILITY_DISGUISE:
                 case ABILITY_MULTITYPE:
@@ -6306,10 +6306,10 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         if (isCrit)
             MulModifier(&finalModifier, UQ_4_12(1.5));
         break;
-    case ABILITY_NEUROFORCE:
+    /*case ABILITY_NEUROFORCE:
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(1.25));
-        break;
+        break;*/
     }
 
     // target's abilities

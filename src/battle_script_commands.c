@@ -7248,7 +7248,7 @@ static void Cmd_various(void)
             case ABILITY_FLOWER_GIFT:       case ABILITY_ILLUSION:
             case ABILITY_WONDER_GUARD:      case ABILITY_ZEN_MODE:
             case ABILITY_STANCE_CHANGE:     case ABILITY_IMPOSTER:
-            case ABILITY_POWER_CONSTRUCT:   case ABILITY_BATTLE_BOND:
+            case ABILITY_POWER_CONSTRUCT:   /*case ABILITY_BATTLE_BOND:*/
             case ABILITY_SCHOOLING:         case ABILITY_COMATOSE:
             case ABILITY_SHIELDS_DOWN:      case ABILITY_DISGUISE:
             case ABILITY_RKS_SYSTEM:        case ABILITY_TRACE:
@@ -7366,7 +7366,7 @@ static void Cmd_various(void)
         case ABILITY_SHIELDS_DOWN:
         case ABILITY_DISGUISE:
         case ABILITY_RKS_SYSTEM:
-        case ABILITY_BATTLE_BOND:
+        //case ABILITY_BATTLE_BOND:
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             return;
         }
@@ -10842,7 +10842,7 @@ static void Cmd_setgastroacid(void)
     case ABILITY_SHIELDS_DOWN:
     case ABILITY_DISGUISE:
     case ABILITY_RKS_SYSTEM:
-    case ABILITY_BATTLE_BOND:
+    //case ABILITY_BATTLE_BOND:
     case ABILITY_POWER_CONSTRUCT:
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         break;
