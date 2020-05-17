@@ -237,7 +237,7 @@ struct WishFutureKnock
 
 struct AI_SavedBattleMon
 {
-    u16 ability;
+    u8 ability;
     u16 moves[4];
     u16 heldItem;
     u16 species;
@@ -486,7 +486,7 @@ struct BattleStruct
     u16 lastTakenMove[MAX_BATTLERS_COUNT]; // Last move that a battler was hit with.
     u16 hpOnSwitchout[2];
     u32 savedBattleTypeFlags;
-    u16 abilityPreventingSwitchout;
+    u8 abilityPreventingSwitchout;
     u8 hpScale;
     u16 synchronizeMoveEffect;
     bool8 anyMonHasTransformed;

@@ -774,7 +774,7 @@ void RecordMoveBattle(u8 battlerId, u32 move)
     }
 }
 
-void RecordAbilityBattle(u8 battlerId, u16 abilityId)
+void RecordAbilityBattle(u8 battlerId, u8 abilityId)
 {
     BATTLE_HISTORY->abilities[battlerId] = abilityId;
 }

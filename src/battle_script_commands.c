@@ -9939,7 +9939,7 @@ static void Cmd_healpartystatus(void)
 
             if (species != SPECIES_NONE && species != SPECIES_EGG)
             {
-                u16 ability;
+                u8 ability;
 
                 if (gBattlerPartyIndexes[gBattlerAttacker] == i)
                     ability = gBattleMons[gBattlerAttacker].ability;
@@ -10942,7 +10942,7 @@ static void Cmd_tryswapabilities(void) // skill swap
     }
     else
     {
-        u16 abilityAtk = gBattleMons[gBattlerAttacker].ability;
+        u8 abilityAtk = gBattleMons[gBattlerAttacker].ability;
         gBattleMons[gBattlerAttacker].ability = gBattleMons[gBattlerTarget].ability;
         gBattleMons[gBattlerTarget].ability = abilityAtk;
 
@@ -11197,7 +11197,7 @@ static void Cmd_pickup(void)
 {
     s32 i;
     u16 species, heldItem;
-    u16 ability;
+    u8 ability;
     u8 lvlDivBy10;
 
     if (InBattlePike())

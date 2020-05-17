@@ -152,7 +152,7 @@ struct BattlePokemon
     /*0x17*/ u32 spDefenseIV:5;
     /*0x17*/ u32 abilityNum:2;
     /*0x18*/ s8 statStages[NUM_BATTLE_STATS];
-    /*0x20*/ u16 ability;
+    /*0x20*/ u8 ability;
     /*0x21*/ u8 type1;
     /*0x22*/ u8 type2;
     /*0x23*/ u8 type3;
@@ -199,7 +199,7 @@ struct BaseStats
  /* 0x14 */ u8 eggGroup1;
  /* 0x15 */ u8 eggGroup2;
  /* 0x16 */ u8 abilities[2];
- /* 0x18 */ u16 abilityHidden;
+ /* 0x18 */ u8 abilityHidden;
  /* 0x19 */ u8 safariZoneFleeRate;
  /* 0x1A */ u8 bodyColor : 7;
             u8 noFlip : 1;
