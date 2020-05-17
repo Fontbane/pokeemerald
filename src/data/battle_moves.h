@@ -9499,18 +9499,4 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
-
-    [MOVE_AURA_WHEEL]=
-    {
-        .effect = EFFECT_AURA_WHEEL,
-        .power = 110,
-        .type = TYPE_ELECTRIC,
-        .accuracy = 100,
-        .pp = 10,
-        .secondaryEffectChance=100
-        .target = MOVE_TARGET_FOES_AND_ALLY,
-        priority = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGSROCK_AFFECTED,
-        .split = SPLIT_PHYSICAL,
-    }
 };
