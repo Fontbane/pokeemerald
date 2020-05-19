@@ -351,12 +351,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_ShellyWeatherInstitute[]
     .iv = 50,
     .lvl = 49,
     .species = SPECIES_MIGHTYENA,
-    }
+    },
     {
     .iv = 50,
     .lvl = 49,
     .species = SPECIES_GOREBYSS,
-    }
+    },
     {
     .iv = 50,
     .lvl = 51,
@@ -6720,8 +6720,8 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TabithaMossdeep[] = {
     .species = SPECIES_MIGHTYENA,
     },
     {
-    .iv = 64,
-    .lvl = ,
+    .iv = 100,
+    .lvl = 64,
     .species = SPECIES_WEEZING,
     }
 };
@@ -6847,7 +6847,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute110Mudkip[] 
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Brendan3[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute119Mudkip[] = {
     {
     .iv = 50,
     .lvl = 48,
