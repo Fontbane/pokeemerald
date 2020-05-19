@@ -246,6 +246,7 @@ static const u8 sGorillaTacticsDescription[] = _("Ups Attack, but allows one mov
 static const u8 sNeutralizingGasDescription[] = _("All Abilities are nullified.");
 static const u8 sPastelVeilDescription[] = _("Protects team from poison.");
 static const u8 sHungerSwitchDescription[] = _("Changes form each turn.");
+static const u8 sBattleCoatDescription[] = _("KOs boost Defense.");
 
 const u8 gAbilityNames[ABILITIES_COUNT_GEN8][ABILITY_NAME_LENGTH + 1] =
 {
@@ -509,6 +510,7 @@ const u8 gAbilityNames[ABILITIES_COUNT_GEN8][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_NEUTRALIZING_GAS] = _("Neutralizing"),
     [ABILITY_PASTEL_VEIL] = _("Pastel Veil"),
     [ABILITY_HUNGER_SWITCH] = _("HungerSwitch"),
+    [ABILITY_BATTLE_COAT] = _("Battle Coat"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN8] =
@@ -773,4 +775,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN8] =
     [ABILITY_NEUTRALIZING_GAS] = sNeutralizingGasDescription,
     [ABILITY_PASTEL_VEIL] = sPastelVeilDescription,
     [ABILITY_HUNGER_SWITCH] = sHungerSwitchDescription,
+    [ABILITY_BATTLE_COAT] = sBattleCoatDescription,
 };
