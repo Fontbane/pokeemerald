@@ -4688,10 +4688,10 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_TM55_LOW_SWEEP] =
+    [ITEM_TM55_LOW_KICK] =
     {
         .name = _("TM55"),
-        .itemId = ITEM_TM55_LOW_SWEEP,
+        .itemId = ITEM_TM55_LOW_KICK,
         .price = 10000,
         .description = sTM55Desc,
         .importance = 1,
