@@ -3448,7 +3448,7 @@ static const struct TrainerMonItemCustomMoves sParty_Brawly1[] = {
     .lvl = 22,
     .species = SPECIES_HARIYAMA,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = MOVE_ARM_THRUST, MOVE_HEAVY_SLAM, MOVE_KNOCK_OFF, MOVE_BULK_UP
+    .moves = MOVE_WAKE_UP_SLAP, MOVE_HEAVY_SLAM, MOVE_KNOCK_OFF, MOVE_BULK_UP
     }
 };
 
@@ -4254,7 +4254,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Calvin1[] = {
 static const struct TrainerMonNoItemDefaultMoves sParty_Billy[] = {
     {
     .iv = 0,
-    .lvl = 5,
+    .lvl = 7,
     .species = SPECIES_ZIGZAGOON,
     },
     {
