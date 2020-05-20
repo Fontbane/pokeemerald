@@ -995,7 +995,7 @@ static const u8 sFutureSightDescription[] = _(
 
 static const u8 sRockSmashDescription[] = _(
     "A rock-crushing attack\n"
-    "that may lower DEFENSE.");
+    "that lowers DEFENSE.");
 
 static const u8 sWhirlpoolDescription[] = _(
     "Traps and hurts the foe in\n"
@@ -2067,7 +2067,7 @@ static const u8 sELECTROWEBDescription[] = _(
 
 static const u8 sWILD_CHARGEDescription[] = _(
     "An electrical tackle that\n"
-    "also hurts the user.");
+    "hurts the user if it misses.");
 
 static const u8 sDRILL_RUNDescription[] = _(
 	"Spins its body like a drill.\n"

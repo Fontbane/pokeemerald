@@ -6121,6 +6121,7 @@ static const u8 sChinchouTMHMLearnset[] =
     TMHM(HM07_WATERFALL),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -6156,6 +6157,7 @@ static const u8 sLanturnTMHMLearnset[] =
     TMHM(HM07_WATERFALL),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -6453,6 +6455,7 @@ static const u8 sMareepTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -6484,6 +6487,7 @@ static const u8 sFlaaffyTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -6520,6 +6524,7 @@ static const u8 sAmpharosTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -9247,6 +9252,7 @@ static const u8 sCombuskenTMHMLearnset[] =
     TMHM(TM56_FLING),
     TMHM(TM61_WILL_O_WISP),
     TMHM(TM65_SHADOW_CLAW),
+    TMHM(TM70_FLASH),
     TMHM(TM75_SWORDS_DANCE),
     TMHM(TM80_ROCK_SLIDE),
     TMHM(TM84_POISON_JAB),
@@ -9296,6 +9302,7 @@ static const u8 sBlazikenTMHMLearnset[] =
     TMHM(TM62_ACROBATICS),
     TMHM(TM65_SHADOW_CLAW),
     TMHM(TM68_GIGA_IMPACT),
+    TMHM(TM70_FLASH),
     TMHM(TM71_STONE_EDGE),
     TMHM(TM75_SWORDS_DANCE),
     TMHM(TM78_BULLDOZE),
@@ -9583,6 +9590,7 @@ static const u8 sBeautiflyTMHMLearnset[] =
     TMHM(TM32_DOUBLE_TEAM),
     TMHM(TM40_AERIAL_ACE),
     TMHM(TM42_FACADE),
+    TMHM(TM70_FLASH),
     TMHM(TM44_REST),
     TMHM(TM45_ATTRACT),
     TMHM(TM46_THIEF),
@@ -9638,6 +9646,7 @@ static const u8 sDustoxTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -9780,6 +9789,7 @@ static const u8 sSeedotTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -9823,6 +9833,7 @@ static const u8 sNuzleafTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -9871,6 +9882,7 @@ static const u8 sShiftryTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -10049,6 +10061,7 @@ static const u8 sRaltsTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -10091,6 +10104,7 @@ static const u8 sKirliaTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -10137,6 +10151,7 @@ static const u8 sGardevoirTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -10231,6 +10246,8 @@ static const u8 sShroomishTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -10272,6 +10289,8 @@ static const u8 sBreloomTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -10765,6 +10784,7 @@ static const u8 sNosepassTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -10805,6 +10825,7 @@ static const u8 sSkittyTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -10847,6 +10868,7 @@ static const u8 sDelcattyTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -10890,6 +10912,7 @@ static const u8 sSableyeTMHMLearnset[] =
     TMHM(TM79_DARK_PULSE),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -10971,6 +10994,7 @@ static const u8 sAronTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11004,6 +11028,7 @@ static const u8 sLaironTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11060,6 +11085,7 @@ static const u8 sAggronTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11102,6 +11128,7 @@ static const u8 sMedititeTMHMLearnset[] =
     TMHM(TM98_POWER_UP_PUNCH),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11147,6 +11174,7 @@ static const u8 sMedichamTMHMLearnset[] =
     TMHM(TM98_POWER_UP_PUNCH),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11178,6 +11206,7 @@ static const u8 sElectrikeTMHMLearnset[] =
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM95_SNARL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11212,6 +11241,7 @@ static const u8 sManectricTMHMLearnset[] =
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM95_SNARL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11242,6 +11272,7 @@ static const u8 sPlusleTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11272,6 +11303,7 @@ static const u8 sMinunTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11310,6 +11342,7 @@ static const u8 sVolbeatTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
@@ -11348,6 +11381,7 @@ static const u8 sIllumiseTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM70_FLASH),
     0xFF,
 };
 
