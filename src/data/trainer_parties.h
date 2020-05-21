@@ -6108,8 +6108,8 @@ static const struct TrainerMonNoItemCustomMoves sParty_Heidi[] = {
     {
     .iv = 0,
     .lvl = 38,
-    .species = SPECIES_SANDSLASH,
-    .moves = {MOVE_DIG, MOVE_SAND_ATTACK, MOVE_POISON_STING, MOVE_SLASH}
+    .species = SPECIES_KROKOROK,
+    .moves = {MOVE_DIG, MOVE_SAND_ATTACK, MOVE_BITE, MOVE_ICE_FANG}
     },
     {
     .iv = 0,
@@ -6151,7 +6151,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Nancy[] = {
     {
     .iv = 0,
     .lvl = 32,
-    .species = SPECIES_AZUMARILL,
+    .species = SPECIES_PONYTA,
     },
     {
     .iv = 0,
@@ -9877,7 +9877,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Angelina[] = {
     {
     .iv = 0,
     .lvl = 32,
-    .species = SPECIES_LOMBRE,
+    .species = SPECIES_PONYTA,
     },
     {
     .iv = 0,
@@ -10137,7 +10137,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Andres1[] = {
     {
     .iv = 50,
     .lvl = 25,
-    .species = SPECIES_SANDSHREW,
+    .species = SPECIES_SANDILE,
     }
 };
 
@@ -10233,7 +10233,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Bryan[] = {
     {
     .iv = 0,
     .lvl = 40,
-    .species = SPECIES_SANDSLASH,
+    .species = SPECIES_SANDILE,
     }
 };
 

@@ -107,7 +107,7 @@ Route115_EventScript_ItemSuperPotion:: @ 8290E2A
 	end
 
 Route115_EventScript_ItemTM01:: @ 8290E37
-	finditem ITEM_TM01
+	finditem ITEM_TM100
 	end
 
 Route115_EventScript_ItemIron:: @ 8290E44
@@ -363,7 +363,7 @@ GraniteCave_B2F_EventScript_ItemRepel:: @ 829116A
 	end
 
 GraniteCave_B2F_EventScript_ItemRareCandy:: @ 8291177
-	finditem ITEM_RARE_CANDY
+	finditem ITEM_TM98
 	end
 
 JaggedPass_EventScript_ItemBurnHeal:: @ 8291184
@@ -379,11 +379,11 @@ FieryPath_EventScript_ItemTM06:: @ 829119E
 	end
 
 MeteorFalls_1F_1R_EventScript_ItemTM23:: @ 82911AB
-	finditem ITEM_TM23
+	finditem ITEM_TM65
 	end
 
 MeteorFalls_1F_1R_EventScript_ItemFullHeal:: @ 82911B8
-	finditem ITEM_FULL_HEAL
+	finditem ITEM_TM23
 	end
 
 MeteorFalls_1F_1R_EventScript_ItemMoonStone:: @ 82911C5

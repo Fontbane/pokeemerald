@@ -741,6 +741,7 @@ static const u8 sPikachuTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -776,6 +777,7 @@ static const u8 sRaichuTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -811,6 +813,7 @@ static const u8 sSandshrewTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -850,6 +853,7 @@ static const u8 sSandslashTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -1813,6 +1817,7 @@ static const u8 sPsyduckTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -1852,6 +1857,7 @@ static const u8 sGolduckTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -2563,6 +2569,7 @@ static const u8 sGeodudeTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -2598,6 +2605,7 @@ static const u8 sGravelerTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -2637,6 +2645,7 @@ static const u8 sGolemTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -3093,6 +3102,7 @@ static const u8 sMukTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -3920,6 +3930,7 @@ static const u8 sRhyhornTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -3970,6 +3981,7 @@ static const u8 sRhydonTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(HM03_SURF),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -4528,6 +4540,7 @@ static const u8 sPinsirTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -4618,6 +4631,7 @@ static const u8 sGyaradosTMHMLearnset[] =
     TMHM(TM79_DARK_PULSE),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -6589,6 +6603,7 @@ static const u8 sMarillTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -6624,6 +6639,7 @@ static const u8 sAzumarillTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -7694,6 +7710,7 @@ static const u8 sHeracrossTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -7850,6 +7867,7 @@ static const u8 sSlugmaTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -7892,6 +7910,7 @@ static const u8 sMagcargoTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -7998,6 +8017,7 @@ static const u8 sCorsolaTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -8175,6 +8195,7 @@ static const u8 sSkarmoryTMHMLearnset[] =
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -8308,6 +8329,7 @@ static const u8 sPhanpyTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -8342,6 +8364,7 @@ static const u8 sDonphanTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9102,7 +9125,8 @@ static const u8 sTreeckoTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(TM53_ENERGY_BALL),
     TMHM(HM01_CUT),
-    TMHM(HM04_STRENGTH),
+    TMHM(TM09_BULLET_SEED),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9141,6 +9165,8 @@ static const u8 sGrovyleTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM04_STRENGTH),
+    TMHM(TM09_BULLET_SEED),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9187,6 +9213,8 @@ static const u8 sSceptileTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM04_STRENGTH),
+    TMHM(TM09_BULLET_SEED),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9221,6 +9249,7 @@ static const u8 sTorchicTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM04_STRENGTH),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9348,6 +9377,7 @@ static const u8 sMudkipTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9383,6 +9413,7 @@ static const u8 sMarshtompTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9423,6 +9454,7 @@ static const u8 sSwampertTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9453,6 +9485,7 @@ static const u8 sPoochyenaTMHMLearnset[] =
     TMHM(TM95_SNARL),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9485,6 +9518,7 @@ static const u8 sMightyenaTMHMLearnset[] =
     TMHM(TM95_SNARL),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9520,6 +9554,7 @@ static const u8 sZigzagoonTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -9559,6 +9594,7 @@ static const u8 sLinooneTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -10244,8 +10280,6 @@ static const u8 sShroomishTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
-    TMHM(HM01_CUT),
-    TMHM(HM06_ROCK_SMASH),
     TMHM(TM70_FLASH),
     TMHM(TM09_BULLET_SEED),
     0xFF,
@@ -10451,7 +10485,6 @@ static const u8 sNincadaTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
-    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -10486,7 +10519,6 @@ static const u8 sNinjaskTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
-    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -10520,7 +10552,6 @@ static const u8 sShedinjaTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
-    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -10824,7 +10855,6 @@ static const u8 sSkittyTMHMLearnset[] =
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
-    TMHM(HM06_ROCK_SMASH),
     TMHM(TM70_FLASH),
     0xFF,
 };
@@ -10913,6 +10943,7 @@ static const u8 sSableyeTMHMLearnset[] =
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
     TMHM(TM70_FLASH),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11414,6 +11445,7 @@ static const u8 sRoseliaTMHMLearnset[] =
     TMHM(TM96_NATURE_POWER),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -11444,6 +11476,8 @@ static const u8 sGulpinTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM09_BULLET_SEED),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11478,6 +11512,8 @@ static const u8 sSwalotTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM09_BULLET_SEED),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11549,6 +11585,7 @@ static const u8 sSharpedoTMHMLearnset[] =
     TMHM(TM79_DARK_PULSE),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11580,6 +11617,7 @@ static const u8 sWailmerTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11613,6 +11651,7 @@ static const u8 sWailordTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11645,6 +11684,7 @@ static const u8 sNumelTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11685,6 +11725,7 @@ static const u8 sCameruptTMHMLearnset[] =
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11722,6 +11763,7 @@ static const u8 sTorkoalTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11838,6 +11880,7 @@ static const u8 sSpindaTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM93_WILD_CHARGE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11865,6 +11908,7 @@ static const u8 sTrapinchTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11896,6 +11940,7 @@ static const u8 sVibravaTMHMLearnset[] =
     TMHM(TM89_U_TURN),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11935,6 +11980,7 @@ static const u8 sFlygonTMHMLearnset[] =
     TMHM(TM89_U_TURN),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -11967,6 +12013,7 @@ static const u8 sCacneaTMHMLearnset[] =
     TMHM(TM96_NATURE_POWER),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -12003,6 +12050,7 @@ static const u8 sCacturneTMHMLearnset[] =
     TMHM(TM96_NATURE_POWER),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -12077,6 +12125,7 @@ static const u8 sAltariaTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12123,6 +12172,7 @@ static const u8 sZangooseTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12160,6 +12210,7 @@ static const u8 sSeviperTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12321,6 +12372,7 @@ static const u8 sWhiscashTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12358,6 +12410,7 @@ static const u8 sCorphishTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12401,6 +12454,7 @@ static const u8 sCrawdauntTMHMLearnset[] =
     TMHM(TM79_DARK_PULSE),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12492,6 +12546,7 @@ static const u8 sClaydolTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12523,6 +12578,7 @@ static const u8 sLileepTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM09_BULLET_SEED),
     0xFF,
 };
 
@@ -12560,6 +12616,8 @@ static const u8 sCradilyTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM09_BULLET_SEED),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12590,6 +12648,7 @@ static const u8 sAnorithTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12627,6 +12686,7 @@ static const u8 sArmaldoTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12767,6 +12827,7 @@ static const u8 sKecleonTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12935,6 +12996,7 @@ static const u8 sDusclopsTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -12971,6 +13033,8 @@ static const u8 sTropiusTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM09_BULLET_SEED),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13064,6 +13128,7 @@ static const u8 sAbsolTMHMLearnset[] =
     TMHM(TM95_SNARL),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13165,6 +13230,7 @@ static const u8 sSphealTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13197,6 +13263,7 @@ static const u8 sSealeoTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13231,6 +13298,7 @@ static const u8 sWalreinTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13359,6 +13427,7 @@ static const u8 sRelicanthTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13417,6 +13486,7 @@ static const u8 sBagonTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13447,6 +13517,7 @@ static const u8 sShelgonTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13487,6 +13558,7 @@ static const u8 sSalamenceTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13532,6 +13604,7 @@ static const u8 sMetangTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13573,6 +13646,7 @@ static const u8 sMetagrossTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13612,6 +13686,7 @@ static const u8 sRegirockTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13654,6 +13729,7 @@ static const u8 sRegiceTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13695,6 +13771,7 @@ static const u8 sRegisteelTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13838,6 +13915,7 @@ static const u8 sKyogreTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13887,6 +13965,7 @@ static const u8 sGroudonTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -13943,6 +14022,7 @@ static const u8 sRayquazaTMHMLearnset[] =
     TMHM(HM03_SURF),
     TMHM(HM07_WATERFALL),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -14040,6 +14120,7 @@ static const u8 sDeoxysTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -16795,6 +16876,7 @@ static const u8 sRhyperiorTMHMLearnset[] =
     TMHM(TM91_FLASH_CANNON),
     TMHM(HM03_SURF),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -17245,6 +17327,7 @@ static const u8 sGalladeTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -17284,6 +17367,7 @@ static const u8 sProbopassTMHMLearnset[] =
     TMHM(TM91_FLASH_CANNON),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -17331,6 +17415,7 @@ static const u8 sDusknoirTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -20099,6 +20184,7 @@ static const u8 sKrokorokTMHMLearnset[] =
     TMHM(TM95_SNARL),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -20147,6 +20233,7 @@ static const u8 sKrookodileTMHMLearnset[] =
     TMHM(TM95_SNARL),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -20184,6 +20271,7 @@ static const u8 sDarumakaTMHMLearnset[] =
     TMHM(TM89_U_TURN),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -20232,6 +20320,7 @@ static const u8 sDarmanitanTMHMLearnset[] =
     TMHM(TM89_U_TURN),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -20293,6 +20382,7 @@ static const u8 sDwebbleTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -20329,6 +20419,7 @@ static const u8 sCrustleTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM96_NATURE_POWER),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -20371,6 +20462,7 @@ static const u8 sScraggyTMHMLearnset[] =
     TMHM(TM95_SNARL),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -20416,6 +20508,7 @@ static const u8 sScraftyTMHMLearnset[] =
     TMHM(TM95_SNARL),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -22273,6 +22366,7 @@ static const u8 sCubchooTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(HM03_SURF),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -22315,6 +22409,7 @@ static const u8 sBearticTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(HM03_SURF),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
@@ -22567,6 +22662,7 @@ static const u8 sDruddigonTMHMLearnset[] =
     TMHM(TM95_SNARL),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(HM06_ROCK_SMASH),
     0xFF,
 };
 
