@@ -1379,6 +1379,7 @@ static const u8 sZubatTMHMLearnset[] =
     TMHM(TM89_U_TURN),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -1416,6 +1417,7 @@ static const u8 sGolbatTMHMLearnset[] =
     TMHM(TM89_U_TURN),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -2923,6 +2925,7 @@ static const u8 sDoduoTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -2956,6 +2959,7 @@ static const u8 sDodrioTMHMLearnset[] =
     TMHM(TM58_SLEEP_TALK),
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -6102,6 +6106,7 @@ static const u8 sCrobatTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -6399,6 +6404,7 @@ static const u8 sNatuTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -6441,6 +6447,7 @@ static const u8 sXatuTMHMLearnset[] =
     TMHM(TM92_TRICK_ROOM),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -8196,6 +8203,7 @@ static const u8 sSkarmoryTMHMLearnset[] =
     TMHM(TM79_DARK_PULSE),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -9950,6 +9958,7 @@ static const u8 sTaillowTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -9983,6 +9992,7 @@ static const u8 sSwellowTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -10016,6 +10026,7 @@ static const u8 sWingullTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -10055,6 +10066,7 @@ static const u8 sPelipperTMHMLearnset[] =
     TMHM(TM43_SECRET_POWER),
     TMHM(HM01_CUT),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -12084,6 +12096,7 @@ static const u8 sSwabluTMHMLearnset[] =
     TMHM(TM90_SUBSTITUTE),
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
@@ -12126,6 +12139,7 @@ static const u8 sAltariaTMHMLearnset[] =
     TMHM(TM99_DAZZLING_GLEAM),
     TMHM(TM43_SECRET_POWER),
     TMHM(HM06_ROCK_SMASH),
+    TMHM(TM88_PLUCK),
     0xFF,
 };
 
