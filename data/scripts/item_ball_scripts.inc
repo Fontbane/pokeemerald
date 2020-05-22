@@ -7,7 +7,7 @@ Route103_EventScript_ItemGuardSpec:: @ 8290CE5
 	end
 
 Route103_EventScript_ItemPPUp:: @ 8290CF2
-	finditem ITEM_PP_UP
+	finditem ITEM_TM78
 	end
 
 Route104_EventScript_ItemPPUp:: @ 8290CFF

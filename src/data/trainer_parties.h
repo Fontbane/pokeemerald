@@ -8192,7 +8192,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMagmaHideout[] = {
     .species = SPECIES_CAMERUPT,
     },
     {
-    .iv = 150,
+    .iv = 255,
     .lvl = 60,
     .species = SPECIES_ENTEI,
     }
@@ -8200,8 +8200,8 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMagmaHideout[] = {
 
 static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMtChimney[] = {
     {
-    .iv = 150,
-    .lvl = 35,
+    .iv = 255,
+    .lvl = 38,
     .species = SPECIES_ENTEI,
     },
     {
@@ -8216,17 +8216,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMtChimney[] = {
     },
     {
     .iv = 150,
-    .lvl = 34,
+    .lvl = 36,
     .species = SPECIES_CLAYDOL,
     },
     {
     .iv = 150,
-    .lvl = 34,
+    .lvl = 36,
     .species = SPECIES_WEEZING,
     },
     {
-    .iv = 150,
-    .lvl = 36,
+    .iv = 255,
+    .lvl = 38,
     .species = SPECIES_CAMERUPT,
     }
 };
