@@ -2279,6 +2279,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY
                 || GetBattlerAbility(gEffectBattler) == ABILITY_COMATOSE
+                || IsAbilityOnSide(gEffectBattler, ABILITY_PASTEL_VEIL)
                 || IsAbilityStatusProtected(gEffectBattler))
                 break;
 
@@ -2424,6 +2425,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             {
                 if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY
                     || GetBattlerAbility(gEffectBattler) == ABILITY_COMATOSE
+                    || IsAbilityOnSide(gEffectBattler, ABILITY_PASTEL_VEIL)
                     || IsAbilityStatusProtected(gEffectBattler))
                     break;
 
