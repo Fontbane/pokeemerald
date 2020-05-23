@@ -3518,9 +3518,9 @@ static const struct TrainerMonItemCustomMoves sParty_Norman1[] = {
     {
     .iv = 200,
     .lvl = 44,
-    .species = SPECIES_SPINDA,
+    .species = SPECIES_SWELLOW,
     .heldItem = ITEM_NONE,
-    .moves = MOVE_TEETER_DANCE, MOVE_PSYSHOCK, MOVE_FACADE, MOVE_ENCORE
+    .moves = MOVE_AERIAL_ACE, MOVE_BOOMBURST, MOVE_FACADE, MOVE_ROOST
     },
     {
     .iv = 200,
@@ -4259,7 +4259,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Billy[] = {
     },
     {
     .iv = 0,
-    .lvl = 7,
+    .lvl = 9,
     .species = SPECIES_SEEDOT,
     }
 };
@@ -6579,8 +6579,8 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Ernest5[] = {
 static const struct TrainerMonNoItemDefaultMoves sParty_Eli[] = {
     {
     .iv = 100,
-    .lvl = 23,
-    .species = SPECIES_NUMEL,
+    .lvl = 37,
+    .species = SPECIES_CAMERUPT,
     }
 };
 
