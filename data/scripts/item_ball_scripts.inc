@@ -15,11 +15,11 @@ Route104_EventScript_ItemPPUp:: @ 8290CFF
 	end
 
 Route104_EventScript_ItemPokeBall:: @ 8290D0C
-	finditem ITEM_TM88
+	finditem ITEM_X_ACCURACY
 	end
 
 Route104_EventScript_ItemXAccuracy:: @ 8290D19
-	finditem ITEM_X_ACCURACY
+	finditem ITEM_TM88
 	end
 
 Route104_EventScript_ItemPotion:: @ 8290D26

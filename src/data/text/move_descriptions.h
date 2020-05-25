@@ -3308,4 +3308,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_PLASMA_FISTS - 1] = sPLASMA_FISTSDescription,
     [MOVE_PHOTON_GEYSER - 1] = sPHOTON_GEYSERDescription,
     [MOVE_DOUBLE_IRON_BASH - 1] = sDOUBLE_IRON_BASHDescription,
+    [MOVE_LEECH - 1] = sLeechLifeDescription,
 };
