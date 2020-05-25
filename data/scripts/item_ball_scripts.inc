@@ -3,11 +3,11 @@ Route102_EventScript_ItemPotion:: @ 8290CD8
 	end
 
 Route103_EventScript_ItemGuardSpec:: @ 8290CE5
-	finditem ITEM_GUARD_SPEC
+	finditem ITEM_TM63
 	end
 
 Route103_EventScript_ItemPPUp:: @ 8290CF2
-	finditem ITEM_PP_UP
+	finditem ITEM_TM78
 	end
 
 Route104_EventScript_ItemPPUp:: @ 8290CFF
@@ -15,7 +15,7 @@ Route104_EventScript_ItemPPUp:: @ 8290CFF
 	end
 
 Route104_EventScript_ItemPokeBall:: @ 8290D0C
-	finditem ITEM_POKE_BALL
+	finditem ITEM_TM88
 	end
 
 Route104_EventScript_ItemXAccuracy:: @ 8290D19
@@ -75,7 +75,7 @@ Route111_EventScript_ItemElixir:: @ 8290DC2
 	end
 
 Route112_EventScript_ItemNugget:: @ 8290DCF
-	finditem ITEM_NUGGET
+	finditem ITEM_TM09
 	end
 
 Route113_EventScript_ItemMaxEther:: @ 8290DDC
@@ -107,7 +107,7 @@ Route115_EventScript_ItemSuperPotion:: @ 8290E2A
 	end
 
 Route115_EventScript_ItemTM01:: @ 8290E37
-	finditem ITEM_TM01
+	finditem ITEM_TM100
 	end
 
 Route115_EventScript_ItemIron:: @ 8290E44
@@ -363,11 +363,11 @@ GraniteCave_B2F_EventScript_ItemRepel:: @ 829116A
 	end
 
 GraniteCave_B2F_EventScript_ItemRareCandy:: @ 8291177
-	finditem ITEM_RARE_CANDY
+	finditem ITEM_TM98
 	end
 
 JaggedPass_EventScript_ItemBurnHeal:: @ 8291184
-	finditem ITEM_BURN_HEAL
+	finditem ITEM_TM85
 	end
 
 FieryPath_EventScript_ItemFireStone:: @ 8291191
@@ -379,11 +379,11 @@ FieryPath_EventScript_ItemTM06:: @ 829119E
 	end
 
 MeteorFalls_1F_1R_EventScript_ItemTM23:: @ 82911AB
-	finditem ITEM_TM23
+	finditem ITEM_TM65
 	end
 
 MeteorFalls_1F_1R_EventScript_ItemFullHeal:: @ 82911B8
-	finditem ITEM_FULL_HEAL
+	finditem ITEM_TM23
 	end
 
 MeteorFalls_1F_1R_EventScript_ItemMoonStone:: @ 82911C5

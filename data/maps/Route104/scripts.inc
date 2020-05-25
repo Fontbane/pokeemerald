@@ -340,7 +340,7 @@ Route104_EventScript_Boy2:: @ 81ED057
 	faceplayer
 	goto_if_set FLAG_RECEIVED_TM09, Route104_EventScript_ReceivedBulletSeed
 	msgbox Route104_Text_LikeFillingMouthWithSeedsTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_TM09
+	giveitem ITEM_TM49
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM09
@@ -1047,16 +1047,15 @@ Route104_Text_ImNotATrainer: @ 81ED7A2
 Route104_Text_LikeFillingMouthWithSeedsTakeThis: @ 81ED838
 	.string "I like filling my mouth with seeds,\n"
 	.string "then spitting them out fast!\p"
-	.string "You can have this, so you try it out!\p"
+	.string "If you find the TM09, try it out!\p"
 	.string "Use it on a POKéMON, and it will learn\n"
-	.string "a move for firing seeds rapidly.$"
+	.string "a move for firing seeds rapidly.\p"
+	.string "Here, take this TM instead!$"
 
 Route104_Text_TMsAreOneTimeUse: @ 81ED8E7
 	.string "A word of advice!\p"
-	.string "A TM, TECHNICAL MACHINE, is good only\n"
-	.string "for one-time use.\p"
-	.string "Once you use it, it's gone.\n"
-	.string "Think twice before using it!$"
+	.string "A TM, TECHNICAL MACHINE, is good for\n"
+	.string "multiple uses at any time you like.$"
 
 Route104_Text_DontNeedThisTakeIt: @ 81ED96A
 	.string "This FLOWER SHOP started selling\n"

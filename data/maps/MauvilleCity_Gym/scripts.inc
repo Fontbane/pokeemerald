@@ -115,7 +115,7 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 	end
 
 MauvilleCity_Gym_EventScript_GiveShockWave2:: @ 820DF8D
-	giveitem ITEM_TM34
+	giveitem ITEM_TM72
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT
@@ -124,7 +124,7 @@ MauvilleCity_Gym_EventScript_GiveShockWave2:: @ 820DF8D
 	end
 
 MauvilleCity_Gym_EventScript_GiveShockWave:: @ 820DFB1
-	giveitem ITEM_TM34
+	giveitem ITEM_TM72
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_BagIsFull
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT
@@ -373,9 +373,9 @@ MauvilleCity_Gym_Text_ExplainDynamoBadgeTakeThis: @ 820E7AA
 	.string "You should take this, too!$"
 
 MauvilleCity_Gym_Text_ExplainShockWave: @ 820E844
-	.string "That TM34 there contains SHOCK WAVE.\p"
-	.string "It's a trustworthy move that never\n"
-	.string "misses! You can count on it!\p"
+	.string "That TM72 there contains VOLT SWITCH.\p"
+	.string "It's a useful move that lets you\n"
+	.string "switch! You can count on it!\p"
 	.string "… … … … … …$"
 
 MauvilleCity_Gym_Text_RegisteredWattson: @ 820E8B5

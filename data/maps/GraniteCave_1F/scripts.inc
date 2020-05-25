@@ -4,10 +4,10 @@ GraniteCave_1F_MapScripts:: @ 822DA5D
 GraniteCave_1F_EventScript_Hiker:: @ 822DA5E
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_HM05, GraniteCave_1F_EventScript_ReceivedFlash
+	goto_if_set FLAG_RECEIVED_TM70, GraniteCave_1F_EventScript_ReceivedFlash
 	msgbox GraniteCave_1F_Text_GetsDarkAheadHereYouGo, MSGBOX_DEFAULT
-	giveitem ITEM_HM05
-	setflag FLAG_RECEIVED_HM05
+	giveitem ITEM_TM70
+	setflag FLAG_RECEIVED_TM70
 	msgbox GraniteCave_1F_Text_ExplainFlash, MSGBOX_DEFAULT
 	release
 	end
@@ -34,6 +34,6 @@ GraniteCave_1F_Text_ExplainFlash: @ 822DBB7
 	.string "a POKéMON and use it.\p"
 	.string "It lights up even the inky darkness\n"
 	.string "of caves.\p"
-	.string "But, to use it, you need the GYM BADGE\n"
-	.string "from DEWFORD's POKéMON GYM.$"
+	.string "Back in my day, you needed the\n"
+	.string "BADGE from DEWFORD's POKéMON GYM.$"
 

@@ -1068,7 +1068,7 @@ static void Cmd_attackcanceler(void)
 
     // Check Protean activation.
     GET_MOVE_TYPE(gCurrentMove, moveType);
-    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_PROTEAN
+    if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PROTEAN||GetBattlerAbility(gBattlerAttacker) == ABILITY_LIBERO)
         && (gBattleMons[gBattlerAttacker].type1 != moveType || gBattleMons[gBattlerAttacker].type2 != moveType ||
             (gBattleMons[gBattlerAttacker].type3 != moveType && gBattleMons[gBattlerAttacker].type3 != TYPE_MYSTERY))
         && gCurrentMove != MOVE_STRUGGLE)
@@ -1680,7 +1680,11 @@ static void Cmd_attackanimation(void)
     if (gBattleControllerExecFlags)
         return;
 
-    if ((gHitMarker & HITMARKER_NO_ANIMATIONS) && (gCurrentMove != MOVE_TRANSFORM && gCurrentMove != MOVE_SUBSTITUTE))
+    if ((gHitMarker & HITMARKER_NO_ANIMATIONS)
+        && gCurrentMove != MOVE_TRANSFORM
+        && gCurrentMove != MOVE_SUBSTITUTE
+        // In a wild double battle gotta use the teleport animation if two wild pokemon are alive.
+        && !(gCurrentMove == MOVE_TELEPORT && WILD_DOUBLE_BATTLE && GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT && IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker))))
     {
         BattleScriptPush(gBattlescriptCurrInstr + 1);
         gBattlescriptCurrInstr = BattleScript_Pausex20;
@@ -2279,6 +2283,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY
                 || GetBattlerAbility(gEffectBattler) == ABILITY_COMATOSE
+                || IsAbilityOnSide(gEffectBattler, ABILITY_PASTEL_VEIL)
                 || IsAbilityStatusProtected(gEffectBattler))
                 break;
 
@@ -2424,6 +2429,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             {
                 if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY
                     || GetBattlerAbility(gEffectBattler) == ABILITY_COMATOSE
+                    || IsAbilityOnSide(gEffectBattler, ABILITY_PASTEL_VEIL)
                     || IsAbilityStatusProtected(gEffectBattler))
                     break;
 
@@ -7001,7 +7007,7 @@ static void Cmd_various(void)
             u32 statId;
             do
             {
-                statId = (Random() % NUM_BATTLE_STATS) + 1;
+                statId = (Random() % (NUM_BATTLE_STATS - 1)) + 1;
             } while (!(bits & gBitTable[statId]));
 
             SET_STATCHANGER(statId, 2, FALSE);
@@ -7262,7 +7268,7 @@ static void Cmd_various(void)
             case ABILITY_FLOWER_GIFT:       case ABILITY_ILLUSION:
             case ABILITY_WONDER_GUARD:      case ABILITY_ZEN_MODE:
             case ABILITY_STANCE_CHANGE:     case ABILITY_IMPOSTER:
-            case ABILITY_POWER_CONSTRUCT:   /*case ABILITY_BATTLE_BOND:*/
+            case ABILITY_POWER_CONSTRUCT:   case ABILITY_BATTLE_BOND:
             case ABILITY_SCHOOLING:         case ABILITY_COMATOSE:
             case ABILITY_SHIELDS_DOWN:      case ABILITY_DISGUISE:
             case ABILITY_RKS_SYSTEM:        case ABILITY_TRACE:
@@ -7380,7 +7386,7 @@ static void Cmd_various(void)
         case ABILITY_SHIELDS_DOWN:
         case ABILITY_DISGUISE:
         case ABILITY_RKS_SYSTEM:
-        //case ABILITY_BATTLE_BOND:
+        case ABILITY_BATTLE_BOND:
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             return;
         }
@@ -10856,7 +10862,7 @@ static void Cmd_setgastroacid(void)
     case ABILITY_SHIELDS_DOWN:
     case ABILITY_DISGUISE:
     case ABILITY_RKS_SYSTEM:
-    //case ABILITY_BATTLE_BOND:
+    case ABILITY_BATTLE_BOND:
     case ABILITY_POWER_CONSTRUCT:
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         break;

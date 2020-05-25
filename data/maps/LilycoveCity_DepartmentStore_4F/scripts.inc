@@ -63,8 +63,8 @@ LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM: @ 821FE50
 LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs: @ 821FEC7
 	.string "There are so many different kinds of\n"
 	.string "TM moves.\p"
-	.string "A catalog I read said there are fifty\n"
-	.string "different kinds.$"
+	.string "A catalog I read said there are one\n"
+	.string "hundred different kinds.$"
 
 LilycoveCity_DepartmentStore_4F_Text_PokemonOnlyHaveFourMoves: @ 821FF2D
 	.string "I'd like to get all the different TMs,\n"
