@@ -1041,6 +1041,22 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = FEMALE, 
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
+    },
+    [INGAME_TRADE_GEODUDE] = 
+    {
+        .nickname = _("Pohaku"),
+        .species = SPECIES_ALOLAN_GEODUDE,
+        .ivs = {30, 30, 30, 30, 30, 30},
+        .abilityNum = 0, 
+        .otId = 74476,
+        .conditions = {5, 5, 5, 30, 5},
+        .personality = 0x8A,
+        .heldItem = ITEM_ELECTRIC_GEM, 
+        .mailNum = 2,
+        .otName = _("Hika"), 
+        .otGender = FEMALE, 
+        .sheen = 0,
+        .requestedSpecies = SPECIES_GEODUDE
     }
 };
 

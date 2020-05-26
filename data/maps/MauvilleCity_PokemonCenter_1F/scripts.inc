@@ -34,6 +34,47 @@ MauvilleCity_PokemonCenter_1F_EventScript_Youngster:: @ 8210E98
 	msgbox MauvilleCity_PokemonCenter_1F_Text_RecordCornerSoundsFun, MSGBOX_NPC
 	end
 
+MauvilleCity_PokemonCenter_1F_EventScript_GeodudeTrader:: @ 8203C11
+	lock
+	faceplayer
+	setvar VAR_0x8008, INGAME_TRADE_GEODUDE
+	copyvar VAR_0x8004, VAR_0x8008
+	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+	copyvar VAR_0x8009, VAR_RESULT
+	msgbox MauvilleCity_PokemonCenter_1F_Text_GeodudeWantToTrade, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MauvilleCity_PokemonCenter_1F_EventScript_DeclineAlolaTrade
+	special ChoosePartyMon
+	waitstate
+	copyvar VAR_0x800A, VAR_0x8004
+	compare VAR_0x8004, 255
+	goto_if_eq MauvilleCity_PokemonCenter_1F_EventScript_DeclineAlolaTrade
+	copyvar VAR_0x8005, VAR_0x800A
+	specialvar VAR_RESULT, GetTradeSpecies
+	copyvar VAR_0x800B, VAR_RESULT
+	compare VAR_RESULT, VAR_0x8009
+	goto_if_ne MauvilleCity_PokemonCenter_1F_EventScript_NotRequestedMon
+	copyvar VAR_0x8004, VAR_0x8008
+	copyvar VAR_0x8005, VAR_0x800A
+	special CreateInGameTradePokemon
+	special DoInGameTradeScene
+	waitstate
+	bufferspeciesname 0, VAR_0x8009
+	msgbox MauvilleCity_PokemonCenter_1F_ItsSubtlyDifferentThankYou, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_PokemonCenter_1F_EventScript_DeclineAlolaTrade:: @ 8203C93
+	msgbox MauvilleCity_PokemonCenter_1F_Text_ThatsAlright, MSGBOX_DEFAULT
+	release
+	end
+
+MauvilleCity_PokemonCenter_1F_EventScript_NotRequestedMon:: @ 8203C9D
+	bufferspeciesname 0, VAR_0x8009
+	msgbox MauvilleCity_PokemonCenter_1F_Text_NotWhatIWanted, MSGBOX_DEFAULT
+	release
+	end
+
 MauvilleCity_PokemonCenter_1F_Text_ManOverThereSaysWeirdThings: @ 8210EA1
 	.string "That man over there, he says weird\n"
 	.string "things!\p"
@@ -53,3 +94,23 @@ MauvilleCity_PokemonCenter_1F_Text_RecordCornerSoundsFun: @ 8210F8A
 	.string "I don't know what it's about, but it\n"
 	.string "sounds fun. I'll go check it out!$"
 
+MauvilleCity_PokemonCenter_1F_Text_GeodudeWantToTrade:
+	.string "Hoenn!\p"
+	.string "I want a Geodude that was\n"
+	.string "caught around here.\p"
+	.string "In exchange, I'll give you an exotic\n"
+	.string "Geodude from my region!\p"
+	.string "Would you like to trade?$"
+
+MauvilleCity_PokemonCenter_1F_Text_ThatsAlright:
+	.string "That's alright, I'm in no rush.$"
+
+MauvilleCity_PokemonCenter_1F_Text_NotWhatIWanted:
+	.string "Ah, that's not quite the Pokémon\n"
+	.string "I was looking for.$"
+MauvilleCity_PokemonCenter_1F_ItsSubtlyDifferentThankYou: @ 8203D87
+	.string "Oh, so this is a Geodude from\n"
+	.string "the Hoenn region? Interesting.\p"
+	.string "It's sort of like my Geodude,\n"
+	.string "and yet it's subtly different.\p"
+	.string "Thank you!$"
