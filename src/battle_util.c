@@ -2420,7 +2420,7 @@ u8 AtkCanceller_UnableToUseMove(void)
         case CANCELLER_POWDER_MOVE:
             if (gBattleMoves[gCurrentMove].flags & FLAG_POWDER)
             {
-                if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+                if ((B_POWDER_GRASS >= GEN_6 && IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS))
                     || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT)
                 {
                     gBattlerAbility = gBattlerTarget;
@@ -3737,7 +3737,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
-             && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ELECTRIC)
+             && CanParalyzeType(gBattlerTarget, gBattlerAttacker)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_LIMBER
              && !(gBattleMons[gBattlerAttacker].status1 & STATUS1_ANY)
              && !IsAbilityStatusProtected(gBattlerAttacker)
