@@ -415,7 +415,11 @@ NewMauville_Inside_EventScript_ItemFullHeal:: @ 8291213
 	end
 
 NewMauville_Inside_EventScript_ItemParalyzeHeal:: @ 8291220
-	finditem ITEM_PARALYZE_HEAL
+	finditem ITEM_METAL_COAT
+	end
+
+AbandonedShip_Rooms_1F_EventScript_ItemTM67::
+	finditem ITEM_TM67
 	end
 
 AbandonedShip_Rooms_1F_EventScript_ItemHarborMail:: @ 829122D

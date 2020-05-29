@@ -14,6 +14,8 @@
 #define B_CRIT_CHANCE               GEN_6 // Chances of a critical hit landing. See CalcCritChanceStage.
 #define B_CRIT_MULTIPLIER           GEN_6 // In Gen6+, critical hits multiply damage by 1.5 instead of 2.
 #define B_EXP_CATCH                 GEN_6 // In Gen6+, Pokémon get experience from catching.
+#define B_SPLIT_EXP                 GEN_6 // In Gen6+, Pokémon no longer split experience if multiple are used in the same battle.
+#define B_SCALED_EXP                GEN_5 // In Gen5 and Gen7+, exp scales by level of pokemon defeated.
 #define B_TRAINER_EXP_MULTIPLIER    GEN_6 // In Gen7+, trainer battles no longer give a 1.5 multiplier to exp gain.
 #define B_BURN_DAMAGE               GEN_7 // In Gen7+, burn damage is 1/16th of max HP instead of 1/8th.
 #define B_PARALYSIS_SPEED           GEN_7 // In Gen7+, speed is decreased by 50% instead of 75%.
@@ -32,7 +34,6 @@
 #define B_ABILITY_WEATHER           GEN_5 // Up to gen5 - weather induced by abilities such as Drought or Drizzle lasted till the battle's end or weather change by a move. From Gen6 onwards, weather caused by abilities lasts the same amount of turns as induced from a move.
 #define B_GALE_WINGS                GEN_6 // Gen7 requires full hp.
 #define B_SOUND_SUBSTITUTE          GEN_6 // Starting from gen6 sound moves bypass Substitute.
-#define B_EXP_CATCH                 GEN_6 // Starting from gen6, pokemon get experience from catching.
 #define B_ABILITY_POP_UP            GEN_6 // Starting from gen5, the pokemon abilities are displayed in a pop-up, when they activate in battle.
 #define B_MOODY_ACC_EVASION         GEN_8
 #define B_FLASH_FIRE_FROZEN         GEN_6

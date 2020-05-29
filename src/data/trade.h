@@ -980,7 +980,7 @@ static const struct InGameTrade sIngameTrades[] =
 {
     [INGAME_TRADE_SEEDOT] = 
     {
-        .nickname = _("DOTS"), 
+        .nickname = _("Dots"), 
         .species = SPECIES_SEEDOT,
         .ivs = {5, 4, 5, 4, 4, 4},
         .abilityNum = 1, 
@@ -989,14 +989,14 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x84,
         .heldItem = ITEM_CHESTO_BERRY, 
         .mailNum = -1,
-        .otName = _("KOBE"), 
+        .otName = _("Kobe"), 
         .otGender = MALE, 
         .sheen = 10,
         .requestedSpecies = SPECIES_RALTS
     }, 
     [INGAME_TRADE_PLUSLE] = 
     {
-        .nickname = _("PLUSES"), 
+        .nickname = _("Pluses"), 
         .species = SPECIES_PLUSLE,
         .ivs = {4, 4, 4, 5, 5, 4},
         .abilityNum = 0, 
@@ -1005,14 +1005,14 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x6F,
         .heldItem = ITEM_WOOD_MAIL, 
         .mailNum = 0,
-        .otName = _("ROMAN"), 
+        .otName = _("Roman"), 
         .otGender = MALE, 
         .sheen = 10,
         .requestedSpecies = SPECIES_VOLBEAT
     }, 
     [INGAME_TRADE_HORSEA] = 
     {
-        .nickname = _("SEASOR"),
+        .nickname = _("Seasor"),
         .species = SPECIES_HORSEA,
         .ivs = {5, 4, 4, 4, 5, 4},
         .abilityNum = 0, 
@@ -1021,14 +1021,14 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x7F,
         .heldItem = ITEM_WAVE_MAIL, 
         .mailNum = 1,
-        .otName = _("SKYLAR"), 
+        .otName = _("Skylar"), 
         .otGender = MALE, 
         .sheen = 10,
         .requestedSpecies = SPECIES_BAGON
     }, 
     [INGAME_TRADE_MEOWTH] = 
     {
-        .nickname = _("MEOWOW"),
+        .nickname = _("Meowow"),
         .species = SPECIES_MEOWTH,
         .ivs = {4, 5, 4, 5, 4, 4},
         .abilityNum = 0, 
@@ -1037,7 +1037,7 @@ static const struct InGameTrade sIngameTrades[] =
         .personality = 0x8B,
         .heldItem = ITEM_RETRO_MAIL, 
         .mailNum = 2,
-        .otName = _("ISIS"), 
+        .otName = _("Isis"), 
         .otGender = FEMALE, 
         .sheen = 10,
         .requestedSpecies = SPECIES_SKITTY
@@ -1046,15 +1046,15 @@ static const struct InGameTrade sIngameTrades[] =
     {
         .nickname = _("Pohaku"),
         .species = SPECIES_ALOLAN_GEODUDE,
-        .ivs = {30, 30, 30, 30, 30, 30},
+        .ivs = {30, 31, 30, 30, 30, 30},
         .abilityNum = 0, 
         .otId = 74476,
         .conditions = {5, 5, 5, 30, 5},
         .personality = 0x8A,
-        .heldItem = ITEM_ELECTRIC_GEM, 
+        .heldItem = ITEM_PASSHO_BERRY, 
         .mailNum = 2,
-        .otName = _("Hika"), 
-        .otGender = FEMALE, 
+        .otName = _("Hekili"), 
+        .otGender = MALE, 
         .sheen = 0,
         .requestedSpecies = SPECIES_GEODUDE
     },
@@ -1062,17 +1062,65 @@ static const struct InGameTrade sIngameTrades[] =
     {
         .nickname = _("Anuanu"),
         .species = SPECIES_ALOLAN_SANDSHREW,
-        .ivs = {30, 30, 30, 30, 30, 30},
+        .ivs = {30, 30, 30, 31, 30, 30},
         .abilityNum = 0, 
         .otId = 23420,
         .conditions = {5, 5, 5, 30, 5},
         .personality = 0x8A,
-        .heldItem = ITEM_ICE_GEM, 
+        .heldItem = ITEM_OCCA_BERRY, 
         .mailNum = 1,
         .otName = _("Noka"), 
-        .otGender = MALE, 
+        .otGender = FEMALE, 
         .sheen = 0,
         .requestedSpecies = SPECIES_SANDSHREW
+    },
+    [INGAME_TRADE_VULPIX] = 
+    {
+        .nickname = _("Keokeo"),
+        .species = SPECIES_ALOLAN_VULPIX,
+        .ivs = {30, 30, 30, 30, 31, 30},
+        .abilityNum = 1, 
+        .otId = 23420,
+        .conditions = {5, 5, 5, 30, 5},
+        .personality = 0x8A,
+        .heldItem = ITEM_BABIRI_BERRY, 
+        .mailNum = 1,
+        .otName = _("Polu"), 
+        .otGender = FEMALE, 
+        .sheen = 0,
+        .requestedSpecies = SPECIES_VULPIX
+    },
+    [INGAME_TRADE_GRIMER] = 
+    {
+        .nickname = _("Opala"),
+        .species = SPECIES_ALOLAN_GRIMER,
+        .ivs = {30, 30, 30, 30, 30, 31},
+        .abilityNum = 0, 
+        .otId = 23420,
+        .conditions = {5, 5, 5, 30, 5},
+        .personality = 0x8A,
+        .heldItem = ITEM_SHUCA_BERRY, 
+        .mailNum = 1,
+        .otName = _("Aila"), 
+        .otGender = MALE, 
+        .sheen = 0,
+        .requestedSpecies = SPECIES_GRIMER
+    },
+    [INGAME_TRADE_DARUMAKA] = 
+    {
+        .nickname = _("Keokeo"),
+        .species = SPECIES_GALARIAN_DARUMAKA,
+        .ivs = {30, 31, 30, 30, 30, 30},
+        .abilityNum = 0, 
+        .otId = 23420,
+        .conditions = {5, 5, 5, 30, 5},
+        .personality = 0x8A,
+        .heldItem = ITEM_CHOPLE_BERRY, 
+        .mailNum = 1,
+        .otName = _("Polu"), 
+        .otGender = MALE, 
+        .sheen = 0,
+        .requestedSpecies = SPECIES_DARUMAKA
     }
 };
 
