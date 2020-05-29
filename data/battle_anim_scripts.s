@@ -13352,10 +13352,10 @@ Move_FISHIOUS_REND::
 	playsewithpan SE_W127, SOUND_PAN_TARGET
 	launchtemplate gFishiousRendTeethTemplate, 0x80, 0x2, 50, 4
 	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_TARGET 0x4 0x0 0xC 0x2
-	call FishousRendBubbles
+	call FishiousRendBubbles
 	waitforvisualfinish
 	end
-FishousRendBubbles:
+FishiousRendBubbles:
 	launchtemplate gSmallDriftingBubblesSpriteTemplate 0x4 0x2 0xF 0x0  
 	launchtemplate gSmallDriftingBubblesSpriteTemplate 0x4 0x2 0xF 0x0  
 	delay 0x2 

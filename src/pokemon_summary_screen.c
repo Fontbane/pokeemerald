@@ -1772,6 +1772,7 @@ static s8 AdvanceMonIndex(s8 delta)
                 return -1;
         } while (GetMonData(&mon[index], MON_DATA_IS_EGG));
         return index;
+    }
 }
 
 static s8 AdvanceMultiBattleMonIndex(s8 delta)
