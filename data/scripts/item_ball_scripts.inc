@@ -19,7 +19,7 @@ Route104_EventScript_ItemPokeBall:: @ 8290D0C
 	end
 
 Route104_EventScript_ItemXAccuracy:: @ 8290D19
-	finditem ITEM_TM88
+	finditem ITEM_ETHER
 	end
 
 Route104_EventScript_ItemPotion:: @ 8290D26
@@ -131,7 +131,7 @@ Route116_EventScript_ItemXSpecial:: @ 8290E78
 	end
 
 Route116_EventScript_ItemEther:: @ 8290E85
-	finditem ITEM_ETHER
+	finditem ITEM_TM88
 	end
 
 Route116_EventScript_ItemRepel:: @ 8290E92

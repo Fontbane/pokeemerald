@@ -5,11 +5,13 @@
 #define NUM_SPECIAL_FLAGS (SPECIAL_FLAGS_END - SPECIAL_FLAGS_START + 1)
 #define NUM_TEMP_FLAGS    (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 #define NUM_DAILY_FLAGS   (DAILY_FLAGS_END - DAILY_FLAGS_START + 1)
+#define NUM_HIDDEN_ITEM_FLAGS   (HIDDEN_ITEM_FLAGS_END - FLAG_HIDDEN_ITEMS_START + 1)
 #define NUM_TEMP_VARS     (TEMP_VARS_END - TEMP_VARS_START + 1)
 
 #define SPECIAL_FLAGS_SIZE  (NUM_SPECIAL_FLAGS / 8)  // 8 flags per byte
 #define TEMP_FLAGS_SIZE     (NUM_TEMP_FLAGS / 8)
 #define DAILY_FLAGS_SIZE    (NUM_DAILY_FLAGS / 8)
+#define HIDDEN_ITEM_FLAGS_SIZE    (NUM_HIDDEN_ITEM_FLAGS / 8)
 #define TEMP_VARS_SIZE      (NUM_TEMP_VARS * 2)      // 1/2 var per byte
 
 EWRAM_DATA u16 gSpecialVar_0x8000 = 0;
@@ -55,6 +57,11 @@ void ClearTempFieldEventData(void)
 void ClearDailyFlags(void)
 {
     memset(gSaveBlock1Ptr->flags + (DAILY_FLAGS_START / 8), 0, DAILY_FLAGS_SIZE);
+}
+
+void ClearHiddenItemFlags(void)
+{
+    memset(gSaveBlock1Ptr->flags + (FLAG_HIDDEN_ITEMS_START / 8), 0, HIDDEN_ITEM_FLAGS_SIZE);
 }
 
 void DisableNationalPokedex(void)
