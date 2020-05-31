@@ -3,7 +3,7 @@ Route102_EventScript_ItemPotion:: @ 8290CD8
 	end
 
 Route103_EventScript_ItemGuardSpec:: @ 8290CE5
-	finditem ITEM_TM63
+	finditem ITEM_PP_UP
 	end
 
 Route103_EventScript_ItemPPUp:: @ 8290CF2
