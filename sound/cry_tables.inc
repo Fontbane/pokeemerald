@@ -1801,6 +1801,7 @@ gCryTable2:: @ 869EF24
 	cry2 Cry_Alolan_Grimer
 	cry2 Cry_Alolan_Muk
 	cry2 Cry_Alolan_Exeggutor
+	cry2 Cry_Alolan_Marowak
 	cry2_not Cry_Galarian_Darumaka
 	@ Form Changes
 	cry2_not Cry_Primal_Kyogre
