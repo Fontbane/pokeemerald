@@ -343,6 +343,37 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 20,
+      "y": 25,
+      "elevation": 3,
+      "item": "ITEM_NORMAL_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM_1"
+    },
+    {
+      "type": "hidden_item",
+      "x": 18,
+      "y": 12,
+      "elevation": 3,
+      "item": "ITEM_NORMAL_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM_2"
+    },
+    {
+      "type": "hidden_item",
+      "x": 20,
+      "y": 4,
+      "elevation": 3,
+      "item": "ITEM_NORMAL_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM_3"
+    },
+    {
+      "type": "hidden_item",
+      "x": 34,
+      "y": 3,
+      "elevation": 3,
+      "item": "ITEM_NORMAL_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM_4"
+    }
   ]
 }

@@ -116,6 +116,50 @@ SlateportCity_Movement_ScottExit: @ 81DCDB4
 	walk_left
 	step_end
 
+/*SlateportCity_EventScript_GemGirl::
+	lock
+	faceplayer
+	message SlateportCity_Text_GemGirlHi
+	waitmessage
+	checkitem ITEM_NORMAL_GEM, 1
+	compare VAR_RESULT, 0
+	goto_if_eq SlateportCity_EventScript_GemGirlBye
+	pokemart SlateportCity_Pokemart_GemGirl
+	goto SlateportCity_EventScript_GemExchange
+	end
+
+SlateportCity_EventScript_GemExchange::
+	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
+	removeitem ITEM_NORMAL_GEM 
+	goto SlateportCity_EventScript_GemGirlBye
+	end
+
+SlateportCity_EventScript_GemGirlBye::
+	msgbox SlateportCity_Text_GemGirlComeBack, MSGBOX_DEFAULT
+	releaseall
+	end
+
+SlateportCity_Pokemart_GemGirl::
+	.2byte ITEM_FIGHTING_GEM
+    .2byte ITEM_FLYING_GEM
+    .2byte ITEM_POISON_GEM
+    .2byte ITEM_GROUND_GEM
+    .2byte ITEM_ROCK_GEM
+    .2byte ITEM_BUG_GEM
+    .2byte ITEM_GHOST_GEM
+    .2byte ITEM_STEEL_GEM
+    .2byte ITEM_FIRE_GEM
+    .2byte ITEM_WATER_GEM
+    .2byte ITEM_GRASS_GEM
+    .2byte ITEM_ELECTRIC_GEM
+    .2byte ITEM_PSYCHIC_GEM
+    .2byte ITEM_ICE_GEM
+    .2byte ITEM_DRAGON_GEM
+    .2byte ITEM_DARK_GEM
+	.2byte ITEM_NONE
+	release
+	end
+*/
 SlateportCity_EventScript_EnergyGuru:: @ 81DCDBD
 	lock
 	faceplayer
@@ -554,7 +598,8 @@ SlateportCity_EventScript_PowerTMClerk:: @ 81DD1D8
 	.align 2
 SlateportCity_Pokemart_PowerTMs: @ 81DD1F0
 	.2byte ITEM_TM10  @ Hidden Power
-	.2byte ITEM_TM43  @ Secret Power
+	.2byte ITEM_TM63  @ Struggle Bug
+	.2byte ITEM_TM73  @ Thunder Wave
 	.2byte ITEM_NONE
 	release
 	end
@@ -941,6 +986,26 @@ SlateportCity_EventScript_BerryCrushRankingsSign:: @ 81DD643
 	waitstate
 	releaseall
 	end
+
+SlateportCity_Text_GemGirlHi:
+	.string "Hi there!\p"
+	.string "If you have a Normal Gem for me,\n"
+	.string "I'll sell you a Gem of any type!$"
+
+SlateportCity_Text_GemGirl:
+	.string "Yup, that's a Normal Gem!\n"
+	.string "What type of Gem do you want?$"
+
+SlateportCity_Text_GemExchange:
+	.string "{PLAYER} handed over the Normal Gem\n"
+	.string "in exchange.$"
+
+SlateportCity_Text_GemGirlComeBack:
+	.string "If you want to buy some Gems,\n"
+	.string "come back with a Normal Gem!$"
+
+SlateportCity_Text_ConfirmGem:
+	.string "So you want this gem?$"
 
 SlateportCity_Text_EnergyGuruSellWhatYouNeed: @ 81DD64A
 	.string "I'm the ENERGY GURU! I'll go for it and\n"
