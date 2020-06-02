@@ -1113,6 +1113,10 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
         {
             BuyMenuDisplayMessage(taskId, gText_ThrowInPremierBall, BuyMenuReturnToItemList);
         }
+        else if ((ITEM_BUG_GEM<=tItemId && tItemId<=ITEM_WATER_GEM) && RemoveBagItem(ITEM_NORMAL_GEM, tItemCount) == TRUE)
+        {
+            BuyMenuDisplayMessage(taskId, gText_GemExchange, ExitBuyMenu);
+        }
         else
         {
             BuyMenuReturnToItemList(taskId);

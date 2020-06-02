@@ -804,6 +804,23 @@ static const u8 sText_Example6[] = _("Example 6");
 static const u8 sText_Example7[] = _("Example 7");
 static const u8 sText_Example8[] = _("Example 8");
 static const u8 sText_Example9[] = _("Example 9");
+static const u8 sText_Fighting[] = _("Fighting Gem");
+static const u8 sText_Flying[] = _("Flying Gem");
+static const u8 sText_Poison[] = _("Poison Gem");
+static const u8 sText_Ground[] = _("Ground Gem");
+static const u8 sText_Rock[] = _("Rock Gem");
+static const u8 sText_Bug[] = _("Bug Gem");
+static const u8 sText_Ghost[] = _("Ghost Gem");
+static const u8 sText_Steel[] = _("Steel Gem");
+static const u8 sText_Fire[] = _("Fire Gem");
+static const u8 sText_Water[] = _("Water Gem");
+static const u8 sText_Grass[] = _("Grass Gem");
+static const u8 sText_Electric[] = _("Electric Gem");
+static const u8 sText_Psychic[] = _("Psychic Gem");
+static const u8 sText_Ice[] = _("Ice Gem");
+static const u8 sText_Dragon[] = _("Dragon Gem");
+static const u8 sText_Dark[] = _("Dark Gem");
+static const u8 sText_Fairy[] = _("Fairy Gem");
 
 // Sets of multichoices.
 static const struct ListMenuItem sSet1[] =
@@ -832,6 +849,27 @@ static const struct ListMenuItem sSet2[] =
     {sText_Example1, 8},
 };
 
+static const struct ListMenuItem sSet3[] =
+{
+    {sText_Fighting, 0},
+    {sText_Flying, 1},
+    {sText_Poison, 2},
+    {sText_Ground, 3},
+    {sText_Rock, 4},
+    {sText_Bug, 5},
+    {sText_Ghost, 6},
+    {sText_Steel, 7},
+    {sText_Fire, 8},
+    {sText_Water, 9},
+    {sText_Grass, 10},
+    {sText_Electric, 11},
+    {sText_Psychic, 12},
+    {sText_Ice, 13},
+    {sText_Dragon, 14},
+    {sText_Dark, 15},
+    {sText_Fairy, 16},
+};
+
 // Table of your multichoice sets.
 struct
 {
@@ -841,6 +879,7 @@ struct
 {
     {sSet1, ARRAY_COUNT(sSet1)},
     {sSet2, ARRAY_COUNT(sSet2)},
+    {sSet3, ARRAY_COUNT(sSet3)},
 };
 
 static void Task_ScrollingMultichoiceInput(u8 taskId);

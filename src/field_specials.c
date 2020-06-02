@@ -2431,7 +2431,7 @@ void ShowScrollableMultichoice(void)
             break;
         case SCROLL_MULTI_GEMS:
             task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
-            task->tNumItems = 17;
+            task->tNumItems = 18;
             task->tLeft = 15;
             task->tTop = 1;
             task->tWidth = 14;
@@ -2597,6 +2597,27 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_PokemonMoves,
         gText_Underpowered,
         gText_WhenInDanger,
+        gText_Exit
+    },
+    [SCROLL_MULTI_GEMS] = 
+    {
+        gText_FightingGem,
+        gText_FlyingGem,
+        gText_PoisonGem,
+        gText_GroundGem,
+        gText_RockGem,
+        gText_BugGem,
+        gText_GhostGem,
+        gText_SteelGem,
+        gText_FireGem,
+        gText_WaterGem,
+        gText_GrassGem,
+        gText_ElectricGem,
+        gText_PsychicGem,
+        gText_IceGem,
+        gText_DragonGem,
+        gText_DarkGem,
+        gText_FairyGem,
         gText_Exit
     }
 };

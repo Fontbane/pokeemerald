@@ -733,6 +733,24 @@ extern const u8 gText_PokemonMoves[];
 extern const u8 gText_Underpowered[];
 extern const u8 gText_WhenInDanger[];
 
+extern const u8 gText_FightingGem[];
+extern const u8 gText_FlyingGem[];
+extern const u8 gText_PoisonGem[];
+extern const u8 gText_GroundGem[];
+extern const u8 gText_RockGem[];
+extern const u8 gText_BugGem[];
+extern const u8 gText_GhostGem[];
+extern const u8 gText_SteelGem[];
+extern const u8 gText_FireGem[];
+extern const u8 gText_WaterGem[];
+extern const u8 gText_GrassGem[];
+extern const u8 gText_ElectricGem[];
+extern const u8 gText_PsychicGem[];
+extern const u8 gText_IceGem[];
+extern const u8 gText_DragonGem[];
+extern const u8 gText_DarkGem[];
+extern const u8 gText_FairyGem[];
+
 // Battle Frontier Maniac
 extern const u8 BattleFrontier_Lounge2_Text_SalonMaidenIsThere[];
 extern const u8 BattleFrontier_Lounge2_Text_SalonMaidenSilverMons[];
@@ -990,6 +1008,7 @@ extern const u8 gText_ThankYouIllSendItHome[];
 extern const u8 gText_ThanksIllSendItHome[];
 extern const u8 gText_SpaceForVar1Full[];
 extern const u8 gText_ThrowInPremierBall[];
+extern const u8 gText_GemExchange[];
 extern const u8 gText_ShopBuy[];
 extern const u8 gText_ShopSell[];
 extern const u8 gText_ShopQuit[];
