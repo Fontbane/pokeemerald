@@ -915,6 +915,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_ALOLAN_EXEGGUTOR] = gMonIcon_AlolanExeggutor,
     [SPECIES_ALOLAN_MAROWAK] = gMonIcon_AlolanMarowak,
     [SPECIES_GALARIAN_DARUMAKA] = gMonIcon_GalarianDarumaka,
+    [SPECIES_GALARIAN_DARMANITAN] = gMonIcon_GalarianDarmanitan,
     [SPECIES_SHAYMIN_SKY] = gMonIcon_ShayminSky,
     [SPECIES_GIRATINA_ORIGIN] = gMonIcon_GiratinaOrigin,
     [SPECIES_DARMANITAN_ZEN] = gMonIcon_DarmanitanZen,

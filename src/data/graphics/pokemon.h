@@ -3619,6 +3619,10 @@ const u32 gMonFrontPic_GalarianDarumaka[] = INCBIN_U32("graphics/pokemon/galaria
 const u32 gMonBackPic_GalarianDarumaka[] = INCBIN_U32("graphics/pokemon/galarian_darumaka/back.4bpp.lz");
 const u32 gMonPalette_GalarianDarumaka[] = INCBIN_U32("graphics/pokemon/galarian_darumaka/normal.gbapal.lz");
 const u32 gMonShinyPalette_GalarianDarumaka[] = INCBIN_U32("graphics/pokemon/galarian_darumaka/shiny.gbapal.lz");
+const u32 gMonFrontPic_GalarianDarmanitan[] = INCBIN_U32("graphics/pokemon/galarian_darmanitan/front.4bpp.lz");
+const u32 gMonBackPic_GalarianDarmanitan[] = INCBIN_U32("graphics/pokemon/galarian_darmanitan/back.4bpp.lz");
+const u32 gMonPalette_GalarianDarmanitan[] = INCBIN_U32("graphics/pokemon/galarian_darmanitan/normal.gbapal.lz");
+const u32 gMonShinyPalette_GalarianDarmanitan[] = INCBIN_U32("graphics/pokemon/galarian_darmanitan/shiny.gbapal.lz");
 
 const u32 gMonFrontPic_ShayminSky[] = INCBIN_U32("graphics/pokemon/shaymin/anim_front_sky.4bpp.lz");
 const u32 gMonBackPic_ShayminSky[] = INCBIN_U32("graphics/pokemon/shaymin/back_sky.4bpp.lz");
@@ -4603,6 +4607,7 @@ const u8 gMonIcon_AlolanMuk[] = INCBIN_U8("graphics/pokemon/alolan_muk/icon.4bpp
 const u8 gMonIcon_AlolanExeggutor[] = INCBIN_U8("graphics/pokemon/alolan_exeggutor/icon.4bpp");
 const u8 gMonIcon_AlolanMarowak[] = INCBIN_U8("graphics/pokemon/alolan_marowak/icon.4bpp");
 const u8 gMonIcon_GalarianDarumaka[] = INCBIN_U8("graphics/pokemon/galarian_darumaka/icon.4bpp");
+const u8 gMonIcon_GalarianDarmanitan[] = INCBIN_U8("graphics/pokemon/galarian_darmanitan/icon.4bpp");
 
 const u8 gMonIcon_ShayminSky[] = INCBIN_U8("graphics/pokemon/shaymin/icon_sky.4bpp");
 const u8 gMonIcon_GiratinaOrigin[] = INCBIN_U8("graphics/pokemon/giratina/icon_origin.4bpp");

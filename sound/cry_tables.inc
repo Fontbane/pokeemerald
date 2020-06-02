@@ -892,6 +892,7 @@ gCryTable:: @ 869DCF4
 	cry Cry_Alolan_Exeggutor
 	cry Cry_Alolan_Marowak
 	cry_not Cry_Galarian_Darumaka
+	cry_not Cry_Galarian_Darmanitan
 	@ Form Changes
 	cry_not Cry_Primal_Kyogre
 	cry_not Cry_Primal_Groudon
@@ -1803,6 +1804,7 @@ gCryTable2:: @ 869EF24
 	cry2 Cry_Alolan_Exeggutor
 	cry2 Cry_Alolan_Marowak
 	cry2_not Cry_Galarian_Darumaka
+	cry2_not Cry_Galarian_Darmanitan
 	@ Form Changes
 	cry2_not Cry_Primal_Kyogre
 	cry2_not Cry_Primal_Groudon

@@ -4528,6 +4528,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x76,
         .y_offset = 0xc
     },
+    [SPECIES_GALARIAN_DARMANITAN] =
+    {
+        .size = 0x76,
+        .y_offset = 0xc
+    },
     // Forms
     [SPECIES_PRIMAL_KYOGRE] =
     {

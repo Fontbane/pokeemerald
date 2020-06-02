@@ -3947,6 +3947,10 @@ Cry_Galarian_Darumaka::
 	.incbin "sound/direct_sound_samples/cry_not_darumaka.bin"
 
 	.align 2
+Cry_Galarian_Darmanitan::
+	.incbin "sound/direct_sound_samples/cry_not_darumaka.bin"
+
+	.align 2
 Cry_Primal_Kyogre::
 	.incbin "sound/direct_sound_samples/cry_not_primal_kyogre.bin"
 
