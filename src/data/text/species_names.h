@@ -975,7 +975,6 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_GALARIAN_MEOWTH] = _("Meowth"),
     [SPECIES_GALARIAN_PONYTA] = _("Ponyta"),
     [SPECIES_GALARIAN_RAPIDASH] = _("Rapidash"),
-    [SPECIES_GALARIAN_SLOWPOKE] = _("Slowpoke"),
     [SPECIES_GALARIAN_FARFETCHD] = _("Farfetch'd"),
     [SPECIES_GALARIAN_WEEZING] = _("Weezing"),
     [SPECIES_GALARIAN_MR_MIME] = _("Mr. Mime"),

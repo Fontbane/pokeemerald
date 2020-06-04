@@ -810,6 +810,87 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Zeraora
 	cry_not Cry_Meltan
 	cry_not Cry_Melmetal
+	cry_not Cry_Placeholder@GROOKEY 810
+	cry_not Cry_Placeholder@THWACKEY 811
+	cry_not Cry_Placeholder@RILLABOOM 812
+	cry_not Cry_Placeholder@SCORBUNNY 813
+	cry_not Cry_Placeholder@RABOOT 814
+	cry_not Cry_Placeholder@CINDERACE 815
+	cry_not Cry_Placeholder@SOBBLE 816
+	cry_not Cry_Placeholder@DRIZZILE 817
+	cry_not Cry_Placeholder@INTELEON 818
+	cry_not Cry_Placeholder@SKWOVET 819
+	cry_not Cry_Placeholder@GREEDENT 820
+	cry_not Cry_Placeholder@ROOKIDEE 821
+	cry_not Cry_Placeholder@CORVISQUIRE 822
+	cry_not Cry_Placeholder@CORVIKNIGHT 823
+	cry_not Cry_Placeholder@BLIPBUG 824
+	cry_not Cry_Placeholder@DOTTLER 825
+	cry_not Cry_Placeholder@ORBEETLE 826
+	cry_not Cry_Placeholder@NICKIT 827
+	cry_not Cry_Placeholder@THIEVUL 828
+	cry_not Cry_Placeholder@GOSSIFLEUR 829
+	cry_not Cry_Placeholder@ELDEGOSS 830
+	cry_not Cry_Placeholder@WOOLOO 831
+	cry_not Cry_Placeholder@DUBWOOL 832
+	cry_not Cry_Placeholder@CHEWTLE 833
+	cry_not Cry_Placeholder@DREDNAW 834
+	cry_not Cry_Placeholder@YAMPER 835
+	cry_not Cry_Placeholder@BOLTUND 836
+	cry_not Cry_Placeholder@ROLYCOLY 837
+	cry_not Cry_Placeholder@CARKOL 838
+	cry_not Cry_Placeholder@COALOSSAL 839
+	cry_not Cry_Placeholder@APPLIN 840
+	cry_not Cry_Placeholder@FLAPPLE 841
+	cry_not Cry_Placeholder@APPLETUN 842
+	cry_not Cry_Placeholder@SILICOBRA 843
+	cry_not Cry_Placeholder@SANDACONDA 844
+	cry_not Cry_Placeholder@CRAMORANT 845
+	cry_not Cry_Placeholder@ARROKUDA 846
+	cry_not Cry_Placeholder@BARRASKEWDA 847
+	cry_not Cry_Placeholder@TOXEL 848
+	cry_not Cry_Placeholder@TOXTRICITY 849
+	cry_not Cry_Placeholder@SIZZLIPEDE 850
+	cry_not Cry_Placeholder@CENTISKORCH 851
+	cry_not Cry_Placeholder@CLOBBOPUS 852
+	cry_not Cry_Placeholder@GRAPPLOCT 853
+	cry_not Cry_Placeholder@SINISTEA 854
+	cry_not Cry_Placeholder@POLTEAGEIST 855
+	cry_not Cry_Placeholder@HATENNA 856
+	cry_not Cry_Placeholder@HATTREM 857
+	cry_not Cry_Placeholder@HATTERENE 858
+	cry_not Cry_Placeholder@IMPIDIMP 859
+	cry_not Cry_Placeholder@MORGREM 860
+	cry_not Cry_Placeholder@GRIMMSNARL 861
+	cry_not Cry_Placeholder@OBSTAGOON 862
+	cry_not Cry_Placeholder@PERRSERKER 863
+	cry_not Cry_Placeholder@CURSOLA 864
+	cry_not Cry_Placeholder@SIRFETCHD 865
+	cry_not Cry_Placeholder@MR_RIME 866
+	cry_not Cry_Placeholder@RUNERIGUS 867
+	cry_not Cry_Placeholder@MILCERY 868
+	cry_not Cry_Placeholder@ALCREMIE 869
+	cry_not Cry_Placeholder@FALINKS 870
+	cry_not Cry_Placeholder@PINCURCHIN 871
+	cry_not Cry_Placeholder@SNOM 872
+	cry_not Cry_Placeholder@FROSMOTH 873
+	cry_not Cry_Placeholder@STONJOURNER 874
+	cry_not Cry_Placeholder@EISCUE 875
+	cry_not Cry_Placeholder@INDEEDEE 876
+	cry_not Cry_Placeholder@MORPEKO 877
+	cry_not Cry_Placeholder@CUFANT 878
+	cry_not Cry_Placeholder@COPPERAJAH 879
+	cry_not Cry_Placeholder@DRACOZOLT 880
+	cry_not Cry_Placeholder@ARCTOZOLT 881
+	cry_not Cry_Placeholder@DRACOVISH 882
+	cry_not Cry_Placeholder@ARCTOVISH 883
+	cry_not Cry_Placeholder@DURALUDON 884
+	cry_not Cry_Placeholder@DREEPY 885
+	cry_not Cry_Placeholder@DRAKLOAK 886
+	cry_not Cry_Placeholder@DRAGAPULT 887
+	cry_not Cry_Placeholder@ZACIAN 888
+	cry_not Cry_Placeholder@ZAMAZENTA 889
+	cry_not Cry_Placeholder@ETERNATUS 890
 	@ Megas
 	cry_not Cry_Mega_Ampharos
 	cry_not Cry_Mega_Venusaur
@@ -872,6 +953,29 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Kyurem_Black
 	cry_not Cry_Kyurem_White
 	cry_not Cry_Meowstic_F
+	cry_not Cry_Primal_Kyogre
+	cry_not Cry_Primal_Groudon
+	cry_not Cry_Shaymin_Sky
+	cry_not Cry_Giratina_Origin
+	cry_not Cry_Darmanitan_Zen
+	cry_not Cry_Tornadus_Therian
+	cry_not Cry_Thundurus_Therian
+	cry_not Cry_Landorus_Therian
+	cry_not Cry_Meloetta_Pirouette
+	cry_not Cry_Aegislash_Blade
+	cry_not Cry_Hoopa_Unbound
+	cry_not Cry_Minior_Core
+	cry_not Cry_Wishiwashi_School
+	cry_not Cry_Mimikyu_Busted
+	cry_not Cry_Lycanroc_Midnight
+	cry_not Cry_Lycanroc_Dusk
+	cry_not Cry_Placeholder@TOXTRICITY_LOW_KEY SPECIES_LAST_MEGA+29
+	cry_not Cry_Placeholder@EISCUE_NOICE SPECIES_LAST_MEGA+30
+	cry_not Cry_Placeholder@INDEEDEE_F SPECIES_LAST_MEGA+31
+	cry_not Cry_Placeholder@MORPEKO_HANGRY SPECIES_LAST_MEGA+32
+	cry_not Cry_Placeholder@ZACIAN_CROWNED SPECIES_LAST_MEGA+33
+	cry_not Cry_Placeholder@ZAMAZENTA_CROWNED SPECIES_LAST_MEGA+34
+	cry_not Cry_Placeholder@GALARIAN_DARMANITAN_ZEN SPECIES_LAST_MEGA+35
 	@ Alolan Forms
 	cry Cry_Alolan_Rattata
 	cry Cry_Alolan_Raticate
@@ -891,25 +995,19 @@ gCryTable:: @ 869DCF4
 	cry Cry_Alolan_Muk
 	cry Cry_Alolan_Exeggutor
 	cry Cry_Alolan_Marowak
+	cry Cry_Galarian_Meowth
+	cry Cry_Galarian_Ponyta
+	cry Cry_Galarian_Rapidash
+	cry Cry_Galarian_Farfetchd
+	cry Cry_Galarian_Weezing
+	cry Cry_Galarian_MrMime
+	cry Cry_Galarian_Corsola
+	cry Cry_Galarian_Zigzagoon
+	cry Cry_Galarian_Linoone
 	cry_not Cry_Galarian_Darumaka
 	cry_not Cry_Galarian_Darmanitan
-	@ Form Changes
-	cry_not Cry_Primal_Kyogre
-	cry_not Cry_Primal_Groudon
-	cry_not Cry_Shaymin_Sky
-	cry_not Cry_Giratina_Origin
-	cry_not Cry_Darmanitan_Zen
-	cry_not Cry_Tornadus_Therian
-	cry_not Cry_Thundurus_Therian
-	cry_not Cry_Landorus_Therian
-	cry_not Cry_Meloetta_Pirouette
-	cry_not Cry_Aegislash_Blade
-	cry_not Cry_Hoopa_Unbound
-	cry_not Cry_Minior_Core
-	cry_not Cry_Wishiwashi_School
-	cry_not Cry_Mimikyu_Busted
-	cry_not Cry_Lycanroc_Midnight
-	cry_not Cry_Lycanroc_Dusk
+	cry_not Cry_Galarian_Yamask
+	cry_not Cry_Galarian_Stunfisk
 
 	.align 2
 gCryTable2:: @ 869EF24
@@ -1722,6 +1820,87 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Zeraora
 	cry2_not Cry_Meltan
 	cry2_not Cry_Melmetal
+	cry2_not Cry_Placeholder@GROOKEY 810
+	cry2_not Cry_Placeholder@THWACKEY 811
+	cry2_not Cry_Placeholder@RILLABOOM 812
+	cry2_not Cry_Placeholder@SCORBUNNY 813
+	cry2_not Cry_Placeholder@RABOOT 814
+	cry2_not Cry_Placeholder@CINDERACE 815
+	cry2_not Cry_Placeholder@SOBBLE 816
+	cry2_not Cry_Placeholder@DRIZZILE 817
+	cry2_not Cry_Placeholder@INTELEON 818
+	cry2_not Cry_Placeholder@SKWOVET 819
+	cry2_not Cry_Placeholder@GREEDENT 820
+	cry2_not Cry_Placeholder@ROOKIDEE 821
+	cry2_not Cry_Placeholder@CORVISQUIRE 822
+	cry2_not Cry_Placeholder@CORVIKNIGHT 823
+	cry2_not Cry_Placeholder@BLIPBUG 824
+	cry2_not Cry_Placeholder@DOTTLER 825
+	cry2_not Cry_Placeholder@ORBEETLE 826
+	cry2_not Cry_Placeholder@NICKIT 827
+	cry2_not Cry_Placeholder@THIEVUL 828
+	cry2_not Cry_Placeholder@GOSSIFLEUR 829
+	cry2_not Cry_Placeholder@ELDEGOSS 830
+	cry2_not Cry_Placeholder@WOOLOO 831
+	cry2_not Cry_Placeholder@DUBWOOL 832
+	cry2_not Cry_Placeholder@CHEWTLE 833
+	cry2_not Cry_Placeholder@DREDNAW 834
+	cry2_not Cry_Placeholder@YAMPER 835
+	cry2_not Cry_Placeholder@BOLTUND 836
+	cry2_not Cry_Placeholder@ROLYCOLY 837
+	cry2_not Cry_Placeholder@CARKOL 838
+	cry2_not Cry_Placeholder@COALOSSAL 839
+	cry2_not Cry_Placeholder@APPLIN 840
+	cry2_not Cry_Placeholder@FLAPPLE 841
+	cry2_not Cry_Placeholder@APPLETUN 842
+	cry2_not Cry_Placeholder@SILICOBRA 843
+	cry2_not Cry_Placeholder@SANDACONDA 844
+	cry2_not Cry_Placeholder@CRAMORANT 845
+	cry2_not Cry_Placeholder@ARROKUDA 846
+	cry2_not Cry_Placeholder@BARRASKEWDA 847
+	cry2_not Cry_Placeholder@TOXEL 848
+	cry2_not Cry_Placeholder@TOXTRICITY 849
+	cry2_not Cry_Placeholder@SIZZLIPEDE 850
+	cry2_not Cry_Placeholder@CENTISKORCH 851
+	cry2_not Cry_Placeholder@CLOBBOPUS 852
+	cry2_not Cry_Placeholder@GRAPPLOCT 853
+	cry2_not Cry_Placeholder@SINISTEA 854
+	cry2_not Cry_Placeholder@POLTEAGEIST 855
+	cry2_not Cry_Placeholder@HATENNA 856
+	cry2_not Cry_Placeholder@HATTREM 857
+	cry2_not Cry_Placeholder@HATTERENE 858
+	cry2_not Cry_Placeholder@IMPIDIMP 859
+	cry2_not Cry_Placeholder@MORGREM 860
+	cry2_not Cry_Placeholder@GRIMMSNARL 861
+	cry2_not Cry_Placeholder@OBSTAGOON 862
+	cry2_not Cry_Placeholder@PERRSERKER 863
+	cry2_not Cry_Placeholder@CURSOLA 864
+	cry2_not Cry_Placeholder@SIRFETCHD 865
+	cry2_not Cry_Placeholder@MR_RIME 866
+	cry2_not Cry_Placeholder@RUNERIGUS 867
+	cry2_not Cry_Placeholder@MILCERY 868
+	cry2_not Cry_Placeholder@ALCREMIE 869
+	cry2_not Cry_Placeholder@FALINKS 870
+	cry2_not Cry_Placeholder@PINCURCHIN 871
+	cry2_not Cry_Placeholder@SNOM 872
+	cry2_not Cry_Placeholder@FROSMOTH 873
+	cry2_not Cry_Placeholder@STONJOURNER 874
+	cry2_not Cry_Placeholder@EISCUE 875
+	cry2_not Cry_Placeholder@INDEEDEE 876
+	cry2_not Cry_Placeholder@MORPEKO 877
+	cry2_not Cry_Placeholder@CUFANT 878
+	cry2_not Cry_Placeholder@COPPERAJAH 879
+	cry2_not Cry_Placeholder@DRACOZOLT 880
+	cry2_not Cry_Placeholder@ARCTOZOLT 881
+	cry2_not Cry_Placeholder@DRACOVISH 882
+	cry2_not Cry_Placeholder@ARCTOVISH 883
+	cry2_not Cry_Placeholder@DURALUDON 884
+	cry2_not Cry_Placeholder@DREEPY 885
+	cry2_not Cry_Placeholder@DRAKLOAK 886
+	cry2_not Cry_Placeholder@DRAGAPULT 887
+	cry2_not Cry_Placeholder@ZACIAN 888
+	cry2_not Cry_Placeholder@ZAMAZENTA 889
+	cry2_not Cry_Placeholder@ETERNATUS 890
 	@ Megas
 	cry2_not Cry_Mega_Ampharos
 	cry2_not Cry_Mega_Venusaur
@@ -1784,6 +1963,29 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Kyurem_Black
 	cry2_not Cry_Kyurem_White
 	cry2_not Cry_Meowstic_F
+	cry2_not Cry_Primal_Kyogre
+	cry2_not Cry_Primal_Groudon
+	cry2_not Cry_Shaymin_Sky
+	cry2_not Cry_Giratina_Origin
+	cry2_not Cry_Darmanitan_Zen
+	cry2_not Cry_Tornadus_Therian
+	cry2_not Cry_Thundurus_Therian
+	cry2_not Cry_Landorus_Therian
+	cry2_not Cry_Meloetta_Pirouette
+	cry2_not Cry_Aegislash_Blade
+	cry2_not Cry_Hoopa_Unbound
+	cry2_not Cry_Minior_Core
+	cry2_not Cry_Wishiwashi_School
+	cry2_not Cry_Mimikyu_Busted
+	cry2_not Cry_Lycanroc_Midnight
+	cry2_not Cry_Lycanroc_Dusk
+	cry2_not Cry_Placeholder@TOXTRICITY_LOW_KEY SPECIES_LAST_MEGA+29
+	cry2_not Cry_Placeholder@EISCUE_NOICE SPECIES_LAST_MEGA+30
+	cry2_not Cry_Placeholder@INDEEDEE_F SPECIES_LAST_MEGA+31
+	cry2_not Cry_Placeholder@MORPEKO_HANGRY SPECIES_LAST_MEGA+32
+	cry2_not Cry_Placeholder@ZACIAN_CROWNED SPECIES_LAST_MEGA+33
+	cry2_not Cry_Placeholder@ZAMAZENTA_CROWNED SPECIES_LAST_MEGA+34
+	cry2_not Cry_Placeholder@GALARIAN_DARMANITAN_ZEN SPECIES_LAST_MEGA+35
 	@ Alolan Forms
 	cry2 Cry_Alolan_Rattata
 	cry2 Cry_Alolan_Raticate
@@ -1803,22 +2005,16 @@ gCryTable2:: @ 869EF24
 	cry2 Cry_Alolan_Muk
 	cry2 Cry_Alolan_Exeggutor
 	cry2 Cry_Alolan_Marowak
+	cry2 Cry_Galarian_Meowth
+	cry2 Cry_Galarian_Ponyta
+	cry2 Cry_Galarian_Rapidash
+	cry2 Cry_Galarian_Farfetchd
+	cry2 Cry_Galarian_Weezing
+	cry2 Cry_Galarian_MrMime
+	cry2 Cry_Galarian_Corsola
+	cry2 Cry_Galarian_Zigzagoon
+	cry2 Cry_Galarian_Linoone
 	cry2_not Cry_Galarian_Darumaka
 	cry2_not Cry_Galarian_Darmanitan
-	@ Form Changes
-	cry2_not Cry_Primal_Kyogre
-	cry2_not Cry_Primal_Groudon
-	cry2_not Cry_Shaymin_Sky
-	cry2_not Cry_Giratina_Origin
-	cry2_not Cry_Darmanitan_Zen
-	cry2_not Cry_Tornadus_Therian
-	cry2_not Cry_Thundurus_Therian
-	cry2_not Cry_Landorus_Therian
-	cry2_not Cry_Meloetta_Pirouette
-	cry2_not Cry_Aegislash_Blade
-	cry2_not Cry_Hoopa_Unbound
-	cry2_not Cry_Minior_Core
-	cry2_not Cry_Wishiwashi_School
-	cry2_not Cry_Mimikyu_Busted
-	cry2_not Cry_Lycanroc_Midnight
-	cry2_not Cry_Lycanroc_Dusk
+	cry2_not Cry_Galarian_Yamask
+	cry2_not Cry_Galarian_Stunfisk
