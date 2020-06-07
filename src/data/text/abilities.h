@@ -511,6 +511,8 @@ const u8 gAbilityNames[ABILITIES_COUNT_GEN8][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_PASTEL_VEIL] = _("Pastel Veil"),
     [ABILITY_HUNGER_SWITCH] = _("HungerSwitch"),
     [ABILITY_BATTLE_COAT] = _("Battle Coat"),
+    [ABILITY_SUN_DANCE] = _("Sun Dance"),
+    [ABILITY_RAINY_DAY] = _("Rainy Day"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN8] =

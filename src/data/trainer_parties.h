@@ -324,7 +324,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Matt[] = {
     {
     .iv = 150,
     .lvl = 37,
-    .species = SPECIES_CLAUNCHER,
+    .species = SPECIES_CLAWITZER,
     },
     {
     .iv = 150,
@@ -3273,7 +3273,7 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = {
     .lvl = 50,
     .species = SPECIES_MIGHTYENA,
     .heldItem = ITEM_CHOPLE_BERRY,
-    .moves = {MOVE_IRON_HEAD, MOVE_DOUBLE_EDGE, MOVE_SAND_ATTACK, MOVE_CRUNCH}
+    .moves = {MOVE_IRON_HEAD, MOVE_PSYCHIC_FANGS, MOVE_SAND_ATTACK, MOVE_CRUNCH}
     },
     {
     .iv = 250,
@@ -3287,7 +3287,7 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = {
     .lvl = 50,
     .species = SPECIES_CACTURNE,
     .heldItem = ITEM_TANGA_BERRY,
-    .moves = {MOVE_LEECH_SEED, MOVE_NIGHT_SLASH, MOVE_NEEDLE_ARM, MOVE_BULLDOZE}
+    .moves = {MOVE_LEECH_SEED, MOVE_NIGHT_SLASH, MOVE_GRASS_KNOT, MOVE_BULLDOZE}
     },
     {
     .iv = 250,
@@ -3386,14 +3386,14 @@ static const struct TrainerMonItemCustomMoves sParty_Drake[] = {
     .iv = 250,
     .lvl = 53,
     .species = SPECIES_DRUDDIGON,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_LIFE_ORB,
     .moves = {MOVE_ROCK_TOMB, MOVE_DRAGON_CLAW, MOVE_POISON_JAB, MOVE_DOUBLE_EDGE}
     },
     {
     .iv = 250,
     .lvl = 54,
     .species = SPECIES_DRAGALGE,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_BLACK_SLUDGE,
     .moves = {MOVE_SLUDGE_BOMB, MOVE_DRAGON_PULSE, MOVE_SURF, MOVE_FLAMETHROWER}
     },
     {
@@ -3504,7 +3504,7 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery1[] = {
     .lvl = 27,
     .species = SPECIES_VULPIX,
     .heldItem = ITEM_HEAT_ROCK,
-    .moves = {MOVE_OVERHEAT, MOVE_SOLAR_BEAM, MOVE_SUNNY_DAY, MOVE_WILL_O_WISP}
+    .moves = {MOVE_OVERHEAT, MOVE_SOLAR_BEAM, MOVE_HEX, MOVE_WILL_O_WISP}
     },
     {
     .iv = 200,
@@ -3534,14 +3534,14 @@ static const struct TrainerMonItemCustomMoves sParty_Norman1[] = {
     .iv = 200,
     .lvl = 27,
     .species = SPECIES_SPINDA,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_CHOPLE_BERRY,
     .moves = {MOVE_TEETER_DANCE, MOVE_PSYBEAM, MOVE_FACADE, MOVE_ENCORE}
     },
     {
     .iv = 200,
     .lvl = 27,
     .species = SPECIES_VIGOROTH,
-    .heldItem = ITEM_NONE,
+    .heldItem = ITEM_NORMAL_GEM,
     .moves = {MOVE_BRICK_BREAK, MOVE_FACADE, MOVE_THUNDER_PUNCH, MOVE_FAINT_ATTACK}
     },
     {
@@ -4359,6 +4359,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Jaylen[] = {
     .iv = 0,
     .lvl = 22,
     .species = SPECIES_TRAPINCH,
+    },
+    {
+    .iv = 0,
+    .lvl = 22,
+    .species = SPECIES_SCRAGGY,
     }
 };
 
@@ -8132,7 +8137,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMtChimney[] = {
     },
     {
     .iv = 150,
-    .lvl = 25,
+    .lvl = 26,
     .species = SPECIES_CAMERUPT,
     }
 };
