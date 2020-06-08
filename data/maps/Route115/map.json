@@ -452,6 +452,14 @@
       "elevation": 3,
       "item": "ITEM_HEART_SCALE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_115_HEART_SCALE"
+    },
+    {
+      "type": "hidden_item",
+      "x": 29,
+      "y": 50,
+      "elevation": 3,
+      "item": "ITEM_FAIRY_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_115_FAIRY_GEM"
     }
   ]
 }

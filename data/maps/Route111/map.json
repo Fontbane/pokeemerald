@@ -679,6 +679,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_RockSmash",
       "flag": "FLAG_TEMP_17"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "x": 12,
+      "y": 109,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_18"
     }
   ],
   "warp_events": [
@@ -1169,23 +1182,31 @@
       "y": 100,
       "elevation": 3,
       "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_111_NORMAL_GEM_1"
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_111_NORMAL_GEM"
     },
     {
       "type": "hidden_item",
       "x": 18,
       "y": 97,
       "elevation": 3,
-      "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_111_NORMAL_GEM_2"
+      "item": "ITEM_HEART_SCALE",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_111_HEART_SCALE"
     },
     {
       "type": "hidden_item",
       "x": 22,
       "y": 27,
       "elevation": 3,
-      "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_111_NORMAL_GEM_3"
+      "item": "ITEM_GROUND_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_111_GROUND_GEM"
+    },
+    {
+      "type": "hidden_item",
+      "x": 12,
+      "y": 109,
+      "elevation": 3,
+      "item": "ITEM_WATER_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_111_WATER_GEM"
     }
   ]
 }

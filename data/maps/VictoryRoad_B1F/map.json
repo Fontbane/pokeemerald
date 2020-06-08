@@ -348,8 +348,8 @@
       "x": 20,
       "y": 25,
       "elevation": 3,
-      "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM_1"
+      "item": "ITEM_HEART_SCALE",
+      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_HEART_SCALE"
     },
     {
       "type": "hidden_item",
@@ -357,23 +357,23 @@
       "y": 12,
       "elevation": 3,
       "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM_2"
+      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM"
     },
     {
       "type": "hidden_item",
-      "x": 20,
-      "y": 4,
+      "x": 40,
+      "y": 8,
       "elevation": 3,
       "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM_3"
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_116_ROCK_GEM"
     },
     {
       "type": "hidden_item",
-      "x": 34,
-      "y": 3,
+      "x": 44,
+      "y": 8,
       "elevation": 3,
-      "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_NORMAL_GEM_4"
+      "item": "ITEM_DUSK_STONE",
+      "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_DUSK_STONE"
     }
   ]
 }

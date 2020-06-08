@@ -194,32 +194,32 @@
       "x": 2,
       "y": 16,
       "elevation": 3,
-      "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_2F_NORMAL_GEM_1"
+      "item": "ITEM_HEART_SCALE",
+      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_2F_HEART_SCALE"
     },
     {
       "type": "hidden_item",
       "x": 5,
       "y": 14,
       "elevation": 3,
-      "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_2F_NORMAL_GEM_2"
+      "item": "ITEM_HARD_STONE",
+      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_2F_HARD_STONE"
     },
     {
       "type": "hidden_item",
       "x": 4,
       "y": 22,
       "elevation": 3,
-      "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_2F_NORMAL_GEM_3"
+      "item": "ITEM_FIGHTING_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_2F_FIGHTING_GEM"
     },
     {
       "type": "hidden_item",
       "x": 7,
       "y": 12,
       "elevation": 3,
-      "item": "ITEM_NORMAL_GEM",
-      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_2F_NORMAL_GEM_4"
+      "item": "ITEM_DARK_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_GRANITE_CAVE_2F_DARK_GEM"
     }
   ]
 }
