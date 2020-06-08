@@ -2,9 +2,9 @@ MauvilleCity_GameCorner_MapScripts:: @ 820FBB8
 	.byte 0
 
     @ Game Corner prices
-	.set TM32_COINS,  1500
-	.set TM29_COINS,  3500
-	.set TM35_COINS,  4000
+	.set LIFE_ORB_COINS,  4000
+	.set TOXIC_ORB_COINS,  3000
+	.set FLAME_ORB_COINS,  3000
 	.set TM24_COINS,  4000
 	.set TM13_COINS,  4000
 	.set DOLL_COINS,  1000
@@ -250,31 +250,31 @@ MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize:: @ 820FECE
 MauvilleCity_GameCorner_EventScript_ChooseTMPrize:: @ 820FED9
 	multichoice 12, 0, MULTI_GAME_CORNER_TMS, 0
 	switch VAR_RESULT
-	case 0, MauvilleCity_GameCorner_EventScript_TM32
-	case 1, MauvilleCity_GameCorner_EventScript_TM29
-	case 2, MauvilleCity_GameCorner_EventScript_TM35
+	case 0, MauvilleCity_GameCorner_EventScript_LIFE_ORB
+	case 1, MauvilleCity_GameCorner_EventScript_TOXIC_ORB
+	case 2, MauvilleCity_GameCorner_EventScript_FLAME_ORB
 	case 3, MauvilleCity_GameCorner_EventScript_TM24
 	case 4, MauvilleCity_GameCorner_EventScript_TM13
 	case 5, MauvilleCity_GameCorner_EventScript_CancelTMSelect
 	goto MauvilleCity_GameCorner_EventScript_CancelTMSelect
 	end
 
-MauvilleCity_GameCorner_EventScript_TM32:: @ 820FF2B
+MauvilleCity_GameCorner_EventScript_LIFE_ORB:: @ 820FF2B
 	setvar VAR_TEMP_1, 1
-	bufferitemname 0, ITEM_TM32
-	setvar VAR_0x8004, ITEM_TM32
+	bufferitemname 0, ITEM_LIFE_ORB
+	setvar VAR_0x8004, ITEM_LIFE_ORB
 	goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 
-MauvilleCity_GameCorner_EventScript_TM29:: @ 820FF3E
+MauvilleCity_GameCorner_EventScript_TOXIC_ORB:: @ 820FF3E
 	setvar VAR_TEMP_1, 2
-	bufferitemname 0, ITEM_TM29
-	setvar VAR_0x8004, ITEM_TM29
+	bufferitemname 0, ITEM_TOXIC_ORB
+	setvar VAR_0x8004, ITEM_TOXIC_ORB
 	goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 
-MauvilleCity_GameCorner_EventScript_TM35:: @ 820FF51
+MauvilleCity_GameCorner_EventScript_FLAME_ORB:: @ 820FF51
 	setvar VAR_TEMP_1, 3
-	bufferitemname 0, ITEM_TM35
-	setvar VAR_0x8004, ITEM_TM35
+	bufferitemname 0, ITEM_FLAME_ORB
+	setvar VAR_0x8004, ITEM_FLAME_ORB
 	goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 
 MauvilleCity_GameCorner_EventScript_TM24:: @ 820FF64
@@ -295,52 +295,52 @@ MauvilleCity_GameCorner_EventScript_ConfirmTMPrize:: @ 820FF8A
 	compare VAR_RESULT, NO
 	goto_if_eq MauvilleCity_GameCorner_EventScript_CancelTMSelect
 	switch VAR_TEMP_1
-	case 1, MauvilleCity_GameCorner_EventScript_BuyTM32
-	case 2, MauvilleCity_GameCorner_EventScript_BuyTM29
-	case 3, MauvilleCity_GameCorner_EventScript_BuyTM35
+	case 1, MauvilleCity_GameCorner_EventScript_BuyLIFE_ORB
+	case 2, MauvilleCity_GameCorner_EventScript_BuyTOXIC_ORB
+	case 3, MauvilleCity_GameCorner_EventScript_BuyFLAME_ORB
 	case 4, MauvilleCity_GameCorner_EventScript_BuyTM24
 	case 5, MauvilleCity_GameCorner_EventScript_BuyTM13
 	end
 
-MauvilleCity_GameCorner_EventScript_BuyTM32:: @ 820FFDD
+MauvilleCity_GameCorner_EventScript_BuyLIFE_ORB:: @ 820FFDD
 	checkcoins VAR_TEMP_2
-	compare VAR_TEMP_2, TM32_COINS
+	compare VAR_TEMP_2, LIFE_ORB_COINS
 	goto_if_lt MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
-	checkitemspace ITEM_TM32, 1
+	checkitemspace ITEM_LIFE_ORB, 1
 	compare VAR_RESULT, FALSE
 	goto_if_eq MauvilleCity_GameCorner_EventScript_NoRoomForTM
-	removecoins TM32_COINS
-	additem ITEM_TM32
+	removecoins LIFE_ORB_COINS
+	additem ITEM_LIFE_ORB
 	updatecoinsbox 1, 1
 	playse SE_REGI
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 	end
 
-MauvilleCity_GameCorner_EventScript_BuyTM29:: @ 8210017
+MauvilleCity_GameCorner_EventScript_BuyTOXIC_ORB:: @ 8210017
 	checkcoins VAR_TEMP_2
-	compare VAR_TEMP_2, TM29_COINS
+	compare VAR_TEMP_2, TOXIC_ORB_COINS
 	goto_if_lt MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
-	checkitemspace ITEM_TM29, 1
+	checkitemspace ITEM_TOXIC_ORB, 1
 	compare VAR_RESULT, FALSE
 	goto_if_eq MauvilleCity_GameCorner_EventScript_NoRoomForTM
-	removecoins TM29_COINS
-	additem ITEM_TM29
+	removecoins TOXIC_ORB_COINS
+	additem ITEM_TOXIC_ORB
 	updatecoinsbox 1, 1
 	playse SE_REGI
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 	end
 
-MauvilleCity_GameCorner_EventScript_BuyTM35:: @ 8210051
+MauvilleCity_GameCorner_EventScript_BuyFLAME_ORB:: @ 8210051
 	checkcoins VAR_TEMP_2
-	compare VAR_TEMP_2, TM35_COINS
+	compare VAR_TEMP_2, FLAME_ORB_COINS
 	goto_if_lt MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForTM
-	checkitemspace ITEM_TM35, 1
+	checkitemspace ITEM_FLAME_ORB, 1
 	compare VAR_RESULT, FALSE
 	goto_if_eq MauvilleCity_GameCorner_EventScript_NoRoomForTM
-	removecoins TM35_COINS
-	additem ITEM_TM35
+	removecoins FLAME_ORB_COINS
+	additem ITEM_FLAME_ORB
 	updatecoinsbox 1, 1
 	playse SE_REGI
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
