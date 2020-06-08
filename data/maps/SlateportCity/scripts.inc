@@ -115,6 +115,26 @@ SlateportCity_Movement_ScottExit: @ 81DCDB4
 	walk_left
 	walk_left
 	step_end
+ 
+SlateportCity_EventScript_Gemma:: @ 822A442
+	lock
+	faceplayer
+	message SlateportCity_Text_GemGirlHi
+	waitmessage
+	checkitem ITEM_NORMAL_GEM, 1
+	compare VAR_RESULT, 0
+	goto_if_eq SlateportCity_EventScript_GemGirlBye
+	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq SlateportCity_EventScript_GemGirlBye
+	removeitem ITEM_NORMAL_GEM
+	random 18
+	addvar VAR_RESULT, FIRST_GEM_INDEX
+	giveitem VAR_RESULT
+	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
+	msgbox SlateportCity_Text_GemThanks, MSGBOX_DEFAULT
+	goto SlateportCity_EventScript_GemGirlBye
+	end
 
 SlateportCity_EventScript_GemGirl::
 	lock
@@ -1212,7 +1232,11 @@ SlateportCity_Text_GemGirlComeBack:
 	.string "come back with a Normal Gem!$"
 
 SlateportCity_Text_ConfirmGem:
-	.string "So you want this gem?$"
+	.string "Yup, that's a Normal Gem!\n"
+	.string "Do you want to trade it?$"
+
+SlateportCity_Text_GemThanks:
+	.string "Thank you!$"
 
 SlateportCity_Text_EnergyGuruSellWhatYouNeed: @ 81DD64A
 	.string "I'm the ENERGY GURU! I'll go for it and\n"

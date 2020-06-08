@@ -757,6 +757,9 @@
 #define FIRST_BERRY_INDEX             ITEM_CHERI_BERRY
 #define LAST_BERRY_INDEX              ITEM_MARANGA_BERRY
 
+#define FIRST_GEM_INDEX               ITEM_BUG_GEM
+#define LAST_GEM_INDEX               ITEM_WATER_GEM
+
 // Range of berries given out by various NPCS
 #define FIRST_BERRY_MASTER_BERRY      ITEM_POMEG_BERRY
 #define LAST_BERRY_MASTER_BERRY       ITEM_NOMEL_BERRY

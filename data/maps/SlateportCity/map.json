@@ -495,7 +495,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SlateportCity_EventScript_GemGirl",
+      "script": "SlateportCity_EventScript_Gemma",
       "flag": "0"
     }
   ],
@@ -693,6 +693,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "SlateportCity_EventScript_BerryCrushRankingsSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 4,
+      "y": 38,
+      "elevation": 3,
+      "item": "ITEM_AIR_BALLOON",
+      "flag": "FLAG_HIDDEN_ITEM_SLATEPORT_CITY_AIR_BALLOON"
     }
   ]
 }
