@@ -554,8 +554,8 @@
       "x": 73,
       "y": 5,
       "elevation": 3,
-      "item": "ITEM_NONE",
-      "flag": "FLAG_SYS_POKEMON_GET"
+      "item": "ITEM_NORMAL_GEM",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_116_NORMAL_GEM"
     }
   ]
 }

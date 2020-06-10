@@ -386,23 +386,12 @@ SlateportCity_EventScript_EnergyGuru:: @ 81DCDBD
 	end
 
 SlateportCity_Pokemart_EnergyGuru: @ 81DCDD4
-	.2byte ITEM_FIGHTING_GEM
-    .2byte ITEM_FLYING_GEM
-    .2byte ITEM_POISON_GEM
-    .2byte ITEM_GROUND_GEM
-    .2byte ITEM_ROCK_GEM
-    .2byte ITEM_BUG_GEM
-    .2byte ITEM_GHOST_GEM
-    .2byte ITEM_STEEL_GEM
-    .2byte ITEM_FIRE_GEM
-    .2byte ITEM_WATER_GEM
-    .2byte ITEM_GRASS_GEM
-    .2byte ITEM_ELECTRIC_GEM
-    .2byte ITEM_PSYCHIC_GEM
-    .2byte ITEM_ICE_GEM
-    .2byte ITEM_DRAGON_GEM
-    .2byte ITEM_DARK_GEM
-	.2byte ITEM_FAIRY_GEM
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_IRON
+	.2byte ITEM_CARBOS
+	.2byte ITEM_ZINC
+	.2byte ITEM_CALCIUM
+	.2byte ITEM_HP_UP
 	.2byte ITEM_NONE
 	release
 	end
