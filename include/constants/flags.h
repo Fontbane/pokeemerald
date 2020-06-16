@@ -671,7 +671,8 @@
 #define FLAG_HIDDEN_ITEM_MAUVILLE_CITY_STEEL_GEM             (FLAG_HIDDEN_ITEMS_START + 0x8A)
 #define FLAG_HIDDEN_ITEM_MOSSDEEP_CITY_NORMAL_GEM            (FLAG_HIDDEN_ITEMS_START + 0x8B)
 #define FLAG_HIDDEN_ITEM_SLATEPORT_CITY_AIR_BALLOON          (FLAG_HIDDEN_ITEMS_START + 0x8C)
-#define HIDDEN_ITEM_FLAGS_END FLAG_HIDDEN_ITEM_SLATEPORT_CITY_AIR_BALLOON //Exclude the items we don't want to regenerate
+#define FLAG_HIDDEN_ITEM_SHOAL_CAVE_ICE_STONE                (FLAG_HIDDEN_ITEMS_START + 0x8D)
+#define HIDDEN_ITEM_FLAGS_END FLAG_HIDDEN_ITEM_SHOAL_CAVE_ICE_STONE //Exclude the items we don't want to regenerate
 
 #define FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_1_KEY             (HIDDEN_ITEM_FLAGS_END+1)//Doesn't regen
 #define FLAG_HIDDEN_ITEM_ABANDONED_SHIP_RM_2_KEY             (HIDDEN_ITEM_FLAGS_END+2)//Doesn't regen
@@ -711,8 +712,8 @@
 #define FLAG_UNUSED_0x27F  0x27F // Unused Flag
 #define FLAG_UNUSED_0x280  0x280 // Unused Flag
 #define FLAG_UNUSED_0x281  0x281 // Unused Flag
-#define FLAG_UNUSED_0x282  0x282 // Unused Flagcurrent
-#define FLAG_UNUSED_0x283  0x283 // Unused Flag
+#define FLAG_UNUSED_0x282  0x282 // Unused Flag
+#define FLAG_UNUSED_0x283  0x283 // Unused Flagcurrent
 #define FLAG_UNUSED_0x284  0x284 // Unused Flag
 #define FLAG_UNUSED_0x285  0x285 // Unused Flag
 #define FLAG_UNUSED_0x286  0x286 // Unused Flag

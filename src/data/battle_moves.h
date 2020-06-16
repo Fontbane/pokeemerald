@@ -2262,7 +2262,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 10,
-        .secondaryEffectChance = 20,
+        .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
@@ -2342,7 +2342,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_TRIPLE_KICK] =
     {
         .effect = EFFECT_TRIPLE_KICK,
-        .power = 10,
+        .power = 30,
         .type = TYPE_FIGHTING,
         .accuracy = 90,
         .pp = 10,

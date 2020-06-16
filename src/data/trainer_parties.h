@@ -7843,14 +7843,14 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Leonardo[] = {
 static const struct TrainerMonItemCustomMoves sParty_Athena[] = {
     {
     .iv = 100,
-    .lvl = 40,
+    .lvl = 41,
     .species = SPECIES_MANECTRIC,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_THUNDER, MOVE_THUNDER_WAVE, MOVE_QUICK_ATTACK, MOVE_NONE}
+    .moves = {MOVE_THUNDER_FANG, MOVE_THUNDER_WAVE, MOVE_QUICK_ATTACK, MOVE_ICE_FANG}
     },
     {
     .iv = 100,
-    .lvl = 40,
+    .lvl = 41,
     .species = SPECIES_LINOONE,
     .heldItem = ITEM_NONE,
     .moves = {MOVE_SURF, MOVE_THIEF, MOVE_NONE, MOVE_NONE}
