@@ -364,8 +364,13 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectGeomancy
 	.4byte BattleScript_EffectFairyLock
 	.4byte BattleScript_EffectAllySwitch
+	.4byte BattleScript_EffectSleepHit
 	.4byte BattleScript_EffectPlasmaFists
 	.4byte BattleScript_EffectDoubleIronBash
+
+BattleScript_EffectSleepHit:
+	setmoveeffect MOVE_EFFECT_SLEEP
+	goto BattleScript_EffectHit
 	
 BattleScript_EffectAllySwitch:
 	attackcanceler
@@ -3106,7 +3111,7 @@ BattleScript_EffectTwoTurnsAttackIceBurn:
 	setbyte sTWOTURN_STRINGID, 0x0
 	goto BattleScript_EffectTwoTurnsAttackContinue
 BattleScript_EffectTwoTurnsAttackFreezeShock:
-	setbyte sTWOTURN_STRINGID, 0x0
+	setbyte sTWOTURN_STRINGID, 0xa
 	goto BattleScript_EffectTwoTurnsAttackContinue	
 	
 BattleScript_EffectGeomancy:
@@ -5474,8 +5479,9 @@ BattleScript_LeechSeedTurnDrain::
 	datahpupdate BS_ATTACKER
 	copyword gBattleMoveDamage, gHpDealt
 	jumpifability BS_ATTACKER, ABILITY_LIQUID_OOZE, BattleScript_LeechSeedTurnPrintLiquidOoze
-	manipulatedamage DMG_BIG_ROOT
 	setbyte cMULTISTRING_CHOOSER, 0x3
+	jumpifstatus3 BS_TARGET, STATUS3_HEAL_BLOCK, BattleScript_LeechSeedHealBlock
+	manipulatedamage DMG_BIG_ROOT
 	goto BattleScript_LeechSeedTurnPrintAndUpdateHp
 BattleScript_LeechSeedTurnPrintLiquidOoze::
 	copybyte gBattlerAbility, gBattlerAttacker
@@ -5490,6 +5496,9 @@ BattleScript_LeechSeedTurnPrintAndUpdateHp::
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 	tryfaintmon BS_TARGET, FALSE, NULL
 	end2
+BattleScript_LeechSeedHealBlock:
+	setword gBattleMoveDamage, 0
+	goto BattleScript_LeechSeedTurnPrintAndUpdateHp
 
 BattleScript_BideStoringEnergy::
 	printstring STRINGID_PKMNSTORINGENERGY
@@ -7132,8 +7141,11 @@ BattleScript_RoughSkinActivates::
 	return
 
 BattleScript_RockyHelmetActivates::
+	@ don't play the animation for a fainted mon
+	jumpifabsent BS_TARGET, BattleScript_RockyHelmetActivatesDmg
 	playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT, NULL
 	waitanimation
+BattleScript_RockyHelmetActivatesDmg:
 	call BattleScript_HurtAttacker
 	return
 
@@ -7432,6 +7444,9 @@ BattleScript_HangedOnMsg::
 	playanimation BS_TARGET, B_ANIM_HANGED_ON, NULL
 	printstring STRINGID_PKMNHUNGONWITHX
 	waitmessage 0x40
+	jumpifnoholdeffect BS_TARGET, HOLD_EFFECT_FOCUS_SASH, BattleScript_HangedOnMsgRet
+	removeitem BS_TARGET
+BattleScript_HangedOnMsgRet:
 	return
 
 BattleScript_BerryConfuseHealEnd2::
