@@ -172,206 +172,33 @@ SlateportCity_Pokemart_GemGirl:
 	release
 	end
 
-SlateportCity_EventScript_ChooseGem::
-	message SlateportCity_Text_GemGirlWhatGem
-	waitmessage
-	setvar VAR_0x8004, SCROLL_MULTI_GEMS
-	special ShowScrollableMultichoice
-	waitstate
-	switch VAR_RESULT
-	case 0, SlateportCity_EventScript_FightingGem
-	case 1, SlateportCity_EventScript_FlyingGem
-	case 2, SlateportCity_EventScript_PoisonGem
-	case 3, SlateportCity_EventScript_GroundGem
-	case 4, SlateportCity_EventScript_RockGem
-	case 5, SlateportCity_EventScript_BugGem
-	case 6, SlateportCity_EventScript_GhostGem
-	case 7, SlateportCity_EventScript_SteelGem
-	case 8, SlateportCity_EventScript_FireGem
-	case 9, SlateportCity_EventScript_WaterGem
-	case 10, SlateportCity_EventScript_GrassGem
-	case 11, SlateportCity_EventScript_ElectricGem
-	case 12, SlateportCity_EventScript_PsychicGem
-	case 13, SlateportCity_EventScript_IceGem
-	case 14, SlateportCity_EventScript_DragonGem
-	case 15, SlateportCity_EventScript_DarkGem
-	case 16, SlateportCity_EventScript_FairyGem
-	case 17, SlateportCity_EventScript_GemGirlBye
-	case MULTI_B_PRESSED, SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_FightingGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_FIGHTING_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_FlyingGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_FLYING_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_PoisonGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_POISON_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_GroundGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_GROUND_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_RockGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_ROCK_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_BugGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_BUG_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_GhostGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_GHOST_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_SteelGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_STEEL_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_FireGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_FIRE_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_WaterGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_WATER_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_GrassGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_GRASS_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_ElectricGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_ELECTRIC_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_PsychicGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_PSYCHIC_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_IceGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_ICE_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_DragonGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_DRAGON_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_DarkGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_DARK_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
-SlateportCity_EventScript_FairyGem::
-	msgbox SlateportCity_Text_ConfirmGem, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_GemGirlBye
-	removeitem ITEM_NORMAL_GEM
-	giveitem ITEM_FAIRY_GEM
-	msgbox SlateportCity_Text_GemExchange, MSGBOX_DEFAULT
-	goto SlateportCity_EventScript_GemGirlBye
-	end
-
 SlateportCity_EventScript_GemGirlBye::
 	msgbox SlateportCity_Text_GemGirlComeBack, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_EventScript_IncenseShop::
+	lock
+	faceplayer
+	message SlateportCity_Text_IncenseShop
+	waitmessage
+	pokemart SlateportCity_Pokemart_IncenseShop
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+SlateportCity_Pokemart_IncenseShop:
+	.2byte ITEM_ROSE_INCENSE
+	.2byte ITEM_WAVE_INCENSE
+	.2byte ITEM_ODD_INCENSE
+	.2byte ITEM_FULL_INCENSE
+	.2byte ITEM_LUCK_INCENSE
+	.2byte ITEM_SEA_INCENSE
+	.2byte ITEM_ROCK_INCENSE
+	.2byte ITEM_LAX_INCENSE
+	.2byte ITEM_PURE_INCENSE
+	.2byte ITEM_NONE
 	release
 	end
 
@@ -385,7 +212,7 @@ SlateportCity_EventScript_EnergyGuru:: @ 81DCDBD
 	release
 	end
 
-SlateportCity_Pokemart_EnergyGuru: @ 81DCDD4
+SlateportCity_Pokemart_EnergyGuru:
 	.2byte ITEM_PROTEIN
 	.2byte ITEM_IRON
 	.2byte ITEM_CARBOS
@@ -1226,6 +1053,9 @@ SlateportCity_Text_ConfirmGem:
 
 SlateportCity_Text_GemThanks:
 	.string "Thank you!$"
+
+SlateportCity_Text_IncenseShop:
+	.string "Would you like to buy some incense?$"
 
 SlateportCity_Text_EnergyGuruSellWhatYouNeed: @ 81DD64A
 	.string "I'm the ENERGY GURU! I'll go for it and\n"
