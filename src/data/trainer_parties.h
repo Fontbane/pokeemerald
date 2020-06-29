@@ -1179,13 +1179,13 @@ static const struct TrainerMonNoItemCustomMoves sParty_Wendy[] = {
     .iv = 100,
     .lvl = 34,
     .species = SPECIES_MAWILE,
-    .moves = {MOVE_BATON_PASS, MOVE_FAINT_ATTACK, MOVE_FAKE_TEARS, MOVE_BITE}
+    .moves = {MOVE_BATON_PASS, MOVE_SWORDS_DANCE, MOVE_SUBSTITUTE, MOVE_BITE}
     },
     {
     .iv = 100,
     .lvl = 34,
-    .species = SPECIES_ROSELIA,
-    .moves = {MOVE_MEGA_DRAIN, MOVE_MAGICAL_LEAF, MOVE_GRASS_WHISTLE, MOVE_LEECH_SEED}
+    .species = SPECIES_LURANTIS,
+    .moves = {MOVE_LEAF_BLADE, MOVE_SYNTHESIS, MOVE_X_SCISSOR, MOVE_NIGHT_SLASH}
     },
     {
     .iv = 100,
@@ -1427,7 +1427,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Tasha[] = {
     {
     .iv = 50,
     .lvl = 36,
-    .species = SPECIES_LITWICK,
+    .species = SPECIES_LAMPENT,
     }
 };
 
@@ -2947,7 +2947,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Virgil[] = {
     {
     .iv = 100,
     .lvl = 40,
-    .species = SPECIES_GARDEVOIR,
+    .species = SPECIES_GRUMPIG,
     }
 };
 
@@ -5769,7 +5769,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Clarissa[] = {
     {
     .iv = 0,
     .lvl = 31,
-    .species = SPECIES_ROSELIA,
+    .species = SPECIES_CARBINK,
     },
     {
     .iv = 0,
@@ -6867,6 +6867,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute103Mudkip[] 
 
 static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute110Mudkip[] = {
     {
+    .iv = 100,
+    .lvl = 17,
+    .species = SPECIES_TAILLOW,
+    },
+    {
     .iv = 50,
     .lvl = 18,
     .species = SPECIES_SLUGMA,
@@ -6920,6 +6925,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute103Treecko[]
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute110Treecko[] = {
+    {
+    .iv = 100,
+    .lvl = 17,
+    .species = SPECIES_TAILLOW,
+    },
     {
     .iv = 50,
     .lvl = 18,
@@ -6975,6 +6985,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute103Torchic[]
 
 static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute110Torchic[] = {
     {
+    .iv = 100,
+    .lvl = 17,
+    .species = SPECIES_TAILLOW,
+    },
+    {
     .iv = 50,
     .lvl = 18,
     .species = SPECIES_SHROOMISH,
@@ -7028,6 +7043,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute103Mudkip[] = {
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute110Mudkip[] = {
+    {
+    .iv = 100,
+    .lvl = 17,
+    .species = SPECIES_TAILLOW,
+    },
     {
     .iv = 50,
     .lvl = 18,
@@ -7083,6 +7103,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute103Treecko[] = {
 
 static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute110Treecko[] = {
     {
+    .iv = 100,
+    .lvl = 17,
+    .species = SPECIES_TAILLOW,
+    },
+    {
     .iv = 50,
     .lvl = 18,
     .species = SPECIES_WAILMER,
@@ -7136,6 +7161,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute103Torchic[] = {
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_MayRoute110Torchic[] = {
+    {
+    .iv = 100,
+    .lvl = 17,
+    .species = SPECIES_TAILLOW,
+    },
     {
     .iv = 50,
     .lvl = 18,
@@ -7970,11 +8000,16 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Macey[] = {
     {
     .iv = 0,
     .lvl = 40,
-    .species = SPECIES_GARDEVOIR,
+    .species = SPECIES_XATU,
     }
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRustboroTreecko[] = {
+    {
+    .iv = 25,
+    .lvl = 12,
+    .species = SPECIES_TAILLOW,
+    },
     {
     .iv = 25,
     .lvl = 13,
@@ -7988,6 +8023,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRustboroTreecko[]
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRustboroMudkip[] = {
+    {
+    .iv = 25,
+    .lvl = 12,
+    .species = SPECIES_TAILLOW,
+    },
     {
     .iv = 25,
     .lvl = 13,
@@ -8073,6 +8113,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Jonathan[] = {
 static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRustboroTorchic[] = {
     {
     .iv = 25,
+    .lvl = 12,
+    .species = SPECIES_TAILLOW,
+    },
+    {
+    .iv = 25,
     .lvl = 13,
     .species = SPECIES_SLUGMA,
     },
@@ -8084,6 +8129,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRustboroTorchic[]
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_MayRustboroMudkip[] = {
+    {
+    .iv = 25,
+    .lvl = 12,
+    .species = SPECIES_TAILLOW,
+    },
     {
     .iv = 25,
     .lvl = 13,
@@ -10423,7 +10473,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Myles[] = {
     {
     .iv = 10,
     .lvl = 30,
-    .species = SPECIES_TROPIUS,
+    .species = SPECIES_FOMANTIS,
     },
     {
     .iv = 10,
@@ -10491,6 +10541,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Cristin1[] = {
 static const struct TrainerMonNoItemDefaultMoves sParty_MayRustboroTreecko[] = {
     {
     .iv = 25,
+    .lvl = 12,
+    .species = SPECIES_TAILLOW,
+    },
+    {
+    .iv = 25,
     .lvl = 13,
     .species = SPECIES_SHROOMISH,
     },
@@ -10502,6 +10557,11 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayRustboroTreecko[] = {
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_MayRustboroTorchic[] = {
+    {
+    .iv = 25,
+    .lvl = 12,
+    .species = SPECIES_TAILLOW,
+    },
     {
     .iv = 25,
     .lvl = 13,
