@@ -30,10 +30,10 @@ GraniteCave_1F_Text_GetsDarkAheadHereYouGo: @ 822DA94
 	.string "Here you go, I'll pass this on to you.$"
 
 GraniteCave_1F_Text_ExplainFlash: @ 822DBB7
-	.string "Teach that hidden move FLASH to\n"
+	.string "Teach that useful move FLASH to\n"
 	.string "a POKéMON and use it.\p"
 	.string "It lights up even the inky darkness\n"
 	.string "of caves.\p"
 	.string "Back in my day, you needed the\n"
-	.string "BADGE from DEWFORD's POKéMON GYM.$"
+	.string "BADGE from DEWFORD's GYM to use it.$"
 
