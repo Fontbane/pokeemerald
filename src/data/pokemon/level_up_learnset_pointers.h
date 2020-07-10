@@ -907,4 +907,5 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_MIMIKYU_BUSTED] = sMimikyuLevelUpLearnset,
     [SPECIES_LYCANROC_MIDNIGHT] = sLycanrocMidnightLevelUpLearnset,
     [SPECIES_LYCANROC_DUSK] = sLycanrocDuskLevelUpLearnset,
+    [SPECIES_GOARYU] = sGoaryuLevelUpLearnset,
 };

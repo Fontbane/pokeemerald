@@ -9719,4 +9719,16 @@ const struct PokedexEntry gPokedexEntries[] =
 		.trainerScale = 387,
 		.trainerOffset = 2,
 	},
+
+	[NATIONAL_DEX_GOARYU] =
+    {
+        .categoryName = _("Raging"),
+        .height = 12,
+        .weight = 360,
+        .description = gPrimeapePokedexText,
+        .pokemonScale = 326,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
 };

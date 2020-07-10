@@ -733,8 +733,9 @@
 #define MOVE_METEOR_ASSAULT           (MOVES_COUNT_GEN7 + 32)
 #define MOVE_ETERNABEAM               (MOVES_COUNT_GEN7 + 33)
 #define MOVE_STEEL_BEAM               (MOVES_COUNT_GEN7 + 34)
+#define MOVE_DRAGON_PUNCH             (MOVES_COUNT_GEN7 + 35)
 
-#define MOVES_COUNT_GEN8              (MOVES_COUNT_GEN7 + 35)
+#define MOVES_COUNT_GEN8              (MOVES_COUNT_GEN7 + 36)
 
 #define MOVES_COUNT                 MOVES_COUNT_GEN8
 

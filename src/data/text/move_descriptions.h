@@ -2625,6 +2625,11 @@ static const u8 sDOUBLE_IRON_BASHDescription[] = _(
     "The user spins and hits with\n"
     "its arms. May cause flinch.");
 
+
+static const u8 sDragonPunchDescription[] = _(
+    "Punches with the rage of a\n"
+    "dragon. May cause flinch.");
+
 static const u8 sNotDoneYetDescription[] = _(
 	"Not done yet.");
 
@@ -3308,4 +3313,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_PLASMA_FISTS - 1] = sPLASMA_FISTSDescription,
     [MOVE_PHOTON_GEYSER - 1] = sPHOTON_GEYSERDescription,
     [MOVE_DOUBLE_IRON_BASH - 1] = sDOUBLE_IRON_BASHDescription,
+    [MOVE_DRAGON_PUNCH - 1] = sDragonPunchDescription,
 };

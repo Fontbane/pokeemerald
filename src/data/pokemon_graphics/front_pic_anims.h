@@ -8404,6 +8404,17 @@ static const union AnimCmd sAnim_LYCANROC_DUSK_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_GOARYU_1[] =
+{
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd *const sAnims_NONE[] ={
     sAnim_GeneralFrame0,
     sAnim_NONE_1,
@@ -13104,6 +13115,11 @@ static const union AnimCmd *const sAnims_LYCANROC_DUSK[] ={
     sAnim_LYCANROC_DUSK_1,
 };
 
+static const union AnimCmd *const sAnims_GOARYU[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GOARYU_1,
+};
+
 #define ANIM_CMD(name)             [SPECIES_##name] = sAnims_##name
 #define ANIM_CMD_FULL(name, anims) [SPECIES_##name] = anims
 
@@ -14014,6 +14030,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(MIMIKYU_BUSTED),
     ANIM_CMD(LYCANROC_MIDNIGHT),
     ANIM_CMD(LYCANROC_DUSK),
+    ANIM_CMD(GOARYU),
 };
 
 #undef ANIM_CMD

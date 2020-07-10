@@ -3747,6 +3747,10 @@ extern const u32 gMonFrontPic_LycanrocDusk[];
 extern const u32 gMonBackPic_LycanrocDusk[];
 extern const u32 gMonPalette_LycanrocDusk[];
 extern const u32 gMonShinyPalette_LycanrocDusk[];
+extern const u32 gMonFrontPic_Goaryu[];
+extern const u32 gMonBackPic_Goaryu[];
+extern const u32 gMonPalette_Goaryu[];
+extern const u32 gMonShinyPalette_Goaryu[];
 
 extern const u8 gMonIcon_QuestionMark[];
 extern const u8 gMonIcon_Bulbasaur[];
@@ -4682,6 +4686,7 @@ extern const u8 gMonIcon_KyuremWhite[];
 extern const u8 gMonIcon_MimikyuBusted[];
 extern const u8 gMonIcon_LycanrocMidnight[];
 extern const u8 gMonIcon_LycanrocDusk[];
+extern const u8 gMonIcon_Goaryu[];
 
 extern const u8 gMonFootprint_QuestionMark[];
 extern const u8 gMonFootprint_Bulbasaur[];

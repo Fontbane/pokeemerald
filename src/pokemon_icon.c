@@ -930,6 +930,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_MIMIKYU_BUSTED] = gMonIcon_MimikyuBusted,
     [SPECIES_LYCANROC_MIDNIGHT] = gMonIcon_LycanrocMidnight,
     [SPECIES_LYCANROC_DUSK] = gMonIcon_LycanrocDusk,
+    [SPECIES_GOARYU] = gMonIcon_Goaryu,
     [SPECIES_UNOWN_A] = gMonIcon_UnownA,
     [SPECIES_UNOWN_B] = gMonIcon_UnownB,
     [SPECIES_UNOWN_C] = gMonIcon_UnownC,

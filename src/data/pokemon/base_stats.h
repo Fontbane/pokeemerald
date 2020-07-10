@@ -23451,4 +23451,31 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+
+    
+    [SPECIES_GOARYU] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 125,
+        .baseDefense   = 70,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 80,
+        .type1 = TYPE_FIGHTING,
+        .type2 = TYPE_DRAGON,
+        .catchRate = 45,
+        .expYield = 236,
+        .evYield_Attack    = 3,
+        .evYield_SpAttack  = 0,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = {ABILITY_IRON_FIST, ABILITY_IRON_FIST},
+        .abilityHidden = ABILITY_DEFIANT,
+        .bodyColor = BODY_COLOR_GRAY,
+        .noFlip = FALSE,
+    },
 };

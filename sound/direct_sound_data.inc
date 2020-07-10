@@ -4007,6 +4007,10 @@ Cry_Lycanroc_Dusk::
 	.incbin "sound/direct_sound_samples/cry_not_lycanroc_dusk.bin"
 
 	.align 2
+Cry_Goaryu::
+	.incbin "sound/direct_sound_samples/cry_primeape.bin"
+
+	.align 2
 DirectSoundWaveData_register_noise::
 	.incbin "sound/direct_sound_samples/register_noise.bin"
 

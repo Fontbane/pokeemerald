@@ -3680,6 +3680,10 @@ const u32 gMonFrontPic_LycanrocDusk[] = INCBIN_U32("graphics/pokemon/lycanroc/fr
 const u32 gMonBackPic_LycanrocDusk[] = INCBIN_U32("graphics/pokemon/lycanroc/back_dusk.4bpp.lz");
 const u32 gMonPalette_LycanrocDusk[] = INCBIN_U32("graphics/pokemon/lycanroc/normal_dusk.gbapal.lz");
 const u32 gMonShinyPalette_LycanrocDusk[] = INCBIN_U32("graphics/pokemon/lycanroc/shiny_dusk.gbapal.lz");
+const u32 gMonFrontPic_Goaryu[] = INCBIN_U32("graphics/pokemon/goaryu/front.4bpp.lz");
+const u32 gMonBackPic_Goaryu[] = INCBIN_U32("graphics/pokemon/goaryu/back.4bpp.lz");
+const u32 gMonPalette_Goaryu[] = INCBIN_U32("graphics/pokemon/goaryu/normal.gbapal.lz");
+const u32 gMonShinyPalette_Goaryu[] = INCBIN_U32("graphics/pokemon/goaryu/shiny.gbapal.lz");
 
 const u8 gMonIcon_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mark/icon.4bpp");
 const u8 gMonIcon_Bulbasaur[] = INCBIN_U8("graphics/pokemon/bulbasaur/icon.4bpp");
@@ -4615,6 +4619,7 @@ const u8 gMonIcon_KyuremWhite[] = INCBIN_U8("graphics/pokemon/kyurem/icon_white.
 const u8 gMonIcon_MimikyuBusted[] = INCBIN_U8("graphics/pokemon/mimikyu/icon_busted.4bpp");
 const u8 gMonIcon_LycanrocMidnight[] = INCBIN_U8("graphics/pokemon/lycanroc/icon_midnight.4bpp");
 const u8 gMonIcon_LycanrocDusk[] = INCBIN_U8("graphics/pokemon/lycanroc/icon_dusk.4bpp");
+const u8 gMonIcon_Goaryu[] = INCBIN_U8("graphics/pokemon/goaryu/icon.4bpp");
 
 const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mark/footprint.1bpp");
 const u8 gMonFootprint_Bulbasaur[] = INCBIN_U8("graphics/pokemon/bulbasaur/footprint.1bpp");
