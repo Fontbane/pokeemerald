@@ -4859,6 +4859,6 @@ const u8 gMelmetalPokedexText[] = _(
     "come back to life after 3,000 years.");
 
 const u8 gGoaryuPokedexText[] = _(
-    "Goaryu's intense rage reaches the level of\n"
-    "a dragon's, giving it draconic attributes\n"
+    "Goaryu's intense, seething rage rivals that of\n"
+    "a dragon. In this rage its blood turned cold.\n"
     "Those who anger it face its draconic fury.");
