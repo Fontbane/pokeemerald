@@ -1059,3 +1059,11 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/DragonTunnel_1F/scripts.inc"
+
+	.include "data/maps/DragonTunnel_2F/scripts.inc"
+
+	.include "data/maps/DragonTunnel_3F/scripts.inc"
+
+	.include "data/maps/DragonTunnel_IceRoom/scripts.inc"
