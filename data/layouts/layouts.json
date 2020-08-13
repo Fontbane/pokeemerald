@@ -4450,6 +4450,36 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/DragonTunnel_IceRoom/border.bin",
       "blockdata_filepath": "data/layouts/DragonTunnel_IceRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_FIRE_ROOM",
+      "name": "DragonTunnel_FireRoom_Layout",
+      "width": 32,
+      "height": 32,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_FireRoom/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_FireRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_1R",
+      "name": "DragonTunnel_1R_Layout",
+      "width": 32,
+      "height": 64,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_1R/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_1R/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_2R",
+      "name": "DragonTunnel_2R_Layout",
+      "width": 32,
+      "height": 64,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_2R/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_2R/map.bin"
     }
   ]
 }

@@ -434,7 +434,10 @@
     "DragonTunnel_1F",
     "DragonTunnel_2F",
     "DragonTunnel_3F",
-    "DragonTunnel_IceRoom"
+    "DragonTunnel_IceRoom",
+    "DragonTunnel_FireRoom",
+    "DragonTunnel_1R",
+    "DragonTunnel_2R"
   ],
   "gMapGroup25": [
     "SecretBase_RedCave1",
