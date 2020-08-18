@@ -4480,6 +4480,16 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/DragonTunnel_2R/border.bin",
       "blockdata_filepath": "data/layouts/DragonTunnel_2R/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_DARK_ROOM",
+      "name": "DragonTunnel_DarkRoom_Layout",
+      "width": 36,
+      "height": 48,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_DarkRoom/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_DarkRoom/map.bin"
     }
   ]
 }

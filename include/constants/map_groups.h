@@ -403,6 +403,7 @@
 #define MAP_DRAGON_TUNNEL_FIRE_ROOM                  (112 | (24 << 8))
 #define MAP_DRAGON_TUNNEL_1R                         (113 | (24 << 8))
 #define MAP_DRAGON_TUNNEL_2R                         (114 | (24 << 8))
+#define MAP_DRAGON_TUNNEL_DARK_ROOM                  (115 | (24 << 8))
 
 // Map Group 25
 #define MAP_SECRET_BASE_RED_CAVE1           (0 | (25 << 8))
