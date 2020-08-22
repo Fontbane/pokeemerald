@@ -93,7 +93,8 @@
     "Underwater4",
     "Underwater5",
     "Underwater6",
-    "Underwater7"
+    "Underwater7",
+    "NewMap1"
   ],
   "gMapGroup1": [
     "LittlerootTown_BrendansHouse_1F",
@@ -438,7 +439,12 @@
     "DragonTunnel_FireRoom",
     "DragonTunnel_1R",
     "DragonTunnel_2R",
-    "DragonTunnel_DarkRoom"
+    "DragonTunnel_DarkRoom",
+    "DragonTunnel_2D",
+    "DragonTunnel_Hub",
+    "DragonTunnel_F_Inner",
+    "DragonTunnel_R_Inner",
+    "DragonTunnel_D_Inner"
   ],
   "gMapGroup25": [
     "SecretBase_RedCave1",

@@ -59,6 +59,7 @@
 #define MAP_UNDERWATER5      (54 | (0 << 8))
 #define MAP_UNDERWATER6      (55 | (0 << 8))
 #define MAP_UNDERWATER7      (56 | (0 << 8))
+#define MAP_NEW_MAP1         (57 | (0 << 8))
 
 // Map Group 1
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))
@@ -404,6 +405,11 @@
 #define MAP_DRAGON_TUNNEL_1R                         (113 | (24 << 8))
 #define MAP_DRAGON_TUNNEL_2R                         (114 | (24 << 8))
 #define MAP_DRAGON_TUNNEL_DARK_ROOM                  (115 | (24 << 8))
+#define MAP_DRAGON_TUNNEL_2D                         (116 | (24 << 8))
+#define MAP_DRAGON_TUNNEL_HUB                        (117 | (24 << 8))
+#define MAP_DRAGON_TUNNEL_F_INNER                    (118 | (24 << 8))
+#define MAP_DRAGON_TUNNEL_R_INNER                    (119 | (24 << 8))
+#define MAP_DRAGON_TUNNEL_D_INNER                    (120 | (24 << 8))
 
 // Map Group 25
 #define MAP_SECRET_BASE_RED_CAVE1           (0 | (25 << 8))

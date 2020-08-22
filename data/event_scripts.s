@@ -1075,3 +1075,15 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/DragonTunnel_2R/scripts.inc"
 
 	.include "data/maps/DragonTunnel_DarkRoom/scripts.inc"
+
+	.include "data/maps/NewMap1/scripts.inc"
+
+	.include "data/maps/DragonTunnel_2D/scripts.inc"
+
+	.include "data/maps/DragonTunnel_Hub/scripts.inc"
+
+	.include "data/maps/DragonTunnel_F_Inner/scripts.inc"
+
+	.include "data/maps/DragonTunnel_R_Inner/scripts.inc"
+
+	.include "data/maps/DragonTunnel_D_Inner/scripts.inc"

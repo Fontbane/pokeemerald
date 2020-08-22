@@ -4490,6 +4490,66 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/DragonTunnel_DarkRoom/border.bin",
       "blockdata_filepath": "data/layouts/DragonTunnel_DarkRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_MAP1",
+      "name": "NewMap1_Layout",
+      "width": 48,
+      "height": 32,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/NewMap1/border.bin",
+      "blockdata_filepath": "data/layouts/NewMap1/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_2D",
+      "name": "DragonTunnel_2D_Layout",
+      "width": 36,
+      "height": 48,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_2D/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_2D/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_HUB",
+      "name": "DragonTunnel_Hub_Layout",
+      "width": 24,
+      "height": 32,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_Hub/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_Hub/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_F_INNER",
+      "name": "DragonTunnel_F_Inner_Layout",
+      "width": 15,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_F_Inner/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_F_Inner/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_R_INNER",
+      "name": "DragonTunnel_R_Inner_Layout",
+      "width": 15,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_R_Inner/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_R_Inner/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGON_TUNNEL_D_INNER",
+      "name": "DragonTunnel_D_Inner_Layout",
+      "width": 15,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DragonTunnel_D_Inner/border.bin",
+      "blockdata_filepath": "data/layouts/DragonTunnel_D_Inner/map.bin"
     }
   ]
 }
