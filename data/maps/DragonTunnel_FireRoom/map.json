@@ -17,7 +17,48 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 23,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_DRAGON_TUNNEL_ICE_ROOM",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 25,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_DRAGON_TUNNEL_ICE_ROOM",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 5,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_DRAGON_TUNNEL_ICE_ROOM",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 16,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_DRAGON_TUNNEL_ICE_ROOM",
+      "dest_warp_id": 3
+    },
+    {
+      "x": 27,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_DRAGON_TUNNEL_ICE_ROOM",
+      "dest_warp_id": 4
+    },
+    {
+      "x": 25,
+      "y": 26,
+      "elevation": 0,
+      "dest_map": "MAP_DRAGON_TUNNEL_ICE_ROOM",
+      "dest_warp_id": 5
+    }
   ],
   "coord_events": [
 
