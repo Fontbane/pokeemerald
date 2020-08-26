@@ -25,7 +25,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "MtPyre_5F_EventScript_Atsushi",
-      "flag": "0"
+      "flag": "FLAG_HIDE_BRUCE_1"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPENSER",
@@ -41,7 +41,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ANABEL",
+      "graphics_id": "OBJ_EVENT_GFX_SPENSER",
       "x": 12,
       "y": 24,
       "elevation": 3,
@@ -51,7 +51,20 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DragonTunnel_Hub_EventScript_ReceivePrimeape",
-      "flag": "FLAG_RECEIVED_PRIMEAPE"
+      "flag": "FLAG_SYS_POKEMON_GET"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "x": 10,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_BRUCE_2"
     }
   ],
   "warp_events": [
@@ -112,6 +125,22 @@
       "elevation": 3,
       "item": "ITEM_MACH_BIKE",
       "flag": "FLAG_UNUSED_0x264"
+    },
+    {
+      "type": "hidden_item",
+      "x": 11,
+      "y": 25,
+      "elevation": 3,
+      "item": "ITEM_FULL_RESTORE",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "hidden_item",
+      "x": 10,
+      "y": 25,
+      "elevation": 3,
+      "item": "ITEM_MAX_ELIXIR",
+      "flag": "FLAG_TEMP_2"
     }
   ]
 }

@@ -28,7 +28,7 @@ DragonTunnel_Hub_EventScript_ReceiveCastformParty:: @ 8270085
 
 DragonTunnel_Hub_EventScript_ExplainCastform:: @ 82700EA
 	msgbox DragonTunnel_Hub_Text_PokemonChangesWithWeather, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_PRIMEAPE
+	setflag FLAG_SYS_POKEMON_GET
 	release
 	end
 
