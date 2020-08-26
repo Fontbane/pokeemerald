@@ -10,7 +10,7 @@
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
-  "show_map_name": true,
+  "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
@@ -22,9 +22,9 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "NULL",
+      "script": "DewfordTown_Gym_EventScript_Takao",
       "flag": "0"
     },
     {
@@ -35,9 +35,9 @@
       "movement_type": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "6",
-      "script": "NULL",
+      "script": "Route120_EventScript_Chip",
       "flag": "0"
     },
     {
@@ -48,9 +48,9 @@
       "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
       "movement_range_x": 4,
       "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "NULL",
+      "script": "Route103_EventScript_Rhett",
       "flag": "0"
     },
     {
@@ -61,9 +61,9 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "NULL",
+      "script": "MtPyre_2F_EventScript_Zander",
       "flag": "0"
     },
     {
@@ -74,9 +74,9 @@
       "movement_type": "MOVEMENT_TYPE_WALK_RIGHT_AND_LEFT",
       "movement_range_x": 3,
       "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "NULL",
+      "script": "Route110_TrickHousePuzzle4_EventScript_Yuji",
       "flag": "0"
     }
   ],
