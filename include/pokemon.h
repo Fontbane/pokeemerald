@@ -9,6 +9,30 @@
 
 #define GET_BASE_SPECIES_ID(speciesId) (GetFormSpeciesId(speciesId, 0))
 
+#define BOX_STATUS_NONE 0
+#define BOX_STATUS_SLEEP 1
+#define BOX_STATUS_POISON 2
+#define BOX_STATUS_BURN 3
+#define BOX_STATUS_FREEZE 4
+#define BOX_STATUS_PARALYSIS 5
+#define BOX_STATUS_TOXIC 6 
+ 
+#define STATUS_TO_BOX_STATUS(STATUS1_NONE) BOX_STATUS_NONE
+#define STATUS_TO_BOX_STATUS(STATUS1_SLEEP) BOX_STATUS_SLEEP
+#define STATUS_TO_BOX_STATUS(STATUS1_POISON) BOX_STATUS_POISON
+#define STATUS_TO_BOX_STATUS(STATUS1_BURN) BOX_STATUS_BURN
+#define STATUS_TO_BOX_STATUS(STATUS1_FREEZE) BOX_STATUS_FREEZE
+#define STATUS_TO_BOX_STATUS(STATUS1_PARALYSIS) BOX_STATUS_PARALYSIS
+#define STATUS_TO_BOX_STATUS(STATUS1_TOXIC) BOX_STATUS_TOXIC
+
+#define BOX_STATUS_TO_STATUS(BOX_STATUS_NONE) STATUS1_NONE
+#define BOX_STATUS_TO_STATUS(BOX_STATUS_SLEEP) STATUS1_SLEEP
+#define BOX_STATUS_TO_STATUS(BOX_STATUS_POISON) STATUS1_POISON
+#define BOX_STATUS_TO_STATUS(BOX_STATUS_BURN) STATUS1_BURN
+#define BOX_STATUS_TO_STATUS(BOX_STATUS_FREEZE) STATUS1_FREEZE
+#define BOX_STATUS_TO_STATUS(BOX_STATUS_PARALYSIS) STATUS1_PARALYSIS
+#define BOX_STATUS_TO_STATUS(BOX_STATUS_TOXIC) STATUS1_TOXIC
+
 struct PokemonSubstruct0
 {
     /*0x00*/ u16 species;
@@ -104,7 +128,8 @@ struct BoxPokemon
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
-    u16 unknown;
+    u16 hp: 12;//stored for box link
+    u16 status: 4;//stored for box link
 
     union
     {
@@ -280,7 +305,7 @@ extern const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2];
 extern const u16 gLinkPlayerFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
-
+ 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);
 void ZeroPlayerPartyMons(void);

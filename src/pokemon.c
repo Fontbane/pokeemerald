@@ -4247,6 +4247,11 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_SPECIES:
         retVal = boxMon->isBadEgg ? SPECIES_EGG : substruct0->species;
         break;
+    case MON_DATA_HP:
+        retVal=boxMon->hp;
+        break;
+    case MON_DATA_STATUS:
+        retVal=BOX_STATUS_TO_STATUS(boxMon->status);
     case MON_DATA_HELD_ITEM:
         retVal = substruct0->heldItem;
         break;
@@ -4604,9 +4609,15 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_CHECKSUM:
         SET16(boxMon->checksum);
         break;
-    case MON_DATA_ENCRYPT_SEPARATOR:
-        SET16(boxMon->unknown);
-        break;
+    case MON_DATA_HP:
+        SET16(boxMon->hp);
+    case MON_DATA_STATUS:
+    {
+        switch (GetMonData(mon, MON_DATA_STATUS, data)){
+            case STATUS1_ANY:
+                boxMon->status=STATUS_TO_BOX_STATUS(data);
+        }
+    }
     case MON_DATA_SPECIES:
     {
         SET16(substruct0->species);
@@ -4849,11 +4860,10 @@ u8 SendMonToPC(struct Pokemon* mon)
             struct BoxPokemon* checkingMon = GetBoxedMonPtr(boxNo, boxPos);
             if (GetBoxMonData(checkingMon, MON_DATA_SPECIES, NULL) == SPECIES_NONE)
             {
-                MonRestorePP(mon);
                 CopyMon(checkingMon, &mon->box, sizeof(mon->box));
                 gSpecialVar_MonBoxId = boxNo;
                 gSpecialVar_MonBoxPos = boxPos;
-                if (GetPCBoxToSendMon() != boxNo)
+                if (GetPCBoxToSendMon() != boxNo) 
                     FlagClear(FLAG_SHOWN_BOX_WAS_FULL_MESSAGE);
                 VarSet(VAR_PC_BOX_TO_SEND_MON, boxNo);
                 return MON_GIVEN_TO_PC;
