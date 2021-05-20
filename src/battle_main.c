@@ -5004,7 +5004,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     if (gBattleMoves[move].effect == EFFECT_WEATHER_BALL)
     {
         if (WEATHER_HAS_EFFECT)
-        {
+        { 
             if (gBattleWeather & WEATHER_RAIN_ANY)
                 gBattleStruct->dynamicMoveType = TYPE_WATER | 0x80;
             else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
@@ -5019,14 +5019,9 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
     else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
     {
-        u8 typeBits  = ((gBattleMons[battlerAtk].hpIV & 1) << 0)
-                     | ((gBattleMons[battlerAtk].attackIV & 1) << 1)
-                     | ((gBattleMons[battlerAtk].defenseIV & 1) << 2)
-                     | ((gBattleMons[battlerAtk].speedIV & 1) << 3)
-                     | ((gBattleMons[battlerAtk].spAttackIV & 1) << 4)
-                     | ((gBattleMons[battlerAtk].spDefenseIV & 1) << 5);
+        u8 typeBits  = (((gBattleMons[battlerAtk].personality) & 0x00FF0000) >> 6)
 
-        gBattleStruct->dynamicMoveType = (15 * typeBits) / 63 + 1;
+        gBattleStruct->dynamicMoveType = (16 * typeBits) / 63 + 1;
         if (gBattleStruct->dynamicMoveType >= TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType++;
         gBattleStruct->dynamicMoveType |= 0xC0;
